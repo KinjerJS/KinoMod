@@ -7,6 +7,12 @@ item.kinomod.dalium.name=Dalium
 item.kinomod.bismuth.name=Bismuth
 item.kinomod.charm_of_hunger.0.name=Charm Of Hunger
 item.kinomod.charm_of_hunger_advanced.0.name=Charm Of Hunger (Advanced)
+item.kinomod.charm_of_fire.0.name=Charm Of Fire
+item.kinomod.charm_of_fire_advanced.0.name=Charm Of Fire (Advanced)
+item.kinomod.charm_of_poison.0.name=Charm Of Poison
+item.kinomod.charm_of_poison_advanced.0.name=Charm Of Poison (Advanced)
+item.kinomod.charm_of_drowning.0.name=Charm Of Drowning
+item.kinomod.charm_of_drowning_advanced.0.name=Charm Of Drowning (Advanced)
 
 tile.kinomod.kinium_block.name=Kinium Block
 tile.kinomod.kinium_ore.name=Kinium Ore
@@ -26,7 +32,3 @@ fluid.kinium_molten=Kinium Molten
 fluid.balium_molten=Balium Molten
 fluid.seminium_molten=Seminium Molten
 fluid.dalium_molten=Dalium Molten
-
-
-tooltip.charm_hunger.regeneration_iii=Regeneration III
-tooltip.charm_hunger.hunger_xx=Hunger XX

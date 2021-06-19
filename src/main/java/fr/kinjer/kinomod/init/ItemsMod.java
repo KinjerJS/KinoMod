@@ -7,9 +7,15 @@ import fr.kinjer.kinomod.KinoMod;
 import fr.kinjer.kinomod.items.ItemBalium;
 import fr.kinjer.kinomod.items.ItemBismuth;
 import fr.kinjer.kinomod.items.ItemDalium;
+import fr.kinjer.kinomod.items.ItemDrowningAdvancedCharm;
+import fr.kinjer.kinomod.items.ItemDrowningCharm;
+import fr.kinjer.kinomod.items.ItemFireAdvancedCharm;
+import fr.kinjer.kinomod.items.ItemFireCharm;
 import fr.kinjer.kinomod.items.ItemHungerAdvancedCharm;
 import fr.kinjer.kinomod.items.ItemHungerCharm;
 import fr.kinjer.kinomod.items.ItemKinium;
+import fr.kinjer.kinomod.items.ItemPoisonAdvancedCharm;
+import fr.kinjer.kinomod.items.ItemPoisonCharm;
 import fr.kinjer.kinomod.items.ItemSeminium;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;
@@ -33,6 +39,12 @@ public class ItemsMod {
 	
 	public static final Item charm_of_hunger = new ItemHungerCharm();
 	public static final Item charm_of_hunger_advanced = new ItemHungerAdvancedCharm();
+	public static final Item charm_of_fire = new ItemFireCharm();
+	public static final Item charm_of_fire_advanced = new ItemFireAdvancedCharm();
+	public static final Item charm_of_poison = new ItemPoisonCharm();
+	public static final Item charm_of_poison_advanced = new ItemPoisonAdvancedCharm();
+	public static final Item charm_of_drowning = new ItemDrowningCharm();
+	public static final Item charm_of_drowning_advanced = new ItemDrowningAdvancedCharm();
 	
 	public static void setItemName(Item item, String name) {
 		items.add(item.setRegistryName(KinoMod.MODID, name).setUnlocalizedName(KinoMod.MODID + "." + name));
@@ -48,6 +60,12 @@ public class ItemsMod {
 		registerModel(bismuth);
 		registerModel(charm_of_hunger);
 		registerModel(charm_of_hunger_advanced);
+		registerModel(charm_of_fire);
+		registerModel(charm_of_fire_advanced);
+		registerModel(charm_of_poison);
+		registerModel(charm_of_poison_advanced);
+		registerModel(charm_of_drowning);
+		registerModel(charm_of_drowning_advanced);
 	}
 
 	@SideOnly(Side.CLIENT)

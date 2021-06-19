@@ -34,7 +34,7 @@ public class ItemCharm extends Item implements IBauble
 	public ItemCharm(String name)
 	{
 		super();
-		this.setMaxStackSize(64);
+		this.setMaxStackSize(1);
 		this.setHasSubtypes(true);
 		this.setMaxDamage(0);
 		this.setCreativeTab(KinoMod.tabKino);
