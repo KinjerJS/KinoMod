@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#"
+  ],
+  "key": {
+    "#": {
+      "item": "kinomod:dalium_block"
+    }
+  },
+  "result": {
+    "item": "kinomod:dalium",
+    "count": 9
+  }
+}

@@ -1,0 +1,7 @@
+{
+    "variants": {
+    	"normal": [
+            { "model": "kinomod:seminium_ore" }
+        ]
+    }
+}
