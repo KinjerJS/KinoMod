@@ -1,0 +1,7 @@
+{
+    "variants": {
+    	"normal": [
+            { "model": "kinomod:bismuth_block" }
+        ]
+    }
+}

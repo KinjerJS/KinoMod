@@ -1,0 +1,32 @@
+itemGroup.tabKino=KinoMod
+
+item.kinomod.kinium.name=Kinium
+item.kinomod.balium.name=Balium
+item.kinomod.seminium.name=Seminium
+item.kinomod.dalium.name=Dalium
+item.kinomod.bismuth.name=Bismuth
+item.kinomod.charm_of_hunger.0.name=Charm Of Hunger
+item.kinomod.charm_of_hunger_advanced.0.name=Charm Of Hunger (Advanced)
+
+tile.kinomod.kinium_block.name=Kinium Block
+tile.kinomod.kinium_ore.name=Kinium Ore
+tile.kinomod.balium_block.name=Balium Block
+tile.kinomod.balium_ore.name=Balium Ore
+tile.kinomod.seminium_ore.name=Seminium Ore
+tile.kinomod.seminium_block.name=Seminium Block
+tile.kinomod.dalium_ore.name=Dalium Ore
+tile.kinomod.dalium_block.name=Dalium Block
+
+
+tile.kinium_molten.name=Kinium Molten
+tile.balium_molten.name=Balium Molten
+tile.seminium_molten.name=Seminium Molten
+tile.dalium_molten.name=Dalium Molten
+fluid.kinium_molten=Kinium Molten
+fluid.balium_molten=Balium Molten
+fluid.seminium_molten=Seminium Molten
+fluid.dalium_molten=Dalium Molten
+
+
+tooltip.charm_hunger.regeneration_iii=Regeneration III
+tooltip.charm_hunger.hunger_xx=Hunger XX
