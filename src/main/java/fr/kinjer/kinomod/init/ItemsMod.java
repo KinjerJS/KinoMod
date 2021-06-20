@@ -46,6 +46,8 @@ public class ItemsMod {
 	public static final Item charm_of_drowning = new ItemDrowningCharm();
 	public static final Item charm_of_drowning_advanced = new ItemDrowningAdvancedCharm();
 	
+	
+	
 	public static void setItemName(Item item, String name) {
 		items.add(item.setRegistryName(KinoMod.MODID, name).setUnlocalizedName(KinoMod.MODID + "." + name));
 	}
@@ -53,19 +55,9 @@ public class ItemsMod {
 	@SideOnly(Side.CLIENT)
 	@SubscribeEvent
 	public static void registerItemModels(ModelRegistryEvent event) {
-		registerModel(kinium);
-		registerModel(balium);
-		registerModel(seminium);
-		registerModel(dalium);
-		registerModel(bismuth);
-		registerModel(charm_of_hunger);
-		registerModel(charm_of_hunger_advanced);
-		registerModel(charm_of_fire);
-		registerModel(charm_of_fire_advanced);
-		registerModel(charm_of_poison);
-		registerModel(charm_of_poison_advanced);
-		registerModel(charm_of_drowning);
-		registerModel(charm_of_drowning_advanced);
+		for(Item item : items) {
+			registerModel(item, 0);
+		}
 	}
 
 	@SideOnly(Side.CLIENT)

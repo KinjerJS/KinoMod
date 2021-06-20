@@ -22,6 +22,9 @@ tile.kinomod.seminium_ore.name=Seminium Ore
 tile.kinomod.seminium_block.name=Seminium Block
 tile.kinomod.dalium_ore.name=Dalium Ore
 tile.kinomod.dalium_block.name=Dalium Block
+tile.kinomod.bismuth_block.name=Bismuth Block
+tile.kinomod.gabbro.name=Gabbro
+tile.kinomod.gabbro_polished.name=Gabbro Polished
 
 
 tile.kinium_molten.name=Kinium Molten
@@ -32,3 +35,7 @@ fluid.kinium_molten=Kinium Molten
 fluid.balium_molten=Balium Molten
 fluid.seminium_molten=Seminium Molten
 fluid.dalium_molten=Dalium Molten
+
+kinomod.shiftDetails=Shift for Details
+kinomod.charmhunger.regenerationiii=Regeneration III
+kinomod.charmhunger.hastexx=Haste XX

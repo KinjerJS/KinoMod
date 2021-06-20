@@ -12,6 +12,8 @@ import baubles.common.Baubles;
 import baubles.common.items.ItemRing;
 import fr.kinjer.kinomod.KinoMod;
 import fr.kinjer.kinomod.init.ItemsMod;
+import fr.kinjer.kinomod.utils.KeyBoard;
+import fr.kinjer.kinomod.utils.Localizer;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
@@ -51,8 +53,12 @@ public class ItemHungerCharm extends ItemCharm
 	@SideOnly(Side.CLIENT)
     public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn)
     {
-		tooltip.add("Regeneration");
-		tooltip.add("Hunger XX");
+		if (!KeyBoard.isShiftKeyDown()) {
+			tooltip.add(Localizer.localize("kinomod.shiftDetails"));
+			return;
+		}
+		tooltip.add(Localizer.localize("kinomod.charmhunger.regenerationiii"));
+		tooltip.add(Localizer.localize("kinomod.charmhunger.hastexx"));
     }
 	
 }

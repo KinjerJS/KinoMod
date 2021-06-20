@@ -21,7 +21,7 @@ public class KiniumFluid extends Fluid
     {
         super(fluidName, new ResourceLocation(KinoMod.MODID + ":blocks/"+fluidName+"_still"), new ResourceLocation(KinoMod.MODID + ":blocks/"+fluidName+"_flow"));
 //        this.setUnlocalizedName(fluidName);
-//        setMaterial(MaterialsMod.KINIUM);
+        
 //		setDensity(1100);
 //		setGaseous(false);
 		setLuminosity(15);
