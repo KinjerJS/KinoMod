@@ -10,8 +10,6 @@ public class ItemSeminium extends ItemKino {
 	
 	public ItemSeminium() {
 		super(NAME);
-//		ItemsMod.setItemName(this, NAME);
-		setCreativeTab(KinoMod.tabKino);
 	}
 
 }

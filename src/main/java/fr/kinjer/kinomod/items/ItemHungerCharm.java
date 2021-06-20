@@ -45,8 +45,8 @@ public class ItemHungerCharm extends ItemCharm
 	@Override
 	public void onWornTick(ItemStack itemstack, EntityLivingBase player) {
 		if (itemstack.getItemDamage()==0 && player.ticksExisted%39==0) {
-			player.addPotionEffect(new PotionEffect(MobEffects.REGENERATION,40,3,true,true));
-			player.addPotionEffect(new PotionEffect(MobEffects.HUNGER,40,20,true,true));
+			player.addPotionEffect(new PotionEffect(MobEffects.REGENERATION,40,1,true,true));
+			player.addPotionEffect(new PotionEffect(MobEffects.HUNGER,40,40,true,true));
 		}
 	}
 	
@@ -54,11 +54,11 @@ public class ItemHungerCharm extends ItemCharm
     public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn)
     {
 		if (!KeyBoard.isShiftKeyDown()) {
-			tooltip.add(Localizer.localize("kinomod.shiftDetails"));
+			tooltip.add(Localizer.shiftDetails());
 			return;
 		}
-		tooltip.add(Localizer.localize("kinomod.charmhunger.regenerationiii"));
-		tooltip.add(Localizer.localize("kinomod.charmhunger.hastexx"));
+		tooltip.add(Localizer.localize("kinomod.charmhunger.regenerationi"));
+		tooltip.add(Localizer.localize("kinomod.charmhunger.hungerxl"));
     }
 	
 }

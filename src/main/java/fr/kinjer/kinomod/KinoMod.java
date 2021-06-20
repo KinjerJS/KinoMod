@@ -2,6 +2,7 @@ package fr.kinjer.kinomod;
 
 import org.apache.logging.log4j.Logger;
 
+import baubles.common.Baubles;
 import fr.kinjer.kinomod.fluids.KiniumFluid;
 import fr.kinjer.kinomod.gen.WorldGen;
 import fr.kinjer.kinomod.handler.RegisteringHandler;
@@ -27,12 +28,13 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-@Mod(modid = KinoMod.MODID, name = KinoMod.NAME, version = KinoMod.VERSION)
+@Mod(modid = KinoMod.MODID, name = KinoMod.NAME, version = KinoMod.VERSION/*, dependencies = KinoMod.DEPENDENCIES*/)
 public class KinoMod {
 	
 	public static final String MODID = "kinomod";
 	public static final String NAME = "KinoMod";
 	public static final String VERSION = "1.0.0";
+//	public static final String DEPENDENCIES = "required-after:" + Baubles.MODID + "@[" + Baubles.VERSION + ");";
 	
 	@Instance(MODID)
 	public static KinoMod instance;

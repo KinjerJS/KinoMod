@@ -8,5 +8,9 @@ public class Localizer {
 
 		return I18n.translateToLocal(key);
 	}
+	
+	public static String shiftDetails() {
+		return I18n.translateToLocal("kinomod.shiftDetails");
+	}
 
 }

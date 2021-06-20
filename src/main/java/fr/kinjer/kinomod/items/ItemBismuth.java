@@ -10,8 +10,6 @@ public class ItemBismuth extends ItemKino {
 	
 	public ItemBismuth() {
 		super(NAME);
-//		ItemsMod.setItemName(this, NAME);
-		setCreativeTab(KinoMod.tabKino);
 	}
 
 }

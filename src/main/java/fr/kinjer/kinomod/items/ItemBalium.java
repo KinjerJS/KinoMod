@@ -10,8 +10,6 @@ public class ItemBalium extends ItemKino {
 	
 	public ItemBalium() {
 		super(NAME);
-//		ItemsMod.setItemName(this, NAME);
-		setCreativeTab(KinoMod.tabKino);
 	}
 
 }

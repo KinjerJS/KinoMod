@@ -10,8 +10,6 @@ public class ItemKinium extends ItemKino {
 	
 	public ItemKinium() {
 		super(NAME);
-//		ItemsMod.setItemName(this, NAME);
-		setCreativeTab(KinoMod.tabKino);
 	}
 
 }

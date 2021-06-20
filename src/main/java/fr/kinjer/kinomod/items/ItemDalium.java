@@ -10,8 +10,6 @@ public class ItemDalium extends ItemKino {
 	
 	public ItemDalium() {
 		super(NAME);
-//		ItemsMod.setItemName(this, NAME);
-		setCreativeTab(KinoMod.tabKino);
 	}
 
 }

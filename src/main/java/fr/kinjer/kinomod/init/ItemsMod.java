@@ -14,6 +14,7 @@ import fr.kinjer.kinomod.items.ItemFireCharm;
 import fr.kinjer.kinomod.items.ItemHungerAdvancedCharm;
 import fr.kinjer.kinomod.items.ItemHungerCharm;
 import fr.kinjer.kinomod.items.ItemKinium;
+import fr.kinjer.kinomod.items.ItemKinoRing;
 import fr.kinjer.kinomod.items.ItemPoisonAdvancedCharm;
 import fr.kinjer.kinomod.items.ItemPoisonCharm;
 import fr.kinjer.kinomod.items.ItemSeminium;
@@ -36,6 +37,13 @@ public class ItemsMod {
 	public static final Item seminium = new ItemSeminium();
 	public static final Item dalium = new ItemDalium();
 	public static final Item bismuth = new ItemBismuth();
+	
+	//ring
+	public static final Item kinium_ring = new ItemKinoRing("kinium_ring");
+	public static final Item balium_ring = new ItemKinoRing("balium_ring");
+	public static final Item seminium_ring = new ItemKinoRing("seminium_ring");
+	public static final Item dalium_ring = new ItemKinoRing("dalium_ring");
+	public static final Item bismuth_ring = new ItemKinoRing("bismuth_ring");
 	
 	public static final Item charm_of_hunger = new ItemHungerCharm();
 	public static final Item charm_of_hunger_advanced = new ItemHungerAdvancedCharm();

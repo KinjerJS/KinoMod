@@ -13,6 +13,11 @@ item.kinomod.charm_of_poison.0.name=Charm Of Poison
 item.kinomod.charm_of_poison_advanced.0.name=Charm Of Poison (Advanced)
 item.kinomod.charm_of_drowning.0.name=Charm Of Drowning
 item.kinomod.charm_of_drowning_advanced.0.name=Charm Of Drowning (Advanced)
+item.kinomod.kinium_ring.0.name=Kinium Ring
+item.kinomod.balium_ring.0.name=Balium Ring
+item.kinomod.seminium_ring.0.name=Seminium Ring
+item.kinomod.dalium_ring.0.name=Dalium Ring
+item.kinomod.bismuth_ring.0.name=Bismuth Ring
 
 tile.kinomod.kinium_block.name=Kinium Block
 tile.kinomod.kinium_ore.name=Kinium Ore
@@ -27,15 +32,16 @@ tile.kinomod.gabbro.name=Gabbro
 tile.kinomod.gabbro_polished.name=Gabbro Polished
 
 
-tile.kinium_molten.name=Kinium Molten
-tile.balium_molten.name=Balium Molten
-tile.seminium_molten.name=Seminium Molten
-tile.dalium_molten.name=Dalium Molten
+tile.kinomod.kinium_molten.name=Kinium Molten
+tile.kinomod.balium_molten.name=Balium Molten
+tile.kinomod.seminium_molten.name=Seminium Molten
+tile.kinomod.dalium_molten.name=Dalium Molten
 fluid.kinium_molten=Kinium Molten
 fluid.balium_molten=Balium Molten
 fluid.seminium_molten=Seminium Molten
 fluid.dalium_molten=Dalium Molten
 
 kinomod.shiftDetails=Shift for Details
-kinomod.charmhunger.regenerationiii=Regeneration III
-kinomod.charmhunger.hastexx=Haste XX
+kinomod.charmhunger.regenerationi=Regeneration I
+kinomod.charmhunger.hungerxl=Hunger XL
+kinomod.charmhungeradv.regeniv=Regeneration IV
