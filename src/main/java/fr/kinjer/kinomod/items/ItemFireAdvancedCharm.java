@@ -24,7 +24,7 @@ public class ItemFireAdvancedCharm extends ItemCharm
 	@Override
 	public void onWornTick(ItemStack itemstack, EntityLivingBase player) {
 		if (itemstack.getItemDamage()==0 && player.ticksExisted%39==0) {
-			player.addPotionEffect(new PotionEffect(MobEffects.REGENERATION,40,3,true,true));
+			player.addPotionEffect(new PotionEffect(MobEffects.STRENGTH,40,4,true,true));
 		}
 	}
 	
@@ -36,7 +36,7 @@ public class ItemFireAdvancedCharm extends ItemCharm
 	@SideOnly(Side.CLIENT)
     public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn)
     {
-		tooltip.add("Regeneration III");
+		tooltip.add("Strength V");
 		//Smelting sur la pioche, Fire aspect sur les armes et Flame sur les arcs
     }
 

@@ -9,6 +9,7 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.init.MobEffects;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
@@ -24,7 +25,8 @@ public class ItemPoisonCharm extends ItemCharm
 	@Override
 	public void onWornTick(ItemStack itemstack, EntityLivingBase player) {
 		if (itemstack.getItemDamage()==0 && player.ticksExisted%39==0) {
-			//player.addPotionEffect(new PotionEffect(MobEffects.FIRE_RESISTANCE,40,1,true,true));
+			player.addPotionEffect(new PotionEffect(MobEffects.POISON,40,1,true,true));
+			player.removePotionEffect(MobEffects.WITHER);
 		}
 	}
 	

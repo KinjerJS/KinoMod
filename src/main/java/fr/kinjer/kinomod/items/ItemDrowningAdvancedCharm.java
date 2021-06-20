@@ -24,7 +24,9 @@ public class ItemDrowningAdvancedCharm extends ItemCharm
 	@Override
 	public void onWornTick(ItemStack itemstack, EntityLivingBase player) {
 		if (itemstack.getItemDamage()==0 && player.ticksExisted%39==0) {
-//			player.addPotionEffect(new PotionEffect(MobEffects.REGENERATION,40,3,true,true));
+			player.addPotionEffect(new PotionEffect(MobEffects.HASTE,40,3,true,true));
+			player.addPotionEffect(new PotionEffect(MobEffects.WATER_BREATHING,40,0,true,true));
+			player.addPotionEffect(new PotionEffect(MobEffects.NIGHT_VISION,11*20,0,true,true));
 		}
 	}
 	
