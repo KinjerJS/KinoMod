@@ -26,10 +26,23 @@ public class WorldGen implements IWorldGenerator{
 	}
 
 	private void generateSurface(World world, Random random, int x, int z) {
-		this.addOreSpawn(BlocksMod.kinium_ore, BlocksMod.kinium_ore.getDefaultState(), Blocks.STONE, world, random,
-				x, z, 16, 16, 3, 3, 4, 8);
+		this.addOreSpawn(BlocksMod.kinium_ore, world, random, x, z, 16, 16, 3, 3, 4, 8);
+		this.addOreSpawn(BlocksMod.balium_ore, world, random, x, z, 16, 16, 3, 3, 4, 8);
+		this.addOreSpawn(BlocksMod.seminium_ore, world, random, x, z, 16, 16, 3, 3, 4, 8);
+		this.addOreSpawn(BlocksMod.dalium_ore, world, random, x, z, 16, 16, 3, 3, 4, 8);
 	}
 	
+	
+	public void addOreSpawn(Block block, World world, Random random, int blockXPos,
+			int blockZPos, int maxX, int maxZ, int maxVeinSize, int chancesToSpawn, int minY, int maxY) {
+		if(world.provider.getDimension() == 1)
+			this.addOreSpawn(block, block.getDefaultState(), Blocks.END_STONE, world, random, blockXPos, blockZPos, maxX, maxZ, maxVeinSize, chancesToSpawn, minY, maxY);
+		if(world.provider.getDimension() == 0)
+			this.addOreSpawn(block, block.getDefaultState(), Blocks.STONE, world, random, blockXPos, blockZPos, maxX, maxZ, maxVeinSize, chancesToSpawn, minY, maxY);
+		if(world.provider.getDimension() == -1)
+			this.addOreSpawn(block, block.getDefaultState(), Blocks.NETHERRACK, world, random, blockXPos, blockZPos, maxX, maxZ, maxVeinSize, chancesToSpawn, minY, maxY);
+		
+	}
 	public void addOreSpawn(Block block, IBlockState metadata, Block target, World world, Random random, int blockXPos,
 			int blockZPos, int maxX, int maxZ, int maxVeinSize, int chancesToSpawn, int minY, int maxY) {
 		assert maxY > minY : "La position Y maximum doit être supérieure à la position Y minimum.";

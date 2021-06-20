@@ -8,6 +8,7 @@ import javax.annotation.Nullable;
 import fr.kinjer.kinomod.utils.KeyBoard;
 import fr.kinjer.kinomod.utils.Localizer;
 import net.minecraft.client.util.ITooltipFlag;
+import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.init.MobEffects;
@@ -44,9 +45,9 @@ public class ItemDrowningCharm extends ItemCharm
 			return;
 		}
 		
-		l.add(Localizer.localize(MobEffects.HASTE.getName()) + " II");
-		l.add(Localizer.localize("kinomod.charmdrowning.waterbreathing"));
-		l.add(Localizer.localize("kinomod.charmdrowning.nightvision"));
+		l.add(Localizer.localize(MobEffects.HASTE.getName()) + " " + Localizer.numberLocalize(2));
+		l.add(Localizer.localize(MobEffects.WATER_BREATHING.getName()));
+		l.add(Localizer.localize(MobEffects.NIGHT_VISION.getName()));
 		l.add(Localizer.localize("kinomod.charmdrowning.damagewater"));
 		
     }
