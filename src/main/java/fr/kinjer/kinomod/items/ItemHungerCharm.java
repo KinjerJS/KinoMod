@@ -45,7 +45,7 @@ public class ItemHungerCharm extends ItemCharm
 	@Override
 	public void onWornTick(ItemStack itemstack, EntityLivingBase player) {
 		if (itemstack.getItemDamage()==0 && player.ticksExisted%39==0) {
-			player.addPotionEffect(new PotionEffect(MobEffects.REGENERATION,40,1,true,true));
+			player.addPotionEffect(new PotionEffect(MobEffects.REGENERATION,40,0,true,true));
 			player.addPotionEffect(new PotionEffect(MobEffects.HUNGER,40,40,true,true));
 		}
 	}

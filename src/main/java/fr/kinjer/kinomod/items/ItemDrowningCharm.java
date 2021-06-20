@@ -5,6 +5,8 @@ import java.util.Random;
 
 import javax.annotation.Nullable;
 
+import fr.kinjer.kinomod.utils.KeyBoard;
+import fr.kinjer.kinomod.utils.Localizer;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.EntityLivingBase;
@@ -35,9 +37,18 @@ public class ItemDrowningCharm extends ItemCharm
 	}
 	
 	@SideOnly(Side.CLIENT)
-    public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn)
+    public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> l, ITooltipFlag flagIn)
     {
-		//Drawning (impossible de récupérer des bulles d'oxygène à la surface) + Aqua Infinity, Grâce du dauphin et Récupération de l'oxygène sous l'eau
+		if(!KeyBoard.isShiftKeyDown()) {
+			l.add(Localizer.shiftDetails());
+			return;
+		}
+		
+		l.add(Localizer.localize(MobEffects.HASTE.getName()) + " II");
+		l.add(Localizer.localize("kinomod.charmdrowning.waterbreathing"));
+		l.add(Localizer.localize("kinomod.charmdrowning.nightvision"));
+		l.add(Localizer.localize("kinomod.charmdrowning.damagewater"));
+		
     }
 
 }
