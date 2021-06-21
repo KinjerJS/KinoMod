@@ -75,7 +75,7 @@ public class KinoMod {
 	}
 	
 	@EventHandler
-	public void postInig(FMLPostInitializationEvent e) {
+	public void postInit(FMLPostInitializationEvent e) {
 		
 	}
 
