@@ -33,7 +33,7 @@ public class ItemDrowningCharm extends ItemCharm
 			player.addPotionEffect(new PotionEffect(MobEffects.WATER_BREATHING,40,0,true,true));
 			player.addPotionEffect(new PotionEffect(MobEffects.NIGHT_VISION,13*20,0,true,true));
 			if(!player.isInWater())
-			player.attackEntityFrom(DamageSource.DROWN, 1.0F);
+			player.attackEntityFrom(DamageSource.DROWN, 2.1F);
 		}
 	}
 	
