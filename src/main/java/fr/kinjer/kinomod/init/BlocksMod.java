@@ -25,16 +25,24 @@ public class BlocksMod {
 
 	//Ore
 	public static final Block kinium_block = new BlockKinium();
-	public static final Block kinium_ore = new BlockKiniumOre();
+	public static final Block kinium_ore = new BlockKiniumOre("kinium_ore");
+	public static final Block kinium_ore_end = new BlockKiniumOre("kinium_ore_end");
+	public static final Block kinium_ore_nether = new BlockKiniumOre("kinium_ore_nether");
 	
 	public static final Block balium_block = new BlockBalium();
-	public static final Block balium_ore = new BlockBaliumOre();
+	public static final Block balium_ore = new BlockBaliumOre("balium_ore");
+	public static final Block balium_ore_end = new BlockBaliumOre("balium_ore_end");
+	public static final Block balium_ore_nether = new BlockBaliumOre("balium_ore_nether");
 	
-	public static final Block seminium_ore = new BlockSeminiumOre();
 	public static final Block seminium_block = new BlockSeminium();
-
-	public static final Block dalium_ore = new BlockDaliumOre();
+	public static final Block seminium_ore = new BlockSeminiumOre("seminium_ore");
+	public static final Block seminium_ore_end = new BlockSeminiumOre("seminium_ore_end");
+	public static final Block seminium_ore_nether = new BlockSeminiumOre("seminium_ore_nether");
+	
 	public static final Block dalium_block = new BlockDalium();
+	public static final Block dalium_ore = new BlockDaliumOre("dalium_ore");
+	public static final Block dalium_ore_end = new BlockDaliumOre("dalium_ore_end");
+	public static final Block dalium_ore_nether = new BlockDaliumOre("dalium_ore_nether");
 	
 	public static final Block bismuth_block = new BlockBismuth();
 	

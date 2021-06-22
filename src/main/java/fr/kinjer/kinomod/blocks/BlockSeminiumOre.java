@@ -7,10 +7,11 @@ import net.minecraft.block.material.Material;
 
 public class BlockSeminiumOre extends BlockKino {
 	
-	public static final String NAME = "seminium_ore";
+	public String NAME;
 	
-	public BlockSeminiumOre() {
-		super(NAME, Material.IRON);
+	public BlockSeminiumOre(String name) {
+		super(name, Material.IRON);
+		this.NAME = name;
 		setHardness(1.6f);
 		setResistance(1.6f);
 		

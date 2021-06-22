@@ -30,6 +30,14 @@ tile.kinomod.dalium_block.name=Dalium Block
 tile.kinomod.bismuth_block.name=Bismuth Block
 tile.kinomod.gabbro.name=Gabbro
 tile.kinomod.gabbro_polished.name=Gabbro Polished
+tile.kinomod.dalium_ore_nether.name=Dalium Ore
+tile.kinomod.dalium_ore_end.name=Dalium Ore
+tile.kinomod.kinium_ore_nether.name=Kinium Ore
+tile.kinomod.kinium_ore_end.name=Kinium Ore
+tile.kinomod.balium_ore_nether.name=Balium Ore
+tile.kinomod.balium_ore_end.name=Balium Ore
+tile.kinomod.seminium_ore_nether.name=Seminium Ore
+tile.kinomod.seminium_ore_end.name=Seminium Ore
 
 
 tile.kinomod.kinium_molten.name=Kinium Molten

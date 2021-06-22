@@ -1,0 +1,7 @@
+{
+    "variants": {
+    	"normal": [
+            { "model": "kinomod:kinium_ore_nether" }
+        ]
+    }
+}

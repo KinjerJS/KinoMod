@@ -12,10 +12,11 @@ import net.minecraft.item.Item;
 
 public class BlockKiniumOre extends BlockKino {
 	
-	public static final String NAME = "kinium_ore";
+	public String NAME;
 	
-	public BlockKiniumOre() {
-		super(NAME, Material.IRON);
+	public BlockKiniumOre(String name) {
+		super(name, Material.IRON);
+		this.NAME = name;
 		setHardness(1.6f);
 		setResistance(1.6f);
 		
