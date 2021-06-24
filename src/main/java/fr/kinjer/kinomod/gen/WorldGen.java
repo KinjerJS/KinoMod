@@ -19,28 +19,42 @@ public class WorldGen implements IWorldGenerator{
 			IChunkProvider chunkProvider) {
 		switch (world.provider.getDimension())
 		{
+		case -1:
+			generateNether(world, random, chunkX * 16, chunkZ * 16);
+			break;
 		case 0:
 			generateSurface(world, random, chunkX * 16, chunkZ * 16);
 			break;
+		case 1:
+			generateEnd(world, random, chunkX * 16, chunkZ * 16);
+			break;
 		}
+	}
+	
+	private void generateEnd(World world, Random random, int x, int z) {
+		this.addOreSpawn(BlocksMod.kinium_ore_end, Blocks.END_STONE, world, random, x, z, 16, 16, 3, 3, 4, 8);
+		this.addOreSpawn(BlocksMod.balium_ore_end, Blocks.END_STONE, world, random, x, z, 16, 16, 3, 3, 4, 8);
+		this.addOreSpawn(BlocksMod.seminium_ore_end, Blocks.END_STONE, world, random, x, z, 16, 16, 3, 3, 4, 8);
+		this.addOreSpawn(BlocksMod.dalium_ore_end, Blocks.END_STONE, world, random, x, z, 16, 16, 3, 3, 4, 8);
 	}
 
 	private void generateSurface(World world, Random random, int x, int z) {
-		this.addOreSpawn(BlocksMod.kinium_ore, world, random, x, z, 16, 16, 3, 3, 4, 8);
-		this.addOreSpawn(BlocksMod.balium_ore, world, random, x, z, 16, 16, 3, 3, 4, 8);
-		this.addOreSpawn(BlocksMod.seminium_ore, world, random, x, z, 16, 16, 3, 3, 4, 8);
-		this.addOreSpawn(BlocksMod.dalium_ore, world, random, x, z, 16, 16, 3, 3, 4, 8);
+		this.addOreSpawn(BlocksMod.kinium_ore, Blocks.STONE, world, random, x, z, 16, 16, 3, 3, 4, 8);
+		this.addOreSpawn(BlocksMod.balium_ore, Blocks.STONE, world, random, x, z, 16, 16, 3, 3, 4, 8);
+		this.addOreSpawn(BlocksMod.seminium_ore, Blocks.STONE, world, random, x, z, 16, 16, 3, 3, 4, 8);
+		this.addOreSpawn(BlocksMod.dalium_ore, Blocks.STONE, world, random, x, z, 16, 16, 3, 3, 4, 8);
 	}
 	
+	private void generateNether(World world, Random random, int x, int z) {
+		this.addOreSpawn(BlocksMod.kinium_ore_nether, Blocks.NETHERRACK, world, random, x, z, 16, 16, 3, 3, 4, 8);
+		this.addOreSpawn(BlocksMod.balium_ore_nether, Blocks.NETHERRACK, world, random, x, z, 16, 16, 3, 3, 4, 8);
+		this.addOreSpawn(BlocksMod.seminium_ore_nether, Blocks.NETHERRACK, world, random, x, z, 16, 16, 3, 3, 4, 8);
+		this.addOreSpawn(BlocksMod.dalium_ore_nether, Blocks.NETHERRACK, world, random, x, z, 16, 16, 3, 3, 4, 8);
+	}
 	
-	public void addOreSpawn(Block block, World world, Random random, int blockXPos,
+	public void addOreSpawn(Block block, Block replace, World world, Random random, int blockXPos,
 			int blockZPos, int maxX, int maxZ, int maxVeinSize, int chancesToSpawn, int minY, int maxY) {
-		if(world.provider.getDimension() == 1)
-			this.addOreSpawn(block, block.getDefaultState(), Blocks.END_STONE, world, random, blockXPos, blockZPos, maxX, maxZ, maxVeinSize, chancesToSpawn, minY, maxY);
-		if(world.provider.getDimension() == 0)
-			this.addOreSpawn(block, block.getDefaultState(), Blocks.STONE, world, random, blockXPos, blockZPos, maxX, maxZ, maxVeinSize, chancesToSpawn, minY, maxY);
-		if(world.provider.getDimension() == -1)
-			this.addOreSpawn(block, block.getDefaultState(), Blocks.NETHERRACK, world, random, blockXPos, blockZPos, maxX, maxZ, maxVeinSize, chancesToSpawn, minY, maxY);
+		this.addOreSpawn(block, block.getDefaultState(), replace, world, random, blockXPos, blockZPos, maxX, maxZ, maxVeinSize, chancesToSpawn, minY, maxY);
 		
 	}
 	public void addOreSpawn(Block block, IBlockState metadata, Block target, World world, Random random, int blockXPos,
