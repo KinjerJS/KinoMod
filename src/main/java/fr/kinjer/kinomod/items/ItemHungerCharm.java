@@ -58,7 +58,7 @@ public class ItemHungerCharm extends ItemCharm
 			return;
 		}
 		tooltip.add(Localizer.localize(MobEffects.REGENERATION.getName()));
-		tooltip.add(Localizer.localize("kinomod.charmhunger.damagehunger"));
+		tooltip.add("§4"+Localizer.localize("kinomod.charmhunger.damagehunger"));
     }
 	
 }
