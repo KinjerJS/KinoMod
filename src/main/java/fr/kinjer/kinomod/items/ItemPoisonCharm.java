@@ -40,8 +40,8 @@ public class ItemPoisonCharm extends ItemCharm
 			return;
 		}
 		
-		l.add(Localizer.localize("kinomod.charmpoison.damageremovewither"));
-		l.add(Localizer.localize(MobEffects.POISON.getName()) + " " + Localizer.numberLocalize(2));
+		l.add("* "+Localizer.localize("kinomod.charmpoison.damageremovewither"));
+		l.add("* §4"+Localizer.localize(MobEffects.POISON.getName()) + " " + Localizer.numberLocalize(2));
 		
     }
 }

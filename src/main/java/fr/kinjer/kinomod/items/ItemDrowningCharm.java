@@ -45,10 +45,10 @@ public class ItemDrowningCharm extends ItemCharm
 			return;
 		}
 		
-		l.add(Localizer.localize(MobEffects.HASTE.getName()) + " " + Localizer.numberLocalize(2));
-		l.add(Localizer.localize(MobEffects.WATER_BREATHING.getName()));
-		l.add(Localizer.localize(MobEffects.NIGHT_VISION.getName()));
-		l.add(Localizer.localize("kinomod.charmdrowning.damagewater"));
+		l.add("* "+Localizer.localize(MobEffects.HASTE.getName()) + " " + Localizer.numberLocalize(2));
+		l.add("* "+Localizer.localize(MobEffects.WATER_BREATHING.getName()));
+		l.add("* "+Localizer.localize(MobEffects.NIGHT_VISION.getName()));
+		l.add("* §4"+Localizer.localize("kinomod.charmdrowning.damagewater"));
 		
     }
 

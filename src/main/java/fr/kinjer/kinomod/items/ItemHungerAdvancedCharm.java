@@ -43,7 +43,7 @@ public class ItemHungerAdvancedCharm extends ItemCharm
 			return;
 		}
 		
-		l.add(Localizer.localize(MobEffects.REGENERATION.getName()) + " " + Localizer.numberLocalize(5));
+		l.add("* "+Localizer.localize(MobEffects.REGENERATION.getName()) + " " + Localizer.numberLocalize(5));
 		
     }
 

@@ -39,8 +39,8 @@ public class ItemFireCharm extends ItemCharm
 			return;
 		}
 		
-		l.add(Localizer.localize(MobEffects.STRENGTH.getName()) + " " + Localizer.numberLocalize(2));
-		l.add(Localizer.localize("kinomod.charmfire.damagefire"));
+		l.add("* "+Localizer.localize(MobEffects.STRENGTH.getName()) + " " + Localizer.numberLocalize(2));
+		l.add("* §4"+Localizer.localize("kinomod.charmfire.damagefire"));
 		
     }
 }

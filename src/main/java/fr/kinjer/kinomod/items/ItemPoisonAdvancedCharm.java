@@ -43,7 +43,7 @@ public class ItemPoisonAdvancedCharm extends ItemCharm
 			return;
 		}
 		
-		l.add(Localizer.localize("kinomod.charmpoison.damageremovewither"));
+		l.add("* "+Localizer.localize("kinomod.charmpoison.damageremovewither"));
 		
     }
 
