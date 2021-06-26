@@ -25,7 +25,7 @@ public class KiniumFluid extends Fluid
 //		setDensity(1100);
 //		setGaseous(false);
 		setLuminosity(15);
-//		setViscosity(6000);
+		setViscosity(6000);
 //		setTemperature(500);
     }
     
