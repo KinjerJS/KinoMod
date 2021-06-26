@@ -88,7 +88,6 @@ public class WorldGen implements IWorldGenerator{
 	    {
 	        if (p_apply_1_ != null && p_apply_1_.getBlock() == b)
 	        {
-	            //BlockStone.EnumType blockstone$enumtype = (BlockStone.EnumType)p_apply_1_.getValue(BlockStone.VARIANT);
 	            return true;
 	        }
 	        else
