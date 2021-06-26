@@ -45,7 +45,7 @@ public class BlockKiniumFluid extends BlockFluidClassic {
 
             for (EnumFacing enumfacing : EnumFacing.values())
             {
-                if (enumfacing != EnumFacing.DOWN && (worldIn.getBlockState(pos.offset(enumfacing)).getMaterial() == Material.WATER || worldIn.getBlockState(pos.offset(enumfacing)).getMaterial() == Material.LAVA))
+                if (/*enumfacing != EnumFacing.DOWN &&*/ worldIn.getBlockState(pos.offset(enumfacing)).getMaterial() == Material.WATER)
                 {
                     flag = true;
                     break;
