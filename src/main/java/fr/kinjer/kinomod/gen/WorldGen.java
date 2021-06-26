@@ -2,8 +2,11 @@ package fr.kinjer.kinomod.gen;
 
 import java.util.Random;
 
+import com.google.common.base.Predicate;
+
 import fr.kinjer.kinomod.init.BlocksMod;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockSand.EnumType;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
@@ -32,10 +35,10 @@ public class WorldGen implements IWorldGenerator{
 	}
 	
 	private void generateEnd(World world, Random random, int x, int z) {
-		this.addOreSpawn(BlocksMod.kinium_ore_end, Blocks.END_STONE, world, random, x, z, 16, 16, 3, 3, 4, 8);
-		this.addOreSpawn(BlocksMod.balium_ore_end, Blocks.END_STONE, world, random, x, z, 16, 16, 3, 3, 4, 8);
-		this.addOreSpawn(BlocksMod.seminium_ore_end, Blocks.END_STONE, world, random, x, z, 16, 16, 3, 3, 4, 8);
-		this.addOreSpawn(BlocksMod.dalium_ore_end, Blocks.END_STONE, world, random, x, z, 16, 16, 3, 3, 4, 8);
+		this.addOreSpawn(BlocksMod.kinium_ore_end, Blocks.END_STONE, world, random, x, z, 16, 16, 3, 8, 4, 80);
+		this.addOreSpawn(BlocksMod.balium_ore_end, Blocks.END_STONE, world, random, x, z, 16, 16, 3, 8, 4, 80);
+		this.addOreSpawn(BlocksMod.seminium_ore_end, Blocks.END_STONE, world, random, x, z, 16, 16, 3, 8, 4, 80);
+		this.addOreSpawn(BlocksMod.dalium_ore_end, Blocks.END_STONE, world, random, x, z, 16, 16, 3, 8, 4, 80);
 	}
 
 	private void generateSurface(World world, Random random, int x, int z) {
@@ -46,10 +49,11 @@ public class WorldGen implements IWorldGenerator{
 	}
 	
 	private void generateNether(World world, Random random, int x, int z) {
-		this.addOreSpawn(BlocksMod.kinium_ore_nether, Blocks.NETHERRACK, world, random, x, z, 16, 16, 3, 3, 4, 8);
-		this.addOreSpawn(BlocksMod.balium_ore_nether, Blocks.NETHERRACK, world, random, x, z, 16, 16, 3, 3, 4, 8);
-		this.addOreSpawn(BlocksMod.seminium_ore_nether, Blocks.NETHERRACK, world, random, x, z, 16, 16, 3, 3, 4, 8);
-		this.addOreSpawn(BlocksMod.dalium_ore_nether, Blocks.NETHERRACK, world, random, x, z, 16, 16, 3, 3, 4, 8);
+		this.addOreSpawn(BlocksMod.kinium_ore_nether, Blocks.NETHERRACK, world, random, x, z, 16, 16, 3, 6, 4, 36);
+		this.addOreSpawn(BlocksMod.balium_ore_nether, Blocks.NETHERRACK, world, random, x, z, 16, 16, 3, 6, 4, 36);
+		this.addOreSpawn(BlocksMod.seminium_ore_nether, Blocks.NETHERRACK, world, random, x, z, 16, 16, 3, 6, 4, 36);
+		this.addOreSpawn(BlocksMod.dalium_ore_nether, Blocks.NETHERRACK, world, random, x, z, 16, 16, 3, 6, 4, 36);
+	
 	}
 	
 	public void addOreSpawn(Block block, Block replace, World world, Random random, int blockXPos,
@@ -59,23 +63,41 @@ public class WorldGen implements IWorldGenerator{
 	}
 	public void addOreSpawn(Block block, IBlockState metadata, Block target, World world, Random random, int blockXPos,
 			int blockZPos, int maxX, int maxZ, int maxVeinSize, int chancesToSpawn, int minY, int maxY) {
-		assert maxY > minY : "La position Y maximum doit être supérieure à la position Y minimum.";
-		assert maxX > 0 && maxX <= 16 : "X doit se trouver entre 0 et 16.";
-		assert minY > 0 : "La position Y minimum doit être supérieure à 0.";
-		assert maxY < 256 && maxY > 0 : "La position Y maximum doit se trouver entre 0 et 256.";
-		assert maxZ > 0 && maxZ <= 16 : "Z doit se trouver entre 0 et 16.";
 		for (int i = 0; i < chancesToSpawn; i++)
 		{
 			int posY = random.nextInt(128);
 			if ((posY <= maxY) && (posY >= minY))
 			{
-				(new WorldGenMinable(metadata, maxVeinSize)).generate(world, random,
+				(new WorldGenMinable(metadata, maxVeinSize, new WorldGen.BlockPredicate(target))).generate(world, random,
 						new BlockPos(blockXPos + random.nextInt(16), posY, blockZPos + random.nextInt(16)));
-
 			}
 
 		}
 
 	}
 
+	static class BlockPredicate implements Predicate<IBlockState>
+	{
+		static Block b;
+	    private BlockPredicate(Block b)
+	    {
+	    	this.b = b;
+	    }
+
+	    public boolean apply(IBlockState p_apply_1_)
+	    {
+	        if (p_apply_1_ != null && p_apply_1_.getBlock() == b)
+	        {
+	            //BlockStone.EnumType blockstone$enumtype = (BlockStone.EnumType)p_apply_1_.getValue(BlockStone.VARIANT);
+	            return true;
+	        }
+	        else
+	        {
+	            return false;
+	        }
+	    }
+	}
+	
 }
+
+
