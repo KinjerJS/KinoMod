@@ -32,6 +32,11 @@ public class ItemDrowningAdvancedCharm extends ItemCharm
 		}
 	}
 	
+	@Override
+	public boolean hasEffect(ItemStack par1ItemStack) {
+		return true;
+	}
+	
 	@SideOnly(Side.CLIENT)
     public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> l, ITooltipFlag flagIn)
     {
