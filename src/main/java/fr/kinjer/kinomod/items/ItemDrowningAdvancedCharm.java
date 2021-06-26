@@ -4,6 +4,8 @@ import java.util.List;
 
 import javax.annotation.Nullable;
 
+import fr.kinjer.kinomod.utils.KeyBoard;
+import fr.kinjer.kinomod.utils.Localizer;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.init.MobEffects;
@@ -30,15 +32,18 @@ public class ItemDrowningAdvancedCharm extends ItemCharm
 		}
 	}
 	
-	@Override
-	public boolean hasEffect(ItemStack par1ItemStack) {
-		return true;
-	}
-	
 	@SideOnly(Side.CLIENT)
-    public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn)
+    public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> l, ITooltipFlag flagIn)
     {
-		//Aqua Infinity, Grâce du dauphin et Récupération de l'oxygène sous l'eau
+		if(!KeyBoard.isShiftKeyDown()) {
+			l.add(Localizer.shiftDetails());
+			return;
+		}
+		
+		l.add(Localizer.localize(MobEffects.HASTE.getName()) + " " + Localizer.numberLocalize(4));
+		l.add(Localizer.localize(MobEffects.WATER_BREATHING.getName()));
+		l.add(Localizer.localize(MobEffects.NIGHT_VISION.getName()));
+		
     }
 
 

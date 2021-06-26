@@ -52,3 +52,9 @@ fluid.dalium_molten=Dalium Molten
 kinomod.shiftDetails=Shift for Details
 
 kinomod.charmdrowning.damagewater=Damage Water (except underwater)
+
+kinomod.charmfire.damagefire=Fire
+
+kinomod.charmpoison.damageremovewither=Wither Resistance
+
+kinomod.charmhunger.damagehunger=Starvation

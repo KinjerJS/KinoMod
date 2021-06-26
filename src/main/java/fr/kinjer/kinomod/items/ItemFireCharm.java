@@ -4,6 +4,8 @@ import java.util.List;
 
 import javax.annotation.Nullable;
 
+import fr.kinjer.kinomod.utils.KeyBoard;
+import fr.kinjer.kinomod.utils.Localizer;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.init.MobEffects;
@@ -30,9 +32,15 @@ public class ItemFireCharm extends ItemCharm
 	}
 	
 	@SideOnly(Side.CLIENT)
-    public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn)
+    public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> l, ITooltipFlag flagIn)
     {
-		tooltip.add("Fire Resistance");
-		//Fire + Smelting sur la pioche, Fire aspect sur les armes et Flame sur les arcs
+		if(!KeyBoard.isShiftKeyDown()) {
+			l.add(Localizer.shiftDetails());
+			return;
+		}
+		
+		l.add(Localizer.localize(MobEffects.STRENGTH.getName()) + " " + Localizer.numberLocalize(2));
+		l.add(Localizer.localize("kinomod.charmfire.damagefire"));
+		
     }
 }

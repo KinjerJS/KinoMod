@@ -4,6 +4,8 @@ import java.util.List;
 
 import javax.annotation.Nullable;
 
+import fr.kinjer.kinomod.utils.KeyBoard;
+import fr.kinjer.kinomod.utils.Localizer;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.init.MobEffects;
@@ -28,15 +30,16 @@ public class ItemPoisonAdvancedCharm extends ItemCharm
 		}
 	}
 	
-	@Override
-	public boolean hasEffect(ItemStack par1ItemStack) {
-		return true;
-	}
-	
 	@SideOnly(Side.CLIENT)
-    public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn)
+    public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> l, ITooltipFlag flagIn)
     {
-		//Wither Resistance
+		if(!KeyBoard.isShiftKeyDown()) {
+			l.add(Localizer.shiftDetails());
+			return;
+		}
+		
+		l.add(Localizer.localize("kinomod.charmpoison.damageremovewither"));
+		
     }
 
 }
