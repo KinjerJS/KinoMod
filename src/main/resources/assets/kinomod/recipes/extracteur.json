@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "GAG",
+    "PFP",
+    "GPG"
+  ],
+  "key": {
+    "A": {
+      "item": "minecraft:furnace"
+    },
+	"G": {
+      "item": "kinomod:gabrro"
+    },
+	"F": {
+      "item": "kinomod:machine_frame"
+    },
+	"P": {
+      "item": "kinomod:gabbro_polished"
+    }
+  },
+  "result": {
+    "item": "kinomod:extracteur"
+  }
+}

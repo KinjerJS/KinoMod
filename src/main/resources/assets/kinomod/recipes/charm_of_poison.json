@@ -1,0 +1,14 @@
+{
+  "type": "crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "kinomod:seminium_ring"
+    },
+    {
+      "item": "minecraft:spider_eye_fermented"
+    }
+  ],
+  "result": {
+    "item": "kinomod:charm_of_poison"
+  }
+}

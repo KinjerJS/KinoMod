@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "IGI",
+    "GDG",
+    "IGI"
+  ],
+  "key": {
+    "I": {
+      "item": "minecraft:iron_block"
+    },
+	"G": {
+      "item": "kinomod:gabrro"
+    },
+	"D": {
+      "item": "minecraft:gold_block"
+    }
+  },
+  "result": {
+    "item": "kinomod:machine_frame"
+  }
+}
