@@ -19,12 +19,6 @@ public class BlockKiniumOre extends BlockKino {
 		this.NAME = name;
 		setHardness(1.6f);
 		setResistance(1.6f);
-		
-	}
-	
-	@Override
-	public Item getItemDropped(IBlockState state, Random rand, int fortune) {
-		return ItemsMod.kinium;
 	}
 
 }

@@ -8,6 +8,8 @@ import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
+import net.minecraft.item.ItemPickaxe;
+import net.minecraft.item.Item.ToolMaterial;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -20,6 +22,6 @@ public class BlockKino extends Block{
 		super(material);
 		setCreativeTab(KinoMod.tabKino);
 		BlocksMod.setBlockName(this, name);
-		
+		setHarvestLevel("pickaxe", 3);
 	}
 }
