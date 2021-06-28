@@ -20,6 +20,7 @@ import fr.kinjer.kinomod.items.ItemPoisonCharm;
 import fr.kinjer.kinomod.items.ItemSeminium;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
@@ -32,6 +33,7 @@ public class ItemsMod {
 	
 	public static List<Item> items = new ArrayList<>();
 	
+	//ore
 	public static final Item kinium = new ItemKinium();
 	public static final Item balium = new ItemBalium();
 	public static final Item seminium = new ItemSeminium();
@@ -45,6 +47,7 @@ public class ItemsMod {
 	public static final Item dalium_ring = new ItemKinoRing("dalium_ring");
 	public static final Item bismuth_ring = new ItemKinoRing("bismuth_ring");
 	
+	//charm
 	public static final Item charm_of_hunger = new ItemHungerCharm();
 	public static final Item charm_of_hunger_advanced = new ItemHungerAdvancedCharm();
 	public static final Item charm_of_fire = new ItemFireCharm();
@@ -53,8 +56,6 @@ public class ItemsMod {
 	public static final Item charm_of_poison_advanced = new ItemPoisonAdvancedCharm();
 	public static final Item charm_of_drowning = new ItemDrowningCharm();
 	public static final Item charm_of_drowning_advanced = new ItemDrowningAdvancedCharm();
-	
-	
 	
 	public static void setItemName(Item item, String name) {
 		items.add(item.setRegistryName(KinoMod.MODID, name).setUnlocalizedName(KinoMod.MODID + "." + name));
