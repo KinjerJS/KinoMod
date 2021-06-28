@@ -12,7 +12,7 @@ public class BlockSeminiumOre extends BlockKino {
 	public BlockSeminiumOre(String name) {
 		super(name, Material.IRON);
 		this.NAME = name;
-		setHardness(1.6f);
+		setHardness(38.0f);
 		setResistance(1.6f);
 		
 	}

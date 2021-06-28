@@ -13,6 +13,7 @@ public class BlockBalium extends BlockKino {
 		super(NAME, Material.IRON);
 		setHardness(1.6f);
 		setResistance(1.6f);
+		setHarvestLevel("pickaxe", 3);
 		
 	}
 
