@@ -1,14 +1,16 @@
 {
-  "type": "crafting_shapeless",
+  "type": "minecraft:crafting_shapeless",
   "ingredients": [
     {
-      "item": "kinomod:kinium_ring"
+      "item": "kinomod:kinium_ring",
+      "data": 0
     },
     {
       "item": "minecraft:flint_and_steel"
     }
   ],
   "result": {
-    "item": "kinomod:charm_of_fire"
+    "item": "kinomod:charm_of_fire",
+    "data": 0
   }
 }

@@ -1,14 +1,16 @@
 {
-  "type": "crafting_shapeless",
+  "type": "minecraft:crafting_shapeless",
   "ingredients": [
     {
-      "item": "kinomod:dalium_ring"
+      "item": "kinomod:dalium_ring",
+      "data": 0
     },
     {
       "item": "minecraft:rotten_flesh"
     }
   ],
   "result": {
-    "item": "kinomod:charm_of_hunger"
+    "item": "kinomod:charm_of_hunger",
+    "data": 0
   }
 }
