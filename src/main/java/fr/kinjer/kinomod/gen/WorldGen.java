@@ -46,6 +46,7 @@ public class WorldGen implements IWorldGenerator{
 		this.addOreSpawn(BlocksMod.balium_ore, Blocks.STONE, world, random, x, z, 16, 16, 3, 3, 4, 8);
 		this.addOreSpawn(BlocksMod.seminium_ore, Blocks.STONE, world, random, x, z, 16, 16, 3, 3, 4, 8);
 		this.addOreSpawn(BlocksMod.dalium_ore, Blocks.STONE, world, random, x, z, 16, 16, 3, 3, 4, 8);
+		this.addOreSpawn(BlocksMod.gabbro, Blocks.STONE, world, random, x, z, 16, 16, 30, 70, 4, 8);
 	}
 	
 	private void generateNether(World world, Random random, int x, int z) {
