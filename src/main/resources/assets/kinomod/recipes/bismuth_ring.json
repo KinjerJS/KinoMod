@@ -1,0 +1,33 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " S ",
+    "BYK",
+    " D "
+  ],
+  "key": {
+    "K": {
+      "item": "kinomod:kinium_ring",
+      "data": 0
+    },
+    "D": {
+      "item": "kinomod:dalium_ring",
+      "data": 0
+	},
+	"Y": {
+      "item": "kinomod:bismuth"
+    },
+    "S": {
+      "item": "kinomod:seminium_ring",
+      "data": 0
+	},
+	"B": {
+      "item": "kinomod:balium_ring",
+      "data": 0
+    }
+  },
+  "result": {
+    "item": "kinomod:bismuth_ring",
+    "data": 0
+  }
+}

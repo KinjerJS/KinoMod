@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "DG ",
+    "G G",
+    " G "
+  ],
+  "key": {
+    "G": {
+      "item": "minecraft:gold_ingot"
+    },
+    "D": {
+      "item": "kinomod:dalium"
+	}
+  },
+  "result": {
+    "item": "kinomod:dalium_ring",
+    "data": 0
+  }
+}

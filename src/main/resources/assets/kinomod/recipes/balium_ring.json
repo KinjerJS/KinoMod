@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "BG ",
+    "G G",
+    " G "
+  ],
+  "key": {
+    "G": {
+      "item": "minecraft:gold_ingot"
+    },
+    "B": {
+      "item": "kinomod:balium"
+	}
+  },
+  "result": {
+    "item": "kinomod:balium_ring",
+    "data": 0
+  }
+}
