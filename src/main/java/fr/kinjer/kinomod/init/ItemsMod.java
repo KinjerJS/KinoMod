@@ -5,8 +5,12 @@ import java.util.List;
 
 import fr.kinjer.kinomod.KinoMod;
 import fr.kinjer.kinomod.items.ItemBalium;
+import fr.kinjer.kinomod.items.ItemBaliumDroplet;
+import fr.kinjer.kinomod.items.ItemBaliumEssence;
 import fr.kinjer.kinomod.items.ItemBismuth;
 import fr.kinjer.kinomod.items.ItemDalium;
+import fr.kinjer.kinomod.items.ItemDaliumDroplet;
+import fr.kinjer.kinomod.items.ItemDaliumEssence;
 import fr.kinjer.kinomod.items.ItemDrowningAdvancedCharm;
 import fr.kinjer.kinomod.items.ItemDrowningCharm;
 import fr.kinjer.kinomod.items.ItemFireAdvancedCharm;
@@ -14,10 +18,14 @@ import fr.kinjer.kinomod.items.ItemFireCharm;
 import fr.kinjer.kinomod.items.ItemHungerAdvancedCharm;
 import fr.kinjer.kinomod.items.ItemHungerCharm;
 import fr.kinjer.kinomod.items.ItemKinium;
+import fr.kinjer.kinomod.items.ItemKiniumDroplet;
+import fr.kinjer.kinomod.items.ItemKiniumEssence;
 import fr.kinjer.kinomod.items.ItemKinoRing;
 import fr.kinjer.kinomod.items.ItemPoisonAdvancedCharm;
 import fr.kinjer.kinomod.items.ItemPoisonCharm;
 import fr.kinjer.kinomod.items.ItemSeminium;
+import fr.kinjer.kinomod.items.ItemSeminiumDroplet;
+import fr.kinjer.kinomod.items.ItemSeminiumEssence;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;
 import net.minecraftforge.client.event.ModelRegistryEvent;
@@ -38,6 +46,16 @@ public class ItemsMod {
 	public static final Item seminium = new ItemSeminium();
 	public static final Item dalium = new ItemDalium();
 	public static final Item bismuth = new ItemBismuth();
+	
+	//mystical
+	public static final Item kinium_essence = new ItemKiniumEssence();
+	public static final Item balium_essence = new ItemBaliumEssence();
+	public static final Item seminium_essence = new ItemSeminiumEssence();
+	public static final Item dalium_essence = new ItemDaliumEssence();
+	public static final Item kinium_droplet = new ItemKiniumDroplet();
+	public static final Item balium_droplet = new ItemBaliumDroplet();
+	public static final Item seminium_droplet = new ItemSeminiumDroplet();
+	public static final Item dalium_droplet = new ItemDaliumDroplet();
 	
 	//ring
 	public static final Item kinium_ring = new ItemKinoRing("kinium_ring");

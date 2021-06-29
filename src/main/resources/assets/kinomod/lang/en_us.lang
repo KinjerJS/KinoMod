@@ -4,6 +4,14 @@ item.kinomod.kinium.name=Kinium
 item.kinomod.balium.name=Balium
 item.kinomod.seminium.name=Seminium
 item.kinomod.dalium.name=Dalium
+item.kinomod.kinium_essence.name=Kinium Essence
+item.kinomod.balium_essence.name=Balium Essence
+item.kinomod.seminium_essence.name=Seminium Essence
+item.kinomod.dalium_essence.name=Dalium Essence
+item.kinomod.kinium_droplet.name=Kinium Droplet
+item.kinomod.balium_droplet.name=Balium Droplet
+item.kinomod.seminium_droplet.name=Seminium Droplet
+item.kinomod.dalium_droplet.name=Dalium Droplet
 item.kinomod.bismuth.name=Bismuth
 item.kinomod.charm_of_hunger.0.name=Charm Of Hunger
 item.kinomod.charm_of_hunger_advanced.0.name=Charm Of Hunger (Advanced)
@@ -39,6 +47,10 @@ tile.kinomod.balium_ore_end.name=Balium Ore
 tile.kinomod.seminium_ore_nether.name=Seminium Ore
 tile.kinomod.seminium_ore_end.name=Seminium Ore
 tile.kinomod.machine_frame.name=Machine Frame
+tile.kinomod.special_kinium.name=Kinium Crux
+tile.kinomod.special_balium.name=Balium Crux
+tile.kinomod.special_seminium.name=Seminium Crux
+tile.kinomod.special_dalium.name=Dalium Crux
 
 
 tile.kinomod.kinium_molten.name=Kinium Molten

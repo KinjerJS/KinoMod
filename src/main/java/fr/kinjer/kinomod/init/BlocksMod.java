@@ -17,6 +17,10 @@ import fr.kinjer.kinomod.blocks.BlockKiniumOre;
 import fr.kinjer.kinomod.blocks.BlockMachineFrame;
 import fr.kinjer.kinomod.blocks.BlockSeminium;
 import fr.kinjer.kinomod.blocks.BlockSeminiumOre;
+import fr.kinjer.kinomod.blocks.BlockSpecialBalium;
+import fr.kinjer.kinomod.blocks.BlockSpecialDalium;
+import fr.kinjer.kinomod.blocks.BlockSpecialKinium;
+import fr.kinjer.kinomod.blocks.BlockSpecialSeminium;
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemBlock;
 
@@ -57,6 +61,11 @@ public class BlocksMod {
 	public static final Block gabbro = new BlockGabbro();
 	public static final Block gabbro_polished = new BlockGabbroPolished();
 	public static final Block machine_frame = new BlockMachineFrame();
+	
+	public static final Block special_kinium = new BlockSpecialKinium();
+	public static final Block special_balium = new BlockSpecialBalium();
+	public static final Block special_seminium = new BlockSpecialSeminium();
+	public static final Block special_dalium = new BlockSpecialDalium();
 	
 	public static void setBlockName(Block block, String name)
 	{
