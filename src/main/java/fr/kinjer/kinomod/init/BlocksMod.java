@@ -14,6 +14,7 @@ import fr.kinjer.kinomod.blocks.BlockGabbroPolished;
 import fr.kinjer.kinomod.blocks.BlockKinium;
 import fr.kinjer.kinomod.blocks.BlockKiniumFluid;
 import fr.kinjer.kinomod.blocks.BlockKiniumOre;
+import fr.kinjer.kinomod.blocks.BlockMachineFrame;
 import fr.kinjer.kinomod.blocks.BlockSeminium;
 import fr.kinjer.kinomod.blocks.BlockSeminiumOre;
 import net.minecraft.block.Block;
@@ -55,6 +56,7 @@ public class BlocksMod {
 	//Blocks
 	public static final Block gabbro = new BlockGabbro();
 	public static final Block gabbro_polished = new BlockGabbroPolished();
+	public static final Block machine_frame = new BlockMachineFrame();
 	
 	public static void setBlockName(Block block, String name)
 	{

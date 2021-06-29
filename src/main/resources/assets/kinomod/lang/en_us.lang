@@ -38,6 +38,7 @@ tile.kinomod.balium_ore_nether.name=Balium Ore
 tile.kinomod.balium_ore_end.name=Balium Ore
 tile.kinomod.seminium_ore_nether.name=Seminium Ore
 tile.kinomod.seminium_ore_end.name=Seminium Ore
+tile.kinomod.machine_frame.name=Machine Frame
 
 
 tile.kinomod.kinium_molten.name=Kinium Molten
