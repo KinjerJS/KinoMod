@@ -1,6 +1,6 @@
 {
     "parent": "item/generated",
     "textures": {
-        "layer0": "kinomod:items/kinium__essence"
+        "layer0": "kinomod:items/kinium_essence"
     }
 }
