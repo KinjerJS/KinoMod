@@ -55,3 +55,5 @@ kinomod.charmdrowning.damagewater=Drowning
 kinomod.charmfire.damagefire=Fire
 kinomod.charmpoison.damageremovewither=Wither Resistance
 kinomod.charmhunger.damagehunger=Starvation
+
+entity.centaur.name=Centaur
