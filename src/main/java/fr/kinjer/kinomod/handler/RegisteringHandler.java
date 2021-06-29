@@ -4,6 +4,7 @@ import fr.kinjer.kinomod.blocks.BlockKiniumFluid;
 import fr.kinjer.kinomod.blocks.BlockKino;
 import fr.kinjer.kinomod.fluids.KiniumFluid;
 import fr.kinjer.kinomod.init.BlocksMod;
+import fr.kinjer.kinomod.init.EntityInit;
 import fr.kinjer.kinomod.init.FluidsMod;
 import fr.kinjer.kinomod.init.ItemBlocksMod;
 import fr.kinjer.kinomod.init.ItemsMod;
@@ -23,7 +24,11 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class RegisteringHandler {
 	
-	public RegisteringHandler() { FluidsMod.registerFluids(); }
+	public RegisteringHandler() { 
+		FluidsMod.registerFluids(); 
+		EntityInit.registerEntities();
+		RenderHandler.registerEntityRenders();
+	}
 	
 	@SubscribeEvent
 	public void registerBlocks(RegistryEvent.Register<Block> event) {
