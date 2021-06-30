@@ -62,6 +62,7 @@ public class BlocksMod {
 	public static final Block gabbro_polished = new BlockGabbroPolished();
 	public static final Block machine_frame = new BlockMachineFrame();
 	
+	
 	public static final Block special_kinium = new BlockSpecialKinium();
 	public static final Block special_balium = new BlockSpecialBalium();
 	public static final Block special_seminium = new BlockSpecialSeminium();
