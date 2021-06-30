@@ -141,7 +141,6 @@ public class ModelCentaur extends ModelBase {
 		this.head.rotateAngleX = headPitch * 0.017453292F;
 		this.bb_main.rotateAngleY = netHeadYaw * 0.017453292F;
 		this.bb_main.rotateAngleX = headPitch * 0.017453292F;
-	}
-	
+	}	
 	
 }

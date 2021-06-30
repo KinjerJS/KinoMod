@@ -506,7 +506,12 @@ public class EntityCentaur extends EntityMob {
         super.applyEntityAttributes();
         this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(2000.0D);
 		this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.50D);
-		this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(5.0D);
+		this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(20.0D);
+    }
+    
+    @Override
+    public void knockBack(Entity entityIn, float strength, double xRatio, double zRatio) {
+    	
     }
     
     @SideOnly(Side.CLIENT)
