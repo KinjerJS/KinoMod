@@ -27,9 +27,14 @@ import fr.kinjer.kinomod.items.ItemSeminium;
 import fr.kinjer.kinomod.items.ItemSeminiumDroplet;
 import fr.kinjer.kinomod.items.ItemSeminiumEssence;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
+import net.minecraft.init.SoundEvents;
+import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemArmor;
+import net.minecraft.item.ItemArmor.ArmorMaterial;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.client.model.ModelLoader;
+import net.minecraftforge.common.util.EnumHelper;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
@@ -37,6 +42,15 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 @EventBusSubscriber(value = Side.CLIENT, modid = KinoMod.MODID)
 public class ItemsMod {
+	
+	public static final ArmorMaterial armor_bismuth = EnumHelper.addArmorMaterial("armor_bismuth", KinoMod.MODID + ":bismuth", 54694, new int[] {300, 400, 500, 300}, 100, SoundEvents.ITEM_ARMOR_EQUIP_GENERIC, 20.0f);
+
+	public static List<ItemArmor> itemsarmor = new ArrayList<>();
+	
+	public static final ItemArmor helmet_item = new ItemArmorKino("helmet_item", armor_bismuth, 0, EntityEquipmentSlot.HEAD);
+	public static final ItemArmor chestplate_item = new ItemArmorKino("chestplate_item", armor_bismuth, 0, EntityEquipmentSlot.CHEST);
+	public static final ItemArmor leggings_item = new ItemArmorKino("leggings_item", armor_bismuth, 0, EntityEquipmentSlot.LEGS);
+	public static final ItemArmor boots_item = new ItemArmorKino("boots_item", armor_bismuth, 0, EntityEquipmentSlot.FEET);
 	
 	public static List<Item> items = new ArrayList<>();
 	

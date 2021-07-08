@@ -13,6 +13,7 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemBlock;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.client.model.ModelLoader;
@@ -43,6 +44,9 @@ public class RegisteringHandler {
 			event.getRegistry().register(item);
 		}
 		for(ItemBlock item : ItemBlocksMod.items) {
+			event.getRegistry().register(item);
+		}
+		for (ItemArmor item : ItemsMod.itemsarmor) {
 			event.getRegistry().register(item);
 		}
 	}
