@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import fr.kinjer.kinomod.KinoMod;
+import fr.kinjer.kinomod.items.ItemArmorKino;
 import fr.kinjer.kinomod.items.ItemBalium;
 import fr.kinjer.kinomod.items.ItemBaliumDroplet;
 import fr.kinjer.kinomod.items.ItemBaliumEssence;
