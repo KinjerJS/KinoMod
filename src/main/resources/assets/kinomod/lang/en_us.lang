@@ -26,6 +26,11 @@ item.kinomod.balium_ring.0.name=Balium Ring
 item.kinomod.seminium_ring.0.name=Seminium Ring
 item.kinomod.dalium_ring.0.name=Dalium Ring
 item.kinomod.bismuth_ring.0.name=Bismuth Ring
+item.kinomod.helmet_item.name=Bismuth Helmet
+item.kinomod.chestplate_item.name=Bismuth Chestplate
+item.kinomod.leggings_item.name=Bismuth Leggings
+item.kinomod.boots_item.name=Bismuth Boots
+
 
 tile.kinomod.kinium_block.name=Kinium Block
 tile.kinomod.kinium_ore.name=Kinium Ore

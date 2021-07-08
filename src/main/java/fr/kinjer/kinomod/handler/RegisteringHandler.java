@@ -50,5 +50,4 @@ public class RegisteringHandler {
 			event.getRegistry().register(item);
 		}
 	}
-	
 }

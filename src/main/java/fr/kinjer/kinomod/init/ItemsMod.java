@@ -98,6 +98,9 @@ public class ItemsMod {
 		for(Item item : items) {
 			registerModel(item, 0);
 		}
+		for(ItemArmor item : itemsarmor) {
+				registerModel(item, 0);
+		}
 	}
 
 	@SideOnly(Side.CLIENT)
