@@ -28,13 +28,13 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-@Mod(modid = KinoMod.MODID, name = KinoMod.NAME, version = KinoMod.VERSION/*, dependencies = KinoMod.DEPENDENCIES*/)
+@Mod(modid = KinoMod.MODID, name = KinoMod.NAME, version = KinoMod.VERSION, dependencies = KinoMod.DEPENDENCIES)
 public class KinoMod {
 	
 	public static final String MODID = "kinomod";
 	public static final String NAME = "KinoMod";
 	public static final String VERSION = "1.0.0";
-//	public static final String DEPENDENCIES = "required-after:" + Baubles.MODID + "@[" + Baubles.VERSION + ");";
+	public static final String DEPENDENCIES = "required-after:baubles";
 	
 	@Instance(KinoMod.MODID)
 	public static KinoMod instance;

@@ -45,7 +45,7 @@ public class ItemHungerCharm extends ItemCharm
 	@Override
 	public void onWornTick(ItemStack itemstack, EntityLivingBase player) {
 		if (itemstack.getItemDamage()==0 && player.ticksExisted%39==0) {
-			player.addPotionEffect(new PotionEffect(MobEffects.REGENERATION,40,0,true,true));
+			player.addPotionEffect(new PotionEffect(MobEffects.REGENERATION,40,1,true,true));
 			player.addPotionEffect(new PotionEffect(MobEffects.HUNGER,40,101,true,true));
 		}
 	}
@@ -57,7 +57,7 @@ public class ItemHungerCharm extends ItemCharm
 			tooltip.add(Localizer.shiftDetails());
 			return;
 		}
-		tooltip.add("* "+Localizer.localize(MobEffects.REGENERATION.getName()));
+		tooltip.add("* "+Localizer.localize(MobEffects.REGENERATION.getName()+ " " + Localizer.numberLocalize(2)));
 		tooltip.add("* §4"+Localizer.localize("kinomod.charmhunger.damagehunger"));
     }
 	
