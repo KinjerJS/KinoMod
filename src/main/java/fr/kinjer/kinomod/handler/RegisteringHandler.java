@@ -27,7 +27,7 @@ public class RegisteringHandler {
 	public RegisteringHandler() { 
 		FluidsMod.registerFluids(); 
 		EntityInit.registerEntities();
-		RenderHandler.registerEntityRenders();
+		
 	}
 	
 	@SubscribeEvent
@@ -35,7 +35,6 @@ public class RegisteringHandler {
 		for(Block block : BlocksMod.blocks) {
 			event.getRegistry().register(block);
 		}
-		RenderHandler.registerCustomMeshesAndStats();
 	}
 
 	@SubscribeEvent

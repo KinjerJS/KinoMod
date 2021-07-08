@@ -6,6 +6,7 @@ import baubles.common.Baubles;
 import fr.kinjer.kinomod.fluids.KiniumFluid;
 import fr.kinjer.kinomod.gen.WorldGen;
 import fr.kinjer.kinomod.handler.RegisteringHandler;
+import fr.kinjer.kinomod.handler.RenderHandler;
 import fr.kinjer.kinomod.init.FluidsMod;
 import fr.kinjer.kinomod.init.ItemsMod;
 import fr.kinjer.kinomod.init.RecipesMod;
@@ -45,9 +46,7 @@ public class KinoMod {
 	public static Logger logger;
 	
 	WorldGen worldgeneration = new WorldGen(); 
-	
-	public KinoMod() {
-		MinecraftForge.EVENT_BUS.register(new RegisteringHandler());
+	{
 		FluidRegistry.enableUniversalBucket();
 	}
 	

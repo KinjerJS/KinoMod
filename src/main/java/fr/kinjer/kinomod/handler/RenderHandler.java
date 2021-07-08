@@ -14,10 +14,21 @@ import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.client.model.ModelLoader;
+import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.client.registry.IRenderFactory;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 public class RenderHandler {
+	
+	public RenderHandler() {
+		RenderHandler.registerEntityRenders();
+	}
+	
+	@SubscribeEvent
+	public void registerBlocks(RegistryEvent.Register<Block> event) {
+		RenderHandler.registerCustomMeshesAndStats();
+	}
 	
 	public static void registerCustomMeshesAndStats() {
 		setCustomState(BlocksMod.kinium_molten, "kinium_molten");

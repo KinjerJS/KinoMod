@@ -2,6 +2,9 @@ package fr.kinjer.kinomod.proxy;
 
 import java.io.File;
 
+import fr.kinjer.kinomod.handler.RenderHandler;
+import net.minecraftforge.common.MinecraftForge;
+
 public class ClientProxy extends CommonProxy{
 	
 	public static final String PACKAGE = "fr.kinjer.kinomod.proxy.ClientProxy";
@@ -9,7 +12,7 @@ public class ClientProxy extends CommonProxy{
 	@Override
 	public void preInit(File file) {
 		super.preInit(file);
-
+		MinecraftForge.EVENT_BUS.register(new RenderHandler());
 	}
 	
 	@Override
