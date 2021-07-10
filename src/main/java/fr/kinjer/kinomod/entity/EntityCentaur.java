@@ -20,6 +20,7 @@ import net.minecraft.entity.boss.EntityWither;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.entity.projectile.EntityArrow;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -425,15 +426,15 @@ public class EntityCentaur extends EntityMob {
             }
             else
             {
-//                if (this.isArmored())
-//                {
-//                    Entity entity = source.getImmediateSource();
-//
-//                    if (entity instanceof EntityArrow)
-//                    {
-//                        return false;
-//                    }
-//                }
+                  if (this.isArmored())
+                  {
+                      Entity entity = source.getImmediateSource();
+  
+                        if (entity instanceof EntityArrow)
+                      {
+                          return false;
+                      }
+                  }
 
                 Entity entity1 = source.getTrueSource();
 
@@ -541,7 +542,7 @@ public class EntityCentaur extends EntityMob {
      */
     public boolean isArmored()
     {
-        return this.getHealth() <= this.getMaxHealth() / 2.0F;
+        return this.getHealth() <= this.getMaxHealth();
     }
 
     /**
