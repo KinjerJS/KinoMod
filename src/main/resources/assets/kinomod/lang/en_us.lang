@@ -30,6 +30,7 @@ item.kinomod.helmet_item.name=Bismuth Helmet
 item.kinomod.chestplate_item.name=Bismuth Chestplate
 item.kinomod.leggings_item.name=Bismuth Leggings
 item.kinomod.boots_item.name=Bismuth Boots
+item.kinomod.bismuth_sword.name=Bismuth Sword
 
 
 tile.kinomod.kinium_block.name=Kinium Block

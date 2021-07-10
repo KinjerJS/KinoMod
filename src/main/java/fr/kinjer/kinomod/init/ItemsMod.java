@@ -27,12 +27,15 @@ import fr.kinjer.kinomod.items.ItemPoisonCharm;
 import fr.kinjer.kinomod.items.ItemSeminium;
 import fr.kinjer.kinomod.items.ItemSeminiumDroplet;
 import fr.kinjer.kinomod.items.ItemSeminiumEssence;
+import fr.kinjer.kinomod.items.ItemSwordKino;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item;
+import net.minecraft.item.Item.ToolMaterial;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemArmor.ArmorMaterial;
+import net.minecraft.item.ItemTool;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.common.util.EnumHelper;
@@ -53,6 +56,12 @@ public class ItemsMod {
 	public static final ItemArmor leggings_item = new ItemArmorKino("leggings_item", armor_bismuth, 0, EntityEquipmentSlot.LEGS);
 	public static final ItemArmor boots_item = new ItemArmorKino("boots_item", armor_bismuth, 0, EntityEquipmentSlot.FEET);
 	
+	public static final ToolMaterial bismuth_material = EnumHelper.addToolMaterial("bismuth_material", 3, -1, 3f, 1, 30);
+	
+	public static List<ItemTool> itemtool = new ArrayList<>();
+	
+	public static final ItemSwordKino bismuth_sword = new ItemSwordKino(1, 1, bismuth_material, null);
+
 	public static List<Item> items = new ArrayList<>();
 	
 	//ore
@@ -102,6 +111,9 @@ public class ItemsMod {
 		for(ItemArmor item : itemsarmor) {
 				registerModel(item, 0);
 		}
+		for(ItemTool item : itemtool) {
+			registerModel(item, 0);
+	}
 	}
 
 	@SideOnly(Side.CLIENT)

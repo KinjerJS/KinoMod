@@ -15,6 +15,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemBlock;
+import net.minecraft.item.ItemTool;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.event.RegistryEvent;
@@ -49,5 +50,9 @@ public class RegisteringHandler {
 		for (ItemArmor item : ItemsMod.itemsarmor) {
 			event.getRegistry().register(item);
 		}
+		for (ItemTool item : ItemsMod.itemtool) {
+			event.getRegistry().register(item);
+		}
+
 	}
 }
