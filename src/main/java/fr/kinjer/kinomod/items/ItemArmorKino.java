@@ -66,7 +66,6 @@ public class ItemArmorKino extends ItemArmor {
 	
 	public static void onPlayerAttacked(LivingDamageEvent event) {
 		if (event.getEntity() instanceof EntityPlayer) {
-			System.out.println("ui");
 			EntityPlayer player = (EntityPlayer) event.getEntity();
 			if (damageNegations.contains(event.getSource().damageType)
 					&& isFullArmor(player)) {

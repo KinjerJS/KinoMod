@@ -13,7 +13,6 @@ public class RenderCentaur extends RenderLiving<EntityCentaur>{
 
 	public RenderCentaur(RenderManager rendermanagerIn) {
 		super(rendermanagerIn, new ModelCentaur(), 0.5F);
-		// TODO Auto-generated constructor stub
 	}
 	
 	@Override

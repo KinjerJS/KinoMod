@@ -4,6 +4,9 @@ import javax.annotation.Nullable;
 
 import com.google.common.base.Predicate;
 
+import net.minecraft.block.Block;
+import net.minecraft.block.material.Material;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
@@ -12,6 +15,8 @@ import net.minecraft.entity.IEntityLivingData;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAIAttackMelee;
 import net.minecraft.entity.ai.EntityAILookIdle;
+import net.minecraft.entity.ai.EntityAIMoveTowardsRestriction;
+import net.minecraft.entity.ai.EntityAIMoveTowardsTarget;
 import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
 import net.minecraft.entity.ai.EntityAISwimming;
 import net.minecraft.entity.ai.EntityAIWanderAvoidWater;
@@ -30,8 +35,10 @@ import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.pathfinding.PathNavigateGround;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.datafix.DataFixer;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.BossInfo;
 import net.minecraft.world.BossInfoServer;
@@ -51,6 +58,7 @@ public class EntityCentaur extends EntityMob {
     private final int[] nextHeadUpdate = new int[2];
     private final int[] idleHeadUpdates = new int[2];
     private final BossInfoServer bossInfo = (BossInfoServer)(new BossInfoServer(this.getDisplayName(), BossInfo.Color.RED, BossInfo.Overlay.PROGRESS)).setDarkenSky(true);
+	private int attackTimer;
     /** Selector used to determine the entities a wither boss should attack. */
     private static final Predicate<Entity> NOT_UNDEAD = new Predicate<Entity>()
     {
@@ -66,33 +74,30 @@ public class EntityCentaur extends EntityMob {
         this.setSize(1F, 2.4F);
         this.isImmuneToFire = true;
         ((PathNavigateGround)this.getNavigator()).setCanSwim(true);
-        this.experienceValue = 50;		
-	}
-	
-	@Override
-	public void onDeath(DamageSource cause)
-    {
-		
-    }
-	
-	@Override
-	public float getEyeHeight() {
-		return 2.4F;
-	}
-	
-	////////////////////////////////
-	
+        this.experienceValue = 500;
 
+	}
+	
     protected void initEntityAI()
     {
-        this.tasks.addTask(1, new EntityAISwimming(this));
-        this.tasks.addTask(3, new EntityAIAttackMelee(this, 1.0F, false));
-        this.tasks.addTask(5, new EntityAIWanderAvoidWater(this, 1.0D));
-        this.tasks.addTask(6, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F));
-        this.tasks.addTask(7, new EntityAILookIdle(this));
-//        this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, false, new Class[0]));
-        this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityPlayer.class, true));
-//        this.targetTasks.addTask(3, new EntityAINearestAttackableTarget(this, EntityLiving.class, 0, false, false, NOT_UNDEAD));
+        this.tasks.addTask(1, new EntityAIAttackMelee(this, 1.0D, true));
+        this.tasks.addTask(2, new EntityAIMoveTowardsTarget(this, 0.9D, 32.0F));
+        this.tasks.addTask(3, new EntityAIMoveTowardsRestriction(this, 1.0D));
+        this.tasks.addTask(4, new EntityAIWatchClosest(this, EntityPlayer.class, 6.0F));
+    	this.tasks.addTask(5, new EntityAISwimming(this));
+        this.tasks.addTask(6, new EntityAIAttackMelee(this, 1.0F, false));
+        this.tasks.addTask(7, new EntityAIWanderAvoidWater(this, 1.0D));
+        this.tasks.addTask(8, new EntityAIWatchClosest(this, EntityPlayer.class, 80.0F));
+        this.tasks.addTask(9, new EntityAILookIdle(this));
+        this.targetTasks.addTask(1, new EntityAINearestAttackableTarget(this, EntityPlayer.class, true));
+    }
+    
+    protected void applyEntityAttributes()
+    {
+        super.applyEntityAttributes();
+        this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(3000.0D);
+		this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.340D);
+		this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(30.0D);
     }
 
     protected void entityInit()
@@ -112,7 +117,6 @@ public class EntityCentaur extends EntityMob {
     public void writeEntityToNBT(NBTTagCompound compound)
     {
         super.writeEntityToNBT(compound);
-        compound.setInteger("Invul", this.getInvulTime());
     }
 
     /**
@@ -121,7 +125,6 @@ public class EntityCentaur extends EntityMob {
     public void readEntityFromNBT(NBTTagCompound compound)
     {
         super.readEntityFromNBT(compound);
-        this.setInvulTime(compound.getInteger("Invul"));
 
         if (this.hasCustomName())
         {
@@ -137,7 +140,6 @@ public class EntityCentaur extends EntityMob {
         super.setCustomNameTag(name);
         this.bossInfo.setName(this.getDisplayName());
     }
-
     protected SoundEvent getAmbientSound()
     {
         return SoundEvents.ENTITY_WITHER_AMBIENT;
@@ -159,95 +161,34 @@ public class EntityCentaur extends EntityMob {
      */
     public void onLivingUpdate()
     {
-        //this.motionY *= 0.6000000238418579D;
-
-//        if (!this.world.isRemote && this.getWatchedTargetId(0) > 0)
-//        {
-//            Entity entity = this.world.getEntityByID(this.getWatchedTargetId(0));
-//
-//            if (entity != null)
-//            {
-//                if (this.posY < entity.posY || !this.isArmored() && this.posY < entity.posY + 5.0D)
-//                {
-//                    if (this.motionY < 0.0D)
-//                    {
-//                        this.motionY = 0.0D;
-//                    }
-//
-//                   // this.motionY += (0.5D - this.motionY) * 0.6000000238418579D;
-//                }
-//
-//                double d0 = entity.posX - this.posX;
-//                double d1 = entity.posZ - this.posZ;
-//                double d3 = d0 * d0 + d1 * d1;
-//
-//                if (d3 > 9.0D)
-//                {
-//                    double d5 = (double)MathHelper.sqrt(d3);
-//                    this.motionX += (d0 / d5 * 0.5D - this.motionX) * 0.6000000238418579D;
-//                    this.motionZ += (d1 / d5 * 0.5D - this.motionZ) * 0.6000000238418579D;
-//                }
-//            }
-//        }
-
-        if (this.motionX * this.motionX + this.motionZ * this.motionZ > 0.05000000074505806D)
-        {
-            this.rotationYaw = (float)MathHelper.atan2(this.motionZ, this.motionX) * (180F / (float)Math.PI) - 90.0F;
-        }
-
         super.onLivingUpdate();
 
-        for (int i = 0; i < 2; ++i)
+        if (this.attackTimer > 0)
         {
-            this.yRotOHeads[i] = this.yRotationHeads[i];
-            this.xRotOHeads[i] = this.xRotationHeads[i];
+            --this.attackTimer;
         }
 
-        for (int j = 0; j < 2; ++j)
+        if (this.motionX * this.motionX + this.motionZ * this.motionZ > 2.500000277905201E-7D && this.rand.nextInt(5) == 0)
         {
-            //int k = this.getWatchedTargetId(j + 1);
-            //Entity entity1 = null;
+            int i = MathHelper.floor(this.posX);
+            int j = MathHelper.floor(this.posY - 0.20000000298023224D);
+            int k = MathHelper.floor(this.posZ);
+            IBlockState iblockstate = this.world.getBlockState(new BlockPos(i, j, k));
 
-//            if (k > 0)
-//            {
-//                entity1 = this.world.getEntityByID(k);
-//            }
-
-//            if (entity1 != null)
-//            {
-//                double d11 = this.getHeadX(j + 1);
-//                double d12 = this.getHeadY(j + 1);
-//                double d13 = this.getHeadZ(j + 1);
-//                double d6 = entity1.posX - d11;
-//                double d7 = entity1.posY + (double)entity1.getEyeHeight() - d12;
-//                double d8 = entity1.posZ - d13;
-//                double d9 = (double)MathHelper.sqrt(d6 * d6 + d8 * d8);
-//                float f = (float)(MathHelper.atan2(d8, d6) * (180D / Math.PI)) - 90.0F;
-//                float f1 = (float)(-(MathHelper.atan2(d7, d9) * (180D / Math.PI)));
-//                this.xRotationHeads[j] = this.rotlerp(this.xRotationHeads[j], f1, 40.0F);
-//                this.yRotationHeads[j] = this.rotlerp(this.yRotationHeads[j], f, 10.0F);
-//            }
-//            else
-//            {
-//                this.yRotationHeads[j] = this.rotlerp(this.yRotationHeads[j], this.renderYawOffset, 10.0F);
-//            }
-            this.yRotationHeads[j] = this.rotlerp(this.yRotationHeads[j], this.renderYawOffset, 10.0F);
+            if (iblockstate.getMaterial() != Material.AIR)
+            {
+                this.world.spawnParticle(EnumParticleTypes.BLOCK_CRACK, this.posX + ((double)this.rand.nextFloat() - 0.5D) * (double)this.width, this.getEntityBoundingBox().minY + 0.1D, this.posZ + ((double)this.rand.nextFloat() - 0.5D) * (double)this.width, 4.0D * ((double)this.rand.nextFloat() - 0.5D), 0.5D, ((double)this.rand.nextFloat() - 0.5D) * 4.0D, Block.getStateId(iblockstate));
+            }
         }
     }
 
+
     protected void updateAITasks()
     {
-        if (this.getInvulTime() > 0)
-        {
-            int j1 = this.getInvulTime() - 1;
-
-            this.setInvulTime(j1);
-
             if (this.ticksExisted % 10 == 0)
             {
                 this.heal(10.0F);
             }
-        }
         else
         {
             super.updateAITasks();
@@ -257,60 +198,6 @@ public class EntityCentaur extends EntityMob {
                 if (this.ticksExisted >= this.nextHeadUpdate[i - 1])
                 {
                     this.nextHeadUpdate[i - 1] = this.ticksExisted + 10 + this.rand.nextInt(10);
-
-//                    if (this.world.getDifficulty() == EnumDifficulty.NORMAL || this.world.getDifficulty() == EnumDifficulty.HARD)
-//                    {
-//                        int j3 = i - 1;
-//                        int k3 = this.idleHeadUpdates[i - 1];
-//                        this.idleHeadUpdates[j3] = this.idleHeadUpdates[i - 1] + 1;
-//
-//                        if (k3 > 15)
-//                        {
-//                            float f = 10.0F;
-//                            float f1 = 5.0F;
-//                            double d0 = MathHelper.nextDouble(this.rand, this.posX - 10.0D, this.posX + 10.0D);
-//                            double d1 = MathHelper.nextDouble(this.rand, this.posY - 5.0D, this.posY + 5.0D);
-//                            double d2 = MathHelper.nextDouble(this.rand, this.posZ - 10.0D, this.posZ + 10.0D);
-//                            this.launchWitherSkullToCoords(i + 1, d0, d1, d2, true);
-//                            this.idleHeadUpdates[i - 1] = 0;
-//                        }
-//                    }
-
-//                    int k1 = this.getWatchedTargetId(i);
-//
-//                    if (k1 > 0)
-//                    {
-//                        Entity entity = this.world.getEntityByID(k1);
-//
-//                        if (entity != null && entity.isEntityAlive() && this.getDistanceSq(entity) <= 900.0D && this.canEntityBeSeen(entity))
-//                        {
-//                            if (entity instanceof EntityPlayer && ((EntityPlayer)entity).capabilities.disableDamage)
-//                            {
-//                                this.updateWatchedTargetId(i, 0);
-//                            }
-//                            else
-//                            {
-//                                this.nextHeadUpdate[i - 1] = this.ticksExisted + 40 + this.rand.nextInt(20);
-//                                this.idleHeadUpdates[i - 1] = 0;
-//                            }
-//                        }
-//                        else
-//                        {
-//                            this.updateWatchedTargetId(i, 0);
-//                        }
-//                    }
-//                    else
-//                    {
-//                        List<EntityLivingBase> list = this.world.<EntityLivingBase>getEntitiesWithinAABB(EntityLivingBase.class, this.getEntityBoundingBox().grow(20.0D, 8.0D, 20.0D), Predicates.and(NOT_UNDEAD, EntitySelectors.NOT_SPECTATING));
-//
-//                        for (int j2 = 0; j2 < 10 && !list.isEmpty(); ++j2)
-//                        {
-//                            EntityLivingBase entitylivingbase = list.get(this.rand.nextInt(list.size()));
-//
-//
-//                            list.remove(entitylivingbase);
-//                        }
-//                    }
                 }
             }
 
@@ -321,15 +208,6 @@ public class EntityCentaur extends EntityMob {
 
             this.bossInfo.setPercent(this.getHealth() / this.getMaxHealth());
         }
-    }
-
-    /**
-     * Initializes this Wither's explosion sequence and makes it invulnerable. Called immediately after spawning.
-     */
-    public void ignite()
-    {
-        this.setInvulTime(220);
-        this.setHealth(this.getMaxHealth() / 10.0F);
     }
 
     /**
@@ -417,13 +295,7 @@ public class EntityCentaur extends EntityMob {
         if (this.isEntityInvulnerable(source))
         {
             return false;
-        }
-        else if (source != DamageSource.DROWN && !(source.getTrueSource() instanceof EntityWither))
-        {
-            if (this.getInvulTime() > 0 && source != DamageSource.OUT_OF_WORLD)
-            {
-                return false;
-            }
+        }            
             else
             {
                   if (this.isArmored())
@@ -444,11 +316,6 @@ public class EntityCentaur extends EntityMob {
                 }
                 else
                 {
-//                    if (this.blockBreakCounter <= 0)
-//                    {
-//                        this.blockBreakCounter = 20;
-//                    }
-
                     for (int i = 0; i < this.idleHeadUpdates.length; ++i)
                     {
                         this.idleHeadUpdates[i] += 3;
@@ -457,11 +324,7 @@ public class EntityCentaur extends EntityMob {
                     return super.attackEntityFrom(source, amount);
                 }
             }
-        }
-        else
-        {
-            return false;
-        }
+        
     }
 
     /**
@@ -495,21 +358,6 @@ public class EntityCentaur extends EntityMob {
     {
     }
 
-    /**
-     * adds a PotionEffect to the entity
-     */
-    public void addPotionEffect(PotionEffect potioneffectIn)
-    {
-    }
-
-    protected void applyEntityAttributes()
-    {
-        super.applyEntityAttributes();
-        this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(3000.0D);
-		this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.340D);
-		this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(30.0D);
-    }
-    
     @Override
     public void knockBack(Entity entityIn, float strength, double xRatio, double zRatio) {
     }
@@ -524,16 +372,6 @@ public class EntityCentaur extends EntityMob {
     public float getHeadXRotation(int p_82210_1_)
     {
         return this.xRotationHeads[p_82210_1_];
-    }
-
-    public int getInvulTime()
-    {
-        return ((Integer)this.dataManager.get(INVULNERABILITY_TIME)).intValue();
-    }
-
-    public void setInvulTime(int time)
-    {
-        this.dataManager.set(INVULNERABILITY_TIME, Integer.valueOf(time));
     }
 
     /**
@@ -567,52 +405,29 @@ public class EntityCentaur extends EntityMob {
     }
 	
 	@Override
-	public boolean attackEntityAsMob(Entity entityIn)
+	 public boolean attackEntityAsMob(Entity entityIn)
     {
-        if (!super.attackEntityAsMob(entityIn))
+        this.attackTimer = 1;
+        this.world.setEntityState(this, (byte)4);
+        boolean flag = entityIn.attackEntityFrom(DamageSource.causeMobDamage(this), (float)(15 + this.rand.nextInt(15)));
+
+        if (flag)
         {
-            return false;
+            entityIn.motionY += 0.4000000059604645D;
+            this.applyEnchantments(this, entityIn);
         }
-        else
-        {
-            return true;
-        }
+
+        this.playSound(SoundEvents.ENTITY_IRONGOLEM_ATTACK, 1.0F, 1.0F);
+        return flag;
     }
-	
-	@Nullable
-    public IEntityLivingData onInitialSpawn(DifficultyInstance difficulty, @Nullable IEntityLivingData livingdata)
+	@Override
+	public float getEyeHeight() {
+		return 2.4F;
+	}
+	@Override
+	public void onDeath(DamageSource cause)
     {
-        IEntityLivingData ientitylivingdata = super.onInitialSpawn(difficulty, livingdata);
-        this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(4.0D);
-        this.setCombatTask();
-        return ientitylivingdata;
-    }
-	
-	public void setCombatTask()
-    {
-        if (this.world != null && !this.world.isRemote)
-        {
-//            this.tasks.removeTask(this.aiAttackOnCollide);
-//            this.tasks.removeTask(this.aiArrowAttack);
-            ItemStack itemstack = this.getHeldItemMainhand();
-
-            if (itemstack.getItem() instanceof net.minecraft.item.ItemBow)
-            {
-                int i = 20;
-
-                if (this.world.getDifficulty() != EnumDifficulty.HARD)
-                {
-                    i = 40;
-                }
-
-//                this.aiArrowAttack.setAttackCooldown(i);
-//                this.tasks.addTask(4, this.aiArrowAttack);
-            }
-            else
-            {
-//                this.tasks.addTask(4, this.aiAttackOnCollide);
-            }
-        }
+		
     }
 
 }

@@ -6,11 +6,6 @@ import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.math.MathHelper;
 
-// Made with Blockbench 3.8.4
-// Exported for Minecraft version 1.7 - 1.12
-// Paste this class into your mod and generate all required imports
-
-
 public class ModelCentaur extends ModelBase {
 	private final ModelRenderer body;
 	private final ModelRenderer head;
