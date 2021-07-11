@@ -2,7 +2,9 @@ package fr.kinjer.kinomod.handler;
 
 import fr.kinjer.kinomod.KinoMod;
 import fr.kinjer.kinomod.entity.EntityCentaur;
+import fr.kinjer.kinomod.entity.EntityGhastBoss;
 import fr.kinjer.kinomod.entity.render.RenderCentaur;
+import fr.kinjer.kinomod.entity.render.RenderGhastBoss;
 import fr.kinjer.kinomod.init.BlocksMod;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
@@ -59,6 +61,12 @@ public class RenderHandler {
 			@Override
 			public Render<? super EntityCentaur> createRenderFor(RenderManager manager) {
 				return new RenderCentaur(manager);
+			}
+		});
+		RenderingRegistry.registerEntityRenderingHandler(EntityGhastBoss.class, new IRenderFactory<EntityGhastBoss>() {
+			@Override
+			public Render<? super EntityGhastBoss> createRenderFor(RenderManager manager) {
+				return new RenderGhastBoss(manager);
 			}
 		});
 	}

@@ -211,13 +211,6 @@ public class EntityCentaur extends EntityMob {
     }
 
     /**
-     * Sets the Entity inside a web block.
-     */
-    public void setInWeb()
-    {
-    }
-
-    /**
      * Add the given player to the list of players tracking this entity. For instance, a player may track a boss in
      * order to view its associated boss bar.
      */
