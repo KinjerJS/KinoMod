@@ -7,6 +7,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityFlying;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.MoverType;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.entity.ai.EntityAIFindEntityNearestPlayer;
@@ -40,21 +41,23 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class EntityGhastBoss extends EntityFlying implements IMob
 {
+	
     private final BossInfoServer bossInfo = (BossInfoServer)(new BossInfoServer(this.getDisplayName(), BossInfo.Color.RED, BossInfo.Overlay.PROGRESS)).setDarkenSky(true);
 
-	private static final DataParameter<Boolean> ATTACKING = EntityDataManager.<Boolean>createKey(EntityGhast.class, DataSerializers.BOOLEAN);
-    /** The explosion radius of spawned fireballs. */
-    private int explosionStrength = 1;
+	private static final DataParameter<Boolean> ATTACKING = EntityDataManager.<Boolean>createKey(EntityGhastBoss.class, DataSerializers.BOOLEAN);
+    private static final DataParameter<Integer> PHASE = EntityDataManager.<Integer>createKey(EntityGhastBoss.class, DataSerializers.VARINT);
+
+    private int explosionStrength = 6;
 
     public EntityGhastBoss(World worldIn)
     {
         super(worldIn);
-        this.setSize(4.0F, 4.0F);
+        this.setSize(10.0f, 10.0f);
         this.isImmuneToFire = true;
-        this.experienceValue = 5;
+        this.experienceValue = 500;
         this.moveHelper = new EntityGhastBoss.GhastMoveHelper(this);
     }
-
+    
     protected void initEntityAI()
     {
         this.tasks.addTask(5, new EntityGhastBoss.AIRandomFly(this));
@@ -69,29 +72,45 @@ public class EntityGhastBoss extends EntityFlying implements IMob
         return ((Boolean)this.dataManager.get(ATTACKING)).booleanValue();
     }
 
+    @SideOnly(Side.CLIENT)
+    public boolean isPhase(int i)
+    {
+    	return ((Integer)this.dataManager.get(PHASE)).intValue() == i;
+    }
+    
     public void setAttacking(boolean attacking)
     {
         this.dataManager.set(ATTACKING, Boolean.valueOf(attacking));
+    }
+    
+    public void setPhase(int phase)
+    {
+        this.dataManager.set(PHASE, Integer.valueOf(phase));
+    }
+    
+    public int getPhase()
+    {
+    	return ((Integer)this.dataManager.get(PHASE)).intValue();
     }
 
     public int getFireballStrength()
     {
         return this.explosionStrength;
     }
-
-    /**
-     * Called to update the entity's position/logic.
-     */
-    public void onUpdate()
+    
+    public void onLivingUpdate()
     {
-        super.onUpdate();
-
-        if (!this.world.isRemote && this.world.getDifficulty() == EnumDifficulty.PEACEFUL)
-        {
-            this.setDead();
+        super.onLivingUpdate();
+        
+        if(this.getHealth() <= 500 ) {
+        	this.setPhase(2);
+        }else if(this.getHealth() <= 1000 ) {
+        	this.setPhase(1);
+        }else if(this.getHealth() > 1000 ) {
+        	this.setPhase(0);
         }
     }
-
+        
     /**
      * Called when the entity is attacked.
      */
@@ -101,10 +120,16 @@ public class EntityGhastBoss extends EntityFlying implements IMob
         {
             return false;
         }
+        
         else if (source.getImmediateSource() instanceof EntityLargeFireball && source.getTrueSource() instanceof EntityPlayer)
         {
-            super.attackEntityFrom(source, 1000.0F);
+            super.attackEntityFrom(source, 100.0F);
             return true;
+        }
+        else if (source.getImmediateSource() instanceof EntityPlayer && source.getTrueSource() instanceof EntityPlayer)
+        {
+            super.attackEntityFrom(source, 0.0F);
+            return false;
         }
         else
         {
@@ -115,14 +140,15 @@ public class EntityGhastBoss extends EntityFlying implements IMob
     protected void entityInit()
     {
         super.entityInit();
+        this.dataManager.register(PHASE, Integer.valueOf(0));
         this.dataManager.register(ATTACKING, Boolean.valueOf(false));
     }
 
     protected void applyEntityAttributes()
     {
         super.applyEntityAttributes();
-        this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(10.0D);
-        this.getEntityAttribute(SharedMonsterAttributes.FOLLOW_RANGE).setBaseValue(100.0D);
+        this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(1500.0D);
+        this.getEntityAttribute(SharedMonsterAttributes.FOLLOW_RANGE).setBaseValue(600.0D);
     }
 
     public SoundCategory getSoundCategory()
@@ -186,25 +212,13 @@ public class EntityGhastBoss extends EntityFlying implements IMob
         return 10.0F;
     }
 
-    /**
-     * Checks if the entity's current position is a valid location to spawn this entity.
-     */
-    public boolean getCanSpawnHere()
-    {
-        return this.rand.nextInt(20) == 0 && super.getCanSpawnHere() && this.world.getDifficulty() != EnumDifficulty.PEACEFUL;
-    }
-
-    /**
-     * Will return how many at most can spawn in a chunk at once.
-     */
-    public int getMaxSpawnedInChunk()
-    {
-        return 1;
-    }
-
     public static void registerFixesGhast(DataFixer fixer)
     {
         EntityLiving.registerFixesMob(fixer, EntityGhast.class);
+    }
+    
+    @Override
+    public void knockBack(Entity entityIn, float strength, double xRatio, double zRatio) {
     }
 
     /**
@@ -223,7 +237,14 @@ public class EntityGhastBoss extends EntityFlying implements IMob
     {
         return false;
     }
-
+    
+    /**
+     * Makes the entity despawn if requirements are reached
+     */
+    protected void despawnEntity()
+    {
+        this.idleTime = 0;
+    }
 
     /**
      * (abstract) Protected helper method to read subclass entity data from NBT.
@@ -275,6 +296,7 @@ public class EntityGhastBoss extends EntityFlying implements IMob
             public void resetTask()
             {
                 this.parentEntity.setAttacking(false);
+                this.parentEntity.setPhase(0);
             }
 
             /**
@@ -297,7 +319,7 @@ public class EntityGhastBoss extends EntityFlying implements IMob
 
                     if (this.attackTimer == 20)
                     {
-                        double d1 = 4.0D;
+                        double d1 = 10.0D;
                         Vec3d vec3d = this.parentEntity.getLook(1.0F);
                         double d2 = entitylivingbase.posX - (this.parentEntity.posX + vec3d.x * 4.0D);
                         double d3 = entitylivingbase.getEntityBoundingBox().minY + (double)(entitylivingbase.height / 2.0F) - (0.5D + this.parentEntity.posY + (double)(this.parentEntity.height / 2.0F));
@@ -316,8 +338,6 @@ public class EntityGhastBoss extends EntityFlying implements IMob
                 {
                     --this.attackTimer;
                 }
-
-                this.parentEntity.setAttacking(this.attackTimer > 10);
             }
         }
 

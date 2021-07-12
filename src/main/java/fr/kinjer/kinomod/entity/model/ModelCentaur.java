@@ -100,7 +100,6 @@ public class ModelCentaur extends ModelBase {
 		bb_main.addChild(arm1_r1);
 		setRotationAngle(arm1_r1, 0.0F, 0.0F, 0.2182F);
 		arm1_r1.cubeList.add(new ModelBox(arm1_r1, 124, 100, 1.8838F, -7.4421F, -1.0F, 1, 4, 1, 0.0F, true));
-		//head.addChild(bb_main);
 	}
 
 	@Override
