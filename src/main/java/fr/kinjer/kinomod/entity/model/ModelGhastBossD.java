@@ -5,7 +5,7 @@ import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.math.MathHelper;
 
-public class ModelGhastBoss extends ModelBase {
+public class ModelGhastBossD extends ModelBase {
 	private final ModelRenderer root;
 	private final ModelRenderer tentacles;
 	private final ModelRenderer tentacles_0;
@@ -23,18 +23,16 @@ public class ModelGhastBoss extends ModelBase {
 	private final ModelRenderer tentacles_4_r1_r1;
 	private final ModelRenderer tentacles_3_r1;
 
-	public ModelGhastBoss() {
+	public ModelGhastBossD() {
 		textureWidth = 128;
 		textureHeight = 64;
 
 		root = new ModelRenderer(this);
 		root.setRotationPoint(0.0F, 24.0F, 0.0F);
-		
 
 		tentacles = new ModelRenderer(this);
 		tentacles.setRotationPoint(0.0F, 0.0F, 0.0F);
 		root.addChild(tentacles);
-		
 
 		tentacles_0 = new ModelRenderer(this);
 		tentacles_0.setRotationPoint(8.8F, -1.0F, -9.0F);
@@ -89,13 +87,11 @@ public class ModelGhastBoss extends ModelBase {
 		horns = new ModelRenderer(this);
 		horns.setRotationPoint(0.0F, 0.0F, 0.0F);
 		root.addChild(horns);
-		
 
 		tentacles_4_r1 = new ModelRenderer(this);
 		tentacles_4_r1.setRotationPoint(-7.081F, 1.0792F, 7.484F);
 		horns.addChild(tentacles_4_r1);
 		setRotationAngle(tentacles_4_r1, 0.0873F, 0.0436F, 0.1745F);
-		
 
 		tentacles_4_r1_r1 = new ModelRenderer(this);
 		tentacles_4_r1_r1.setRotationPoint(15.2159F, -28.4566F, -13.7474F);
@@ -122,19 +118,20 @@ public class ModelGhastBoss extends ModelBase {
 		modelRenderer.rotateAngleY = y;
 		modelRenderer.rotateAngleZ = z;
 	}
-	
+
 	@Override
-	public void setRotationAngles(float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor, Entity entityIn) {
-		
-		this.tentacles_0.rotateAngleX = 0.2F * MathHelper.sin(ageInTicks * 0.3F + (float)2) + 0.4F;
-		this.tentacles_1.rotateAngleX = 0.2F * MathHelper.sin(ageInTicks * 0.3F + (float)4) + 0.4F;
-		this.tentacles_2.rotateAngleX = 0.2F * MathHelper.sin(ageInTicks * 0.3F + (float)6) + 0.4F;
-		this.tentacles_3.rotateAngleX = 0.2F * MathHelper.sin(ageInTicks * 0.3F + (float)8) + 0.4F;
-		this.tentacles_4.rotateAngleX = 0.2F * MathHelper.sin(ageInTicks * 0.3F + (float)10) + 0.4F;
-		this.tentacles_5.rotateAngleX = 0.2F * MathHelper.sin(ageInTicks * 0.3F + (float)12) + 0.4F;
-		this.tentacles_6.rotateAngleX = 0.2F * MathHelper.sin(ageInTicks * 0.3F + (float)14) + 0.4F;
-		this.tentacles_7.rotateAngleX = 0.2F * MathHelper.sin(ageInTicks * 0.3F + (float)16) + 0.4F;
-		this.tentacles_8.rotateAngleX = 0.2F * MathHelper.sin(ageInTicks * 0.3F + (float)18) + 0.4F;
+	public void setRotationAngles(float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw,
+			float headPitch, float scaleFactor, Entity entityIn) {
+
+		this.tentacles_0.rotateAngleX = 0.2F * MathHelper.sin(ageInTicks * 0.3F + (float) 2) + 0.4F;
+		this.tentacles_1.rotateAngleX = 0.2F * MathHelper.sin(ageInTicks * 0.3F + (float) 4) + 0.4F;
+		this.tentacles_2.rotateAngleX = 0.2F * MathHelper.sin(ageInTicks * 0.3F + (float) 6) + 0.4F;
+		this.tentacles_3.rotateAngleX = 0.2F * MathHelper.sin(ageInTicks * 0.3F + (float) 8) + 0.4F;
+		this.tentacles_4.rotateAngleX = 0.2F * MathHelper.sin(ageInTicks * 0.3F + (float) 10) + 0.4F;
+		this.tentacles_5.rotateAngleX = 0.2F * MathHelper.sin(ageInTicks * 0.3F + (float) 12) + 0.4F;
+		this.tentacles_6.rotateAngleX = 0.2F * MathHelper.sin(ageInTicks * 0.3F + (float) 14) + 0.4F;
+		this.tentacles_7.rotateAngleX = 0.2F * MathHelper.sin(ageInTicks * 0.3F + (float) 16) + 0.4F;
+		this.tentacles_8.rotateAngleX = 0.2F * MathHelper.sin(ageInTicks * 0.3F + (float) 18) + 0.4F;
 
 	}
 }

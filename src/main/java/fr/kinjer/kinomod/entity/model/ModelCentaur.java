@@ -47,7 +47,6 @@ public class ModelCentaur extends ModelBase {
 
 		Main = new ModelRenderer(this);
 		Main.setRotationPoint(0.0F, 24.0F, 6.0F);
-		
 
 		Body2 = new ModelRenderer(this);
 		Body2.setRotationPoint(0.0F, -13.0F, 9.0F);
@@ -78,7 +77,6 @@ public class ModelCentaur extends ModelBase {
 		Saddle = new ModelRenderer(this);
 		Saddle.setRotationPoint(0.0F, -22.0F, 2.0F);
 		Main.addChild(Saddle);
-		
 
 		Leg4A = new ModelRenderer(this);
 		Leg4A.setRotationPoint(3.0F, -11.0F, -9.0F);
@@ -87,7 +85,6 @@ public class ModelCentaur extends ModelBase {
 
 		bb_main = new ModelRenderer(this);
 		bb_main.setRotationPoint(0.0F, -7.0F, -2.0F);
-		
 
 		arm2_r1 = new ModelRenderer(this);
 		arm2_r1.setRotationPoint(0.0F, -7.0F, -2.0F);
@@ -117,24 +114,24 @@ public class ModelCentaur extends ModelBase {
 		modelRenderer.rotateAngleY = y;
 		modelRenderer.rotateAngleZ = z;
 	}
-	
+
 	@Override
 	public void setRotationAngles(float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw,
 			float headPitch, float scaleFactor, Entity entityIn) {
 		this.Leg1A.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F) * 1.1F * limbSwingAmount;
 		this.Leg3A.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F) * 1.1F * limbSwingAmount;
-		
-		this.Leg2A.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F + (float)Math.PI) * 1.1F * limbSwingAmount;
-		this.Leg4A.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F + (float)Math.PI) * 1.1F * limbSwingAmount;
-		
+
+		this.Leg2A.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F + (float) Math.PI) * 1.1F * limbSwingAmount;
+		this.Leg4A.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F + (float) Math.PI) * 1.1F * limbSwingAmount;
+
 		this.arm0.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F) * 1.1F * limbSwingAmount;
-		
-		this.arm1.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F + (float)Math.PI) * 1.1F * limbSwingAmount;
-		
+
+		this.arm1.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F + (float) Math.PI) * 1.1F * limbSwingAmount;
+
 		this.head.rotateAngleY = netHeadYaw * 0.017453292F;
 		this.head.rotateAngleX = headPitch * 0.017453292F;
 		this.bb_main.rotateAngleY = netHeadYaw * 0.017453292F;
 		this.bb_main.rotateAngleX = headPitch * 0.017453292F;
-	}	
-	
+	}
+
 }

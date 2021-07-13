@@ -2,7 +2,7 @@ package fr.kinjer.kinomod.init;
 
 import fr.kinjer.kinomod.KinoMod;
 import fr.kinjer.kinomod.entity.EntityCentaur;
-import fr.kinjer.kinomod.entity.EntityGhastBoss;
+import fr.kinjer.kinomod.entity.EntityGhastBossD;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.registry.EntityRegistry;
@@ -16,8 +16,8 @@ public class EntityInit {
 		registerEntity("centaur", 
 				EntityCentaur.class, 
 				ENTITY_CENTAUR, 50, 0xFF865A, 0x9B4D00);
-		registerEntity("ghast_boss", 
-				EntityGhastBoss.class, 
+		registerEntity("ghast_boss_d", 
+				EntityGhastBossD.class, 
 				ENTITY_GHAST_BOSS, 50, 0xFF865A, 0x9B4D00);
 	}
 		

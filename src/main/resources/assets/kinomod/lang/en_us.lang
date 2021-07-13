@@ -75,4 +75,8 @@ kinomod.charmpoison.damageremovewither=Wither Resistance
 kinomod.charmhunger.damagehunger=Starvation
 
 entity.centaur.name=Centaur
-entity.ghast_boss.name=Ghast Boss
+entity.ghast_boss_d.name=Dalium Ghast
+
+attribute.name.Bismuth=Bismuth Damage
+
+info.kinomod.swordkino.b.0=§bPress (%s) to change mode.§r
