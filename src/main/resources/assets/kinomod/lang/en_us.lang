@@ -79,4 +79,11 @@ entity.ghast_boss_d.name=Dalium Ghast
 
 attribute.name.Bismuth=Bismuth Damage
 
-info.kinomod.swordkino.b.0=�bPress (%s) to change mode.�r
+info.holdShiftForDetails=Hold §e§oShift§r§7 for Details§r
+info.sword.a.0=Sword Mode : Attack Speed.
+info.sword.a.1=Sword Mode : Attack Range.
+info.sword.a.2=Sword Mode : Attack Damage.
+
+key.kinomod.category=Kinomod
+key.changemod=Switch Sword Mode
+key.misc=Miscellaneous

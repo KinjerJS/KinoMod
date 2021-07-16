@@ -14,8 +14,10 @@ import fr.kinjer.kinomod.proxy.ClientProxy;
 import fr.kinjer.kinomod.proxy.CommonProxy;
 import fr.kinjer.kinomod.utils.MaterialsMod;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.Entity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.EntityDamageSource;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fluids.FluidRegistry;
@@ -53,6 +55,17 @@ public class KinoMod {
 
 	public static DamageSource Bismuth = new DamageSource("Bismuth").setDamageAllowedInCreativeMode()
 			.setDamageBypassesArmor().setDamageIsAbsolute();
+	
+	 public static class DamageSourceBismuth extends EntityDamageSource {
+	        public DamageSourceBismuth(Entity entity) {
+	            super("Bismuth", entity);
+	            DamageSourceBismuth.isBypassArmor();
+	        }
+
+	        public static boolean isBypassArmor() {
+	            return true;
+	        }
+	    }
 
 	public static final CreativeTabs tabKino = new CreativeTabs("tabKino") {
 		@SideOnly(Side.CLIENT)
@@ -66,7 +79,6 @@ public class KinoMod {
 		proxy.preInit(e.getSuggestedConfigurationFile());
 		logger = e.getModLog();
 		GameRegistry.registerWorldGenerator(worldgeneration, 0);
-
 	}
 
 	@EventHandler

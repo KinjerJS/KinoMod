@@ -3,17 +3,21 @@ package fr.kinjer.kinomod.utils;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.Vec3d;
+import net.minecraft.util.text.ITextComponent;
 import net.minecraft.world.World;
+import net.minecraftforge.common.util.FakePlayer;
 import net.minecraft.entity.player.EntityPlayer;
 
 public class WorldUtil {
 	
-	    public static RayTraceResult getNearestPositionWithAir(World world, EntityPlayer player, int reach) {
+	
+	
+	public static RayTraceResult getNearestPositionWithAir(World world, EntityPlayer player, int reach) {
 	        return getMovingObjectPosWithReachDistance(world, player, reach, false, false, true);
-	    }
+	}
 
-	    private static RayTraceResult getMovingObjectPosWithReachDistance(World world, EntityPlayer player, double distance, boolean p1, boolean p2, boolean p3) {
-	        float f = player.rotationPitch;
+	private static RayTraceResult getMovingObjectPosWithReachDistance(World world, EntityPlayer player, double distance, boolean p1, boolean p2, boolean p3) {
+			float f = player.rotationPitch;
 	        float f1 = player.rotationYaw;
 	        double d0 = player.posX;
 	        double d1 = player.posY + player.getEyeHeight();
@@ -27,5 +31,14 @@ public class WorldUtil {
 	        float f7 = f2 * f4;
 	        Vec3d vec31 = vec3.addVector(f6 * distance, f5 * distance, f7 * distance);
 	        return world.rayTraceBlocks(vec3, vec31, p1, p2, p3);
-	    }
 	}
+	
+	public static void sendIndexedChatMessageToPlayer(EntityPlayer player, ITextComponent message) {
+
+		if (player.world == null || player instanceof FakePlayer) {
+			return;
+		}
+
+		player.sendMessage(message);
+	}
+}

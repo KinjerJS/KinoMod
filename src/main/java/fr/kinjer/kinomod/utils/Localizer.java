@@ -21,14 +21,19 @@ public class Localizer {
         return I18n.translateToLocal("enchantment.level." + level);
     }
 	
-	public static String getKeyName(int key) {
+	public static String shiftForDetails() {
 
-        if (key < 0) {
-            return I18n.translateToLocalFormatted("key.mouseButton", key + 101);
-        } else if (key > Keyboard.KEYBOARD_SIZE) {
-            return Keyboard.getKeyName(0);
-        }
-        return Keyboard.getKeyName(key);
-    }
+		return localize("info.holdShiftForDetails");
+	}
+	
+	public static String getInfoText(String key) {
+
+		return BRIGHT_GREEN + localize(key) + END;
+	}
+	
+	public static boolean displayShiftForDetail = true;
+	
+	public static final String BRIGHT_GREEN = (char) 167 + "a";
+	public static final String END = (char) 167 + "r";
 
 }

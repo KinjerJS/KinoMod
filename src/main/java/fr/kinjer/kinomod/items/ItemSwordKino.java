@@ -11,14 +11,19 @@ import org.lwjgl.input.Keyboard;
 import com.google.common.collect.Multimap;
 
 import fr.kinjer.kinomod.KinoMod;
+import fr.kinjer.kinomod.entity.EntityGhastBossD;
+import fr.kinjer.kinomod.init.CoreProps;
 import fr.kinjer.kinomod.init.ItemsMod;
+import fr.kinjer.kinomod.proxy.ClientProxy;
 import fr.kinjer.kinomod.utils.KeyBoard;
 import fr.kinjer.kinomod.utils.Localizer;
 import fr.kinjer.kinomod.utils.WorldUtil;
+import fr.kinjer.kinomod.utils.IMultiModeItem;
 import fr.kinjer.kinomod.utils.ItemsUtils;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.settings.KeyBinding;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -34,6 +39,9 @@ import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemTool;
+import net.minecraft.network.datasync.DataParameter;
+import net.minecraft.network.datasync.DataSerializers;
+import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EntityDamageSource;
@@ -43,12 +51,16 @@ import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.Vec3d;
+import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class ItemSwordKino extends ItemTool {
-
+public class ItemSwordKino extends ItemTool implements IMultiModeItem {
+	
+	public static final int SPEED = 0;
+	public static final int ATTACK_RANGE_MODIFIER = 20;
+	
 	protected static final String ATTACK_BISMUTH_MODIFIER = "AttackBismuthModifier";
 
 	public ItemSwordKino(float attackDamageIn, float attackSpeedIn, ToolMaterial materialIn,
@@ -87,6 +99,10 @@ public class ItemSwordKino extends ItemTool {
 	public boolean isFull3D() {
 		return true;
 	}
+	
+	public boolean isActive(ItemStack stack) {
+		return stack.getTagCompound() != null;
+	}
 
 	@Override
 	public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand hand) {
@@ -118,30 +134,35 @@ public class ItemSwordKino extends ItemTool {
 	}
 	
 	@Override
-	public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> l, ITooltipFlag flagIn) {
+	public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
 
-		if(!KeyBoard.isShiftKeyDown()) {
-			l.add(Localizer.shiftDetails());
+		if (Localizer.displayShiftForDetail && !KeyBoard.isShiftKeyDown()) {
+			tooltip.add(Localizer.shiftForDetails());
+		}
+		if (!KeyBoard.isShiftKeyDown()) {
 			return;
 		}
+		tooltip.add(Localizer.getInfoText("info.sword.a.") + getMode(stack));
+	}
+	
+	@Override
+	public int getNumModes(ItemStack stack) {
+
+		return 3;
+	}
+
+	@Override
+	public void onModeChange(EntityPlayer player, ItemStack stack) {
+
+		player.world.playSound(null, player.getPosition(), SoundEvents.BLOCK_LEVER_CLICK, SoundCategory.PLAYERS, 0.4F, (isActive(stack) ? 0.7F : 0.5F) + 0.1F * getMode(stack));
+		WorldUtil.sendIndexedChatMessageToPlayer(player, new TextComponentTranslation("info.changemode." + getMode(stack)));
 		
-		l.add(String.format("info.kinomod.swordkino.b." , getMode(stack) + Localizer.getKeyName(Keyboard.KEY_F4)));
 	}
-
-
-
-	private String getMode(ItemStack stack) {
-		return "idk";
-	}
-
+	
 	public Multimap<String, AttributeModifier> getItemAttributeModifiers(EntityEquipmentSlot equipmentSlot) {
 		Multimap<String, AttributeModifier> multimap = super.getItemAttributeModifiers(equipmentSlot);
 
 		if (equipmentSlot == EntityEquipmentSlot.MAINHAND) {
-			multimap.put(SharedMonsterAttributes.ATTACK_DAMAGE.getName(),
-					new AttributeModifier(ATTACK_DAMAGE_MODIFIER, "Weapon modifier", (double) this.attackDamage, 0));
-			multimap.put(SharedMonsterAttributes.ATTACK_SPEED.getName(),
-					new AttributeModifier(ATTACK_SPEED_MODIFIER, "Weapon modifier", -2.4000000953674316D, 0));
 			multimap.put("Bismuth", new AttributeModifier(ATTACK_BISMUTH_MODIFIER, 100.0D, 0));
 		}
 
