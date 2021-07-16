@@ -16,6 +16,7 @@ import net.minecraft.entity.monster.EntityGhast;
 import net.minecraft.entity.monster.IMob;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.entity.projectile.EntityArrow;
 import net.minecraft.entity.projectile.EntityLargeFireball;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.nbt.NBTTagCompound;
@@ -129,9 +130,20 @@ public class EntityGhastBossD extends EntityFlying implements IMob {
 				&& source.getTrueSource() instanceof EntityPlayer) {
 			super.attackEntityFrom(source, 0.0F);
 			return false;
-		} else {
-			return super.attackEntityFrom(source, amount);
-		}
+		} if (this.isArmored())
+        {
+            Entity entity = source.getImmediateSource();
+
+              if (entity instanceof EntityArrow)
+            {
+                return false;
+            }
+        }
+		return super.attackEntityFrom(source, amount);
+	}
+
+	private boolean isArmored() {
+		return true;
 	}
 
 	protected void entityInit() {
