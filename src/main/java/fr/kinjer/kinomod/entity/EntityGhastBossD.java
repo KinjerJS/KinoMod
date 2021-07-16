@@ -55,7 +55,7 @@ public class EntityGhastBossD extends EntityFlying implements IMob {
 		super(worldIn);
 		this.setSize(10.0f, 10.0f);
 		this.isImmuneToFire = true;
-		this.experienceValue = 1500;
+		this.experienceValue = 2500;
 		this.moveHelper = new EntityGhastBossD.GhastMoveHelper(this);
 	}
 
@@ -88,6 +88,10 @@ public class EntityGhastBossD extends EntityFlying implements IMob {
 	public int getPhase() {
 		return ((Integer) this.dataManager.get(PHASE)).intValue();
 	}
+	
+	public boolean explosionImune() {
+		return this.isImmuneToExplosions();
+	}
 
 	public int getFireballStrength() {
 		return this.explosionStrength;
@@ -114,7 +118,7 @@ public class EntityGhastBossD extends EntityFlying implements IMob {
 	 */
 	public boolean attackEntityFrom(DamageSource source, float amount) {
 		if (this.isEntityInvulnerable(source)) {
-			return false;
+			return true;
 		}
 
 		else if (source.getImmediateSource() instanceof EntityLargeFireball
