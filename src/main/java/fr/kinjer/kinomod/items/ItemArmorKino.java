@@ -7,6 +7,7 @@ import fr.kinjer.kinomod.KinoMod;
 import fr.kinjer.kinomod.init.ItemsMod;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.MobEffects;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.ItemArmor;
@@ -39,6 +40,7 @@ public class ItemArmorKino extends ItemArmor {
 
 	@Override
 	public void onArmorTick(World world, EntityPlayer player, ItemStack stack) {
+		if(world.isRemote) {
 		if(isFullArmor(player)) {
 			if (player.isBurning()) {
 				player.extinguish();
@@ -61,7 +63,7 @@ public class ItemArmorKino extends ItemArmor {
 			player.capabilities.isFlying = false;
 			}
 		}
-		
+		}
 	}
 	
 	public static void onPlayerAttacked(LivingDamageEvent event) {
