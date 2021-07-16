@@ -51,6 +51,10 @@ public class ItemArmorKino extends ItemArmor {
 			player.getEntityAttribute(SharedMonsterAttributes.KNOCKBACK_RESISTANCE).setBaseValue(1.0D);
 			player.addPotionEffect(new PotionEffect(MobEffects.NIGHT_VISION, 20*13,0,false,false));
 			
+			if (player.isInWater()) {
+				player.addPotionEffect(new PotionEffect(MobEffects.WATER_BREATHING, 40, 0, false, false));
+			}
+			
 		}else {
 			player.stepHeight = 0.5F;
 			player.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(20);

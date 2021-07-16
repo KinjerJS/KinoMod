@@ -1,6 +1,8 @@
 package fr.kinjer.kinomod.entity;
 
 import java.util.Random;
+import java.util.UUID;
+
 import javax.annotation.Nullable;
 
 import net.minecraft.entity.Entity;
@@ -12,18 +14,22 @@ import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.entity.ai.EntityAIFindEntityNearestPlayer;
 import net.minecraft.entity.ai.EntityMoveHelper;
+import net.minecraft.entity.boss.EntityDragon;
+import net.minecraft.entity.item.EntityXPOrb;
 import net.minecraft.entity.monster.EntityGhast;
 import net.minecraft.entity.monster.IMob;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.entity.projectile.EntityArrow;
 import net.minecraft.entity.projectile.EntityLargeFireball;
+import net.minecraft.init.Blocks;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvent;
@@ -36,6 +42,8 @@ import net.minecraft.world.BossInfo;
 import net.minecraft.world.BossInfoServer;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
+import net.minecraft.world.end.DragonFightManager;
+import net.minecraft.world.gen.feature.WorldGenEndPodium;
 import net.minecraft.world.storage.loot.LootTableList;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -44,6 +52,11 @@ public class EntityGhastBossD extends EntityFlying implements IMob {
 
 	private final BossInfoServer bossInfo = (BossInfoServer) (new BossInfoServer(this.getDisplayName(),
 			BossInfo.Color.RED, BossInfo.Overlay.PROGRESS)).setDarkenSky(true);
+	
+    private UUID ghastbossdUniqueId;
+    private boolean ghastbossdKilled;
+    private boolean previouslyKilled;
+    public int deathTicks;
 
 	private static final DataParameter<Boolean> ATTACKING = EntityDataManager.<Boolean>createKey(EntityGhastBossD.class,
 			DataSerializers.BOOLEAN);
@@ -171,7 +184,7 @@ public class EntityGhastBossD extends EntityFlying implements IMob {
 	}
 
 	protected SoundEvent getDeathSound() {
-		return SoundEvents.ENTITY_GHAST_DEATH;
+		return SoundEvents.ENTITY_ENDERDRAGON_DEATH;
 	}
 
 	@Nullable
@@ -250,10 +263,77 @@ public class EntityGhastBossD extends EntityFlying implements IMob {
 			this.explosionStrength = compound.getInteger("ExplosionPower");
 		}
 	}
+	
+	public void processGhastDeath(EntityGhastBossD ghastbossd)
+    {
+        if (ghastbossd.getUniqueID().equals(this.ghastbossdUniqueId))
+        {
+            this.bossInfo.setPercent(0.0F);
+            this.bossInfo.setVisible(false);
+
+
+            this.previouslyKilled = true;
+            this.ghastbossdKilled = true;
+        }
+    }
 
 	public float getEyeHeight() {
 		return 2.6F;
 	}
+	
+	/**
+     * handles entity death timer, experience orb and particle creation
+     */
+    protected void onDeathUpdate()
+    {
+        ++this.deathTicks;
+
+        if (this.deathTicks >= 180 && this.deathTicks <= 200)
+        {
+            float f = (this.rand.nextFloat() - 0.5F) * 8.0F;
+            float f1 = (this.rand.nextFloat() - 0.5F) * 4.0F;
+            float f2 = (this.rand.nextFloat() - 0.5F) * 8.0F;
+            this.world.spawnParticle(EnumParticleTypes.EXPLOSION_HUGE, this.posX + (double)f, this.posY + 2.0D + (double)f1, this.posZ + (double)f2, 0.0D, 0.0D, 0.0D);
+        }
+
+        boolean flag = this.world.getGameRules().getBoolean("doMobLoot");
+        int i = 500;
+
+        if (!this.world.isRemote)
+        {
+            if (this.deathTicks > 150 && this.deathTicks % 5 == 0 && flag)
+            {
+                this.dropExperience(MathHelper.floor((float)i * 0.08F));
+            }
+
+            if (this.deathTicks == 1)
+            {
+                this.world.playBroadcastSound(1028, new BlockPos(this), 0);
+            }
+        }
+
+        this.rotationYaw += 20.0F;
+        this.renderYawOffset = this.rotationYaw;
+
+        if (this.deathTicks == 200 && !this.world.isRemote)
+        {
+            if (flag)
+            {
+                this.dropExperience(MathHelper.floor((float)i * 0.2F));
+            }
+            this.setDead();
+        }
+    }
+    
+    private void dropExperience(int p_184668_1_)
+    {
+        while (p_184668_1_ > 0)
+        {
+            int i = EntityXPOrb.getXPSplit(p_184668_1_);
+            p_184668_1_ -= i;
+            this.world.spawnEntity(new EntityXPOrb(this.world, this.posX, this.posY, this.posZ, i));
+        }
+    }
 
 	static class AIFireballAttack extends EntityAIBase {
 		private final EntityGhastBossD parentEntity;
