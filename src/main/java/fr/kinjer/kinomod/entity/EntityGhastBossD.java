@@ -59,6 +59,7 @@ public class EntityGhastBossD extends EntityFlying implements IMob {
 		this.moveHelper = new EntityGhastBossD.GhastMoveHelper(this);
 	}
 
+	@Override
 	protected void initEntityAI() {
 		this.tasks.addTask(5, new EntityGhastBossD.AIRandomFly(this));
 		this.tasks.addTask(7, new EntityGhastBossD.AILookAround(this));
@@ -312,6 +313,7 @@ public class EntityGhastBossD extends EntityFlying implements IMob {
 			} else if (this.attackTimer > 0) {
 				--this.attackTimer;
 			}
+			this.parentEntity.setAttacking(this.attackTimer > 5);
 		}
 	}
 

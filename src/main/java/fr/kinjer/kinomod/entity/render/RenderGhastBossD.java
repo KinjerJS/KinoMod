@@ -35,12 +35,8 @@ public class RenderGhastBossD extends RenderLiving<EntityGhastBossD> {
 	 * you call Render.bindEntityTexture.
 	 */
 	protected ResourceLocation getEntityTexture(EntityGhastBossD entity) {
-		if (entity.isPhase(1)) {
-			return entity.isAttacking() ? GHAST_BOSS_SHOOTING_TEXTURES_1 : GHAST_BOSS_TEXTURES_1;
-		}
-		if (entity.isPhase(2)) {
-			return entity.isAttacking() ? GHAST_BOSS_SHOOTING_TEXTURES_2 : GHAST_BOSS_TEXTURES_2;
-		}
+		if (entity.isPhase(1)) return entity.isAttacking() ? GHAST_BOSS_SHOOTING_TEXTURES_1 : GHAST_BOSS_TEXTURES_1;
+		if (entity.isPhase(2)) return entity.isAttacking() ? GHAST_BOSS_SHOOTING_TEXTURES_2 : GHAST_BOSS_TEXTURES_2;
 		return entity.isAttacking() ? GHAST_BOSS_SHOOTING_TEXTURES : GHAST_BOSS_TEXTURES;
 	}
 
