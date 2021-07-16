@@ -7,6 +7,7 @@ import net.minecraft.client.model.ModelGhast;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.client.renderer.entity.RenderManager;
+import net.minecraft.entity.boss.EntityDragon;
 import net.minecraft.entity.monster.EntityGhast;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
@@ -25,6 +26,8 @@ public class RenderGhastBossD extends RenderLiving<EntityGhastBossD> {
 			"textures/entity/ghast_boss_2.png");
 	private static final ResourceLocation GHAST_BOSS_SHOOTING_TEXTURES_2 = new ResourceLocation(KinoMod.MODID,
 			"textures/entity/ghast_boss_shooting_2.png");
+	private static final ResourceLocation DRAGON_EXPLODING_TEXTURES = new ResourceLocation(
+			"textures/entity/enderdragon/dragon_exploding.png");
 
 	public RenderGhastBossD(RenderManager renderManagerIn) {
 		super(renderManagerIn, new ModelGhastBossD(), 0.5F);
@@ -35,8 +38,10 @@ public class RenderGhastBossD extends RenderLiving<EntityGhastBossD> {
 	 * you call Render.bindEntityTexture.
 	 */
 	protected ResourceLocation getEntityTexture(EntityGhastBossD entity) {
-		if (entity.isPhase(1)) return entity.isAttacking() ? GHAST_BOSS_SHOOTING_TEXTURES_1 : GHAST_BOSS_TEXTURES_1;
-		if (entity.isPhase(2)) return entity.isAttacking() ? GHAST_BOSS_SHOOTING_TEXTURES_2 : GHAST_BOSS_TEXTURES_2;
+		if (entity.isPhase(1))
+			return entity.isAttacking() ? GHAST_BOSS_SHOOTING_TEXTURES_1 : GHAST_BOSS_TEXTURES_1;
+		if (entity.isPhase(2))
+			return entity.isAttacking() ? GHAST_BOSS_SHOOTING_TEXTURES_2 : GHAST_BOSS_TEXTURES_2;
 		return entity.isAttacking() ? GHAST_BOSS_SHOOTING_TEXTURES : GHAST_BOSS_TEXTURES;
 	}
 
