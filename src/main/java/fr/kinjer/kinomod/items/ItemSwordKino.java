@@ -39,6 +39,7 @@ import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemTool;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
@@ -58,24 +59,19 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class ItemSwordKino extends ItemTool implements IMultiModeItem {
 	
-	public static final int SPEED = 0;
-	public static final int ATTACK_RANGE_MODIFIER = 20;
-	
 	protected static final String ATTACK_BISMUTH_MODIFIER = "AttackBismuthModifier";
-
-	public ItemSwordKino(float attackDamageIn, float attackSpeedIn, ToolMaterial materialIn,
-			Set<Block> effectiveBlocksIn) {
-		super(72, -2.4000000953674316F, materialIn, effectiveBlocksIn);
+	
+	public ItemSwordKino(ToolMaterial materialIn, Set<Block> effectiveBlocksIn) {
+		super(78, /*-2.4000000953674316F*/-1.0F, materialIn, effectiveBlocksIn);
 		setCreativeTab(KinoMod.tabKino);
 
-		String name = "bismuth_sword";
-		ItemsMod.itemtool.add(
-				(ItemTool) this.setRegistryName(KinoMod.MODID, name).setUnlocalizedName(KinoMod.MODID + "." + name));
+		ItemsMod.setItemToolName(this, "bismuth_sword");
 		setHasSubtypes(true);
 		setMaxStackSize(1);
 		setNoRepair();
 	}
 
+	@Override
 	public float getDestroySpeed(ItemStack stack, IBlockState state) {
 		Block block = state.getBlock();
 
@@ -89,7 +85,6 @@ public class ItemSwordKino extends ItemTool implements IMultiModeItem {
 	}
 
 	@Override
-
 	public boolean hitEntity(ItemStack itemstack, EntityLivingBase attackedEntity, EntityLivingBase attacker) {
 		attackedEntity.attackEntityFrom(KinoMod.Bismuth, 100.0F);
 		return super.hitEntity(itemstack, attackedEntity, attacker);
@@ -104,6 +99,19 @@ public class ItemSwordKino extends ItemTool implements IMultiModeItem {
 		return stack.getTagCompound() != null;
 	}
 
+	@Override
+	public void readNBTShareTag(ItemStack stack, NBTTagCompound nbt) {
+		nbt.setBoolean("Mode", setMode(stack, 1));
+		
+		super.readNBTShareTag(stack, nbt);
+	}
+	
+	@Override
+	public boolean updateItemStackNBT(NBTTagCompound nbt) {
+		nbt.getBoolean("Mode");
+		return super.updateItemStackNBT(nbt);
+	}
+	
 	@Override
 	public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand hand) {
 
@@ -147,18 +155,17 @@ public class ItemSwordKino extends ItemTool implements IMultiModeItem {
 	
 	@Override
 	public int getNumModes(ItemStack stack) {
-
 		return 3;
 	}
 
 	@Override
 	public void onModeChange(EntityPlayer player, ItemStack stack) {
-
 		player.world.playSound(null, player.getPosition(), SoundEvents.BLOCK_LEVER_CLICK, SoundCategory.PLAYERS, 0.4F, (isActive(stack) ? 0.7F : 0.5F) + 0.1F * getMode(stack));
 		WorldUtil.sendIndexedChatMessageToPlayer(player, new TextComponentTranslation("info.changemode." + getMode(stack)));
 		
 	}
 	
+	@Override
 	public Multimap<String, AttributeModifier> getItemAttributeModifiers(EntityEquipmentSlot equipmentSlot) {
 		Multimap<String, AttributeModifier> multimap = super.getItemAttributeModifiers(equipmentSlot);
 

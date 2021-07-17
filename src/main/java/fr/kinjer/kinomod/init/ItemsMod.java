@@ -47,7 +47,7 @@ public class ItemsMod {
 	public static List<ItemTool> itemtool = new ArrayList<>();
 
 	// Tools
-	public static final ItemSwordKino bismuth_sword = new ItemSwordKino(1, 1, bismuth_material, null);
+	public static final ItemSwordKino bismuth_sword = new ItemSwordKino(bismuth_material, null);
 
 	public static List<Item> items = new ArrayList<>();
 
@@ -94,6 +94,9 @@ public class ItemsMod {
 
 	public static void setItemName(Item item, String name) {
 		items.add(item.setRegistryName(KinoMod.MODID, name).setUnlocalizedName(KinoMod.MODID + "." + name));
+	}
+	public static void setItemToolName(ItemTool item, String name) {
+		itemtool.add((ItemTool) item.setRegistryName(KinoMod.MODID, name).setUnlocalizedName(KinoMod.MODID + "." + name));
 	}
 
 	@SideOnly(Side.CLIENT)
