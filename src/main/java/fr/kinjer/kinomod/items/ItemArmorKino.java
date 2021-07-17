@@ -45,11 +45,11 @@ public class ItemArmorKino extends ItemArmor {
 
 		if (world.isRemote) {
 			if (isFullArmor(player)) {
-				if (player.isBurning()) {
+				if (player.isBurning()) 
 					player.extinguish();
-				}
 				FoodStats foodStats = player.getFoodStats();
-				if (player.ticksExisted % 100 == 0 && foodStats.needFood())
+				if(player.inventory.hasItemStack(new ItemStack(ItemsMod.tentacle_soup)))
+				if (player.ticksExisted % 100 == 0 && foodStats.needFood()) 
 					foodStats.addStats(20, 20.0F);
 				player.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(80);
 				player.getEntityAttribute(SharedMonsterAttributes.KNOCKBACK_RESISTANCE).setBaseValue(1.0D);
