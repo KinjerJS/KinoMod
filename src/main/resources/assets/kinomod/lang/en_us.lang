@@ -31,6 +31,11 @@ item.kinomod.chestplate_item.name=Bismuth Chestplate
 item.kinomod.leggings_item.name=Bismuth Leggings
 item.kinomod.boots_item.name=Bismuth Boots
 item.kinomod.bismuth_sword.name=Bismuth Sword
+item.kinomod.ghast_boss_d_tentacle.name=Dalium Ghast Tentacle
+item.kinomod.ghast_boss_s_tentacle.name=Seminium Ghast Tentacle
+item.kinomod.ghast_boss_k_tentacle.name=Kinium Ghast Tentacle
+item.kinomod.ghast_boss_b_tentacle.name=Balium Ghast Tentacle
+item.kinomod.tentacle_soup.name=Tentacle Soup
 
 
 tile.kinomod.kinium_block.name=Kinium Block

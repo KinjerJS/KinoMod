@@ -15,6 +15,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemBlock;
+import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemTool;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.client.model.ModelLoader;
@@ -53,6 +54,5 @@ public class RegisteringHandler {
 		for (ItemTool item : ItemsMod.itemtool) {
 			event.getRegistry().register(item);
 		}
-
 	}
 }
