@@ -2,14 +2,14 @@ package fr.kinjer.kinomod.utils;
 
 import org.lwjgl.input.Keyboard;
 
+import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.translation.I18n;
 
 public class Localizer {
 	
-	public static String localize(String key) {
-
-		return I18n.translateToLocal(key);
+	public static String localize(String string){
+		return new TextComponentTranslation(string).getFormattedText();
 	}
 	
 	public static String shiftDetails() {
@@ -30,6 +30,8 @@ public class Localizer {
 
 		return BRIGHT_GREEN + localize(key) + END;
 	}
+	
+	
 	
 	public static boolean displayShiftForDetail = true;
 	

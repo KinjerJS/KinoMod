@@ -26,8 +26,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class ItemsMod {
 
 	public static final ArmorMaterial armor_bismuth = EnumHelper.addArmorMaterial("armor_bismuth",
-			KinoMod.MODID + ":bismuth", 54694, new int[] { 300, 400, 500, 300 }, 100,
-			SoundEvents.ITEM_ARMOR_EQUIP_GENERIC, 20.0f);
+			KinoMod.MODID + ":bismuth", -1, new int[]{5, 9, 10, 6}, 45, SoundEvents.ITEM_ARMOR_EQUIP_GOLD, 1.5F);
 
 	public static List<ItemArmor> itemsarmor = new ArrayList<>();
 

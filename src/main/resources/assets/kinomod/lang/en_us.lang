@@ -92,3 +92,6 @@ info.sword.a.2=Sword Mode : Attack Damage.
 key.kinomod.category=Kinomod
 key.changemod=Switch Sword Mode
 key.misc=Miscellaneous
+
+tooltip.durability=Durability
+tooltip.infinite=Infinite
