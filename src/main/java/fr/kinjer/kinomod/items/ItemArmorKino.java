@@ -72,6 +72,7 @@ public class ItemArmorKino extends ItemArmor {
 		damageNegations.add(DamageSource.FLY_INTO_WALL.damageType);
 		damageNegations.add(DamageSource.DRAGON_BREATH.damageType);
 		damageNegations.add(DamageSource.CRAMMING.damageType);
+		damageNegations.add(DamageSource.CACTUS.damageType);
 	}
 
 
