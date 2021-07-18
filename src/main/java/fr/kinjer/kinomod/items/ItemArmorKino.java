@@ -75,27 +75,25 @@ public class ItemArmorKino extends ItemArmor {
 			player.getEntityAttribute(SharedMonsterAttributes.KNOCKBACK_RESISTANCE).setBaseValue(1.0D);
 			player.stepHeight = 1.0625F;
 			player.fallDistance = 0.0f;
+			if(world.isRemote) {
+				player.capabilities.allowFlying = true;
+				player.capabilities.setFlySpeed(0.15F);
+			}
 			player.addPotionEffect(new PotionEffect(MobEffects.NIGHT_VISION, 20 * 13, 0, false, false));
 			if (player.isInWater()) {
 				player.addPotionEffect(new PotionEffect(MobEffects.WATER_BREATHING, 5, 0, true, false));
 			}
 		} else {
-			player.stepHeight = 0.5F;
-			player.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(20);
-			player.getEntityAttribute(SharedMonsterAttributes.KNOCKBACK_RESISTANCE).setBaseValue(0.0D);
-		}
-
-		if (world.isRemote) {
-			if (isFullArmor(player)) {
-				player.capabilities.allowFlying = true;
-				player.capabilities.setFlySpeed(0.15F);
-			} else {
+			if(world.isRemote) {
 				player.capabilities.setFlySpeed(0.05F);
 				if (!player.isCreative()) {
 					player.capabilities.allowFlying = false;
 					player.capabilities.isFlying = false;
 				}
 			}
+			player.stepHeight = 0.5F;
+			player.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(20);
+			player.getEntityAttribute(SharedMonsterAttributes.KNOCKBACK_RESISTANCE).setBaseValue(0.0D);
 		}
 	}
 
