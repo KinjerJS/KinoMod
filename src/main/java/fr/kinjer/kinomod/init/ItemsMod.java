@@ -46,7 +46,7 @@ public class ItemsMod {
 	public static List<ItemTool> itemtool = new ArrayList<>();
 
 	// Tools
-	public static final ItemSwordKino bismuth_sword = new ItemSwordKino(bismuth_material, null);
+	public static final ItemSwordKino bismuth_sword = new ItemSwordKino(0, 0, 0, bismuth_material, null);
 
 	public static List<Item> items = new ArrayList<>();
 

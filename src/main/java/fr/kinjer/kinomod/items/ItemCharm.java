@@ -77,10 +77,6 @@ public class ItemCharm extends Item implements IBauble
 
 	@Override
 	public void onWornTick(ItemStack itemstack, EntityLivingBase player) {
-//		if (itemstack.getItemDamage()==0 && player.ticksExisted%39==0) {
-//			player.addPotionEffect(new PotionEffect(MobEffects.REGENERATION,40,3,true,true));
-//			player.addPotionEffect(new PotionEffect(MobEffects.HUNGER,40,20,true,true));
-//		}
 	}
 
 	@Override

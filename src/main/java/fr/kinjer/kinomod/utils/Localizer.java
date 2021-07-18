@@ -13,7 +13,7 @@ public class Localizer {
 	}
 	
 	public static String shiftDetails() {
-		return I18n.translateToLocal("kinomod.shiftDetails");
+		return I18n.translateToLocal("info.holdShiftForDetails");
 	}
 	
 	public static String numberLocalize(int level)

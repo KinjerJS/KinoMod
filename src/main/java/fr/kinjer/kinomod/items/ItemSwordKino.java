@@ -25,6 +25,7 @@ import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.settings.KeyBinding;
 import net.minecraft.client.util.ITooltipFlag;
+import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
@@ -36,6 +37,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.init.MobEffects;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.inventory.EntityEquipmentSlot;
+import net.minecraft.item.IItemPropertyGetter;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemTool;
@@ -49,9 +51,12 @@ import net.minecraft.util.EntityDamageSource;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.EnumParticleTypes;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.Vec3d;
+import net.minecraft.util.registry.IRegistry;
+import net.minecraft.util.registry.RegistrySimple;
 import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
@@ -59,11 +64,20 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class ItemSwordKino extends ItemTool implements IMultiModeItem {
 	
-	protected static final String ATTACK_BISMUTH_MODIFIER = "AttackBismuthModifier";
+    private final IRegistry<ResourceLocation, IItemPropertyGetter> properties = new RegistrySimple<ResourceLocation, IItemPropertyGetter>();
+	private double attackBismuth;
+    protected boolean bFull3D;
 	
-	public ItemSwordKino(ToolMaterial materialIn, Set<Block> effectiveBlocksIn) {
-		super(78, /*-2.4000000953674316F*/-1.0F, materialIn, effectiveBlocksIn);
-		setCreativeTab(KinoMod.tabKino);
+	protected static final UUID ATTACK_BISMUTH_MODIFIER = UUID.fromString("CB3F55D3-645C-4F38-A497-9C13A33DB5CB");
+	
+	public ItemSwordKino(float attackDamageIn, float attackSpeedIn, float attackBismuthIn, Item.ToolMaterial materialIn, Set<Block> effectiveBlocksIn) {
+		super(materialIn, effectiveBlocksIn);
+        this.toolMaterial = materialIn;
+        this.maxStackSize = 1;
+        this.attackDamage = 80.0F-1.0F;
+        this.attackSpeed = (float) -2.4000000953674316D;
+        this.attackBismuth = 50.0F;
+		this.setCreativeTab(KinoMod.tabKino);
 
 		ItemsMod.setItemToolName(this, "bismuth_sword");
 		setHasSubtypes(true);
@@ -170,7 +184,7 @@ public class ItemSwordKino extends ItemTool implements IMultiModeItem {
 		Multimap<String, AttributeModifier> multimap = super.getItemAttributeModifiers(equipmentSlot);
 
 		if (equipmentSlot == EntityEquipmentSlot.MAINHAND) {
-			multimap.put("Bismuth", new AttributeModifier(ATTACK_BISMUTH_MODIFIER, 100.0D, 0));
+			multimap.put("Bismuth", new AttributeModifier(ATTACK_BISMUTH_MODIFIER, "Tool modifier", (double)this.attackBismuth, 0));
 		}
 
 		return multimap;
