@@ -1,16 +1,34 @@
 package fr.kinjer.kinomod.items;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.HashSet;
-import java.util.Set;
 
 import javax.annotation.Nullable;
 
 import fr.kinjer.kinomod.KinoMod;
 import fr.kinjer.kinomod.init.ItemsMod;
 import fr.kinjer.kinomod.utils.Localizer;
-import net.minecraft.client.util.ITooltipFlag;
+import com.google.common.collect.HashMultimap;
+import com.google.common.collect.Multimap;
+
+import com.google.common.collect.HashMultimap;
+import com.google.common.collect.Multimap;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.entity.ai.attributes.AttributeModifier;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.DamageSource;
+import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.entity.living.LivingAttackEvent;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.items.IItemHandler;
+import net.minecraft.client.util.ITooltipFlag;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.MobEffects;
 import net.minecraft.inventory.EntityEquipmentSlot;
@@ -20,22 +38,29 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.FoodStats;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
-import net.minecraftforge.event.entity.living.LivingDamageEvent;
+import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.entity.living.LivingAttackEvent;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import net.minecraftforge.items.IItemHandler;
 
 public class ItemArmorKino extends ItemArmor {
 
 	public static final String DURABILITY = Localizer.localize("§7" + "Durability" + " : ");
 	public static final String INFINITE = Localizer.localize("§4" + "Infinite");
 
-	private static final Set<String> damageNegations = new HashSet<>();
+	private static final List<String> damageNegations = new ArrayList<>();
 
 	public ItemArmorKino(String name, ArmorMaterial material, int renderIndex, EntityEquipmentSlot equipmentSlot) {
 		super(material, renderIndex, equipmentSlot);
 		setCreativeTab(KinoMod.tabKino);
-
+		ItemsMod.itemsarmor.add(
+				(ItemArmor) this.setRegistryName(KinoMod.MODID, name).setUnlocalizedName(KinoMod.MODID + "." + name));
+		
 		damageNegations.add(DamageSource.DROWN.damageType);
 		damageNegations.add(DamageSource.FALL.damageType);
 		damageNegations.add(DamageSource.LAVA.damageType);
@@ -45,10 +70,10 @@ public class ItemArmorKino extends ItemArmor {
 		damageNegations.add(DamageSource.ON_FIRE.damageType);
 		damageNegations.add(DamageSource.HOT_FLOOR.damageType);
 		damageNegations.add(DamageSource.FLY_INTO_WALL.damageType);
-
-		ItemsMod.itemsarmor.add(
-				(ItemArmor) this.setRegistryName(KinoMod.MODID, name).setUnlocalizedName(KinoMod.MODID + "." + name));
+		damageNegations.add(DamageSource.DRAGON_BREATH.damageType);
+		damageNegations.add(DamageSource.CRAMMING.damageType);
 	}
+
 
 	@SideOnly(Side.CLIENT)
 	public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> l, ITooltipFlag flagIn) {
@@ -66,6 +91,7 @@ public class ItemArmorKino extends ItemArmor {
 
 		if (isFullArmor(player)) {
 			if (player.isBurning())
+				player.addPotionEffect(new PotionEffect(MobEffects.FIRE_RESISTANCE, 5, 0, true, false));
 				player.extinguish();
 			FoodStats foodStats = player.getFoodStats();
 			if (player.inventory.hasItemStack(new ItemStack(ItemsMod.tentacle_soup)))
@@ -99,12 +125,12 @@ public class ItemArmorKino extends ItemArmor {
 		}
 	}
 
-	public static void onPlayerAttacked(LivingDamageEvent event) {
-		if (event.getEntity() instanceof EntityPlayer) {
-			EntityPlayer player = (EntityPlayer) event.getEntity();
-			if (damageNegations.contains(event.getSource().damageType) && isFullArmor(player)) {
+	@SubscribeEvent
+	public static void onPlayerAttacked(LivingAttackEvent event) {
+		if (event.getEntityLiving() instanceof EntityPlayer) {
+			EntityPlayer player = (EntityPlayer) event.getEntityLiving();
+			if (isFullArmor(player) && damageNegations.contains(event.getSource().damageType))
 				event.setCanceled(true);
-			}
 		}
 	}
 
