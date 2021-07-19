@@ -4,7 +4,6 @@ import javax.annotation.Nullable;
 
 import com.google.common.base.Predicate;
 
-import fr.kinjer.kinomod.config.KinoConfig;
 import fr.kinjer.kinomod.handler.ModSounds;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -14,7 +13,6 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.EnumCreatureAttribute;
-import net.minecraft.entity.IEntityLivingData;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAIAttackMelee;
 import net.minecraft.entity.ai.EntityAILookIdle;
@@ -29,13 +27,11 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.entity.projectile.EntityArrow;
 import net.minecraft.init.SoundEvents;
-import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.pathfinding.PathNavigateGround;
-import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.SoundCategory;
@@ -45,15 +41,12 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.BossInfo;
 import net.minecraft.world.BossInfoServer;
-import net.minecraft.world.DifficultyInstance;
-import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class EntityCentaur extends EntityMob {
 	
-    private static final DataParameter<Integer> INVULNERABILITY_TIME = EntityDataManager.<Integer>createKey(EntityCentaur.class, DataSerializers.VARINT);
     private BlockPos source = BlockPos.ORIGIN;
     private final float[] xRotationHeads = new float[2];
     private final float[] yRotationHeads = new float[2];
@@ -74,7 +67,7 @@ public class EntityCentaur extends EntityMob {
 
 	public EntityCentaur(World worldIn) {
 		super(worldIn);
-        this.setHealth(this.getMaxHealth());
+        this.setHealth(4000.0F);
         this.setSize(1.5F, 3.6F);
         this.isImmuneToExplosions();
         this.isImmuneToFire = true;
@@ -100,7 +93,7 @@ public class EntityCentaur extends EntityMob {
     protected void applyEntityAttributes()
     {
         super.applyEntityAttributes();
-        this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(KinoConfig.centaurHealth);
+//        this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(centaurHealth);
 		this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.340D);
 		this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(30.0D);
 		this.getEntityAttribute(SharedMonsterAttributes.FOLLOW_RANGE).setBaseValue(Float.MAX_VALUE);
@@ -110,7 +103,6 @@ public class EntityCentaur extends EntityMob {
     protected void entityInit()
     {
         super.entityInit();
-        this.dataManager.register(INVULNERABILITY_TIME, Integer.valueOf(0));
     }
 
     public static void registerFixesWither(DataFixer fixer)
