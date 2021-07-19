@@ -1,0 +1,10 @@
+{
+	"soundcentaur": {
+    "category" : "ambient",
+    "sounds": [{
+        "name": "kinomod:sound/centaur_ambiant_sound",
+        "stream": true
+      }
+    ]
+  }
+}

@@ -4,9 +4,11 @@ import javax.annotation.Nullable;
 
 import com.google.common.base.Predicate;
 
+import fr.kinjer.kinomod.handler.ModSounds;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.audio.MovingSound;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
@@ -35,6 +37,7 @@ import net.minecraft.pathfinding.PathNavigateGround;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumParticleTypes;
+import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.datafix.DataFixer;
 import net.minecraft.util.math.BlockPos;
@@ -50,6 +53,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class EntityCentaur extends EntityMob {
 	
     private static final DataParameter<Integer> INVULNERABILITY_TIME = EntityDataManager.<Integer>createKey(EntityCentaur.class, DataSerializers.VARINT);
+    private BlockPos source = BlockPos.ORIGIN;
     private final float[] xRotationHeads = new float[2];
     private final float[] yRotationHeads = new float[2];
     private final float[] xRotOHeads = new float[2];
@@ -70,7 +74,7 @@ public class EntityCentaur extends EntityMob {
 	public EntityCentaur(World worldIn) {
 		super(worldIn);
         this.setHealth(this.getMaxHealth());
-        this.setSize(1F, 2.4F);
+        this.setSize(1.5F, 3.6F);
         this.isImmuneToFire = true;
         ((PathNavigateGround)this.getNavigator()).setCanSwim(true);
         this.experienceValue = 500;
@@ -109,6 +113,10 @@ public class EntityCentaur extends EntityMob {
     {
         EntityLiving.registerFixesMob(fixer, EntityCentaur.class);
     }
+    
+    public BlockPos getSource() {
+		return source;
+	}
 
     /**
      * (abstract) Protected helper method to write subclass entity data to NBT.
@@ -139,11 +147,6 @@ public class EntityCentaur extends EntityMob {
         super.setCustomNameTag(name);
         this.bossInfo.setName(this.getDisplayName());
     }
-    protected SoundEvent getAmbientSound()
-    {
-        return SoundEvents.ENTITY_WITHER_AMBIENT;
-    }
-
     protected SoundEvent getHurtSound(DamageSource damageSourceIn)
     {
         return SoundEvents.ENTITY_WITHER_HURT;
@@ -153,6 +156,27 @@ public class EntityCentaur extends EntityMob {
     {
         return SoundEvents.ENTITY_WITHER_DEATH;
     }
+    
+    @SideOnly(Side.CLIENT)
+	private static class SoundCentaur extends MovingSound {
+		private final EntityCentaur centaur;
+
+		public SoundCentaur(EntityCentaur centaur) {
+			super(ModSounds.soundcentaur, SoundCategory.RECORDS);
+			this.centaur = centaur;
+			this.xPosF = centaur.getSource().getX();
+			this.yPosF = centaur.getSource().getY();
+			this.zPosF = centaur.getSource().getZ();
+			this.repeat = true;
+		}
+
+		@Override
+		public void update() {
+			if (!centaur.isEntityAlive()) {
+				donePlaying = true;
+			}
+		}
+	}
 
     /**
      * Called frequently so the entity can update its state every tick as required. For example, zombies and skeletons
