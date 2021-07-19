@@ -4,6 +4,7 @@ import java.io.File;
 
 import org.lwjgl.input.Keyboard;
 
+import fr.kinjer.kinomod.handler.ModSounds;
 import fr.kinjer.kinomod.handler.RenderHandler;
 import net.minecraft.client.settings.KeyBinding;
 import net.minecraftforge.common.MinecraftForge;
@@ -17,6 +18,7 @@ public class ClientProxy extends CommonProxy{
 	public void preInit(File file) {
 		super.preInit(file);
 		MinecraftForge.EVENT_BUS.register(new RenderHandler());
+		MinecraftForge.EVENT_BUS.register(new ModSounds());
 	}
 	
 	@Override

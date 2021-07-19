@@ -97,6 +97,9 @@ public class ItemsMod {
 	public static void setItemToolName(ItemTool item, String name) {
 		itemtool.add((ItemTool) item.setRegistryName(KinoMod.MODID, name).setUnlocalizedName(KinoMod.MODID + "." + name));
 	}
+	public static void setItemArmorName(ItemArmor item, String name) {
+		itemsarmor.add((ItemArmor) item.setRegistryName(KinoMod.MODID, name).setUnlocalizedName(KinoMod.MODID + "." + name));
+	}
 
 	@SideOnly(Side.CLIENT)
 	@SubscribeEvent

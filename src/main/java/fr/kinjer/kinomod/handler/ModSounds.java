@@ -10,7 +10,7 @@ import net.minecraftforge.registries.IForgeRegistry;
 
 public class ModSounds {
 	
-public static final SoundEvent soundcentaur = makeSoundEvent("soundcentaur");
+	public static final SoundEvent soundcentaur = makeSoundEvent("soundcentaur");
 	
 	private static SoundEvent makeSoundEvent(String name) {
 		ResourceLocation loc = new ResourceLocation(KinoMod.MODID, name);
@@ -19,9 +19,9 @@ public static final SoundEvent soundcentaur = makeSoundEvent("soundcentaur");
 	
 	@SubscribeEvent
 	public static void registerSounds(RegistryEvent.Register<SoundEvent> evt) {
-		IForgeRegistry<SoundEvent> r = evt.getRegistry();
-		
-		r.register(soundcentaur);
+		evt.getRegistry().registerAll(
+				soundcentaur
+				);
 	}
 
 	public ModSounds() {}

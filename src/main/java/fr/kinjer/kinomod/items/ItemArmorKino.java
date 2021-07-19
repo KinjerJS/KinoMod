@@ -58,9 +58,7 @@ public class ItemArmorKino extends ItemArmor {
 	public ItemArmorKino(String name, ArmorMaterial material, int renderIndex, EntityEquipmentSlot equipmentSlot) {
 		super(material, renderIndex, equipmentSlot);
 		setCreativeTab(KinoMod.tabKino);
-		ItemsMod.itemsarmor.add(
-				(ItemArmor) this.setRegistryName(KinoMod.MODID, name).setUnlocalizedName(KinoMod.MODID + "." + name));
-		
+		ItemsMod.setItemArmorName(this, name);
 		damageNegations.add(DamageSource.DROWN.damageType);
 		damageNegations.add(DamageSource.FALL.damageType);
 		damageNegations.add(DamageSource.LAVA.damageType);
