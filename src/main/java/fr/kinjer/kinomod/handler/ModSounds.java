@@ -24,5 +24,5 @@ public static final SoundEvent soundcentaur = makeSoundEvent("soundcentaur");
 		r.register(soundcentaur);
 	}
 
-	private ModSounds() {}
+	public ModSounds() {}
 }

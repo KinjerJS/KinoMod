@@ -4,6 +4,7 @@ import javax.annotation.Nullable;
 
 import com.google.common.base.Predicate;
 
+import fr.kinjer.kinomod.config.KinoConfig;
 import fr.kinjer.kinomod.handler.ModSounds;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -75,6 +76,7 @@ public class EntityCentaur extends EntityMob {
 		super(worldIn);
         this.setHealth(this.getMaxHealth());
         this.setSize(1.5F, 3.6F);
+        this.isImmuneToExplosions();
         this.isImmuneToFire = true;
         ((PathNavigateGround)this.getNavigator()).setCanSwim(true);
         this.experienceValue = 500;
@@ -98,9 +100,11 @@ public class EntityCentaur extends EntityMob {
     protected void applyEntityAttributes()
     {
         super.applyEntityAttributes();
-        this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(3000.0D);
+        this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(KinoConfig.centaurHealth);
 		this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.340D);
 		this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(30.0D);
+		this.getEntityAttribute(SharedMonsterAttributes.FOLLOW_RANGE).setBaseValue(Float.MAX_VALUE);
+		this.getEntityAttribute(SharedMonsterAttributes.ARMOR).setBaseValue(25.0D);
     }
 
     protected void entityInit()
@@ -138,6 +142,12 @@ public class EntityCentaur extends EntityMob {
             this.bossInfo.setName(this.getDisplayName());
         }
     }
+    
+    public boolean isImmuneToExplosions()
+    {
+        return true;
+    }
+
 
     /**
      * Sets the custom name tag for this entity
