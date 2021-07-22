@@ -14,6 +14,7 @@ import fr.kinjer.kinomod.init.EntityInit;
 import fr.kinjer.kinomod.init.FluidsMod;
 import fr.kinjer.kinomod.init.ItemBlocksMod;
 import fr.kinjer.kinomod.init.ItemsMod;
+import fr.kinjer.kinomod.init.PotionInit;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.audio.Sound;
@@ -54,6 +55,7 @@ public class RegisteringHandler {
 	public RegisteringHandler() { 
 		FluidsMod.registerFluids(); 
 		EntityInit.registerEntities();
+		PotionInit.registerPotions();
 		
 	}
 	

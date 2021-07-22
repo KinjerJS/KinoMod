@@ -2,6 +2,7 @@ package fr.kinjer.kinomod.items;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 import javax.annotation.Nullable;
 
@@ -16,20 +17,25 @@ import com.google.common.collect.Multimap;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
+import net.minecraft.entity.ai.attributes.IAttributeInstance;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.client.event.FOVUpdateEvent;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.living.LivingAttackEvent;
+import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.items.IItemHandler;
+import net.minecraft.block.material.Material;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Items;
 import net.minecraft.init.MobEffects;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item;
@@ -58,22 +64,88 @@ public class ItemArmorKino extends ItemArmor {
 	public ItemArmorKino(String name, ArmorMaterial material, int renderIndex, EntityEquipmentSlot equipmentSlot) {
 		super(material, renderIndex, equipmentSlot);
 		setCreativeTab(KinoMod.tabKino);
-		ItemsMod.setItemArmorName(this, name);
-		damageNegations.add(DamageSource.DROWN.damageType);
-		damageNegations.add(DamageSource.FALL.damageType);
-		damageNegations.add(DamageSource.LAVA.damageType);
-		damageNegations.add(DamageSource.IN_WALL.damageType);
-		damageNegations.add(DamageSource.STARVE.damageType);
+		ItemsMod.setItemArmorName(this, name);	
 		damageNegations.add(DamageSource.IN_FIRE.damageType);
+		damageNegations.add(DamageSource.LIGHTNING_BOLT.damageType);
 		damageNegations.add(DamageSource.ON_FIRE.damageType);
+		damageNegations.add(DamageSource.LAVA.damageType);
 		damageNegations.add(DamageSource.HOT_FLOOR.damageType);
-		damageNegations.add(DamageSource.FLY_INTO_WALL.damageType);
-		damageNegations.add(DamageSource.DRAGON_BREATH.damageType);
+		damageNegations.add(DamageSource.IN_WALL.damageType);
 		damageNegations.add(DamageSource.CRAMMING.damageType);
+		damageNegations.add(DamageSource.DROWN.damageType);
+		damageNegations.add(DamageSource.STARVE.damageType);
 		damageNegations.add(DamageSource.CACTUS.damageType);
+		damageNegations.add(DamageSource.FALL.damageType);
+		damageNegations.add(DamageSource.FLY_INTO_WALL.damageType);
+	    damageNegations.add(DamageSource.ANVIL.damageType);
+	    damageNegations.add(DamageSource.FALLING_BLOCK.damageType);
+	    damageNegations.add(DamageSource.DRAGON_BREATH.damageType);
+	    damageNegations.add(DamageSource.FIREWORKS.damageType);
+	    
+	}
+/**
+	/**
+	 * Edit the speed of an entity.
+	 * 
+	 * @param entity
+	 * @param speedModifierUUID Unique UUID for modification
+	 * @param name              Unique name for easier debugging
+	 * @param modifier          The speed will be multiplied by this number
+	 
+	public static void changeSpeed(EntityPlayer player, UUID speedModifierUUID, String name, double modifier) {
+		AttributeModifier speedModifier = (new AttributeModifier(speedModifierUUID, name, 50 - 1, 5));
+		IAttributeInstance attributeinstance = player.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED);
+
+		if (attributeinstance.getModifier(speedModifierUUID) != null) {
+			attributeinstance.removeModifier(speedModifier);
+		}
+		attributeinstance.applyModifier(speedModifier);
+
 	}
 
+	/**
+	 * Cancel the FOV decrease caused by the decreasing speed due to player
+	 * penalties. Original FOV value given by the event is never used, we start from
+	 * scratch 1.0F value. Edited from AbstractClientPlayer.getFovModifier()
+	 * 
+	 * @param event
+	 
+	@SubscribeEvent
+	public void onFOVUpdate(FOVUpdateEvent event) {
+		EntityPlayer player = event.getEntity();
+		float modifier = 2.0f;
 
+		float f = 1.0F;
+
+		if (player.capabilities.isFlying) {
+			f *= 1.1F;
+		}
+
+		IAttributeInstance iattributeinstance = player.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED);
+		double oldAttributeValue = iattributeinstance.getAttributeValue() / modifier;
+		f = (float) ((double) f * ((oldAttributeValue / (double) player.capabilities.getWalkSpeed() + 1.0D) / 2.0D));
+
+		if (player.capabilities.getWalkSpeed() == 0.0F || Float.isNaN(f) || Float.isInfinite(f)) {
+			f = 1.0F;
+		}
+
+		if (player.isHandActive() && player.getActiveItemStack() != null
+				&& player.getActiveItemStack().getItem() == Items.BOW) {
+			int i = player.getItemInUseMaxCount();
+			float f1 = (float) i / 20.0F;
+
+			if (f1 > 1.0F) {
+				f1 = 1.0F;
+			} else {
+				f1 = f1 * f1;
+			}
+
+			f *= 1.0F - f1 * 0.15F;
+		}
+
+		event.setNewfov(f);
+	}
+**/
 	@SideOnly(Side.CLIENT)
 	public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> l, ITooltipFlag flagIn) {
 		int damage = stack.getMaxDamage() - stack.getItemDamage();
@@ -91,7 +163,7 @@ public class ItemArmorKino extends ItemArmor {
 		if (isFullArmor(player)) {
 			if (player.isBurning())
 				player.addPotionEffect(new PotionEffect(MobEffects.FIRE_RESISTANCE, 5, 0, true, false));
-				player.extinguish();
+			player.extinguish();
 			FoodStats foodStats = player.getFoodStats();
 			if (player.inventory.hasItemStack(new ItemStack(ItemsMod.tentacle_soup)))
 				if (player.ticksExisted % 100 == 0 && foodStats.needFood())
@@ -100,7 +172,9 @@ public class ItemArmorKino extends ItemArmor {
 			player.getEntityAttribute(SharedMonsterAttributes.KNOCKBACK_RESISTANCE).setBaseValue(1.0D);
 			player.stepHeight = 1.0625F;
 			player.fallDistance = 0.0f;
-			if(world.isRemote) {
+			boolean flying = player.capabilities.isFlying;
+			boolean swimming = player.isInsideOfMaterial(Material.WATER) || player.isInWater();
+			if (world.isRemote) {
 				player.capabilities.allowFlying = true;
 				player.capabilities.setFlySpeed(0.15F);
 			}
@@ -109,7 +183,7 @@ public class ItemArmorKino extends ItemArmor {
 				player.addPotionEffect(new PotionEffect(MobEffects.WATER_BREATHING, 5, 0, true, false));
 			}
 		} else {
-			if(world.isRemote) {
+			if (world.isRemote) {
 				player.capabilities.setFlySpeed(0.05F);
 				if (!player.isCreative()) {
 					player.capabilities.allowFlying = false;
@@ -128,6 +202,18 @@ public class ItemArmorKino extends ItemArmor {
 			EntityPlayer player = (EntityPlayer) event.getEntityLiving();
 			if (isFullArmor(player) && damageNegations.contains(event.getSource().damageType))
 				event.setCanceled(true);
+		}
+	}
+
+	@SubscribeEvent
+	public void updatePlayerAbilityStatus(LivingUpdateEvent event) {
+		if (event.getEntityLiving() instanceof EntityPlayer) {
+			EntityPlayer player = (EntityPlayer) event.getEntityLiving();
+
+			Boolean hasSet = isFullArmor(player);
+			if (hasSet) {
+
+			}
 		}
 	}
 
