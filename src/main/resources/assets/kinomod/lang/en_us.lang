@@ -95,3 +95,9 @@ key.misc=Miscellaneous
 
 tooltip.durability=Durability
 tooltip.infinite=Infinite
+
+effect.bleeding_effect=Bleeding
+potion.effect.bleeding=Potion of Bleeding
+splash_potion.effect.bleeding=Splash potion of Bleeding
+lingering_potion.effect.bleeding=Lingering potion of Bleeding
+tipped_arrow.effect.bleeding=Arrow of Bleeding
