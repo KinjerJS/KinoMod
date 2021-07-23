@@ -54,7 +54,7 @@ public class KinoMod {
 	}
 
 	public static DamageSource Bismuth = new DamageSource("Bismuth").setDamageAllowedInCreativeMode()
-			.setDamageBypassesArmor().setDamageIsAbsolute();
+			.setDamageBypassesArmor().setDamageIsAbsolute().setMagicDamage();
 	
 	 public static class DamageSourceBismuth extends EntityDamageSource {
 	        public DamageSourceBismuth(Entity entity) {

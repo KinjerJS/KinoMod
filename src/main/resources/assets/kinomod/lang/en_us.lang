@@ -83,6 +83,7 @@ entity.centaur.name=Centaur
 entity.ghast_boss_d.name=Dalium Ghast
 
 attribute.name.Bismuth=§7Bismuth Damage
+death.attack.Bismuth=Bismuth disintegration has occurred
 
 info.holdShiftForDetails=Hold §e§oShift§r§7 for Details§r
 info.sword.a.0=Sword Mode : Attack Speed.

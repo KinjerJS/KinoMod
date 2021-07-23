@@ -26,13 +26,11 @@ import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
-public class ItemCharm extends Item implements IBauble
-{
+public class ItemCharm extends Item implements IBauble {
 	@GameRegistry.ObjectHolder(Baubles.MODID + ":ring")
 	public static final Item RING = null;
 
-	public ItemCharm(String name)
-	{
+	public ItemCharm(String name) {
 		super();
 		this.setMaxStackSize(1);
 		this.setHasSubtypes(true);
@@ -60,12 +58,13 @@ public class ItemCharm extends Item implements IBauble
 
 	@Override
 	public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand hand) {
-		if(!world.isRemote) { 
+		if (!world.isRemote) {
 			IBaublesItemHandler baubles = BaublesApi.getBaublesHandler(player);
-			for(int i = 0; i < baubles.getSlots(); i++) 
-				if((baubles.getStackInSlot(i) == null || baubles.getStackInSlot(i).isEmpty()) && baubles.isItemValidForSlot(i, player.getHeldItem(hand), player)) {
+			for (int i = 0; i < baubles.getSlots(); i++)
+				if ((baubles.getStackInSlot(i) == null || baubles.getStackInSlot(i).isEmpty())
+						&& baubles.isItemValidForSlot(i, player.getHeldItem(hand), player)) {
 					baubles.setStackInSlot(i, player.getHeldItem(hand).copy());
-					if(!player.capabilities.isCreativeMode){
+					if (!player.capabilities.isCreativeMode) {
 						player.inventory.setInventorySlotContents(player.inventory.currentItem, ItemStack.EMPTY);
 					}
 					onEquipped(player.getHeldItem(hand), player);
@@ -90,8 +89,7 @@ public class ItemCharm extends Item implements IBauble
 	}
 
 	@Override
-	public String getUnlocalizedName(ItemStack par1ItemStack)
-	{
+	public String getUnlocalizedName(ItemStack par1ItemStack) {
 		return super.getUnlocalizedName() + "." + par1ItemStack.getItemDamage();
 	}
 
@@ -104,7 +102,5 @@ public class ItemCharm extends Item implements IBauble
 	public void onUnequipped(ItemStack itemstack, EntityLivingBase player) {
 		player.playSound(SoundEvents.ITEM_ARMOR_EQUIP_DIAMOND, .75F, 2f);
 	}
-	
-	
 
 }
