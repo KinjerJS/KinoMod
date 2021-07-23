@@ -82,8 +82,8 @@ kinomod.charmhunger.damagehunger=Starvation
 entity.centaur.name=Centaur
 entity.ghast_boss_d.name=Dalium Ghast
 
-attribute.name.Bismuth=§7Bismuth Damage
-death.attack.Bismuth=Bismuth disintegration has occurred
+attribute.name.Bismuth=§cBismuth Damage
+death.attack.Bismuth=§4B§ci§6s§em§2u§at§bh §7disintegration has occurred
 
 info.holdShiftForDetails=Hold §e§oShift§r§7 for Details§r
 info.sword.a.0=Sword Mode : Attack Speed.
@@ -97,7 +97,7 @@ key.misc=Miscellaneous
 tooltip.durability=Durability
 tooltip.infinite=Infinite
 
-effect.bleeding_effect=Bleeding
+effect.bleeding_effect=§cBleeding
 potion.effect.bleeding=Potion of Bleeding
 splash_potion.effect.bleeding=Splash potion of Bleeding
 lingering_potion.effect.bleeding=Lingering potion of Bleeding

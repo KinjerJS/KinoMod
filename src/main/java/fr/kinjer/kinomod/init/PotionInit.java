@@ -15,9 +15,7 @@ import net.minecraftforge.fml.common.registry.ForgeRegistries;
 
 public class PotionInit {
 
-	public static final Potion BLEEDING_EFFECT = new CustomPotion("bleeding_effect", false, 13505316, 0, 0)
-			.registerPotionAttributeModifier(SharedMonsterAttributes.KNOCKBACK_RESISTANCE,
-					MathHelper.getRandomUUID().toString(), 3.0D, 2);
+	public static final Potion BLEEDING_EFFECT = new CustomPotion("bleeding_effect", false, 13505316, 0, 0);
 
 	public static final PotionType BLEEDING = new PotionType("bleeding",
 			new PotionEffect[] { new PotionEffect(BLEEDING_EFFECT, 300) }).setRegistryName("bleeding");

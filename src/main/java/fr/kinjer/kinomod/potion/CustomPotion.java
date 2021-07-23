@@ -26,6 +26,7 @@ public class CustomPotion extends Potion {
 	public CustomPotion(String name, boolean isBadPotion, int colour, int iconIndexX, int iconIndexY) {
 		super(isBadPotion, colour);
 		this.setPotionName("effect." + name);
+		this.isBadEffect();
 		setIconIndex(iconIndexX, iconIndexY);
 		setRegistryName(new ResourceLocation(KinoMod.MODID + ":" + name));
 	}

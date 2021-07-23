@@ -16,8 +16,8 @@ import net.minecraftforge.fml.common.gameevent.TickEvent.PlayerTickEvent;
 @EventBusSubscriber
 public class WorldEvents {
 
-	private static final DamageSource DamageSourceBismuth = new DamageSource("Bismuth").setDamageAllowedInCreativeMode()
-			.setDamageBypassesArmor().setDamageIsAbsolute().setMagicDamage();
+	private static final DamageSource DamageSourceBismuth = new DamageSource("Bismuth").setDamageBypassesArmor()
+			.setDamageIsAbsolute().setMagicDamage();
 
 	@SubscribeEvent
 	public static void bleedingActive(PlayerTickEvent event) {
@@ -33,7 +33,13 @@ public class WorldEvents {
 				event.player.removeActivePotionEffect(MobEffects.REGENERATION);
 
 			}
-			
+
+			if (event.player.isPotionActive(MobEffects.ABSORPTION)) {
+
+				event.player.removeActivePotionEffect(MobEffects.ABSORPTION);
+
+			}
+
 			event.player.attackEntityFrom(DamageSourceBismuth, 1.0f);
 		}
 	}
