@@ -93,6 +93,17 @@ public class EntityCentaur extends EntityMob {
 	private final int[] idleHeadUpdates = new int[2];
 	private int attackTimer;
 	private int blockBreakCounter;
+	
+	// Boss Health:
+    public float damageTakenThisSec = 0;
+    public float healthLastTick = -1;
+    public long updateTick = 0;
+    
+    private static final double MAX_HEALTH = 1024.0D;
+	private static final double MOVEMENT_SPEED = 0.6D;
+	private static final double ATTACK_DAMAGE = 30.0D;
+	private static final double ARMOR = 25.0D;
+	
 	private static final Predicate<Entity> NOT_UNDEAD = new Predicate<Entity>()
     {
         public boolean apply(@Nullable Entity p_apply_1_)
@@ -100,7 +111,7 @@ public class EntityCentaur extends EntityMob {
             return p_apply_1_ instanceof EntityLivingBase && ((EntityLivingBase)p_apply_1_).getCreatureAttribute() != EnumCreatureAttribute.UNDEAD && ((EntityLivingBase)p_apply_1_).attackable();
         }
     };
-
+	
 	public EntityCentaur(World worldIn) {
 		super(worldIn);
 		this.setHealth(getHealth());
@@ -126,10 +137,10 @@ public class EntityCentaur extends EntityMob {
 
 	protected void applyEntityAttributes() {
 		super.applyEntityAttributes();
-		this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(1000.0D);
-		this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.6D);
-		this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(30.0D);
-		this.getEntityAttribute(SharedMonsterAttributes.ARMOR).setBaseValue(25.0D);
+		this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(MAX_HEALTH);
+		this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(MOVEMENT_SPEED);
+		this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(ATTACK_DAMAGE);
+		this.getEntityAttribute(SharedMonsterAttributes.ARMOR).setBaseValue(ARMOR);
 	}
 
 	public static void registerFixesCentaur(DataFixer fixer) {
@@ -232,6 +243,16 @@ public class EntityCentaur extends EntityMob {
 	 * burn.
 	 */
 	public void onLivingUpdate() {
+		
+		if (this.healthLastTick < 0)
+            this.healthLastTick = this.getHealth();
+        if (this.healthLastTick - this.getHealth() > 50)
+            this.setHealth(this.healthLastTick);
+        this.healthLastTick = this.getHealth();
+        if (!this.getEntityWorld().isRemote && this.updateTick % 20 == 0) {
+            this.damageTakenThisSec = 0;
+        }
+		
 		super.onLivingUpdate();
 
 		if (this.attackTimer > 0) {
