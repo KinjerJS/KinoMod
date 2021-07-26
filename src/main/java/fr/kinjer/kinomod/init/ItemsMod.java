@@ -85,6 +85,7 @@ public class ItemsMod {
 	public static final Item charm_of_drowning_advanced = new ItemDrowningAdvancedCharm();
 
 	// loot
+	public static final Item sword_part = new ItemSwordPart();
 	public static final Item ghast_boss_tentacle_d = new ItemGhastBossDTentacle();
 	public static final Item ghast_boss_tentacle_k = new ItemGhastBossKTentacle();
 	public static final Item ghast_boss_tentacle_s = new ItemGhastBossSTentacle();

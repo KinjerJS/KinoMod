@@ -8,6 +8,7 @@ import javax.annotation.Nullable;
 import com.google.common.base.Predicate;
 import com.google.common.base.Predicates;
 import fr.kinjer.kinomod.handler.ModSounds;
+import fr.kinjer.kinomod.init.ItemsMod;
 import fr.kinjer.kinomod.init.PotionInit;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -80,6 +81,7 @@ import net.minecraft.world.World;
 import net.minecraft.world.storage.loot.LootTableList;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import scala.reflect.internal.Trees.This;
 
 public class EntityCentaur extends EntityMob {
 
@@ -99,7 +101,7 @@ public class EntityCentaur extends EntityMob {
     public float healthLastTick = -1;
     public long updateTick = 0;
     
-    private static final double MAX_HEALTH = 1024.0D;
+    private static final double MAX_HEALTH = 1000.0D;
 	private static final double MOVEMENT_SPEED = 0.6D;
 	private static final double ATTACK_DAMAGE = 30.0D;
 	private static final double ARMOR = 25.0D;
@@ -347,7 +349,7 @@ public class EntityCentaur extends EntityMob {
 					this.idleHeadUpdates[i] += 3;
 				}
 
-				return super.attackEntityFrom(source, amount);
+				return super.attackEntityFrom(source, amount / 2);
 			}
 		}
 	}
@@ -355,15 +357,14 @@ public class EntityCentaur extends EntityMob {
 	public boolean attackEntityAsMob(Entity entityIn) {
 		this.attackTimer = 10;
 		this.world.setEntityState(this, (byte) 4);
-		boolean flag = entityIn.attackEntityFrom(DamageSource.causeMobDamage(this), 8.0f);
+		boolean flag = entityIn.attackEntityFrom(DamageSource.causeMobDamage(this), (float) ATTACK_DAMAGE);
 
 		if (flag) {
 			entityIn.motionY += 0.4000000059604645D;
 			this.applyEnchantments(this, entityIn);
-			((EntityLivingBase) entityIn).addPotionEffect(new PotionEffect(MobEffects.WITHER, 200));
+			((EntityLivingBase) entityIn).addPotionEffect(new PotionEffect(PotionInit.BLEEDING_EFFECT, 70));
 		}
 
-		this.playSound(SoundEvents.ENTITY_IRONGOLEM_ATTACK, 1.0F, 1.0F);
 		return flag;
 	}
 
@@ -395,10 +396,18 @@ public class EntityCentaur extends EntityMob {
 		this.playSound(this.getStepSound(), 0.15F, 1.0F);
 	}
 
-	@Nullable
-	protected ResourceLocation getLootTable() {
-		return LootTableList.ENTITIES_ZOMBIE;
-	}
+	/**
+     * Drop 0-2 items of this living's type
+     */
+    protected void dropFewItems(boolean wasRecentlyHit, int lootingModifier)
+    {
+        EntityItem entityitem = this.dropItem(ItemsMod.sword_part, 1);
+
+        if (entityitem != null)
+        {
+            entityitem.setNoDespawn();
+        }
+    }
 
 	public static boolean canDestroyBlock(Block blockIn) {
 		return blockIn != Blocks.BEDROCK && blockIn != Blocks.END_PORTAL && blockIn != Blocks.END_PORTAL_FRAME
@@ -407,7 +416,7 @@ public class EntityCentaur extends EntityMob {
 				&& blockIn != Blocks.STRUCTURE_BLOCK && blockIn != Blocks.STRUCTURE_VOID
 				&& blockIn != Blocks.PISTON_EXTENSION && blockIn != Blocks.END_GATEWAY;
 	}
-
+	
 	/**
 	 * Returns whether the wither is armored with its boss armor or not by checking
 	 * whether its health is below half of its maximum.

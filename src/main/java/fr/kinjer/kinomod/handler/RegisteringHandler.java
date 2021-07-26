@@ -10,6 +10,7 @@ import fr.kinjer.kinomod.blocks.BlockKiniumFluid;
 import fr.kinjer.kinomod.blocks.BlockKino;
 import fr.kinjer.kinomod.fluids.KiniumFluid;
 import fr.kinjer.kinomod.init.BlocksMod;
+import fr.kinjer.kinomod.init.EnchantmentInit;
 import fr.kinjer.kinomod.init.EntityInit;
 import fr.kinjer.kinomod.init.FluidsMod;
 import fr.kinjer.kinomod.init.ItemBlocksMod;
@@ -19,6 +20,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.audio.Sound;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
+import net.minecraft.enchantment.Enchantment;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemArmor;
@@ -64,6 +66,13 @@ public class RegisteringHandler {
 		for(Block block : BlocksMod.blocks) {
 			event.getRegistry().register(block);
 		}
+	}
+	
+	@SubscribeEvent
+	public void registerEnchant(RegistryEvent.Register<Enchantment> event) {
+		
+		event.getRegistry().registerAll(EnchantmentInit.ENCHANTMENT.toArray(new Enchantment[0]));
+		
 	}
 	
 	@SubscribeEvent

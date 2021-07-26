@@ -52,11 +52,11 @@ public class EntityGhastBossD extends EntityFlying implements IMob {
 
 	private final BossInfoServer bossInfo = (BossInfoServer) (new BossInfoServer(this.getDisplayName(),
 			BossInfo.Color.RED, BossInfo.Overlay.PROGRESS)).setDarkenSky(true);
-	
-    private UUID ghastbossdUniqueId;
-    private boolean ghastbossdKilled;
-    private boolean previouslyKilled;
-    public int deathTicks;
+
+	private UUID ghastbossdUniqueId;
+	private boolean ghastbossdKilled;
+	private boolean previouslyKilled;
+	public int deathTicks;
 
 	private static final DataParameter<Boolean> ATTACKING = EntityDataManager.<Boolean>createKey(EntityGhastBossD.class,
 			DataSerializers.BOOLEAN);
@@ -102,7 +102,7 @@ public class EntityGhastBossD extends EntityFlying implements IMob {
 	public int getPhase() {
 		return ((Integer) this.dataManager.get(PHASE)).intValue();
 	}
-	
+
 	public boolean explosionImune() {
 		return this.isImmuneToExplosions();
 	}
@@ -143,16 +143,15 @@ public class EntityGhastBossD extends EntityFlying implements IMob {
 				&& source.getTrueSource() instanceof EntityPlayer) {
 			super.attackEntityFrom(source, 0.0F);
 			return false;
-		} if (this.isArmored())
-        {
-            Entity entity = source.getImmediateSource();
+		}
+		if (this.isArmored()) {
+			Entity entity = source.getImmediateSource();
 
-              if (entity instanceof EntityArrow)
-            {
-                return false;
-            }
-        }
-		return super.attackEntityFrom(source, amount);
+			if (entity instanceof EntityArrow) {
+				return false;
+			}
+		}
+		return super.attackEntityFrom(source, 100.0F);
 	}
 
 	private boolean isArmored() {
@@ -185,6 +184,9 @@ public class EntityGhastBossD extends EntityFlying implements IMob {
 
 	protected SoundEvent getDeathSound() {
 		return SoundEvents.ENTITY_ENDERDRAGON_DEATH;
+	}
+
+	protected void collideWithEntity(Entity entityIn) {
 	}
 
 	@Nullable
@@ -263,77 +265,66 @@ public class EntityGhastBossD extends EntityFlying implements IMob {
 			this.explosionStrength = compound.getInteger("ExplosionPower");
 		}
 	}
-	
-	public void processGhastDeath(EntityGhastBossD ghastbossd)
-    {
-        if (ghastbossd.getUniqueID().equals(this.ghastbossdUniqueId))
-        {
-            this.bossInfo.setPercent(0.0F);
-            this.bossInfo.setVisible(false);
 
+	public void processGhastDeath(EntityGhastBossD ghastbossd) {
+		if (ghastbossd.getUniqueID().equals(this.ghastbossdUniqueId)) {
+			this.bossInfo.setPercent(0.0F);
+			this.bossInfo.setVisible(false);
 
-            this.previouslyKilled = true;
-            this.ghastbossdKilled = true;
-        }
-    }
+			this.previouslyKilled = true;
+			this.ghastbossdKilled = true;
+		}
+	}
 
 	public float getEyeHeight() {
 		return 2.6F;
 	}
-	
+
 	/**
-     * handles entity death timer, experience orb and particle creation
-     */
-    protected void onDeathUpdate()
-    {
-        ++this.deathTicks;
+	 * handles entity death timer, experience orb and particle creation
+	 */
+	protected void onDeathUpdate() {
+		++this.deathTicks;
 
-        if (this.deathTicks >= 180 && this.deathTicks <= 200)
-        {
-            float f = (this.rand.nextFloat() - 0.5F) * 8.0F;
-            float f1 = (this.rand.nextFloat() - 0.5F) * 4.0F;
-            float f2 = (this.rand.nextFloat() - 0.5F) * 8.0F;
-            this.world.spawnParticle(EnumParticleTypes.EXPLOSION_HUGE, this.posX + (double)f, this.posY + 2.0D + (double)f1, this.posZ + (double)f2, 0.0D, 0.0D, 0.0D);
-        }
+		if (this.deathTicks >= 180 && this.deathTicks <= 200) {
+			float f = (this.rand.nextFloat() - 0.5F) * 8.0F;
+			float f1 = (this.rand.nextFloat() - 0.5F) * 4.0F;
+			float f2 = (this.rand.nextFloat() - 0.5F) * 8.0F;
+			this.world.spawnParticle(EnumParticleTypes.EXPLOSION_HUGE, this.posX + (double) f,
+					this.posY + 2.0D + (double) f1, this.posZ + (double) f2, 0.0D, 0.0D, 0.0D);
+		}
 
-        boolean flag = this.world.getGameRules().getBoolean("doMobLoot");
-        int i = 500;
+		boolean flag = this.world.getGameRules().getBoolean("doMobLoot");
+		int i = 500;
 
-        if (!this.world.isRemote)
-        {
-            if (this.deathTicks > 150 && this.deathTicks % 5 == 0 && flag)
-            {
-                this.dropExperience(MathHelper.floor((float)i * 0.08F));
-            }
+		if (!this.world.isRemote) {
+			if (this.deathTicks > 150 && this.deathTicks % 5 == 0 && flag) {
+				this.dropExperience(MathHelper.floor((float) i * 0.08F));
+			}
 
-            if (this.deathTicks == 1)
-            {
-                this.world.playBroadcastSound(1028, new BlockPos(this), 0);
-            }
-        }
+			if (this.deathTicks == 1) {
+				this.world.playBroadcastSound(1028, new BlockPos(this), 0);
+			}
+		}
 
-        this.rotationYaw += 20.0F;
-        this.renderYawOffset = this.rotationYaw;
+		this.rotationYaw += 20.0F;
+		this.renderYawOffset = this.rotationYaw;
 
-        if (this.deathTicks == 200 && !this.world.isRemote)
-        {
-            if (flag)
-            {
-                this.dropExperience(MathHelper.floor((float)i * 0.2F));
-            }
-            this.setDead();
-        }
-    }
-    
-    private void dropExperience(int p_184668_1_)
-    {
-        while (p_184668_1_ > 0)
-        {
-            int i = EntityXPOrb.getXPSplit(p_184668_1_);
-            p_184668_1_ -= i;
-            this.world.spawnEntity(new EntityXPOrb(this.world, this.posX, this.posY, this.posZ, i));
-        }
-    }
+		if (this.deathTicks == 200 && !this.world.isRemote) {
+			if (flag) {
+				this.dropExperience(MathHelper.floor((float) i * 0.2F));
+			}
+			this.setDead();
+		}
+	}
+
+	private void dropExperience(int p_184668_1_) {
+		while (p_184668_1_ > 0) {
+			int i = EntityXPOrb.getXPSplit(p_184668_1_);
+			p_184668_1_ -= i;
+			this.world.spawnEntity(new EntityXPOrb(this.world, this.posX, this.posY, this.posZ, i));
+		}
+	}
 
 	static class AIFireballAttack extends EntityAIBase {
 		private final EntityGhastBossD parentEntity;
