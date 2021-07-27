@@ -15,6 +15,7 @@ import fr.kinjer.kinomod.proxy.CommonProxy;
 import fr.kinjer.kinomod.utils.MaterialsMod;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EntityDamageSource;
@@ -53,19 +54,25 @@ public class KinoMod {
 		FluidRegistry.enableUniversalBucket();
 	}
 
-	public static DamageSource Bismuth = new DamageSource("Bismuth").setDamageAllowedInCreativeMode()
-			.setDamageBypassesArmor().setDamageIsAbsolute().setMagicDamage();
-	
-	 public static class DamageSourceBismuth extends EntityDamageSource {
-	        public DamageSourceBismuth(Entity entity) {
-	            super("Bismuth", entity);
-	            DamageSourceBismuth.isBypassArmor();
-	        }
+	public static DamageSource Bismuth = new DamageSource("Bismuth").setDamageBypassesArmor().setDamageIsAbsolute()
+			.setMagicDamage();
 
-	        public static boolean isBypassArmor() {
-	            return true;
-	        }
-	    }
+	public static DamageSource DamageSourceBismuth(EntityLivingBase user) {
+
+		return (new EntityDamageSource("Bismuth", user)).setDamageBypassesArmor().setDamageIsAbsolute()
+				.setMagicDamage();
+	}
+
+	public static class DamageSourceBismuth extends EntityDamageSource {
+		public DamageSourceBismuth(Entity entity) {
+			super("Bismuth", entity);
+			DamageSourceBismuth.isBypassArmor();
+		}
+
+		public static boolean isBypassArmor() {
+			return true;
+		}
+	}
 
 	public static final CreativeTabs tabKino = new CreativeTabs("tabKino") {
 		@SideOnly(Side.CLIENT)
