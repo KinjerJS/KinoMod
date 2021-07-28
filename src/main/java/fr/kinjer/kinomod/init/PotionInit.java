@@ -13,7 +13,8 @@ import net.minecraftforge.fml.common.registry.ForgeRegistries;
 public class PotionInit {
 
 	public static final Potion BLEEDING_EFFECT = new CustomPotion("bleeding_effect", true, 13505316, 0, 0);
-
+	public static final Potion DROWN_EFFECT = new CustomPotion("drown_effect", true, 2787487, 0, 0);
+	
 	public static final PotionType BLEEDING = new PotionType("bleeding",
 			new PotionEffect[] { new PotionEffect(BLEEDING_EFFECT, 300) }).setRegistryName("bleeding");
 	public static final PotionType LONG_BLEEDING = new PotionType("bleeding",
@@ -22,6 +23,7 @@ public class PotionInit {
 	public static void registerPotions() {
 
 		registerPotions(BLEEDING, LONG_BLEEDING, BLEEDING_EFFECT);
+		registerPotionsEffectOnly(DROWN_EFFECT);
 
 		registerPotionMixes();
 
@@ -32,6 +34,12 @@ public class PotionInit {
 		ForgeRegistries.POTIONS.register(effect);
 		ForgeRegistries.POTION_TYPES.register(defaultPotion);
 		ForgeRegistries.POTION_TYPES.register(longPotion);
+
+	}
+	
+	private static void registerPotionsEffectOnly(Potion effect) {
+
+		ForgeRegistries.POTIONS.register(effect);
 
 	}
 
