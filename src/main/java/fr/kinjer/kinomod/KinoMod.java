@@ -6,6 +6,7 @@ import baubles.common.Baubles;
 import fr.kinjer.kinomod.fluids.KiniumFluid;
 import fr.kinjer.kinomod.gen.WorldGen;
 import fr.kinjer.kinomod.handler.RegisteringHandler;
+import fr.kinjer.kinomod.handler.RenderGuiHandler;
 import fr.kinjer.kinomod.handler.RenderHandler;
 import fr.kinjer.kinomod.init.FluidsMod;
 import fr.kinjer.kinomod.init.ItemsMod;
@@ -96,6 +97,7 @@ public class KinoMod {
 
 	@EventHandler
 	public void postInit(FMLPostInitializationEvent e) {
+		MinecraftForge.EVENT_BUS.register(new RenderGuiHandler());
 
 	}
 

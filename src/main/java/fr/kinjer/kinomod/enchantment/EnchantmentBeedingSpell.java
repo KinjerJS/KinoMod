@@ -40,8 +40,8 @@ public class EnchantmentBeedingSpell extends Enchantment {
 
 	@Override
 	public void onEntityDamaged(EntityLivingBase user, Entity target, int level) {
-		
+
 		((EntityLivingBase) target).addPotionEffect(new PotionEffect(PotionInit.BLEEDING_EFFECT, 20));
-		
+
 	}
 }

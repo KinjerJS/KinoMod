@@ -8,6 +8,7 @@ import baubles.common.Baubles;
 import baubles.common.items.ItemRing;
 import fr.kinjer.kinomod.KinoMod;
 import fr.kinjer.kinomod.init.ItemsMod;
+import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -56,6 +57,7 @@ public class ItemCharm extends Item implements IBauble {
 		return BaubleType.CHARM;
 	}
 
+
 	@Override
 	public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand hand) {
 		if (!world.isRemote) {
@@ -102,5 +104,4 @@ public class ItemCharm extends Item implements IBauble {
 	public void onUnequipped(ItemStack itemstack, EntityLivingBase player) {
 		player.playSound(SoundEvents.ITEM_ARMOR_EQUIP_DIAMOND, .75F, 2f);
 	}
-
 }

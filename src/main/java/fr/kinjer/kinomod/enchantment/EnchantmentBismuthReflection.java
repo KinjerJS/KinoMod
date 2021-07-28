@@ -29,28 +29,24 @@ public class EnchantmentBismuthReflection extends Enchantment {
 	}
 
 	@Override
-    public int getMinEnchantability(int enchantmentLevel)
-    {
-        return 10 + 20 * (enchantmentLevel - 1);
-    }
+	public int getMinEnchantability(int enchantmentLevel) {
+		return 10 + 20 * (enchantmentLevel - 1);
+	}
 
 	@Override
-    public int getMaxEnchantability(int enchantmentLevel)
-    {
-        return super.getMinEnchantability(enchantmentLevel) + 50;
-    }
+	public int getMaxEnchantability(int enchantmentLevel) {
+		return super.getMinEnchantability(enchantmentLevel) + 50;
+	}
 
 	@Override
-    public int getMaxLevel()
-    {
-        return 3;
-    }
+	public int getMaxLevel() {
+		return 3;
+	}
 
 	@Override
-    public boolean canApply(ItemStack stack)
-    {
-        return stack.getItem() instanceof ItemArmor ? true : super.canApply(stack);
-    }
+	public boolean canApply(ItemStack stack) {
+		return stack.getItem() instanceof ItemArmor ? true : super.canApply(stack);
+	}
 
 	@Override
 	public void onUserHurt(EntityLivingBase user, Entity attacker, int level) {
