@@ -13,11 +13,9 @@ public class WorldEvents {
 	@SubscribeEvent
 	public static void bleedingActive(LivingUpdateEvent event) {
 
-		boolean isActive = false;
-		if (event.getEntityLiving().isPotionActive(PotionInit.BLEEDING_EFFECT))
-			isActive = true;
-
-		if (isActive) {
+		if (!event.getEntityLiving().isPotionActive(PotionInit.BLEEDING_EFFECT)) {
+			return;
+		} else {
 
 			if (event.getEntityLiving().isPotionActive(MobEffects.REGENERATION)) {
 
