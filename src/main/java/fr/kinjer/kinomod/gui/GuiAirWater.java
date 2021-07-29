@@ -1,17 +1,23 @@
 package fr.kinjer.kinomod.gui;
 
+import fr.kinjer.kinomod.init.PotionInit;
 import fr.kinjer.kinomod.items.ItemDrowningCharm;
+import fr.kinjer.kinomod.world.*;
+import net.minecraft.block.material.Material;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.ScaledResolution;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.util.DamageSource;
 import net.minecraft.util.math.MathHelper;
 
 public class GuiAirWater extends Gui {
 	
-    protected final Minecraft mc;
+	protected final Minecraft mc;
 	public static boolean renderAirWater = false;
-
+	
 	public GuiAirWater(Minecraft mcIn) {
 
         this.mc = mcIn;
@@ -24,7 +30,7 @@ public class GuiAirWater extends Gui {
 			int j1 = scaled.getScaledHeight() - 39;
 			int k2 = j1 - 10;
 			int i1 = scaled.getScaledWidth() / 2 + 91;
-			int i6 = 1;
+			int i6 = /*player.getEntityData().getInteger(ItemDrowningCharm.NAME)*/150;
 			int k6 = MathHelper.ceil((double) (i6 - 2) * 10.0D / 300.0D);
 			int i7 = MathHelper.ceil((double) i6 * 10.0D / 300.0D) - k6;
 

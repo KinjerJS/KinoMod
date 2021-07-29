@@ -11,6 +11,7 @@ import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
 
 import fr.kinjer.kinomod.gui.GuiAirWater;
+import fr.kinjer.kinomod.init.PotionInit;
 import fr.kinjer.kinomod.utils.KeyBoard;
 import fr.kinjer.kinomod.utils.Localizer;
 import fr.kinjer.kinomod.utils.WorldUtil;
@@ -48,10 +49,9 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class ItemDrowningCharm extends ItemCharm {
-	
-    protected final Random rand = new Random();
-    
-    public static final String NAME = "drown";
+
+	protected Random rand;
+	public static final String NAME = "drown";
 	public static final String TAG_NAME = "drown air";
 	public static final String TAG_BOOLEAN = "doing drown";
 
@@ -62,31 +62,44 @@ public class ItemDrowningCharm extends ItemCharm {
 	@Override
 	public void onWornTick(ItemStack itemstack, EntityLivingBase player) {
 		if (itemstack.getItemDamage() == 0 && player.ticksExisted % 39 == 0) {
-			player.addPotionEffect(new PotionEffect(MobEffects.HASTE, 40, 1, true, true));
-			player.addPotionEffect(new PotionEffect(MobEffects.NIGHT_VISION, 13 * 20, 0, true, true));
+			player.addPotionEffect(new PotionEffect(MobEffects.HASTE, 40, 1, false, false));
+			player.addPotionEffect(new PotionEffect(MobEffects.NIGHT_VISION, 13 * 20, 0, false, false));
 		}
 
 		if (player.isInsideOfMaterial(Material.WATER)) {
+			player.setAir(300);
 			GuiIngameForge.renderAir = false;
 			GuiAirWater.renderAirWater = false;
+			player.getEntityData().setInteger(TAG_NAME, 300);
+
 		}
 
 		if (!player.isInsideOfMaterial(Material.WATER)) {
 
 			GuiIngameForge.renderAir = true;
 			GuiAirWater.renderAirWater = true;
-			
+
+			int respiration = EnchantmentHelper.getRespirationModifier(player);
+			int air = player.getEntityData().getInteger(TAG_NAME);
+			air = ((respiration > 0) && (player.getRNG().nextInt(respiration + 1) > 0) ? air : air - 1);
+
+			if (air == -20) {
+				air = 0;
+
+				player.attackEntityFrom(DamageSource.DROWN, 2.0F);
+			}
+
+			player.getEntityData().setInteger(TAG_NAME, air);
 		}
+
 	}
-	
-	/**
-	 * Decrements the entity's air supply when on surface with Charm Of Drowning
-	 */
+
 	public int decreaseAirSupply(int air, EntityLivingBase player) {
+
 		int i = EnchantmentHelper.getRespirationModifier(player);
 		return i > 0 && this.rand.nextInt(i + 1) > 0 ? air : air - 1;
 	}
-	
+
 	@SideOnly(Side.CLIENT)
 	public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> l, ITooltipFlag flagIn) {
 		if (!KeyBoard.isShiftKeyDown()) {

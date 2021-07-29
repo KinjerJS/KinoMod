@@ -4,25 +4,19 @@ import java.io.File;
 
 import org.lwjgl.input.Keyboard;
 
-import fr.kinjer.kinomod.KinoMod;
 import fr.kinjer.kinomod.handler.ModSounds;
 import fr.kinjer.kinomod.handler.RenderHandler;
 import net.minecraft.client.Minecraft;
-import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraft.client.settings.KeyBinding;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.common.SidedProxy;
-import net.minecraftforge.fml.common.network.simpleimpl.SimpleNetworkWrapper;
-import net.minecraftforge.fml.relauncher.Side;
 
 public class ClientProxy extends CommonProxy {
 
 	@SidedProxy(clientSide = "fr.kinjer.kinomod.proxy.ClientProxy", serverSide = "fr.kinjer.kinomod.proxy.CommonProxy")
 	public static CommonProxy proxy;
-
-	public static SimpleNetworkWrapper networkWrapper;
 
 	public static final String PACKAGE = "fr.kinjer.kinomod.proxy.ClientProxy";
 

@@ -6,6 +6,8 @@ import java.util.List;
 import fr.kinjer.kinomod.KinoMod;
 import fr.kinjer.kinomod.items.*;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item;
@@ -81,6 +83,7 @@ public class ItemsMod {
 	public static final Item charm_of_fire_advanced = new ItemFireAdvancedCharm();
 	public static final Item charm_of_poison = new ItemPoisonCharm();
 	public static final Item charm_of_poison_advanced = new ItemPoisonAdvancedCharm();
+
 	public static final Item charm_of_drowning = new ItemDrowningCharm();
 	public static final Item charm_of_drowning_advanced = new ItemDrowningAdvancedCharm();
 
