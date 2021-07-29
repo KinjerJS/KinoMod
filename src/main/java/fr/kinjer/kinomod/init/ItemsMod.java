@@ -85,9 +85,18 @@ public class ItemsMod {
 	public static final Item seminium_charm_advanced = new ItemSeminiumAdvancedCharm();
 	public static final Item balium_charm = new ItemBaliumCharm();
 	public static final Item balium_charm_advanced = new ItemBaliumAdvancedCharm();
+	public static final Item bismuth_charm = new ItemBismuthCharm();
 	
 	// belt
+	public static final Item dalium_belt = new ItemDaliumBelt();
+	public static final Item dalium_belt_advanced = new ItemDaliumAdvancedBelt();
+	public static final Item kinium_belt = new ItemKiniumBelt();
+	public static final Item kinium_belt_advanced = new ItemKiniumAdvancedBelt();
 	public static final Item seminium_belt = new ItemSeminiumBelt();
+	public static final Item seminium_belt_advanced = new ItemSeminiumAdvancedBelt();
+	public static final Item balium_belt = new ItemBaliumBelt();
+	public static final Item balium_belt_advanced = new ItemBaliumAdvancedBelt();
+	public static final Item bismuth_belt = new ItemBismuthBelt();
 
 	// loot
 	public static final Item sword_part = new ItemSwordPart();

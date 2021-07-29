@@ -24,16 +24,21 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class ItemSeminiumBelt extends ItemBelt {
+public class ItemSeminiumAdvancedBelt extends ItemBelt {
 
-	public ItemSeminiumBelt() {
-		super("seminium_belt");
+	public ItemSeminiumAdvancedBelt() {
+		super("seminium_belt_advanced");
 	}
 
 	@Override
 	public void onWornTick(ItemStack itemstack, EntityLivingBase player) {
 		if (itemstack.getItemDamage() == 0 && player.ticksExisted % 39 == 0) {
 		}
+	}
+	
+	@Override
+	public boolean hasEffect(ItemStack par1ItemStack) {
+		return true;
 	}
 
 	@SideOnly(Side.CLIENT)

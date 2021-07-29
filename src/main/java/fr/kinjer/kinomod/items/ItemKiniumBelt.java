@@ -6,28 +6,18 @@ import javax.annotation.Nullable;
 
 import fr.kinjer.kinomod.utils.KeyBoard;
 import fr.kinjer.kinomod.utils.Localizer;
-import fr.kinjer.kinomod.world.WorldEvents;
-import net.minecraft.block.BlockLiquid;
-import net.minecraft.block.material.Material;
-import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.util.ITooltipFlag;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.init.Blocks;
-import net.minecraft.init.MobEffects;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.potion.PotionEffect;
-import net.minecraft.util.EnumFacing;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class ItemSeminiumBelt extends ItemBelt {
+public class ItemKiniumBelt extends ItemBelt {
 
-	public ItemSeminiumBelt() {
-		super("seminium_belt");
+	public ItemKiniumBelt() {
+		super("kinium_belt");
 	}
 
 	@Override
@@ -44,7 +34,7 @@ public class ItemSeminiumBelt extends ItemBelt {
 			return;
 		}
 
-		l.add("* " + Localizer.localize("kinomod.seminium_belt.toolip"));
+		l.add("* " + Localizer.localize("kinomod.kinium_belt.toolip"));
 
 	}
 }
