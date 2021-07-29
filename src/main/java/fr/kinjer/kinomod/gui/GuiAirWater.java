@@ -1,7 +1,7 @@
 package fr.kinjer.kinomod.gui;
 
 import fr.kinjer.kinomod.init.PotionInit;
-import fr.kinjer.kinomod.items.ItemDrowningCharm;
+import fr.kinjer.kinomod.items.ItemBaliumCharm;
 import fr.kinjer.kinomod.world.*;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.Minecraft;

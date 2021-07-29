@@ -57,7 +57,6 @@ public class ItemCharm extends Item implements IBauble {
 		return BaubleType.CHARM;
 	}
 
-
 	@Override
 	public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand hand) {
 		if (!world.isRemote) {

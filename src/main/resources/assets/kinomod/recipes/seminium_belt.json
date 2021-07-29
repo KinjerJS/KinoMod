@@ -2,15 +2,15 @@
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
     {
-      "item": "kinomod:kinium_ring",
+      "item": "kinomod:seminium_ring",
       "data": 0
     },
     {
-      "item": "minecraft:flint_and_steel"
+      "item": "minecraft:rotten_flesh"
     }
   ],
   "result": {
-    "item": "kinomod:charm_of_fire",
+    "item": "kinomod:seminium_belt",
     "data": 0
   }
 }

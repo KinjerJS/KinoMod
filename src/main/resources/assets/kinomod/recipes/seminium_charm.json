@@ -2,15 +2,15 @@
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
     {
-      "item": "kinomod:balium_ring",
+      "item": "kinomod:seminium_ring",
       "data": 0
     },
     {
-      "item": "minecraft:sea_lantern"
+      "item": "minecraft:fermented_spider_eye"
     }
   ],
   "result": {
-    "item": "kinomod:charm_of_drowning",
+    "item": "kinomod:seminium_charm",
     "data": 0
   }
 }
