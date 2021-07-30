@@ -79,6 +79,7 @@ tile.kinomod.special_dalium.name=Dalium Crux
 enchantment.vigor=Vigor
 enchantment.bismuth_reflection=Bismuth Reflection
 enchantment.bleeding_spell=Bleeding Spell
+enchantment.belt.add_to_existing_all.name=+1 Level Of Enchantment To All
 
 
 tile.kinomod.kinium_molten.name=Kinium Molten
@@ -97,6 +98,9 @@ kinomod.seminium_charm.tooltip_0=Wither Resistance
 kinomod.seminium_charm.tooltip_1=Bleeding Resistance
 kinomod.dalium_charm.tooltip=Starvation
 kinomod.balium_belt.toolip=Dash Ability
+kinomod.dalium_belt.toolip_0=Lava Resistance
+kinomod.dalium_belt.toolip_1=Fire Resistance
+kinomod.kinium_belt.toolip=Add Enchantment Level
 
 entity.centaur.name=Centaur
 entity.ghast_boss_d.name=Dalium Ghast

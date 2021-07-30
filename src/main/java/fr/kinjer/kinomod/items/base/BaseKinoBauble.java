@@ -47,6 +47,8 @@ import java.util.UUID;
 public class BaseKinoBauble extends Item implements IBauble {
 	@GameRegistry.ObjectHolder(Baubles.MODID + ":ring")
 	public static final Item RING = null;
+	
+	private String NAME;
 
 	private static final String TAG_HASHCODE = "playerHashcode";
 	private static final String TAG_BAUBLE_UUID_MOST = "baubleUUIDMost";
@@ -57,8 +59,13 @@ public class BaseKinoBauble extends Item implements IBauble {
 		this.setMaxStackSize(1);
 		this.setHasSubtypes(true);
 		this.setMaxDamage(0);
-		this.setCreativeTab(KinoMod.tabKino);
+		this.NAME = name;
+		setCreativeTab(KinoMod.tabKino);
 		InitItems.setItemName(this, name);
+	}
+	
+	public String getName() {
+		return this.NAME;
 	}
 
 	@SubscribeEvent
@@ -211,4 +218,24 @@ public class BaseKinoBauble extends Item implements IBauble {
 			}
 		}
 	}
+	
+	public static NBTTagCompound getNBT(ItemStack stack) {
+		if(!stack.hasTagCompound())
+			stack.setTagCompound(new NBTTagCompound());
+		return stack.getTagCompound();
+	}
+	
+	public static boolean verifyExistance(ItemStack stack, String tag) {
+		return !stack.isEmpty() && getNBT(stack).hasKey(tag);
+	}
+
+	
+	public static void removeEntry(ItemStack stack, String tag) {
+		getNBT(stack).removeTag(tag);
+	}
+	
+	public static String getString(ItemStack stack, String tag, String defaultExpected) {
+		return verifyExistance(stack, tag) ? getNBT(stack).getString(tag) : defaultExpected;
+	}
 }
+

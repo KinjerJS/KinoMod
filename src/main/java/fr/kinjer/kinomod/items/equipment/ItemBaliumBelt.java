@@ -12,6 +12,7 @@ import fr.kinjer.kinomod.handler.HandlerPacket;
 import fr.kinjer.kinomod.helper.HelperVector;
 import fr.kinjer.kinomod.helper.HelperItem;
 import fr.kinjer.kinomod.init.InitItems;
+import fr.kinjer.kinomod.items.base.BaseKino;
 import fr.kinjer.kinomod.items.base.BaseKinoBauble;
 import fr.kinjer.kinomod.items.base.BaseKinoBelt;
 import fr.kinjer.kinomod.network.PacketDash;
