@@ -11,7 +11,7 @@ import net.minecraftforge.fluids.FluidRegistry;
 
 public class CommonProxy {
 	
-	public static final String PACKAGE = "fr.kinjer.kinomod.proxy.CommonProxy";
+	public static final String PACKAGE = "fr.kinjer.kinomod.common.CommonProxy";
 	
 	public EntityPlayer getPlayer() {
 		return null;

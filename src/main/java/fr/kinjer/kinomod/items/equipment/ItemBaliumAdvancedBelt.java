@@ -61,6 +61,11 @@ public class ItemBaliumAdvancedBelt extends BaseKinoBauble {
 		l.add("* " + UtilsLocalizer.localize(MobEffects.SPEED.getName()));
 
 	}
+	
+	@Override
+	public boolean hasEffect(ItemStack par1ItemStack) {
+		return true;
+	}
 
 	@SubscribeEvent
 	@SideOnly(Side.CLIENT)
