@@ -12,9 +12,8 @@ import com.google.common.collect.Sets;
 
 import fr.kinjer.kinomod.gui.GuiAirWater;
 import fr.kinjer.kinomod.items.base.ItemKinoCharm;
-import fr.kinjer.kinomod.utils.KeyBoard;
-import fr.kinjer.kinomod.utils.Localizer;
-import fr.kinjer.kinomod.utils.WorldUtil;
+import fr.kinjer.kinomod.utils.UtilsKeyBoard;
+import fr.kinjer.kinomod.utils.UtilsLocalizer;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.client.Minecraft;
@@ -102,15 +101,15 @@ public class ItemBaliumCharm extends ItemKinoCharm {
 
 	@SideOnly(Side.CLIENT)
 	public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> l, ITooltipFlag flagIn) {
-		if (!KeyBoard.isShiftKeyDown()) {
-			l.add(Localizer.shiftDetails());
+		if (!UtilsKeyBoard.isShiftKeyDown()) {
+			l.add(UtilsLocalizer.shiftDetails());
 			return;
 		}
 
-		l.add("* " + Localizer.localize(MobEffects.HASTE.getName()) + " " + Localizer.numberLocalize(2));
-		l.add("* " + Localizer.localize(MobEffects.WATER_BREATHING.getName()));
-		l.add("* " + Localizer.localize(MobEffects.NIGHT_VISION.getName()));
-		l.add("* §4" + Localizer.localize("kinomod.charmdrowning.damagewater"));
+		l.add("* " + UtilsLocalizer.localize(MobEffects.HASTE.getName()) + " §7" + UtilsLocalizer.numberLocalize(2));
+		l.add("* " + UtilsLocalizer.localize(MobEffects.WATER_BREATHING.getName()));
+		l.add("* " + UtilsLocalizer.localize(MobEffects.NIGHT_VISION.getName()));
+		l.add("* §4" + UtilsLocalizer.localize("kinomod.balium_charm.tooltip"));
 
 	}
 }

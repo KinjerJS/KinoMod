@@ -8,7 +8,7 @@ import java.util.UUID;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
 
-public class ItemsUtils {
+public class UtilsItems {
 	
 	public DataInputStream datain;
 	

@@ -8,7 +8,7 @@ import javax.annotation.Nullable;
 
 import fr.kinjer.kinomod.KinoMod;
 import fr.kinjer.kinomod.init.InitItems;
-import fr.kinjer.kinomod.utils.Localizer;
+import fr.kinjer.kinomod.utils.UtilsLocalizer;
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
 
@@ -56,8 +56,8 @@ import net.minecraftforge.items.IItemHandler;
 
 public class ItemArmorKino extends ItemArmor {
 
-	public static final String DURABILITY = Localizer.localize("§7" + "Durability" + " : ");
-	public static final String INFINITE = Localizer.localize("§4" + "Infinite");
+	public static final String DURABILITY = UtilsLocalizer.localize("§7" + "Durability" + " : ");
+	public static final String INFINITE = UtilsLocalizer.localize("§4" + "Infinite");
 
 	private static final List<String> damageNegations = new ArrayList<>();
 

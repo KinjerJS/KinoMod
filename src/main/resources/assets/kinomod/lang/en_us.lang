@@ -21,6 +21,7 @@ item.kinomod.seminium_charm.0.name=Charm Of Poison
 item.kinomod.seminium_charm_advanced.0.name=Charm Of Poison (Advanced)
 item.kinomod.balium_charm.0.name=Charm Of Drowning
 item.kinomod.balium_charm_advanced.0.name=Charm Of Drowning (Advanced)
+item.kinomod.bismuth_charm.0.name=Bismuth Charm
 item.kinomod.kinium_ring.0.name=Kinium Ring
 item.kinomod.balium_ring.0.name=Balium Ring
 item.kinomod.seminium_ring.0.name=Seminium Ring
@@ -37,6 +38,16 @@ item.kinomod.ghast_boss_k_tentacle.name=Kinium Ghast Tentacle
 item.kinomod.ghast_boss_b_tentacle.name=Balium Ghast Tentacle
 item.kinomod.tentacle_soup.name=Tentacle Soup
 item.kinomod.sword_part.name=Sword Fragment
+item.kinomod.kinium_belt.0.name=Kinium Belt
+item.kinomod.balium_belt.0.name=Balium Belt
+item.kinomod.seminium_belt.0.name=Seminium Belt
+item.kinomod.dalium_belt.0.name=Dalium Belt
+item.kinomod.bismuth_belt.0.name=Bismuth Belt
+item.kinomod.kinium_belt_advanced.0.name=Kinium Belt (Advanced)
+item.kinomod.balium_belt_advanced.0.name=Balium Belt (Advanced)
+item.kinomod.seminium_belt_advanced.0.name=Seminium Belt (Advanced)
+item.kinomod.dalium_belt_advanced.0.name=Dalium Belt (Advanced)
+item.kinomod.bismuth_belt_advanced.0.name=Bismuth Belt (Advanced)
 
 
 tile.kinomod.kinium_block.name=Kinium Block
@@ -80,11 +91,12 @@ fluid.seminium_molten=Seminium Molten
 fluid.dalium_molten=Dalium Molten
 
 kinomod.shiftDetails=Shift for Details
-kinomod.charmdrowning.damagewater=Drowning
-kinomod.charmfire.damagefire=Fire
-kinomod.charmpoison.damageremovewither=Wither Resistance
-kinomod.charmpoison.damageremovebleeding=Bleeding Resistance
-kinomod.charmhunger.damagehunger=Starvation
+kinomod.balium_charm.tooltip=Drowning
+kinomod.kinium_charm.tooltip=Fire
+kinomod.seminium_charm.tooltip_0=Wither Resistance
+kinomod.seminium_charm.tooltip_1=Bleeding Resistance
+kinomod.dalium_charm.tooltip=Starvation
+kinomod.balium_belt.toolip=Dash Ability
 
 entity.centaur.name=Centaur
 entity.ghast_boss_d.name=Dalium Ghast

@@ -1,6 +1,6 @@
 package fr.kinjer.kinomod.init;
 
-import fr.kinjer.kinomod.potion.CustomPotion;
+import fr.kinjer.kinomod.potion.PotionCustom;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.init.Items;
 import net.minecraft.init.PotionTypes;
@@ -12,7 +12,7 @@ import net.minecraftforge.fml.common.registry.ForgeRegistries;
 
 public class InitPotion {
 
-	public static final Potion BLEEDING_EFFECT = new CustomPotion("bleeding_effect", true, 13505316, 0, 0);
+	public static final Potion BLEEDING_EFFECT = new PotionCustom("bleeding_effect", true, 13505316, 0, 0);
 	
 	public static final PotionType BLEEDING = new PotionType("bleeding",
 			new PotionEffect[] { new PotionEffect(BLEEDING_EFFECT, 300) }).setRegistryName("bleeding");

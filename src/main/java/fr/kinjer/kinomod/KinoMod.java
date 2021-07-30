@@ -2,12 +2,12 @@ package fr.kinjer.kinomod;
 
 import org.apache.logging.log4j.Logger;
 
-import fr.kinjer.kinomod.gen.WorldGen;
-import fr.kinjer.kinomod.handler.RenderGuiHandler;
+import fr.kinjer.kinomod.gen.GenWorld;
+import fr.kinjer.kinomod.handler.HandlerRenderGui;
 import fr.kinjer.kinomod.init.InitItems;
 import fr.kinjer.kinomod.init.InitRecipes;
-import fr.kinjer.kinomod.proxy.ClientProxy;
-import fr.kinjer.kinomod.proxy.CommonProxy;
+import fr.kinjer.kinomod.proxy.ProxyClient;
+import fr.kinjer.kinomod.proxy.ProxyCommon;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -38,12 +38,12 @@ public class KinoMod {
 	@Instance(KinoMod.MODID)
 	public static KinoMod instance;
 
-	@SidedProxy(serverSide = CommonProxy.PACKAGE, clientSide = ClientProxy.PACKAGE)
-	public static CommonProxy proxy;
+	@SidedProxy(serverSide = ProxyCommon.PACKAGE, clientSide = ProxyClient.PACKAGE)
+	public static ProxyCommon proxy;
 
 	public static Logger logger;
 
-	WorldGen worldgeneration = new WorldGen();
+	GenWorld worldgeneration = new GenWorld();
 	{
 		FluidRegistry.enableUniversalBucket();
 	}
@@ -90,7 +90,7 @@ public class KinoMod {
 
 	@EventHandler
 	public void postInit(FMLPostInitializationEvent e) {
-		MinecraftForge.EVENT_BUS.register(new RenderGuiHandler());
+		MinecraftForge.EVENT_BUS.register(new HandlerRenderGui());
 
 	}
 

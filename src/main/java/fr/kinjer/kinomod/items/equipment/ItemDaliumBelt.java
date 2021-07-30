@@ -5,8 +5,8 @@ import java.util.List;
 import javax.annotation.Nullable;
 
 import fr.kinjer.kinomod.items.base.ItemKinoBelt;
-import fr.kinjer.kinomod.utils.KeyBoard;
-import fr.kinjer.kinomod.utils.Localizer;
+import fr.kinjer.kinomod.utils.UtilsKeyBoard;
+import fr.kinjer.kinomod.utils.UtilsLocalizer;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.Item;
@@ -30,12 +30,12 @@ public class ItemDaliumBelt extends ItemKinoBelt {
 	@SideOnly(Side.CLIENT)
 	public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> l, ITooltipFlag flagIn) {
 
-		if (!KeyBoard.isShiftKeyDown()) {
-			l.add(Localizer.shiftDetails());
+		if (!UtilsKeyBoard.isShiftKeyDown()) {
+			l.add(UtilsLocalizer.shiftDetails());
 			return;
 		}
 
-		l.add("* " + Localizer.localize("kinomod.dalium_belt.toolip"));
+		l.add("* " + UtilsLocalizer.localize("kinomod.dalium_belt.toolip"));
 
 	}
 }

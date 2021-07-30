@@ -12,8 +12,8 @@ import baubles.common.Baubles;
 import baubles.common.items.ItemRing;
 import fr.kinjer.kinomod.KinoMod;
 import fr.kinjer.kinomod.items.base.ItemKinoCharm;
-import fr.kinjer.kinomod.utils.KeyBoard;
-import fr.kinjer.kinomod.utils.Localizer;
+import fr.kinjer.kinomod.utils.UtilsKeyBoard;
+import fr.kinjer.kinomod.utils.UtilsLocalizer;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
@@ -50,12 +50,12 @@ public class ItemDaliumCharm extends ItemKinoCharm {
 
 	@SideOnly(Side.CLIENT)
 	public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
-		if (!KeyBoard.isShiftKeyDown()) {
-			tooltip.add(Localizer.shiftDetails());
+		if (!UtilsKeyBoard.isShiftKeyDown()) {
+			tooltip.add(UtilsLocalizer.shiftDetails());
 			return;
 		}
-		tooltip.add("* " + Localizer.localize(MobEffects.REGENERATION.getName()) + " " + Localizer.numberLocalize(2));
-		tooltip.add("* §4" + Localizer.localize("kinomod.charmhunger.damagehunger"));
+		tooltip.add("* " + UtilsLocalizer.localize(MobEffects.REGENERATION.getName()) + " §7" + UtilsLocalizer.numberLocalize(2));
+		tooltip.add("* §4" + UtilsLocalizer.localize("kinomod.dalium_charm.tooltip"));
 	}
 
 }

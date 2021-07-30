@@ -18,7 +18,7 @@ import net.minecraft.util.text.ITextComponent;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.FakePlayer;
 
-public class WorldUtil {
+public class UtilsWorld {
 
 	public static RayTraceResult getNearestPositionWithAir(World world, EntityPlayer player, int reach) {
 		return getMovingObjectPosWithReachDistance(world, player, reach, false, false, true);

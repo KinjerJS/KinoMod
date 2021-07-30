@@ -6,8 +6,8 @@ import javax.annotation.Nullable;
 
 import fr.kinjer.kinomod.init.InitPotion;
 import fr.kinjer.kinomod.items.base.ItemKinoCharm;
-import fr.kinjer.kinomod.utils.KeyBoard;
-import fr.kinjer.kinomod.utils.Localizer;
+import fr.kinjer.kinomod.utils.UtilsKeyBoard;
+import fr.kinjer.kinomod.utils.UtilsLocalizer;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.init.MobEffects;
@@ -38,13 +38,13 @@ public class ItemSeminiumAdvancedCharm extends ItemKinoCharm {
 
 	@SideOnly(Side.CLIENT)
 	public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> l, ITooltipFlag flagIn) {
-		if (!KeyBoard.isShiftKeyDown()) {
-			l.add(Localizer.shiftDetails());
+		if (!UtilsKeyBoard.isShiftKeyDown()) {
+			l.add(UtilsLocalizer.shiftDetails());
 			return;
 		}
 
-		l.add("* " + Localizer.localize("kinomod.charmpoison.damageremovewither"));
-		l.add("* " + Localizer.localize("kinomod.charmpoison.damageremovebleeding"));
+		l.add("* " + UtilsLocalizer.localize("kinomod.seminium_charm.tooltip_0"));
+		l.add("* " + UtilsLocalizer.localize("kinomod.seminium_charm.tooltip_1"));
 
 	}
 }

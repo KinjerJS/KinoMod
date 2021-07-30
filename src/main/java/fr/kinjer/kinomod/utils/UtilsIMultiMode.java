@@ -6,7 +6,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraftforge.common.util.FakePlayer;
 
-public interface IMultiModeItem {
+public interface UtilsIMultiMode {
 	
 	default int getMode(ItemStack stack) {
 

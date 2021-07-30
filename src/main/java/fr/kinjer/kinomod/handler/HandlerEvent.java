@@ -1,6 +1,6 @@
 package fr.kinjer.kinomod.handler;
 
-import fr.kinjer.kinomod.proxy.ClientProxy;
+import fr.kinjer.kinomod.proxy.ProxyClient;
 import net.minecraft.client.settings.KeyBinding;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -8,7 +8,7 @@ import net.minecraftforge.fml.common.gameevent.InputEvent.KeyInputEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class EventHandler {
+public class HandlerEvent {
 
 	@SideOnly(Side.CLIENT)
 	@SubscribeEvent(priority = EventPriority.NORMAL, receiveCanceled = true)
@@ -17,7 +17,7 @@ public class EventHandler {
 		System.out.println("Key Input Event");
 
 		// make local copy of key binding array
-		KeyBinding[] keyBindings = ClientProxy.keyBindings;
+		KeyBinding[] keyBindings = ProxyClient.keyBindings;
 
 		// check each enumerated key binding type for pressed and take appropriate
 		// action

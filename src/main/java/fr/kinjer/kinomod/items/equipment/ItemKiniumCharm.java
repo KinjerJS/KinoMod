@@ -5,8 +5,8 @@ import java.util.List;
 import javax.annotation.Nullable;
 
 import fr.kinjer.kinomod.items.base.ItemKinoCharm;
-import fr.kinjer.kinomod.utils.KeyBoard;
-import fr.kinjer.kinomod.utils.Localizer;
+import fr.kinjer.kinomod.utils.UtilsKeyBoard;
+import fr.kinjer.kinomod.utils.UtilsLocalizer;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.init.MobEffects;
@@ -32,13 +32,13 @@ public class ItemKiniumCharm extends ItemKinoCharm {
 
 	@SideOnly(Side.CLIENT)
 	public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> l, ITooltipFlag flagIn) {
-		if (!KeyBoard.isShiftKeyDown()) {
-			l.add(Localizer.shiftDetails());
+		if (!UtilsKeyBoard.isShiftKeyDown()) {
+			l.add(UtilsLocalizer.shiftDetails());
 			return;
 		}
 
-		l.add("* " + Localizer.localize(MobEffects.STRENGTH.getName()) + " " + Localizer.numberLocalize(2));
-		l.add("* §4" + Localizer.localize("kinomod.charmfire.damagefire"));
+		l.add("* " + UtilsLocalizer.localize(MobEffects.STRENGTH.getName()) + " §7" + UtilsLocalizer.numberLocalize(2));
+		l.add("* §4" + UtilsLocalizer.localize("kinomod.kinium_charm.tooltip"));
 
 	}
 }

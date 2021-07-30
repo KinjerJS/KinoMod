@@ -7,7 +7,6 @@ import javax.annotation.Nullable;
 
 import com.google.common.base.Predicate;
 import com.google.common.base.Predicates;
-import fr.kinjer.kinomod.handler.ModSounds;
 import fr.kinjer.kinomod.init.InitItems;
 import fr.kinjer.kinomod.init.InitPotion;
 import net.minecraft.block.Block;

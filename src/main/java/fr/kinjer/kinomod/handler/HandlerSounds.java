@@ -8,9 +8,10 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.registries.IForgeRegistry;
 
-public class ModSounds {
+public class HandlerSounds {
 	
 	public static final SoundEvent soundcentaur = makeSoundEvent("soundcentaur");
+	public static final SoundEvent dash = makeSoundEvent("dash");
 	
 	private static SoundEvent makeSoundEvent(String name) {
 		ResourceLocation loc = new ResourceLocation(KinoMod.MODID, name);
@@ -24,5 +25,5 @@ public class ModSounds {
 				);
 	}
 
-	public ModSounds() {}
+	public HandlerSounds() {}
 }

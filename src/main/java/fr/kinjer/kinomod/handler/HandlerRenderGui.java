@@ -10,7 +10,7 @@ import net.minecraftforge.event.entity.EntityEvent;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
-public class RenderGuiHandler
+public class HandlerRenderGui
 {
 	@SubscribeEvent
     public void onRenderGui(RenderGameOverlayEvent.Post event)

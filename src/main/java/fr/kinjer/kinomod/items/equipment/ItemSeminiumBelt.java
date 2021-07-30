@@ -5,8 +5,8 @@ import java.util.List;
 import javax.annotation.Nullable;
 
 import fr.kinjer.kinomod.items.base.ItemKinoBelt;
-import fr.kinjer.kinomod.utils.KeyBoard;
-import fr.kinjer.kinomod.utils.Localizer;
+import fr.kinjer.kinomod.utils.UtilsKeyBoard;
+import fr.kinjer.kinomod.utils.UtilsLocalizer;
 import fr.kinjer.kinomod.world.WorldEvents;
 import net.minecraft.block.BlockLiquid;
 import net.minecraft.block.material.Material;
@@ -40,12 +40,12 @@ public class ItemSeminiumBelt extends ItemKinoBelt {
 	@SideOnly(Side.CLIENT)
 	public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> l, ITooltipFlag flagIn) {
 
-		if (!KeyBoard.isShiftKeyDown()) {
-			l.add(Localizer.shiftDetails());
+		if (!UtilsKeyBoard.isShiftKeyDown()) {
+			l.add(UtilsLocalizer.shiftDetails());
 			return;
 		}
 
-		l.add("* " + Localizer.localize("kinomod.seminium_belt.toolip"));
+		l.add("* " + UtilsLocalizer.localize("kinomod.seminium_belt.toolip"));
 
 	}
 }

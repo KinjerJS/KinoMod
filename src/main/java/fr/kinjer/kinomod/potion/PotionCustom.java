@@ -11,18 +11,18 @@ import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class CustomPotion extends Potion {
+public class PotionCustom extends Potion {
 	
     private int statusIconIndex = -1;
 	
-	public CustomPotion(String name, boolean isBadPotion, int colour, int iconIndexX, int iconIndexY) {
+	public PotionCustom(String name, boolean isBadPotion, int colour, int iconIndexX, int iconIndexY) {
 		super(isBadPotion, colour);
 		this.setPotionName("effect." + name);
 		setIconIndex(iconIndexX, iconIndexY);
 		setRegistryName(new ResourceLocation(KinoMod.MODID + ":" + name));
 	}
 	
-	public CustomPotion(String name, boolean isBadPotion, int colour) {
+	public PotionCustom(String name, boolean isBadPotion, int colour) {
 		super(isBadPotion, colour);
 		this.setPotionName("effect." + name);
 		setRegistryName(new ResourceLocation(KinoMod.MODID + ":" + name));

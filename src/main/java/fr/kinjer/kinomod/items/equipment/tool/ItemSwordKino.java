@@ -13,12 +13,12 @@ import com.google.common.collect.Multimap;
 import fr.kinjer.kinomod.KinoMod;
 import fr.kinjer.kinomod.entity.EntityGhastBossD;
 import fr.kinjer.kinomod.init.InitItems;
-import fr.kinjer.kinomod.proxy.ClientProxy;
-import fr.kinjer.kinomod.utils.KeyBoard;
-import fr.kinjer.kinomod.utils.Localizer;
-import fr.kinjer.kinomod.utils.WorldUtil;
-import fr.kinjer.kinomod.utils.IMultiModeItem;
-import fr.kinjer.kinomod.utils.ItemsUtils;
+import fr.kinjer.kinomod.utils.UtilsKeyBoard;
+import fr.kinjer.kinomod.utils.UtilsLocalizer;
+import fr.kinjer.kinomod.utils.UtilsIMultiMode;
+import fr.kinjer.kinomod.utils.UtilsWorld;
+import fr.kinjer.kinomod.utils.UtilsItems;
+import fr.kinjer.kinomod.proxy.ProxyClient;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -61,7 +61,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class ItemSwordKino extends ItemTool implements IMultiModeItem {
+public class ItemSwordKino extends ItemTool implements UtilsIMultiMode {
 	
     private final IRegistry<ResourceLocation, IItemPropertyGetter> properties = new RegistrySimple<ResourceLocation, IItemPropertyGetter>();
 	private double attackBismuth;
@@ -130,7 +130,7 @@ public class ItemSwordKino extends ItemTool implements IMultiModeItem {
 
 		ItemStack stack = player.getHeldItem(hand);
 		if (!world.isRemote) {
-			RayTraceResult pos = WorldUtil.getNearestPositionWithAir(world, player, 25);
+			RayTraceResult pos = UtilsWorld.getNearestPositionWithAir(world, player, 25);
 			if (pos != null && (pos.typeOfHit == RayTraceResult.Type.BLOCK || player.rotationPitch >= -5)) {
 				int side = pos.sideHit.ordinal();
 				if (side != -1) {
@@ -157,13 +157,13 @@ public class ItemSwordKino extends ItemTool implements IMultiModeItem {
 	@Override
 	public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
 
-		if (Localizer.displayShiftForDetail && !KeyBoard.isShiftKeyDown()) {
-			tooltip.add(Localizer.shiftForDetails());
+		if (UtilsLocalizer.displayShiftForDetail && !UtilsKeyBoard.isShiftKeyDown()) {
+			tooltip.add(UtilsLocalizer.shiftForDetails());
 		}
-		if (!KeyBoard.isShiftKeyDown()) {
+		if (!UtilsKeyBoard.isShiftKeyDown()) {
 			return;
 		}
-		tooltip.add(Localizer.getInfoText("info.sword.a.") + getMode(stack));
+		tooltip.add(UtilsLocalizer.getInfoText("info.sword.a.") + getMode(stack));
 	}
 	
 	@Override
@@ -174,7 +174,7 @@ public class ItemSwordKino extends ItemTool implements IMultiModeItem {
 	@Override
 	public void onModeChange(EntityPlayer player, ItemStack stack) {
 		player.world.playSound(null, player.getPosition(), SoundEvents.BLOCK_LEVER_CLICK, SoundCategory.PLAYERS, 0.4F, (isActive(stack) ? 0.7F : 0.5F) + 0.1F * getMode(stack));
-		WorldUtil.sendIndexedChatMessageToPlayer(player, new TextComponentTranslation("info.changemode." + getMode(stack)));
+		UtilsWorld.sendIndexedChatMessageToPlayer(player, new TextComponentTranslation("info.changemode." + getMode(stack)));
 		
 	}
 	

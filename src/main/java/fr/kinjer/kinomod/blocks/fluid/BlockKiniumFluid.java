@@ -2,7 +2,7 @@ package fr.kinjer.kinomod.blocks.fluid;
 
 import fr.kinjer.kinomod.KinoMod;
 import fr.kinjer.kinomod.init.InitBlocks;
-import fr.kinjer.kinomod.utils.MaterialsMod;
+import fr.kinjer.kinomod.utils.UtilsMaterials;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
