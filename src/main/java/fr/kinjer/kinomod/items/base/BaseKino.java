@@ -8,11 +8,11 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 
-public class ItemKino extends Item{
+public class BaseKino extends Item{
 	
 	private String NAME;
 	
-	public ItemKino(String name) {
+	public BaseKino(String name) {
 		this.NAME = name;
 		InitItems.setItemName(this, name);
 		setCreativeTab(KinoMod.tabKino);

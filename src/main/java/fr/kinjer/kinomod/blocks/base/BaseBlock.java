@@ -15,9 +15,9 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class BlockKino extends Block{
+public class BaseBlock extends Block{
 	
-	public BlockKino(String name, Material material) {
+	public BaseBlock(String name, Material material) {
 		super(material);
 		setCreativeTab(KinoMod.tabKino);
 		InitBlocks.setBlockName(this, name);

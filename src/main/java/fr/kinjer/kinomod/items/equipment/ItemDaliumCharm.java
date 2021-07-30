@@ -11,7 +11,7 @@ import baubles.api.cap.IBaublesItemHandler;
 import baubles.common.Baubles;
 import baubles.common.items.ItemRing;
 import fr.kinjer.kinomod.KinoMod;
-import fr.kinjer.kinomod.items.base.ItemKinoCharm;
+import fr.kinjer.kinomod.items.base.BaseKinoCharm;
 import fr.kinjer.kinomod.utils.UtilsKeyBoard;
 import fr.kinjer.kinomod.utils.UtilsLocalizer;
 import net.minecraft.client.util.ITooltipFlag;
@@ -35,7 +35,7 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class ItemDaliumCharm extends ItemKinoCharm {
+public class ItemDaliumCharm extends BaseKinoCharm {
 	public ItemDaliumCharm() {
 		super("dalium_charm");
 	}

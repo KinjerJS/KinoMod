@@ -4,7 +4,7 @@ import java.util.List;
 
 import javax.annotation.Nullable;
 
-import fr.kinjer.kinomod.items.base.ItemKinoBelt;
+import fr.kinjer.kinomod.items.base.BaseKinoBelt;
 import fr.kinjer.kinomod.utils.UtilsKeyBoard;
 import fr.kinjer.kinomod.utils.UtilsLocalizer;
 import fr.kinjer.kinomod.world.WorldEvents;
@@ -25,7 +25,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class ItemSeminiumBelt extends ItemKinoBelt {
+public class ItemSeminiumBelt extends BaseKinoBelt {
 
 	public ItemSeminiumBelt() {
 		super("seminium_belt");

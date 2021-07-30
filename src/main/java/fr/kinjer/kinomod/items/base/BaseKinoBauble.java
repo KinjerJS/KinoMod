@@ -44,7 +44,7 @@ import java.util.List;
 import java.util.UUID;
 
 @Mod.EventBusSubscriber(modid = KinoMod.MODID)
-public class ItemKinoBauble extends Item implements IBauble {
+public class BaseKinoBauble extends Item implements IBauble {
 	@GameRegistry.ObjectHolder(Baubles.MODID + ":ring")
 	public static final Item RING = null;
 
@@ -52,7 +52,7 @@ public class ItemKinoBauble extends Item implements IBauble {
 	private static final String TAG_BAUBLE_UUID_MOST = "baubleUUIDMost";
 	private static final String TAG_BAUBLE_UUID_LEAST = "baubleUUIDLeast";
 
-	public ItemKinoBauble(String name) {
+	public BaseKinoBauble(String name) {
 		super();
 		this.setMaxStackSize(1);
 		this.setHasSubtypes(true);
@@ -206,7 +206,7 @@ public class ItemKinoBauble extends Item implements IBauble {
 			for(int i = 0; i < inv.getSlots(); i++) {
 				ItemStack stack = inv.getStackInSlot(i);
 				if (!stack.isEmpty() && stack.getItem().getRegistryName().getResourcePath().equals(KinoMod.MODID)) {
-					((ItemKinoBauble) stack.getItem()).onUnequipped(stack, evt.getEntityLiving());
+					((BaseKinoBauble) stack.getItem()).onUnequipped(stack, evt.getEntityLiving());
 				}
 			}
 		}

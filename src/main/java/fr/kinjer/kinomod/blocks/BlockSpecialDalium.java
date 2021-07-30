@@ -1,11 +1,11 @@
 package fr.kinjer.kinomod.blocks;
 
 import fr.kinjer.kinomod.KinoMod;
-import fr.kinjer.kinomod.blocks.base.BlockKino;
+import fr.kinjer.kinomod.blocks.base.BaseBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 
-public class BlockSpecialDalium extends BlockKino {
+public class BlockSpecialDalium extends BaseBlock {
 	
 	public static final String NAME = "special_dalium";
 	

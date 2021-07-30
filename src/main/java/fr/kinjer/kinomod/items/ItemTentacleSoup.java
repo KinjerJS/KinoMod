@@ -6,7 +6,7 @@ import java.util.UUID;
 import javax.annotation.Nonnull;
 
 import fr.kinjer.kinomod.KinoMod;
-import fr.kinjer.kinomod.items.base.ItemKino;
+import fr.kinjer.kinomod.items.base.BaseKino;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -28,7 +28,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 
-public class ItemTentacleSoup extends ItemKino {
+public class ItemTentacleSoup extends BaseKino {
 	
 	public static final String NAME = "tentacle_soup";
 

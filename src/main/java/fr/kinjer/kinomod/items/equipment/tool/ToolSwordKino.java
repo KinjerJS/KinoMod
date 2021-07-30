@@ -61,7 +61,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class ItemSwordKino extends ItemTool implements UtilsIMultiMode {
+public class ToolSwordKino extends ItemTool implements UtilsIMultiMode {
 	
     private final IRegistry<ResourceLocation, IItemPropertyGetter> properties = new RegistrySimple<ResourceLocation, IItemPropertyGetter>();
 	private double attackBismuth;
@@ -69,7 +69,7 @@ public class ItemSwordKino extends ItemTool implements UtilsIMultiMode {
 	
 	protected static final UUID ATTACK_BISMUTH_MODIFIER = UUID.fromString("CB3F55D3-645C-4F38-A497-9C13A33DB5CB");
 	
-	public ItemSwordKino(float attackDamageIn, float attackSpeedIn, float attackBismuthIn, Item.ToolMaterial materialIn, Set<Block> effectiveBlocksIn) {
+	public ToolSwordKino(float attackDamageIn, float attackSpeedIn, float attackBismuthIn, Item.ToolMaterial materialIn, Set<Block> effectiveBlocksIn) {
 		super(materialIn, effectiveBlocksIn);
         this.toolMaterial = materialIn;
         this.maxStackSize = 1;

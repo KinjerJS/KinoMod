@@ -3,13 +3,13 @@ package fr.kinjer.kinomod.blocks;
 import java.util.Random;
 
 import fr.kinjer.kinomod.KinoMod;
-import fr.kinjer.kinomod.blocks.base.BlockKino;
+import fr.kinjer.kinomod.blocks.base.BaseBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.Item;
 
-public class BlockKiniumOre extends BlockKino {
+public class BlockKiniumOre extends BaseBlock {
 	
 	public String NAME;
 	

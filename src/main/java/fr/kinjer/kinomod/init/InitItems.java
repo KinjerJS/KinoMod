@@ -4,21 +4,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 import fr.kinjer.kinomod.KinoMod;
+import fr.kinjer.kinomod.items.*;
 import fr.kinjer.kinomod.items.base.*;
 import fr.kinjer.kinomod.items.equipment.*;
 import fr.kinjer.kinomod.items.equipment.armor.*;
 import fr.kinjer.kinomod.items.equipment.tool.*;
-import fr.kinjer.kinomod.items.*;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item;
 import net.minecraft.item.Item.ToolMaterial;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemArmor.ArmorMaterial;
-import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemTool;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.client.model.ModelLoader;
@@ -37,13 +34,13 @@ public class InitItems {
 	public static List<ItemArmor> itemsarmor = new ArrayList<>();
 
 	// Armor
-	public static final ItemArmor helmet_item = new ItemArmorKino("helmet_item", armor_bismuth, 0,
+	public static final ItemArmor helmet_item = new ArmorBismuth("helmet_item", armor_bismuth, 0,
 			EntityEquipmentSlot.HEAD);
-	public static final ItemArmor chestplate_item = new ItemArmorKino("chestplate_item", armor_bismuth, 0,
+	public static final ItemArmor chestplate_item = new ArmorBismuth("chestplate_item", armor_bismuth, 0,
 			EntityEquipmentSlot.CHEST);
-	public static final ItemArmor leggings_item = new ItemArmorKino("leggings_item", armor_bismuth, 0,
+	public static final ItemArmor leggings_item = new ArmorBismuth("leggings_item", armor_bismuth, 0,
 			EntityEquipmentSlot.LEGS);
-	public static final ItemArmor boots_item = new ItemArmorKino("boots_item", armor_bismuth, 0,
+	public static final ItemArmor boots_item = new ArmorBismuth("boots_item", armor_bismuth, 0,
 			EntityEquipmentSlot.FEET);
 
 	public static final ToolMaterial bismuth_material = EnumHelper.addToolMaterial("bismuth_material", 3, -1, 3f, 1,
@@ -52,7 +49,7 @@ public class InitItems {
 	public static List<ItemTool> itemtool = new ArrayList<>();
 
 	// Tools
-	public static final ItemSwordKino bismuth_sword = new ItemSwordKino(0, 0, 0, bismuth_material, null);
+	public static final ToolSwordKino bismuth_sword = new ToolSwordKino(0, 0, 0, bismuth_material, null);
 
 	public static List<Item> items = new ArrayList<>();
 
@@ -74,11 +71,11 @@ public class InitItems {
 	public static final Item dalium_droplet = new ItemDaliumDroplet();
 
 	// ring
-	public static final Item kinium_ring = new ItemKinoRing("kinium_ring");
-	public static final Item balium_ring = new ItemKinoRing("balium_ring");
-	public static final Item seminium_ring = new ItemKinoRing("seminium_ring");
-	public static final Item dalium_ring = new ItemKinoRing("dalium_ring");
-	public static final Item bismuth_ring = new ItemKinoRing("bismuth_ring");
+	public static final Item kinium_ring = new BaseKinoRing("kinium_ring");
+	public static final Item balium_ring = new BaseKinoRing("balium_ring");
+	public static final Item seminium_ring = new BaseKinoRing("seminium_ring");
+	public static final Item dalium_ring = new BaseKinoRing("dalium_ring");
+	public static final Item bismuth_ring = new BaseKinoRing("bismuth_ring");
 
 	// charm
 	public static final Item dalium_charm = new ItemDaliumCharm();

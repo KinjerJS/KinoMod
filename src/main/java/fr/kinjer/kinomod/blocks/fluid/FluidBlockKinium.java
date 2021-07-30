@@ -15,9 +15,9 @@ import net.minecraft.world.World;
 import net.minecraftforge.fluids.BlockFluidClassic;
 import net.minecraftforge.fluids.Fluid;
 
-public class BlockKiniumFluid extends BlockFluidClassic {
+public class FluidBlockKinium extends BlockFluidClassic {
 	
-	public BlockKiniumFluid(String name, Fluid fluid) {
+	public FluidBlockKinium(String name, Fluid fluid) {
 		super(fluid, Material.LAVA);
 		InitBlocks.setBlockName(this, name);
 	}

@@ -1,9 +1,9 @@
 package fr.kinjer.kinomod.blocks;
 
-import fr.kinjer.kinomod.blocks.base.BlockKino;
+import fr.kinjer.kinomod.blocks.base.BaseBlock;
 import net.minecraft.block.material.Material;
 
-public class BlockGabbroPolished extends BlockKino {
+public class BlockGabbroPolished extends BaseBlock {
 	
 	public static final String NAME = "gabbro_polished";
 	

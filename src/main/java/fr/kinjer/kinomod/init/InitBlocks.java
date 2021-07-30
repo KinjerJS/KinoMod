@@ -12,7 +12,7 @@ import fr.kinjer.kinomod.blocks.BlockDaliumOre;
 import fr.kinjer.kinomod.blocks.BlockGabbro;
 import fr.kinjer.kinomod.blocks.BlockGabbroPolished;
 import fr.kinjer.kinomod.blocks.BlockKinium;
-import fr.kinjer.kinomod.blocks.fluid.BlockKiniumFluid;
+import fr.kinjer.kinomod.blocks.fluid.FluidBlockKinium;
 import fr.kinjer.kinomod.blocks.BlockKiniumOre;
 import fr.kinjer.kinomod.blocks.BlockMachineFrame;
 import fr.kinjer.kinomod.blocks.BlockSeminium;
@@ -52,10 +52,10 @@ public class InitBlocks {
 	public static final Block bismuth_block = new BlockBismuth();
 	
 	//Fluid
-	public static final Block kinium_molten = new BlockKiniumFluid("kinium_molten", InitFluids.KINIUM);
-	public static final Block balium_molten = new BlockKiniumFluid("balium_molten", InitFluids.BALIUM);
-	public static final Block seminium_molten = new BlockKiniumFluid("seminium_molten", InitFluids.SEMINIUM);
-	public static final Block dalium_molten = new BlockKiniumFluid("dalium_molten", InitFluids.DALIUM);
+	public static final Block kinium_molten = new FluidBlockKinium("kinium_molten", InitFluids.KINIUM);
+	public static final Block balium_molten = new FluidBlockKinium("balium_molten", InitFluids.BALIUM);
+	public static final Block seminium_molten = new FluidBlockKinium("seminium_molten", InitFluids.SEMINIUM);
+	public static final Block dalium_molten = new FluidBlockKinium("dalium_molten", InitFluids.DALIUM);
 	
 	//Blocks
 	public static final Block gabbro = new BlockGabbro();

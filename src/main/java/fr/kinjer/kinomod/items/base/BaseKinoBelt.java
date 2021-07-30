@@ -22,16 +22,17 @@ import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.NonNullList;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
-public class ItemKinoCharm extends Item implements IBauble {
+public class BaseKinoBelt extends Item implements IBauble {
 	@GameRegistry.ObjectHolder(Baubles.MODID + ":ring")
 	public static final Item RING = null;
 
-	public ItemKinoCharm(String name) {
+	public BaseKinoBelt(String name) {
 		super();
 		this.setMaxStackSize(1);
 		this.setHasSubtypes(true);
@@ -54,7 +55,7 @@ public class ItemKinoCharm extends Item implements IBauble {
 
 	@Override
 	public BaubleType getBaubleType(ItemStack itemstack) {
-		return BaubleType.CHARM;
+		return BaubleType.BELT;
 	}
 
 	@Override

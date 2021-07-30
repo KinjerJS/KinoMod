@@ -54,14 +54,14 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.items.IItemHandler;
 
-public class ItemArmorKino extends ItemArmor {
+public class ArmorBismuth extends ItemArmor {
 
 	public static final String DURABILITY = UtilsLocalizer.localize("§7" + "Durability" + " : ");
 	public static final String INFINITE = UtilsLocalizer.localize("§4" + "Infinite");
 
 	private static final List<String> damageNegations = new ArrayList<>();
 
-	public ItemArmorKino(String name, ArmorMaterial material, int renderIndex, EntityEquipmentSlot equipmentSlot) {
+	public ArmorBismuth(String name, ArmorMaterial material, int renderIndex, EntityEquipmentSlot equipmentSlot) {
 		super(material, renderIndex, equipmentSlot);
 		setCreativeTab(KinoMod.tabKino);
 		InitItems.setItemArmorName(this, name);	

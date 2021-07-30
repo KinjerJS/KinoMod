@@ -4,7 +4,7 @@ import java.util.List;
 
 import javax.annotation.Nullable;
 
-import fr.kinjer.kinomod.items.base.ItemKinoCharm;
+import fr.kinjer.kinomod.items.base.BaseKinoCharm;
 import fr.kinjer.kinomod.utils.UtilsKeyBoard;
 import fr.kinjer.kinomod.utils.UtilsLocalizer;
 import net.minecraft.client.util.ITooltipFlag;
@@ -15,7 +15,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class ItemBismuthCharm extends ItemKinoCharm {
+public class ItemBismuthCharm extends BaseKinoCharm {
 
 	public ItemBismuthCharm() {
 		super("bismuth_charm");
