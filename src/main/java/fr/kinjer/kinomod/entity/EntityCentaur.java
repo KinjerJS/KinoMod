@@ -8,8 +8,8 @@ import javax.annotation.Nullable;
 import com.google.common.base.Predicate;
 import com.google.common.base.Predicates;
 import fr.kinjer.kinomod.handler.ModSounds;
-import fr.kinjer.kinomod.init.ItemsMod;
-import fr.kinjer.kinomod.init.PotionInit;
+import fr.kinjer.kinomod.init.InitItems;
+import fr.kinjer.kinomod.init.InitPotion;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -362,7 +362,7 @@ public class EntityCentaur extends EntityMob {
 		if (flag) {
 			entityIn.motionY += 0.4000000059604645D;
 			this.applyEnchantments(this, entityIn);
-			((EntityLivingBase) entityIn).addPotionEffect(new PotionEffect(PotionInit.BLEEDING_EFFECT, 70));
+			((EntityLivingBase) entityIn).addPotionEffect(new PotionEffect(InitPotion.BLEEDING_EFFECT, 70));
 		}
 
 		return flag;
@@ -401,7 +401,7 @@ public class EntityCentaur extends EntityMob {
      */
     protected void dropFewItems(boolean wasRecentlyHit, int lootingModifier)
     {
-        EntityItem entityitem = this.dropItem(ItemsMod.sword_part, 1);
+        EntityItem entityitem = this.dropItem(InitItems.sword_part, 1);
 
         if (entityitem != null)
         {

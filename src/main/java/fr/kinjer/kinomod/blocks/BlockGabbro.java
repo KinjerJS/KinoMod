@@ -1,5 +1,6 @@
 package fr.kinjer.kinomod.blocks;
 
+import fr.kinjer.kinomod.blocks.base.BlockKino;
 import net.minecraft.block.material.Material;
 
 public class BlockGabbro extends BlockKino {

@@ -6,6 +6,7 @@ import java.util.UUID;
 import javax.annotation.Nonnull;
 
 import fr.kinjer.kinomod.KinoMod;
+import fr.kinjer.kinomod.items.base.ItemKino;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;

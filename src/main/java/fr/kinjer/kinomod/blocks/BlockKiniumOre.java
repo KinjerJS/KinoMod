@@ -3,8 +3,7 @@ package fr.kinjer.kinomod.blocks;
 import java.util.Random;
 
 import fr.kinjer.kinomod.KinoMod;
-import fr.kinjer.kinomod.init.BlocksMod;
-import fr.kinjer.kinomod.init.ItemsMod;
+import fr.kinjer.kinomod.blocks.base.BlockKino;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;

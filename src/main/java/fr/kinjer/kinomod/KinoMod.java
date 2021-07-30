@@ -4,8 +4,8 @@ import org.apache.logging.log4j.Logger;
 
 import fr.kinjer.kinomod.gen.WorldGen;
 import fr.kinjer.kinomod.handler.RenderGuiHandler;
-import fr.kinjer.kinomod.init.ItemsMod;
-import fr.kinjer.kinomod.init.RecipesMod;
+import fr.kinjer.kinomod.init.InitItems;
+import fr.kinjer.kinomod.init.InitRecipes;
 import fr.kinjer.kinomod.proxy.ClientProxy;
 import fr.kinjer.kinomod.proxy.CommonProxy;
 import net.minecraft.creativetab.CreativeTabs;
@@ -71,7 +71,7 @@ public class KinoMod {
 	public static final CreativeTabs tabKino = new CreativeTabs("tabKino") {
 		@SideOnly(Side.CLIENT)
 		public ItemStack getTabIconItem() {
-			return new ItemStack(ItemsMod.kinium);
+			return new ItemStack(InitItems.kinium);
 		}
 	};
 
@@ -85,7 +85,7 @@ public class KinoMod {
 	@EventHandler
 	public void init(FMLInitializationEvent e) {
 		proxy.init();
-		RecipesMod.init();
+		InitRecipes.init();
 	}
 
 	@EventHandler

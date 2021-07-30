@@ -1,8 +1,8 @@
 package fr.kinjer.kinomod.world;
 
 import fr.kinjer.kinomod.KinoMod;
-import fr.kinjer.kinomod.init.PotionInit;
-import fr.kinjer.kinomod.items.ItemBaliumCharm;
+import fr.kinjer.kinomod.init.InitPotion;
+import fr.kinjer.kinomod.items.equipment.ItemBaliumCharm;
 import net.minecraft.block.BlockLiquid;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -26,7 +26,7 @@ public class WorldEvents {
 	@SubscribeEvent
 	public static void bleedingActive(LivingUpdateEvent event) {
 
-		if (!event.getEntityLiving().isPotionActive(PotionInit.BLEEDING_EFFECT)) {
+		if (!event.getEntityLiving().isPotionActive(InitPotion.BLEEDING_EFFECT)) {
 			return;
 		} else {
 

@@ -1,7 +1,7 @@
 package fr.kinjer.kinomod.enchantment;
 
 import fr.kinjer.kinomod.KinoMod;
-import fr.kinjer.kinomod.init.EnchantmentInit;
+import fr.kinjer.kinomod.init.InitEnchantment;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnumEnchantmentType;
 import net.minecraft.inventory.EntityEquipmentSlot;
@@ -15,7 +15,7 @@ public class EnchantmentVigor extends Enchantment {
 		this.setName("vigor");
 		this.setRegistryName(new ResourceLocation(KinoMod.MODID + ":vigor"));
 
-		EnchantmentInit.ENCHANTMENT.add(this);
+		InitEnchantment.ENCHANTMENT.add(this);
 	}
 
 	@Override

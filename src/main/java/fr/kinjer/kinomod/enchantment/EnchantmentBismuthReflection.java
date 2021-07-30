@@ -3,7 +3,7 @@ package fr.kinjer.kinomod.enchantment;
 import java.util.Random;
 
 import fr.kinjer.kinomod.KinoMod;
-import fr.kinjer.kinomod.init.EnchantmentInit;
+import fr.kinjer.kinomod.init.InitEnchantment;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.enchantment.EnumEnchantmentType;
@@ -25,7 +25,7 @@ public class EnchantmentBismuthReflection extends Enchantment {
 		this.setName("bismuth_reflection");
 		this.setRegistryName(new ResourceLocation(KinoMod.MODID + ":bismuth_reflection"));
 
-		EnchantmentInit.ENCHANTMENT.add(this);
+		InitEnchantment.ENCHANTMENT.add(this);
 	}
 
 	@Override
@@ -50,7 +50,7 @@ public class EnchantmentBismuthReflection extends Enchantment {
 
 	@Override
 	public void onUserHurt(EntityLivingBase user, Entity attacker, int level) {
-		ItemStack itemstack = EnchantmentHelper.getEnchantedItem(EnchantmentInit.BISMUTH_REFLECTION, user);
+		ItemStack itemstack = EnchantmentHelper.getEnchantedItem(InitEnchantment.BISMUTH_REFLECTION, user);
 
 		if (attacker != null) {
 			attacker.attackEntityFrom(KinoMod.DamageSourceBismuth(user), (float) getDamage(level));

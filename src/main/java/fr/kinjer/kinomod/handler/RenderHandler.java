@@ -5,7 +5,7 @@ import fr.kinjer.kinomod.entity.EntityCentaur;
 import fr.kinjer.kinomod.entity.EntityGhastBossD;
 import fr.kinjer.kinomod.entity.render.RenderCentaur;
 import fr.kinjer.kinomod.entity.render.RenderGhastBossD;
-import fr.kinjer.kinomod.init.BlocksMod;
+import fr.kinjer.kinomod.init.InitBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.ItemMeshDefinition;
@@ -33,10 +33,10 @@ public class RenderHandler {
 	}
 	
 	public static void registerCustomMeshesAndStats() {
-		setCustomState(BlocksMod.kinium_molten, "kinium_molten");
-		setCustomState(BlocksMod.balium_molten, "balium_molten");
-		setCustomState(BlocksMod.seminium_molten, "seminium_molten");
-		setCustomState(BlocksMod.dalium_molten, "dalium_molten");
+		setCustomState(InitBlocks.kinium_molten, "kinium_molten");
+		setCustomState(InitBlocks.balium_molten, "balium_molten");
+		setCustomState(InitBlocks.seminium_molten, "seminium_molten");
+		setCustomState(InitBlocks.dalium_molten, "dalium_molten");
 		
 	}
 	

@@ -1,7 +1,7 @@
 package fr.kinjer.kinomod.blocks;
 
 import fr.kinjer.kinomod.KinoMod;
-import fr.kinjer.kinomod.init.BlocksMod;
+import fr.kinjer.kinomod.blocks.base.BlockKino;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 
@@ -16,7 +16,4 @@ public class BlockBismuth extends BlockKino {
 		setHarvestLevel("pickaxe", 3);
 		
 	}
-	
-	
-
 }

@@ -5,13 +5,7 @@ import java.util.Collection;
 import com.google.common.collect.Multimap;
 import com.google.common.collect.MultimapBuilder;
 
-import fr.kinjer.kinomod.init.BlocksMod;
-import fr.kinjer.kinomod.init.EnchantmentInit;
-import fr.kinjer.kinomod.init.EntityInit;
-import fr.kinjer.kinomod.init.FluidsMod;
-import fr.kinjer.kinomod.init.ItemBlocksMod;
-import fr.kinjer.kinomod.init.ItemsMod;
-import fr.kinjer.kinomod.init.PotionInit;
+import fr.kinjer.kinomod.init.*;
 import net.minecraft.block.Block;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.item.Item;
@@ -39,14 +33,14 @@ public class RegisteringHandler {
 	}
 
 	public RegisteringHandler() {
-		FluidsMod.registerFluids();
-		EntityInit.registerEntities();
-		PotionInit.registerPotions();
+		InitFluids.registerFluids();
+		InitEntity.registerEntities();
+		InitPotion.registerPotions();
 	}
 
 	@SubscribeEvent
 	public void registerBlocks(RegistryEvent.Register<Block> event) {
-		for (Block block : BlocksMod.blocks) {
+		for (Block block : InitBlocks.blocks) {
 			event.getRegistry().register(block);
 		}
 	}
@@ -54,22 +48,22 @@ public class RegisteringHandler {
 	@SubscribeEvent
 	public void registerEnchant(RegistryEvent.Register<Enchantment> event) {
 
-		event.getRegistry().registerAll(EnchantmentInit.ENCHANTMENT.toArray(new Enchantment[0]));
+		event.getRegistry().registerAll(InitEnchantment.ENCHANTMENT.toArray(new Enchantment[0]));
 
 	}
 
 	@SubscribeEvent
 	public void registerItems(RegistryEvent.Register<Item> event) {
-		for (Item item : ItemsMod.items) {
+		for (Item item : InitItems.items) {
 			event.getRegistry().register(item);
 		}
-		for (ItemBlock item : ItemBlocksMod.items) {
+		for (ItemBlock item : InitItemBlocks.items) {
 			event.getRegistry().register(item);
 		}
-		for (ItemArmor item : ItemsMod.itemsarmor) {
+		for (ItemArmor item : InitItems.itemsarmor) {
 			event.getRegistry().register(item);
 		}
-		for (ItemTool item : ItemsMod.itemtool) {
+		for (ItemTool item : InitItems.itemtool) {
 			event.getRegistry().register(item);
 		}
 	}

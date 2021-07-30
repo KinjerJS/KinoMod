@@ -1,7 +1,5 @@
 package fr.kinjer.kinomod.gui;
 
-import fr.kinjer.kinomod.init.PotionInit;
-import fr.kinjer.kinomod.items.ItemBaliumCharm;
 import fr.kinjer.kinomod.world.*;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.Minecraft;
@@ -30,7 +28,7 @@ public class GuiAirWater extends Gui {
 			int j1 = scaled.getScaledHeight() - 39;
 			int k2 = j1 - 10;
 			int i1 = scaled.getScaledWidth() / 2 + 91;
-			int i6 = /*player.getEntityData().getInteger(ItemDrowningCharm.NAME)*/150;
+			int i6 = /*player.getEntityData().getInteger(ItemBaliumCharm.NAME)*/150;
 			int k6 = MathHelper.ceil((double) (i6 - 2) * 10.0D / 300.0D);
 			int i7 = MathHelper.ceil((double) i6 * 10.0D / 300.0D) - k6;
 

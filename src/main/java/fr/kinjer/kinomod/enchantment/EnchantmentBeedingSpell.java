@@ -1,8 +1,8 @@
 package fr.kinjer.kinomod.enchantment;
 
 import fr.kinjer.kinomod.KinoMod;
-import fr.kinjer.kinomod.init.EnchantmentInit;
-import fr.kinjer.kinomod.init.PotionInit;
+import fr.kinjer.kinomod.init.InitEnchantment;
+import fr.kinjer.kinomod.init.InitPotion;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnumEnchantmentType;
 import net.minecraft.enchantment.Enchantment.Rarity;
@@ -20,7 +20,7 @@ public class EnchantmentBeedingSpell extends Enchantment {
 		this.setName("bleeding_spell");
 		this.setRegistryName(new ResourceLocation(KinoMod.MODID + ":bleeding_spell"));
 
-		EnchantmentInit.ENCHANTMENT.add(this);
+		InitEnchantment.ENCHANTMENT.add(this);
 	}
 
 	@Override
@@ -41,7 +41,7 @@ public class EnchantmentBeedingSpell extends Enchantment {
 	@Override
 	public void onEntityDamaged(EntityLivingBase user, Entity target, int level) {
 
-		((EntityLivingBase) target).addPotionEffect(new PotionEffect(PotionInit.BLEEDING_EFFECT, 20));
+		((EntityLivingBase) target).addPotionEffect(new PotionEffect(InitPotion.BLEEDING_EFFECT, 20));
 
 	}
 }
