@@ -9,7 +9,7 @@ import net.minecraft.init.SoundEvents;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fluids.FluidRegistry;
 
-public class ProxyCommon {
+public class CommonProxy {
 	
 	public static final String PACKAGE = "fr.kinjer.kinomod.proxy.CommonProxy";
 	

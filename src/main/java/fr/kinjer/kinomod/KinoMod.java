@@ -6,8 +6,8 @@ import fr.kinjer.kinomod.gen.GenWorld;
 import fr.kinjer.kinomod.handler.HandlerRenderGui;
 import fr.kinjer.kinomod.init.InitItems;
 import fr.kinjer.kinomod.init.InitRecipes;
-import fr.kinjer.kinomod.proxy.ProxyClient;
-import fr.kinjer.kinomod.proxy.ProxyCommon;
+import fr.kinjer.kinomod.proxy.ClientProxy;
+import fr.kinjer.kinomod.proxy.CommonProxy;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -38,8 +38,8 @@ public class KinoMod {
 	@Instance(KinoMod.MODID)
 	public static KinoMod instance;
 
-	@SidedProxy(serverSide = ProxyCommon.PACKAGE, clientSide = ProxyClient.PACKAGE)
-	public static ProxyCommon proxy;
+	@SidedProxy(serverSide = CommonProxy.PACKAGE, clientSide = ClientProxy.PACKAGE)
+	public static CommonProxy proxy;
 
 	public static Logger logger;
 

@@ -18,7 +18,6 @@ import fr.kinjer.kinomod.utils.UtilsLocalizer;
 import fr.kinjer.kinomod.utils.UtilsIMultiMode;
 import fr.kinjer.kinomod.utils.UtilsWorld;
 import fr.kinjer.kinomod.utils.UtilsItems;
-import fr.kinjer.kinomod.proxy.ProxyClient;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;

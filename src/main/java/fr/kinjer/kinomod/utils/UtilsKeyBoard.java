@@ -3,7 +3,6 @@ package fr.kinjer.kinomod.utils;
 import org.lwjgl.input.Keyboard;
 
 import ca.weblite.objc.Proxy;
-import fr.kinjer.kinomod.proxy.ProxyClient;
 import net.minecraft.client.settings.KeyBinding;
 
 public class UtilsKeyBoard {

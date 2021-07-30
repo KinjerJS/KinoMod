@@ -13,10 +13,10 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.common.SidedProxy;
 
-public class ProxyClient extends ProxyCommon {
+public class ClientProxy extends CommonProxy {
 
 	@SidedProxy(clientSide = "fr.kinjer.kinomod.proxy.ClientProxy", serverSide = "fr.kinjer.kinomod.proxy.CommonProxy")
-	public static ProxyCommon proxy;
+	public static CommonProxy proxy;
 
 	public static final String PACKAGE = "fr.kinjer.kinomod.proxy.ClientProxy";
 
