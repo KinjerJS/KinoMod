@@ -2,23 +2,18 @@ package fr.kinjer.kinomod;
 
 import org.apache.logging.log4j.Logger;
 
-import baubles.common.Baubles;
-import fr.kinjer.kinomod.fluids.KiniumFluid;
 import fr.kinjer.kinomod.gen.WorldGen;
-import fr.kinjer.kinomod.handler.RegisteringHandler;
-import fr.kinjer.kinomod.handler.RenderHandler;
-import fr.kinjer.kinomod.init.FluidsMod;
+import fr.kinjer.kinomod.handler.RenderGuiHandler;
 import fr.kinjer.kinomod.init.ItemsMod;
 import fr.kinjer.kinomod.init.RecipesMod;
 import fr.kinjer.kinomod.proxy.ClientProxy;
 import fr.kinjer.kinomod.proxy.CommonProxy;
-import fr.kinjer.kinomod.utils.MaterialsMod;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EntityDamageSource;
-import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fml.common.Mod;
@@ -39,7 +34,7 @@ public class KinoMod {
 	public static final String NAME = "KinoMod";
 	public static final String VERSION = "1.0.0";
 	public static final String DEPENDENCIES = "required-after:baubles";
-
+	
 	@Instance(KinoMod.MODID)
 	public static KinoMod instance;
 
@@ -53,19 +48,25 @@ public class KinoMod {
 		FluidRegistry.enableUniversalBucket();
 	}
 
-	public static DamageSource Bismuth = new DamageSource("Bismuth").setDamageAllowedInCreativeMode()
-			.setDamageBypassesArmor().setDamageIsAbsolute();
-	
-	 public static class DamageSourceBismuth extends EntityDamageSource {
-	        public DamageSourceBismuth(Entity entity) {
-	            super("Bismuth", entity);
-	            DamageSourceBismuth.isBypassArmor();
-	        }
+	public static DamageSource Bismuth = new DamageSource("Bismuth").setDamageBypassesArmor().setDamageIsAbsolute()
+			.setMagicDamage();
 
-	        public static boolean isBypassArmor() {
-	            return true;
-	        }
-	    }
+	public static DamageSource DamageSourceBismuth(EntityLivingBase user) {
+
+		return (new EntityDamageSource("Bismuth", user)).setDamageBypassesArmor().setDamageIsAbsolute()
+				.setMagicDamage();
+	}
+
+	public static class DamageSourceBismuth extends EntityDamageSource {
+		public DamageSourceBismuth(Entity entity) {
+			super("Bismuth", entity);
+			DamageSourceBismuth.isBypassArmor();
+		}
+
+		public static boolean isBypassArmor() {
+			return true;
+		}
+	}
 
 	public static final CreativeTabs tabKino = new CreativeTabs("tabKino") {
 		@SideOnly(Side.CLIENT)
@@ -89,6 +90,7 @@ public class KinoMod {
 
 	@EventHandler
 	public void postInit(FMLPostInitializationEvent e) {
+		MinecraftForge.EVENT_BUS.register(new RenderGuiHandler());
 
 	}
 

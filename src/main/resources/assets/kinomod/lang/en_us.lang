@@ -13,14 +13,14 @@ item.kinomod.balium_droplet.name=Balium Droplet
 item.kinomod.seminium_droplet.name=Seminium Droplet
 item.kinomod.dalium_droplet.name=Dalium Droplet
 item.kinomod.bismuth.name=Bismuth
-item.kinomod.charm_of_hunger.0.name=Charm Of Hunger
-item.kinomod.charm_of_hunger_advanced.0.name=Charm Of Hunger (Advanced)
-item.kinomod.charm_of_fire.0.name=Charm Of Fire
-item.kinomod.charm_of_fire_advanced.0.name=Charm Of Fire (Advanced)
-item.kinomod.charm_of_poison.0.name=Charm Of Poison
-item.kinomod.charm_of_poison_advanced.0.name=Charm Of Poison (Advanced)
-item.kinomod.charm_of_drowning.0.name=Charm Of Drowning
-item.kinomod.charm_of_drowning_advanced.0.name=Charm Of Drowning (Advanced)
+item.kinomod.dalium_charm.0.name=Charm Of Hunger
+item.kinomod.dalium_charm_advanced.0.name=Charm Of Hunger (Advanced)
+item.kinomod.kinium_charm.0.name=Charm Of Fire
+item.kinomod.kinium_charm_advanced.0.name=Charm Of Fire (Advanced)
+item.kinomod.seminium_charm.0.name=Charm Of Poison
+item.kinomod.seminium_charm_advanced.0.name=Charm Of Poison (Advanced)
+item.kinomod.balium_charm.0.name=Charm Of Drowning
+item.kinomod.balium_charm_advanced.0.name=Charm Of Drowning (Advanced)
 item.kinomod.kinium_ring.0.name=Kinium Ring
 item.kinomod.balium_ring.0.name=Balium Ring
 item.kinomod.seminium_ring.0.name=Seminium Ring
@@ -36,6 +36,7 @@ item.kinomod.ghast_boss_s_tentacle.name=Seminium Ghast Tentacle
 item.kinomod.ghast_boss_k_tentacle.name=Kinium Ghast Tentacle
 item.kinomod.ghast_boss_b_tentacle.name=Balium Ghast Tentacle
 item.kinomod.tentacle_soup.name=Tentacle Soup
+item.kinomod.sword_part.name=Sword Fragment
 
 
 tile.kinomod.kinium_block.name=Kinium Block
@@ -64,6 +65,11 @@ tile.kinomod.special_seminium.name=Seminium Crux
 tile.kinomod.special_dalium.name=Dalium Crux
 
 
+enchantment.vigor=Vigor
+enchantment.bismuth_reflection=Bismuth Reflection
+enchantment.bleeding_spell=Bleeding Spell
+
+
 tile.kinomod.kinium_molten.name=Kinium Molten
 tile.kinomod.balium_molten.name=Balium Molten
 tile.kinomod.seminium_molten.name=Seminium Molten
@@ -77,12 +83,14 @@ kinomod.shiftDetails=Shift for Details
 kinomod.charmdrowning.damagewater=Drowning
 kinomod.charmfire.damagefire=Fire
 kinomod.charmpoison.damageremovewither=Wither Resistance
+kinomod.charmpoison.damageremovebleeding=Bleeding Resistance
 kinomod.charmhunger.damagehunger=Starvation
 
 entity.centaur.name=Centaur
 entity.ghast_boss_d.name=Dalium Ghast
 
-attribute.name.Bismuth=§7Bismuth Damage
+attribute.name.Bismuth=§cBismuth Damage
+death.attack.Bismuth=§4B§ci§6s§em§2u§at§bh §7disintegration has occurred
 
 info.holdShiftForDetails=Hold §e§oShift§r§7 for Details§r
 info.sword.a.0=Sword Mode : Attack Speed.
@@ -95,3 +103,9 @@ key.misc=Miscellaneous
 
 tooltip.durability=Durability
 tooltip.infinite=Infinite
+
+effect.bleeding_effect=§cBleeding
+potion.effect.bleeding=Potion of Bleeding
+splash_potion.effect.bleeding=Splash potion of Bleeding
+lingering_potion.effect.bleeding=Lingering potion of Bleeding
+tipped_arrow.effect.bleeding=Arrow of Bleeding

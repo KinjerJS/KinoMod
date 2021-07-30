@@ -12,7 +12,6 @@ import com.google.common.collect.Multimap;
 
 import fr.kinjer.kinomod.KinoMod;
 import fr.kinjer.kinomod.entity.EntityGhastBossD;
-import fr.kinjer.kinomod.init.CoreProps;
 import fr.kinjer.kinomod.init.ItemsMod;
 import fr.kinjer.kinomod.proxy.ClientProxy;
 import fr.kinjer.kinomod.utils.KeyBoard;

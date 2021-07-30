@@ -6,6 +6,8 @@ import java.util.List;
 import fr.kinjer.kinomod.KinoMod;
 import fr.kinjer.kinomod.items.*;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item;
@@ -26,7 +28,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class ItemsMod {
 
 	public static final ArmorMaterial armor_bismuth = EnumHelper.addArmorMaterial("armor_bismuth",
-			KinoMod.MODID + ":bismuth", -1, new int[]{5, 9, 10, 6}, 45, SoundEvents.ITEM_ARMOR_EQUIP_GOLD, 1.5F);
+			KinoMod.MODID + ":bismuth", -1, new int[] { 5, 9, 10, 6 }, 45, SoundEvents.ITEM_ARMOR_EQUIP_GOLD, 1.5F);
 
 	public static List<ItemArmor> itemsarmor = new ArrayList<>();
 
@@ -75,16 +77,29 @@ public class ItemsMod {
 	public static final Item bismuth_ring = new ItemKinoRing("bismuth_ring");
 
 	// charm
-	public static final Item charm_of_hunger = new ItemHungerCharm();
-	public static final Item charm_of_hunger_advanced = new ItemHungerAdvancedCharm();
-	public static final Item charm_of_fire = new ItemFireCharm();
-	public static final Item charm_of_fire_advanced = new ItemFireAdvancedCharm();
-	public static final Item charm_of_poison = new ItemPoisonCharm();
-	public static final Item charm_of_poison_advanced = new ItemPoisonAdvancedCharm();
-	public static final Item charm_of_drowning = new ItemDrowningCharm();
-	public static final Item charm_of_drowning_advanced = new ItemDrowningAdvancedCharm();
+	public static final Item dalium_charm = new ItemDaliumCharm();
+	public static final Item dalium_charm_advanced = new ItemDaliumAdvancedCharm();
+	public static final Item kinium_charm = new ItemKiniumCharm();
+	public static final Item kinium_charm_advanced = new ItemKiniumAdvancedCharm();
+	public static final Item seminium_charm = new ItemSeminiumCharm();
+	public static final Item seminium_charm_advanced = new ItemSeminiumAdvancedCharm();
+	public static final Item balium_charm = new ItemBaliumCharm();
+	public static final Item balium_charm_advanced = new ItemBaliumAdvancedCharm();
+	public static final Item bismuth_charm = new ItemBismuthCharm();
+	
+	// belt
+	public static final Item dalium_belt = new ItemDaliumBelt();
+	public static final Item dalium_belt_advanced = new ItemDaliumAdvancedBelt();
+	public static final Item kinium_belt = new ItemKiniumBelt();
+	public static final Item kinium_belt_advanced = new ItemKiniumAdvancedBelt();
+	public static final Item seminium_belt = new ItemSeminiumBelt();
+	public static final Item seminium_belt_advanced = new ItemSeminiumAdvancedBelt();
+	public static final Item balium_belt = new ItemBaliumBelt();
+	public static final Item balium_belt_advanced = new ItemBaliumAdvancedBelt();
+	public static final Item bismuth_belt = new ItemBismuthBelt();
 
 	// loot
+	public static final Item sword_part = new ItemSwordPart();
 	public static final Item ghast_boss_tentacle_d = new ItemGhastBossDTentacle();
 	public static final Item ghast_boss_tentacle_k = new ItemGhastBossKTentacle();
 	public static final Item ghast_boss_tentacle_s = new ItemGhastBossSTentacle();
@@ -94,11 +109,15 @@ public class ItemsMod {
 	public static void setItemName(Item item, String name) {
 		items.add(item.setRegistryName(KinoMod.MODID, name).setUnlocalizedName(KinoMod.MODID + "." + name));
 	}
+
 	public static void setItemToolName(ItemTool item, String name) {
-		itemtool.add((ItemTool) item.setRegistryName(KinoMod.MODID, name).setUnlocalizedName(KinoMod.MODID + "." + name));
+		itemtool.add(
+				(ItemTool) item.setRegistryName(KinoMod.MODID, name).setUnlocalizedName(KinoMod.MODID + "." + name));
 	}
+
 	public static void setItemArmorName(ItemArmor item, String name) {
-		itemsarmor.add((ItemArmor) item.setRegistryName(KinoMod.MODID, name).setUnlocalizedName(KinoMod.MODID + "." + name));
+		itemsarmor.add(
+				(ItemArmor) item.setRegistryName(KinoMod.MODID, name).setUnlocalizedName(KinoMod.MODID + "." + name));
 	}
 
 	@SideOnly(Side.CLIENT)
