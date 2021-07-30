@@ -1,6 +1,6 @@
 package fr.kinjer.kinomod.handler;
 
-import fr.kinjer.kinomod.proxy.ClientProxy;
+import fr.kinjer.kinomod.client.ClientProxy;
 import net.minecraft.client.settings.KeyBinding;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;

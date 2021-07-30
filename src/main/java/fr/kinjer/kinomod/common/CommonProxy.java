@@ -1,4 +1,4 @@
-package fr.kinjer.kinomod.proxy;
+package fr.kinjer.kinomod.common;
 
 import java.io.File;
 

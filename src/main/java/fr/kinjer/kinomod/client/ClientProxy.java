@@ -1,10 +1,11 @@
-package fr.kinjer.kinomod.proxy;
+package fr.kinjer.kinomod.client;
 
 import java.io.File;
 
 import org.lwjgl.input.Keyboard;
 
 import fr.kinjer.kinomod.handler.HandlerSounds;
+import fr.kinjer.kinomod.common.CommonProxy;
 import fr.kinjer.kinomod.handler.HandlerRender;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.settings.KeyBinding;
