@@ -1,23 +1,32 @@
 package fr.kinjer.kinomod.enchantment;
 
+import java.util.UUID;
+
+import com.google.common.collect.HashMultimap;
+import com.google.common.collect.Multimap;
+
 import fr.kinjer.kinomod.KinoMod;
 import fr.kinjer.kinomod.init.InitEnchantment;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnumEnchantmentType;
+import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.inventory.EntityEquipmentSlot;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
+import org.apache.commons.codec.binary.StringUtils;
 
 public class EnchantmentVigor extends Enchantment {
-
+	
 	public EnchantmentVigor(Rarity rarityIn, EnumEnchantmentType typeIn, EntityEquipmentSlot[] slots) {
 		super(Rarity.UNCOMMON, EnumEnchantmentType.ARMOR, new EntityEquipmentSlot[] { EntityEquipmentSlot.HEAD,
 				EntityEquipmentSlot.CHEST, EntityEquipmentSlot.LEGS, EntityEquipmentSlot.FEET });
 		this.setName("vigor");
 		this.setRegistryName(new ResourceLocation(KinoMod.MODID + ":vigor"));
-
+		
 		InitEnchantment.ENCHANTMENT.add(this);
 	}
-
+	
 	@Override
 	public int getMinEnchantability(int enchantmentLevel) {
 		return 20 * (enchantmentLevel - 1);

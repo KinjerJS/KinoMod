@@ -48,5 +48,4 @@ public class ItemBaliumAdvancedCharm extends BaseKinoCharm {
 		l.add("* " + UtilsLocalizer.localize(MobEffects.NIGHT_VISION.getName()));
 
 	}
-
 }

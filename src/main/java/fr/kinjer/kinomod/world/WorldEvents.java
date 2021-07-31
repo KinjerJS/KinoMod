@@ -1,5 +1,10 @@
 package fr.kinjer.kinomod.world;
 
+import java.util.UUID;
+
+import com.google.common.collect.HashMultimap;
+import com.google.common.collect.Multimap;
+
 import fr.kinjer.kinomod.KinoMod;
 import fr.kinjer.kinomod.init.InitPotion;
 import fr.kinjer.kinomod.items.equipment.ItemBaliumCharm;
@@ -8,8 +13,12 @@ import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.MobEffects;
+import net.minecraft.inventory.EntityEquipmentSlot;
+import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.EnumFacing;
@@ -22,7 +31,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 @EventBusSubscriber
 public class WorldEvents {
-
+	
 	@SubscribeEvent
 	public static void bleedingActive(LivingUpdateEvent event) {
 

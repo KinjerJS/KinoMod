@@ -238,4 +238,3 @@ public class BaseKinoBauble extends Item implements IBauble {
 		return verifyExistance(stack, tag) ? getNBT(stack).getString(tag) : defaultExpected;
 	}
 }
-
