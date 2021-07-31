@@ -5,7 +5,7 @@ import java.util.List;
 import javax.annotation.Nullable;
 
 import fr.kinjer.kinomod.init.InitPotion;
-import fr.kinjer.kinomod.items.base.BaseKinoCharm;
+import fr.kinjer.kinomod.items.base.BaseKinoBaubleCharm;
 import fr.kinjer.kinomod.utils.UtilsKeyBoard;
 import fr.kinjer.kinomod.utils.UtilsLocalizer;
 import net.minecraft.client.util.ITooltipFlag;
@@ -18,7 +18,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class ItemSeminiumAdvancedCharm extends BaseKinoCharm {
+public class ItemSeminiumAdvancedCharm extends BaseKinoBaubleCharm {
 	public ItemSeminiumAdvancedCharm() {
 		super("seminium_charm_advanced");
 	}

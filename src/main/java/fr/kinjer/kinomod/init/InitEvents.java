@@ -1,5 +1,6 @@
 package fr.kinjer.kinomod.init;
 
+import fr.kinjer.kinomod.items.equipment.ItemBismuthCharm;
 import fr.kinjer.kinomod.items.equipment.ItemDaliumBelt;
 import fr.kinjer.kinomod.items.equipment.armor.ArmorBismuth;
 import net.minecraftforge.event.entity.living.LivingAttackEvent;
@@ -12,5 +13,6 @@ public class InitEvents {
 	public void onDamage(LivingAttackEvent e) {
 		ArmorBismuth.onPlayerAttacked(e);
 		ItemDaliumBelt.onPlayerAttacked(e);
+		ItemBismuthCharm.onPlayerAttacked(e);
 	}
 }

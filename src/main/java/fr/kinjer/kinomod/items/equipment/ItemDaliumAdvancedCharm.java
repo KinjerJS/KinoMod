@@ -4,7 +4,7 @@ import java.util.List;
 
 import javax.annotation.Nullable;
 
-import fr.kinjer.kinomod.items.base.BaseKinoCharm;
+import fr.kinjer.kinomod.items.base.BaseKinoBaubleCharm;
 import fr.kinjer.kinomod.utils.UtilsKeyBoard;
 import fr.kinjer.kinomod.utils.UtilsLocalizer;
 import net.minecraft.client.util.ITooltipFlag;
@@ -17,7 +17,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class ItemDaliumAdvancedCharm extends BaseKinoCharm {
+public class ItemDaliumAdvancedCharm extends BaseKinoBaubleCharm {
 	public ItemDaliumAdvancedCharm() {
 		super("dalium_charm_advanced");
 	}
@@ -25,7 +25,7 @@ public class ItemDaliumAdvancedCharm extends BaseKinoCharm {
 	@Override
 	public void onWornTick(ItemStack itemstack, EntityLivingBase player) {
 		if (itemstack.getItemDamage() == 0 && player.ticksExisted % 39 == 0) {
-			player.addPotionEffect(new PotionEffect(MobEffects.REGENERATION, 40, 4, true, true));
+			player.addPotionEffect(new PotionEffect(MobEffects.REGENERATION, 40, 4, true, false));
 		}
 	}
 

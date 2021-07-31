@@ -57,6 +57,10 @@ public class EntityGhastBossD extends EntityFlying implements IMob {
 	private boolean ghastbossdKilled;
 	private boolean previouslyKilled;
 	public int deathTicks;
+	
+	private static final double MAX_HEALTH = 750.0D;
+	private static final double MOVEMENT_SPEED = 0.6D;
+	private static final double FOLLOW_RANGE = 100.0D;
 
 	private static final DataParameter<Boolean> ATTACKING = EntityDataManager.<Boolean>createKey(EntityGhastBossD.class,
 			DataSerializers.BOOLEAN);
@@ -114,11 +118,11 @@ public class EntityGhastBossD extends EntityFlying implements IMob {
 	public void onLivingUpdate() {
 		super.onLivingUpdate();
 
-		if (this.getHealth() <= 500) {
+		if (this.getHealth() <= 250) {
 			this.setPhase(2);
-		} else if (this.getHealth() <= 1000) {
+		} else if (this.getHealth() <= 500) {
 			this.setPhase(1);
-		} else if (this.getHealth() > 1000) {
+		} else if (this.getHealth() > 500) {
 			this.setPhase(0);
 		}
 
@@ -137,7 +141,7 @@ public class EntityGhastBossD extends EntityFlying implements IMob {
 
 		else if (source.getImmediateSource() instanceof EntityLargeFireball
 				&& source.getTrueSource() instanceof EntityPlayer) {
-			super.attackEntityFrom(source, 100.0F);
+			super.attackEntityFrom(source, 50.0F);
 			return true;
 		} else if (source.getImmediateSource() instanceof EntityPlayer
 				&& source.getTrueSource() instanceof EntityPlayer) {
@@ -151,7 +155,7 @@ public class EntityGhastBossD extends EntityFlying implements IMob {
 				return false;
 			}
 		}
-		return super.attackEntityFrom(source, 100.0F);
+		return super.attackEntityFrom(source, 50.0F);
 	}
 
 	private boolean isArmored() {
@@ -166,8 +170,8 @@ public class EntityGhastBossD extends EntityFlying implements IMob {
 
 	protected void applyEntityAttributes() {
 		super.applyEntityAttributes();
-		this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(2000.0D);
-		this.getEntityAttribute(SharedMonsterAttributes.FOLLOW_RANGE).setBaseValue(600.0D);
+		this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(MAX_HEALTH);
+		this.getEntityAttribute(SharedMonsterAttributes.FOLLOW_RANGE).setBaseValue(FOLLOW_RANGE);
 	}
 
 	public SoundCategory getSoundCategory() {

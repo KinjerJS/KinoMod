@@ -29,7 +29,7 @@ public class PacketDash implements IMessage {
 		public IMessage onMessage(PacketDash message, MessageContext ctx) {
 			EntityPlayerMP player = ctx.getServerHandler().player;
 			player.mcServer.addScheduledTask(() -> {
-				player.world.playSound(null, player.posX, player.posY, player.posZ, HandlerSounds.dash, SoundCategory.PLAYERS, 1F, 1F);
+				player.world.playSound(null, player.posX, player.posY, player.posZ, HandlerSounds.DASH, SoundCategory.PLAYERS, 1F, 1F);
 				IItemHandler baublesInv = BaublesApi.getBaublesHandler(player);
 				int slot = BaublesApi.isBaubleEquipped(player, InitItems.balium_belt);
 				if(slot < 0) {

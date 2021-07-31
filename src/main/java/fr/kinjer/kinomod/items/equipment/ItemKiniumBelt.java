@@ -10,19 +10,23 @@ import fr.kinjer.kinomod.utils.UtilsKeyBoard;
 import fr.kinjer.kinomod.utils.UtilsLocalizer;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.InventoryPlayer;
+import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
+import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class ItemKiniumBelt extends BaseKinoBelt {
 
-    private static Random rand = new Random();
+	private static Random rand = new Random();
 
-    public ItemKiniumBelt() {
-    	super("kinium_belt");
-    }
-    
+	public ItemKiniumBelt() {
+		super("kinium_belt");
+	}
+
 	@Override
 	public void onWornTick(ItemStack itemstack, EntityLivingBase player) {
 		if (itemstack.getItemDamage() == 0 && player.ticksExisted % 39 == 0) {
@@ -37,6 +41,6 @@ public class ItemKiniumBelt extends BaseKinoBelt {
 			return;
 		}
 
-        tooltip.add("* " + UtilsLocalizer.localize("kinomod.kinium_belt.toolip"));
+		tooltip.add("* " + UtilsLocalizer.localize("kinomod.kinium_belt.toolip"));
 	}
 }

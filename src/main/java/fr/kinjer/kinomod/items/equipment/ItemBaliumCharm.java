@@ -6,7 +6,7 @@ import java.util.Random;
 import javax.annotation.Nullable;
 
 import fr.kinjer.kinomod.gui.GuiAirWater;
-import fr.kinjer.kinomod.items.base.BaseKinoCharm;
+import fr.kinjer.kinomod.items.base.BaseKinoBaubleCharm;
 import fr.kinjer.kinomod.utils.UtilsKeyBoard;
 import fr.kinjer.kinomod.utils.UtilsLocalizer;
 import net.minecraft.block.material.Material;
@@ -22,7 +22,7 @@ import net.minecraftforge.client.GuiIngameForge;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class ItemBaliumCharm extends BaseKinoCharm {
+public class ItemBaliumCharm extends BaseKinoBaubleCharm {
 
 	protected Random rand;
 	public static final String NAME = "drown";
@@ -37,7 +37,7 @@ public class ItemBaliumCharm extends BaseKinoCharm {
 	public void onWornTick(ItemStack itemstack, EntityLivingBase player) {
 		if (itemstack.getItemDamage() == 0 && player.ticksExisted % 39 == 0) {
 			player.addPotionEffect(new PotionEffect(MobEffects.HASTE, 40, 1, false, false));
-			player.addPotionEffect(new PotionEffect(MobEffects.NIGHT_VISION, 13 * 20, 0, false, false));
+			player.addPotionEffect(new PotionEffect(MobEffects.NIGHT_VISION, 20 * 13, 0, false, false));
 		}
 
 		if (player.isInsideOfMaterial(Material.WATER)) {

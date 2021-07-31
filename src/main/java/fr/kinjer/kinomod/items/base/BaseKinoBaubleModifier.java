@@ -6,7 +6,7 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.item.ItemStack;
 
-public abstract class BaseKinoBaubleModifier extends BaseKinoBauble {
+public abstract class BaseKinoBaubleModifier extends BaseKinoBaubleBelt {
 	public BaseKinoBaubleModifier(String name) {
 		super(name);
 	}

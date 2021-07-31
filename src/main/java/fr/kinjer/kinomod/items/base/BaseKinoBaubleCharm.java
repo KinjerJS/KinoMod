@@ -44,9 +44,7 @@ import java.util.List;
 import java.util.UUID;
 
 @Mod.EventBusSubscriber(modid = KinoMod.MODID)
-public class BaseKinoBauble extends Item implements IBauble {
-	@GameRegistry.ObjectHolder(Baubles.MODID + ":ring")
-	public static final Item RING = null;
+public class BaseKinoBaubleCharm extends Item implements IBauble {
 	
 	private String NAME;
 
@@ -54,7 +52,7 @@ public class BaseKinoBauble extends Item implements IBauble {
 	private static final String TAG_BAUBLE_UUID_MOST = "baubleUUIDMost";
 	private static final String TAG_BAUBLE_UUID_LEAST = "baubleUUIDLeast";
 
-	public BaseKinoBauble(String name) {
+	public BaseKinoBaubleCharm(String name) {
 		super();
 		this.setMaxStackSize(1);
 		this.setHasSubtypes(true);
@@ -68,11 +66,6 @@ public class BaseKinoBauble extends Item implements IBauble {
 		return this.NAME;
 	}
 
-	@SubscribeEvent
-	public static void registerItems(RegistryEvent.Register<Item> event) {
-		event.getRegistry().register((new ItemRing()).setUnlocalizedName("Ring").setRegistryName("ring"));
-	}
-
 	@Override
 	public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> list) {
 		if (this.isInCreativeTab(tab)) {
@@ -82,7 +75,7 @@ public class BaseKinoBauble extends Item implements IBauble {
 
 	@Override
 	public BaubleType getBaubleType(ItemStack itemstack) {
-		return BaubleType.BELT;
+		return BaubleType.CHARM;
 	}
 
 	@Override
@@ -213,7 +206,7 @@ public class BaseKinoBauble extends Item implements IBauble {
 			for(int i = 0; i < inv.getSlots(); i++) {
 				ItemStack stack = inv.getStackInSlot(i);
 				if (!stack.isEmpty() && stack.getItem().getRegistryName().getResourcePath().equals(KinoMod.MODID)) {
-					((BaseKinoBauble) stack.getItem()).onUnequipped(stack, evt.getEntityLiving());
+					((BaseKinoBaubleCharm) stack.getItem()).onUnequipped(stack, evt.getEntityLiving());
 				}
 			}
 		}

@@ -1,0 +1,47 @@
+{
+    "pools": [
+        {
+            "name" : "CentaurSpecial",
+            "rolls": 1,
+            "entries": [
+                {
+                    "type": "item",
+                    "weight": 100,
+                    "name": "kinomod:sword_part",
+                    "functions": [
+                        {
+                            "function": "set_count",
+                            "count": 1
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name" : "CentaurMain",
+            "rolls": 1,
+            "entries": [
+                {
+                    "type": "item",
+                    "weight": 5,
+                    "name": "kinomod:bismuth",
+                    "functions": [
+                        {
+                            "function": "set_count",
+                            "count": {
+                                "min": 0,
+                                "max": 1
+                            },
+                            "conditions": [
+                                {
+                                    "condition": "random_chance",
+                                    "chance": 0.5
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

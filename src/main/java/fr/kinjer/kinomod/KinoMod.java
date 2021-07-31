@@ -4,6 +4,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import fr.kinjer.kinomod.gen.GenWorld;
+import fr.kinjer.kinomod.handler.HandlerRegistering;
 import fr.kinjer.kinomod.handler.HandlerRenderGui;
 import fr.kinjer.kinomod.init.InitItems;
 import fr.kinjer.kinomod.init.InitRecipes;
@@ -89,6 +90,7 @@ public class KinoMod {
 	public void init(FMLInitializationEvent e) {
 		proxy.init();
 		InitRecipes.init();
+		HandlerRegistering.initRegistries();
 	}
 
 	@EventHandler
@@ -96,5 +98,4 @@ public class KinoMod {
 		MinecraftForge.EVENT_BUS.register(new HandlerRenderGui());
 
 	}
-
 }

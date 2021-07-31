@@ -67,17 +67,8 @@ public class HandlerRegistering {
 			event.getRegistry().register(item);
 		}
 	}
-
-//	@SubscribeEvent
-	// public void registerSounds(RegistryEvent.Register<SoundEvent> event) {
-	// RegistrySounds.init();
-	// event.getRegistry().getRegistrySuperType();
-	// event.getRegistry();
-	// }
-
-	/*
-	 * private <T extends IForgeRegistryEntry<T>> void fillRegistry(Class<T>
-	 * registrySuperType, IForgeRegistry<T> forgeRegistry) { List<?> entries =
-	 * registry.getEntries(registrySuperType); if(entries != null) {
-	 * entries.forEach((e) -> forgeRegistry.register((T) e)); } }
-	 */}
+	
+	public static void initRegistries() {
+		HandlerSounds.registerSounds();
+	}
+}

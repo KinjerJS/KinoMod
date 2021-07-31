@@ -66,7 +66,7 @@ public class ToolSwordKino extends ItemTool implements UtilsIMultiMode {
 	private double attackBismuth;
     protected boolean bFull3D;
 	
-	protected static final UUID ATTACK_BISMUTH_MODIFIER = UUID.fromString("CB3F55D3-645C-4F38-A497-9C13A33DB5CB");
+	protected static final UUID ATTACK_BISMUTH_MODIFIER = UUID.randomUUID();
 	
 	public ToolSwordKino(float attackDamageIn, float attackSpeedIn, float attackBismuthIn, Item.ToolMaterial materialIn, Set<Block> effectiveBlocksIn) {
 		super(materialIn, effectiveBlocksIn);

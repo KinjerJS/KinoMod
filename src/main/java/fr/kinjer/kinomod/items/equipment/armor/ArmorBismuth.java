@@ -83,69 +83,7 @@ public class ArmorBismuth extends ItemArmor {
 	    damageNegations.add(DamageSource.FIREWORKS.damageType);
 	    
 	}
-/**
-	/**
-	 * Edit the speed of an entity.
-	 * 
-	 * @param entity
-	 * @param speedModifierUUID Unique UUID for modification
-	 * @param name              Unique name for easier debugging
-	 * @param modifier          The speed will be multiplied by this number
-	 
-	public static void changeSpeed(EntityPlayer player, UUID speedModifierUUID, String name, double modifier) {
-		AttributeModifier speedModifier = (new AttributeModifier(speedModifierUUID, name, 50 - 1, 5));
-		IAttributeInstance attributeinstance = player.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED);
-
-		if (attributeinstance.getModifier(speedModifierUUID) != null) {
-			attributeinstance.removeModifier(speedModifier);
-		}
-		attributeinstance.applyModifier(speedModifier);
-
-	}
-
-	/**
-	 * Cancel the FOV decrease caused by the decreasing speed due to player
-	 * penalties. Original FOV value given by the event is never used, we start from
-	 * scratch 1.0F value. Edited from AbstractClientPlayer.getFovModifier()
-	 * 
-	 * @param event
-	 
-	@SubscribeEvent
-	public void onFOVUpdate(FOVUpdateEvent event) {
-		EntityPlayer player = event.getEntity();
-		float modifier = 2.0f;
-
-		float f = 1.0F;
-
-		if (player.capabilities.isFlying) {
-			f *= 1.1F;
-		}
-
-		IAttributeInstance iattributeinstance = player.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED);
-		double oldAttributeValue = iattributeinstance.getAttributeValue() / modifier;
-		f = (float) ((double) f * ((oldAttributeValue / (double) player.capabilities.getWalkSpeed() + 1.0D) / 2.0D));
-
-		if (player.capabilities.getWalkSpeed() == 0.0F || Float.isNaN(f) || Float.isInfinite(f)) {
-			f = 1.0F;
-		}
-
-		if (player.isHandActive() && player.getActiveItemStack() != null
-				&& player.getActiveItemStack().getItem() == Items.BOW) {
-			int i = player.getItemInUseMaxCount();
-			float f1 = (float) i / 20.0F;
-
-			if (f1 > 1.0F) {
-				f1 = 1.0F;
-			} else {
-				f1 = f1 * f1;
-			}
-
-			f *= 1.0F - f1 * 0.15F;
-		}
-
-		event.setNewfov(f);
-	}
-**/
+	
 	@SideOnly(Side.CLIENT)
 	public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> l, ITooltipFlag flagIn) {
 		int damage = stack.getMaxDamage() - stack.getItemDamage();

@@ -5,7 +5,7 @@ import java.util.List;
 import javax.annotation.Nullable;
 
 import fr.kinjer.kinomod.init.InitPotion;
-import fr.kinjer.kinomod.items.base.BaseKinoCharm;
+import fr.kinjer.kinomod.items.base.BaseKinoBaubleCharm;
 import fr.kinjer.kinomod.utils.UtilsKeyBoard;
 import fr.kinjer.kinomod.utils.UtilsLocalizer;
 import net.minecraft.client.util.ITooltipFlag;
@@ -19,7 +19,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class ItemSeminiumCharm extends BaseKinoCharm {
+public class ItemSeminiumCharm extends BaseKinoBaubleCharm {
 	public ItemSeminiumCharm() {
 		super("seminium_charm");
 	}

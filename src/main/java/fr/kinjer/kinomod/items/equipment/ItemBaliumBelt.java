@@ -13,7 +13,7 @@ import fr.kinjer.kinomod.helper.HelperVector;
 import fr.kinjer.kinomod.helper.HelperItem;
 import fr.kinjer.kinomod.init.InitItems;
 import fr.kinjer.kinomod.items.base.BaseKino;
-import fr.kinjer.kinomod.items.base.BaseKinoBauble;
+import fr.kinjer.kinomod.items.base.BaseKinoBaubleBelt;
 import fr.kinjer.kinomod.items.base.BaseKinoBelt;
 import fr.kinjer.kinomod.network.PacketDash;
 import fr.kinjer.kinomod.utils.UtilsKeyBoard;
@@ -38,7 +38,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.items.IItemHandler;
 
 @Mod.EventBusSubscriber(value = Side.CLIENT, modid = KinoMod.MODID)
-public class ItemBaliumBelt extends BaseKinoBauble {
+public class ItemBaliumBelt extends BaseKinoBaubleBelt {
 
 	public static final String TAG_DODGE_COOLDOWN = "dodgeCooldown";
 	public static final int MAX_CD = 10;

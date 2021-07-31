@@ -101,6 +101,7 @@ kinomod.balium_belt.toolip=Dash Ability
 kinomod.dalium_belt.toolip_0=Lava Resistance
 kinomod.dalium_belt.toolip_1=Fire Resistance
 kinomod.kinium_belt.toolip=Add Enchantment Level
+kinomod.bismuth_charm.toolip=Negate Fall Damage
 
 entity.centaur.name=Centaur
 entity.ghast_boss_d.name=Dalium Ghast

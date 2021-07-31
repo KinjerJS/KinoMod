@@ -4,7 +4,7 @@ import java.util.List;
 
 import javax.annotation.Nullable;
 
-import fr.kinjer.kinomod.items.base.BaseKinoCharm;
+import fr.kinjer.kinomod.items.base.BaseKinoBaubleCharm;
 import fr.kinjer.kinomod.utils.UtilsKeyBoard;
 import fr.kinjer.kinomod.utils.UtilsLocalizer;
 import net.minecraft.client.util.ITooltipFlag;
@@ -17,7 +17,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class ItemBaliumAdvancedCharm extends BaseKinoCharm {
+public class ItemBaliumAdvancedCharm extends BaseKinoBaubleCharm {
 	public ItemBaliumAdvancedCharm() {
 		super("balium_charm_advanced");
 	}
@@ -27,7 +27,7 @@ public class ItemBaliumAdvancedCharm extends BaseKinoCharm {
 		if (itemstack.getItemDamage() == 0 && player.ticksExisted % 39 == 0) {
 			player.addPotionEffect(new PotionEffect(MobEffects.HASTE, 40, 3, true, true));
 			player.addPotionEffect(new PotionEffect(MobEffects.WATER_BREATHING, 40, 0, true, true));
-			player.addPotionEffect(new PotionEffect(MobEffects.NIGHT_VISION, 11 * 20, 0, true, true));
+			player.addPotionEffect(new PotionEffect(MobEffects.NIGHT_VISION, 20 * 13, 0, true, true));
 		}
 	}
 

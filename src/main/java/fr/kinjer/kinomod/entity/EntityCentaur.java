@@ -1,61 +1,39 @@
 package fr.kinjer.kinomod.entity;
 
-import java.util.Calendar;
-import java.util.List;
-
 import javax.annotation.Nullable;
 
 import com.google.common.base.Predicate;
-import com.google.common.base.Predicates;
+
+import fr.kinjer.kinomod.handler.HandlerLootTable;
+import fr.kinjer.kinomod.handler.HandlerSounds;
 import fr.kinjer.kinomod.init.InitItems;
 import fr.kinjer.kinomod.init.InitPotion;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.client.audio.MovingSound;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.EnumCreatureAttribute;
 import net.minecraft.entity.IEntityLivingData;
-import net.minecraft.entity.IRangedAttackMob;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAIAttackMelee;
-import net.minecraft.entity.ai.EntityAIAttackRanged;
-import net.minecraft.entity.ai.EntityAIBase;
-import net.minecraft.entity.ai.EntityAIBreakDoor;
 import net.minecraft.entity.ai.EntityAIHurtByTarget;
 import net.minecraft.entity.ai.EntityAILookIdle;
-import net.minecraft.entity.ai.EntityAIMoveThroughVillage;
 import net.minecraft.entity.ai.EntityAIMoveTowardsRestriction;
 import net.minecraft.entity.ai.EntityAIMoveTowardsTarget;
 import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
 import net.minecraft.entity.ai.EntityAISwimming;
 import net.minecraft.entity.ai.EntityAIWanderAvoidWater;
 import net.minecraft.entity.ai.EntityAIWatchClosest;
-import net.minecraft.entity.ai.EntityAIZombieAttack;
-import net.minecraft.entity.ai.attributes.AttributeModifier;
-import net.minecraft.entity.ai.attributes.IAttributeInstance;
 import net.minecraft.entity.boss.EntityWither;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.monster.AbstractSkeleton;
-import net.minecraft.entity.monster.EntityCreeper;
-import net.minecraft.entity.monster.EntityIronGolem;
 import net.minecraft.entity.monster.EntityMob;
-import net.minecraft.entity.monster.EntityPigZombie;
-import net.minecraft.entity.monster.EntityZombie;
-import net.minecraft.entity.monster.EntityZombieVillager;
-import net.minecraft.entity.passive.EntityChicken;
-import net.minecraft.entity.passive.EntityVillager;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.entity.projectile.EntityArrow;
-import net.minecraft.entity.projectile.EntityWitherSkull;
 import net.minecraft.init.Blocks;
-import net.minecraft.init.Items;
-import net.minecraft.init.MobEffects;
-import net.minecraft.init.SoundEvents;
-import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.datasync.DataParameter;
@@ -64,10 +42,8 @@ import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.pathfinding.PathNavigateGround;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
-import net.minecraft.util.EntitySelectors;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.datafix.DataFixer;
 import net.minecraft.util.math.BlockPos;
@@ -75,44 +51,38 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.BossInfo;
 import net.minecraft.world.BossInfoServer;
 import net.minecraft.world.DifficultyInstance;
-import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
-import net.minecraft.world.storage.loot.LootTableList;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import scala.reflect.internal.Trees.This;
 
 public class EntityCentaur extends EntityMob {
 
-    private static final DataParameter<Boolean> SWINGING_ARMS = EntityDataManager.<Boolean>createKey(AbstractSkeleton.class, DataSerializers.BOOLEAN);
+	private static final DataParameter<Boolean> SWINGING_ARMS = EntityDataManager
+			.<Boolean>createKey(AbstractSkeleton.class, DataSerializers.BOOLEAN);
 	private final BossInfoServer bossInfo = (BossInfoServer) (new BossInfoServer(this.getDisplayName(),
 			BossInfo.Color.RED, BossInfo.Overlay.PROGRESS)).setDarkenSky(true);
-    private final EntityAIAttackMelee aiAttackOnCollide = new EntityAIAttackMelee(this, 0.6D, false);
-    private final float[] xRotationHeads = new float[2];
+	private final EntityAIAttackMelee aiAttackOnCollide = new EntityAIAttackMelee(this, MOVEMENT_SPEED, false);
+	private final float[] xRotationHeads = new float[2];
 	private final float[] yRotationHeads = new float[2];
 	private final int[] nextHeadUpdate = new int[2];
 	private final int[] idleHeadUpdates = new int[2];
 	private int attackTimer;
 	private int blockBreakCounter;
-	
-	// Boss Health:
-    public float damageTakenThisSec = 0;
-    public float healthLastTick = -1;
-    public long updateTick = 0;
-    
-    private static final double MAX_HEALTH = 1000.0D;
+
+	private static final double MAX_HEALTH = 500.0D;
 	private static final double MOVEMENT_SPEED = 0.6D;
-	private static final double ATTACK_DAMAGE = 30.0D;
+	private static final double ATTACK_DAMAGE = 8.0D;
 	private static final double ARMOR = 25.0D;
-	
-	private static final Predicate<Entity> NOT_UNDEAD = new Predicate<Entity>()
-    {
-        public boolean apply(@Nullable Entity p_apply_1_)
-        {
-            return p_apply_1_ instanceof EntityLivingBase && ((EntityLivingBase)p_apply_1_).getCreatureAttribute() != EnumCreatureAttribute.UNDEAD && ((EntityLivingBase)p_apply_1_).attackable();
-        }
-    };
-	
+	private static final double FOLLOW_RANGE = 50.0D;
+
+	private static final Predicate<Entity> NOT_UNDEAD = new Predicate<Entity>() {
+		public boolean apply(@Nullable Entity p_apply_1_) {
+			return p_apply_1_ instanceof EntityLivingBase
+					&& ((EntityLivingBase) p_apply_1_).getCreatureAttribute() != EnumCreatureAttribute.UNDEAD
+					&& ((EntityLivingBase) p_apply_1_).attackable();
+		}
+	};
+
 	public EntityCentaur(World worldIn) {
 		super(worldIn);
 		this.setHealth(getHealth());
@@ -124,16 +94,17 @@ public class EntityCentaur extends EntityMob {
 	}
 
 	protected void initEntityAI() {
-		this.tasks.addTask(1, new EntityAIAttackMelee(this, 0.6D, true));
-		this.tasks.addTask(2, new EntityAIMoveTowardsTarget(this, 0.6D, 32.0F));
-		this.tasks.addTask(3, new EntityAIMoveTowardsRestriction(this, 0.6D));
+		this.tasks.addTask(1, new EntityAIAttackMelee(this, MOVEMENT_SPEED, true));
+		this.tasks.addTask(2, new EntityAIMoveTowardsTarget(this, MOVEMENT_SPEED, (float) FOLLOW_RANGE));
+		this.tasks.addTask(3, new EntityAIMoveTowardsRestriction(this, MOVEMENT_SPEED));
 		this.tasks.addTask(5, new EntityAISwimming(this));
 		this.tasks.addTask(6, new EntityAIWanderAvoidWater(this, 1.0D));
-		this.tasks.addTask(7, new EntityAIWatchClosest(this, EntityPlayer.class, 80.0F));
+		this.tasks.addTask(7, new EntityAIWatchClosest(this, EntityPlayer.class, (float) FOLLOW_RANGE));
 		this.tasks.addTask(8, new EntityAILookIdle(this));
 		this.targetTasks.addTask(1, new EntityAINearestAttackableTarget(this, EntityPlayer.class, true));
 		this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, false, new Class[0]));
-        this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityLiving.class, 0, false, false, NOT_UNDEAD));
+		this.targetTasks.addTask(2,
+				new EntityAINearestAttackableTarget(this, EntityLiving.class, 0, false, false, NOT_UNDEAD));
 	}
 
 	protected void applyEntityAttributes() {
@@ -148,15 +119,32 @@ public class EntityCentaur extends EntityMob {
 		EntityLiving.registerFixesMob(fixer, EntityCentaur.class);
 	}
 
-	protected void entityInit() {
-		super.entityInit();
-		this.getDataManager().register(SWINGING_ARMS, Boolean.valueOf(false));
+	public void writeEntityToNBT(NBTTagCompound compound) {
+		super.writeEntityToNBT(compound);
 	}
-	
+
+	public void readEntityFromNBT(NBTTagCompound compound) {
+		super.readEntityFromNBT(compound);
+
+		if (this.hasCustomName()) {
+			this.bossInfo.setName(this.getDisplayName());
+		}
+	}
+
+	public void setCustomNameTag(String name) {
+		super.setCustomNameTag(name);
+		this.bossInfo.setName(this.getDisplayName());
+	}
+
+	@Override
+	protected ResourceLocation getLootTable() {
+		return HandlerLootTable.CENTAUR;
+	}
+
 	public boolean isImmuneToExplosions() {
 		return true;
 	}
-	
+
 	protected void updateAITasks() {
 		if (this.ticksExisted % 10 == 0) {
 			this.heal(10.0F);
@@ -176,44 +164,6 @@ public class EntityCentaur extends EntityMob {
 			this.bossInfo.setPercent(this.getHealth() / this.getMaxHealth());
 		}
 	}
-	
-	private double getHeadX(int p_82214_1_) {
-		if (p_82214_1_ <= 0) {
-			return this.posX;
-		} else {
-			float f = (this.renderYawOffset + (float) (180 * (p_82214_1_ - 1))) * 0.017453292F;
-			float f1 = MathHelper.cos(f);
-			return this.posX + (double) f1 * 1.3D;
-		}
-	}
-
-	private double getHeadY(int p_82208_1_) {
-		return p_82208_1_ <= 0 ? this.posY + 3.0D : this.posY + 2.2D;
-	}
-
-	private double getHeadZ(int p_82213_1_) {
-		if (p_82213_1_ <= 0) {
-			return this.posZ;
-		} else {
-			float f = (this.renderYawOffset + (float) (180 * (p_82213_1_ - 1))) * 0.017453292F;
-			float f1 = MathHelper.sin(f);
-			return this.posZ + (double) f1 * 1.3D;
-		}
-	}
-
-	private float rotlerp(float p_82204_1_, float p_82204_2_, float p_82204_3_) {
-		float f = MathHelper.wrapDegrees(p_82204_2_ - p_82204_1_);
-
-		if (f > p_82204_3_) {
-			f = p_82204_3_;
-		}
-
-		if (f < -p_82204_3_) {
-			f = -p_82204_3_;
-		}
-
-		return p_82204_1_ + f;
-	}
 
 	public void setArmsRaised(boolean armsRaised) {
 		this.getDataManager().set(SWINGING_ARMS, Boolean.valueOf(armsRaised));
@@ -224,36 +174,17 @@ public class EntityCentaur extends EntityMob {
 		return ((Boolean) this.getDataManager().get(SWINGING_ARMS)).booleanValue();
 	}
 	
-	/**
-     * sets this entity's combat AI.
-     */
-    public void setCombatTask()
-    {
-        if (this.world != null && !this.world.isRemote)
-        {
-            this.tasks.removeTask(this.aiAttackOnCollide);
-            ItemStack itemstack = this.getHeldItemMainhand();
-            this.tasks.addTask(4, this.aiAttackOnCollide);
-            
-        }
-    }
+	public void setCombatTask() {
+		if (this.world != null && !this.world.isRemote) {
+			this.tasks.removeTask(this.aiAttackOnCollide);
+			ItemStack itemstack = this.getHeldItemMainhand();
+			this.tasks.addTask(4, this.aiAttackOnCollide);
 
-	/**
-	 * Called frequently so the entity can update its state every tick as required.
-	 * For example, zombies and skeletons use this to react to sunlight and start to
-	 * burn.
-	 */
+		}
+	}
+
 	public void onLivingUpdate() {
-		
-		if (this.healthLastTick < 0)
-            this.healthLastTick = this.getHealth();
-        if (this.healthLastTick - this.getHealth() > 50)
-            this.setHealth(this.healthLastTick);
-        this.healthLastTick = this.getHealth();
-        if (!this.getEntityWorld().isRemote && this.updateTick % 20 == 0) {
-            this.damageTakenThisSec = 0;
-        }
-		
+
 		super.onLivingUpdate();
 
 		if (this.attackTimer > 0) {
@@ -320,13 +251,10 @@ public class EntityCentaur extends EntityMob {
 		this.bossInfo.setPercent(this.getHealth() / this.getMaxHealth());
 	}
 
-	/**
-	 * Called when the entity is attacked.
-	 */
 	public boolean attackEntityFrom(DamageSource source, float amount) {
 		if (this.isEntityInvulnerable(source)) {
 			return false;
-		} else {
+		} else if (source != DamageSource.DROWN && !(source.getTrueSource() instanceof EntityWither)) {
 			if (this.isArmored()) {
 				Entity entity = source.getImmediateSource();
 
@@ -344,12 +272,15 @@ public class EntityCentaur extends EntityMob {
 				if (this.blockBreakCounter <= 0) {
 					this.blockBreakCounter = 20;
 				}
+
 				for (int i = 0; i < this.idleHeadUpdates.length; ++i) {
 					this.idleHeadUpdates[i] += 3;
 				}
 
-				return super.attackEntityFrom(source, amount / 2);
+				return super.attackEntityFrom(source, amount);
 			}
+		} else {
+			return false;
 		}
 	}
 
@@ -367,46 +298,17 @@ public class EntityCentaur extends EntityMob {
 		return flag;
 	}
 
-	/**
-	 * Sets the custom name tag for this entity
-	 */
-	public void setCustomNameTag(String name) {
-		super.setCustomNameTag(name);
-		this.bossInfo.setName(this.getDisplayName());
-	}
-
 	protected SoundEvent getAmbientSound() {
-		return SoundEvents.ENTITY_ZOMBIE_AMBIENT;
+		return HandlerSounds.ENTITY_CENTAUR_AMBIENT;
 	}
 
 	protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
-		return SoundEvents.ENTITY_ZOMBIE_HURT;
+		return HandlerSounds.ENTITY_CENTAUR_HURT;
 	}
 
 	protected SoundEvent getDeathSound() {
-		return SoundEvents.ENTITY_ZOMBIE_DEATH;
+		return HandlerSounds.ENTITY_CENTAUR_DEATH;
 	}
-
-	protected SoundEvent getStepSound() {
-		return SoundEvents.ENTITY_ZOMBIE_STEP;
-	}
-
-	protected void playStepSound(BlockPos pos, Block blockIn) {
-		this.playSound(this.getStepSound(), 0.15F, 1.0F);
-	}
-
-	/**
-     * Drop 0-2 items of this living's type
-     */
-    protected void dropFewItems(boolean wasRecentlyHit, int lootingModifier)
-    {
-        EntityItem entityitem = this.dropItem(InitItems.sword_part, 1);
-
-        if (entityitem != null)
-        {
-            entityitem.setNoDespawn();
-        }
-    }
 
 	public static boolean canDestroyBlock(Block blockIn) {
 		return blockIn != Blocks.BEDROCK && blockIn != Blocks.END_PORTAL && blockIn != Blocks.END_PORTAL_FRAME
@@ -415,56 +317,26 @@ public class EntityCentaur extends EntityMob {
 				&& blockIn != Blocks.STRUCTURE_BLOCK && blockIn != Blocks.STRUCTURE_VOID
 				&& blockIn != Blocks.PISTON_EXTENSION && blockIn != Blocks.END_GATEWAY;
 	}
-	
-	/**
-	 * Returns whether the wither is armored with its boss armor or not by checking
-	 * whether its health is below half of its maximum.
-	 */
+
 	public boolean isArmored() {
 		return this.getHealth() <= this.getMaxHealth();
 	}
 
-	/**
-	 * Add the given player to the list of players tracking this entity. For
-	 * instance, a player may track a boss in order to view its associated boss bar.
-	 */
 	public void addTrackingPlayer(EntityPlayerMP player) {
 		super.addTrackingPlayer(player);
 		this.bossInfo.addPlayer(player);
 	}
 
-	/**
-	 * Removes the given player from the list of players tracking this entity. See
-	 * {@link Entity#addTrackingPlayer} for more information on tracking.
-	 */
 	public void removeTrackingPlayer(EntityPlayerMP player) {
 		super.removeTrackingPlayer(player);
 		this.bossInfo.removePlayer(player);
-	}
-
-	/**
-	 * (abstract) Protected helper method to write subclass entity data to NBT.
-	 */
-	public void writeEntityToNBT(NBTTagCompound compound) {
-		super.writeEntityToNBT(compound);
-	}
-
-	/**
-	 * (abstract) Protected helper method to read subclass entity data from NBT.
-	 */
-	public void readEntityFromNBT(NBTTagCompound compound) {
-		super.readEntityFromNBT(compound);
-
-		if (this.hasCustomName()) {
-			this.bossInfo.setName(this.getDisplayName());
-		}
 	}
 
 	@Override
 	public float getEyeHeight() {
 		return 2.4F;
 	}
-	
+
 	@SideOnly(Side.CLIENT)
 	public float getHeadYRotation(int p_82207_1_) {
 		return this.yRotationHeads[p_82207_1_];
@@ -475,28 +347,16 @@ public class EntityCentaur extends EntityMob {
 		return this.xRotationHeads[p_82210_1_];
 	}
 
-	/**
-	 * Returns false if this Entity is a boss, true otherwise.
-	 */
 	public boolean isNonBoss() {
 		return false;
 	}
 
-	/**
-	 * Called only once on an entity when first time spawned, via egg, mob spawner,
-	 * natural spawning etc, but not called when entity is reloaded from nbt. Mainly
-	 * used for initializing attributes and inventory
-	 */
 	@Nullable
 	public IEntityLivingData onInitialSpawn(DifficultyInstance difficulty, @Nullable IEntityLivingData livingdata) {
 		IEntityLivingData ientitylivingdata = super.onInitialSpawn(difficulty, livingdata);
-		this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(8.0D);
 		return ientitylivingdata;
 	}
 
-	/**
-	 * Called when the mob's health reaches 0.
-	 */
 	public void onDeath(DamageSource cause) {
 		super.onDeath(cause);
 	}
