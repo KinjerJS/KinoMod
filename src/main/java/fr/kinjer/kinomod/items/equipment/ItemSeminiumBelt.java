@@ -15,8 +15,11 @@ import net.minecraft.block.IGrowable;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.MobEffects;
 import net.minecraft.item.ItemStack;
+import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
@@ -45,6 +48,9 @@ public class ItemSeminiumBelt extends BaseKinoBelt {
 
 	@Override
 	public void onWornTick(ItemStack itemstack, EntityLivingBase player) {
+		
+		player.addPotionEffect(new PotionEffect(MobEffects.NAUSEA, 13*20, 0, false, false));
+		player.addPotionEffect(new PotionEffect(MobEffects.UNLUCK, 5, 0, false, false));
 		
 		World world = player.getEntityWorld();
 		if (!world.isRemote) {
@@ -81,7 +87,9 @@ public class ItemSeminiumBelt extends BaseKinoBelt {
 			return;
 		}
 
-		l.add("* §a" + UtilsLocalizer.localize("kinomod.seminium_belt.toolip"));
+		l.add("* §a" + UtilsLocalizer.localize("kinomod.seminium_belt.toolip_0"));
+		l.add("* §4" + UtilsLocalizer.localize(MobEffects.NAUSEA.getName()));
+		l.add("* §4" + UtilsLocalizer.localize(MobEffects.UNLUCK.getName()));
 
 	}
 }

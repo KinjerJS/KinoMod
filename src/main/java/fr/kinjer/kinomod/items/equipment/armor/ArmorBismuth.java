@@ -56,8 +56,8 @@ import net.minecraftforge.items.IItemHandler;
 
 public class ArmorBismuth extends ItemArmor {
 
-	public static final String DURABILITY = UtilsLocalizer.localize("§7" + "Durability" + " : ");
-	public static final String INFINITE = UtilsLocalizer.localize("§4" + "Infinite");
+	public static final String DURABILITY = UtilsLocalizer.localize("tooltip.durability");
+	public static final String INFINITE = UtilsLocalizer.localize("tooltip.infinite");
 
 	private static final List<String> damageNegations = new ArrayList<>();
 
@@ -87,7 +87,7 @@ public class ArmorBismuth extends ItemArmor {
 	@SideOnly(Side.CLIENT)
 	public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> l, ITooltipFlag flagIn) {
 		int damage = stack.getMaxDamage() - stack.getItemDamage();
-		l.add(DURABILITY + INFINITE);
+		l.add("§7" + DURABILITY + " §7: " + "§4" +INFINITE);
 	}
 
 	@Override
