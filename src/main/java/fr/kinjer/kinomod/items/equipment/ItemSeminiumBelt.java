@@ -5,6 +5,8 @@ import java.util.List;
 
 import javax.annotation.Nullable;
 
+import com.mojang.authlib.properties.Property;
+
 import fr.kinjer.kinomod.items.base.BaseKinoBelt;
 import fr.kinjer.kinomod.utils.UtilsKeyBoard;
 import fr.kinjer.kinomod.utils.UtilsLocalizer;
@@ -22,6 +24,7 @@ import net.minecraftforge.common.IPlantable;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockCrops;
 import net.minecraft.block.BlockGrass;
 import net.minecraft.block.IGrowable;
 import net.minecraft.block.state.IBlockState;
@@ -57,10 +60,13 @@ public class ItemSeminiumBelt extends BaseKinoBelt {
 						Block block = world.getBlockState(new BlockPos(ix, iy, iz)).getBlock();
 						IBlockState state = world.getBlockState(new BlockPos(ix, iy, iz));
 
-						if (block instanceof IPlantable) {
-							block.updateTick(world, new BlockPos(ix, iy, iz), state, world.rand);
-							if (itemstack.getItemDamage() == 0 && player.ticksExisted % 39 == 0) {
-								world.playEvent(2005, new BlockPos(ix, iy, iz), 0);
+						if (block instanceof BlockCrops) {
+							
+							if (itemstack.getItemDamage() == 0 && player.ticksExisted % 14 == 0) {
+								if(state.getValue(((BlockCrops) block).AGE) < ((BlockCrops) block).getMaxAge()) {
+									block.updateTick(world, new BlockPos(ix, iy, iz), state, world.rand);
+									world.playEvent(2005, new BlockPos(ix, iy, iz), 0);
+								}
 							}
 						}
 					}
