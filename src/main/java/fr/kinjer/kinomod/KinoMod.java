@@ -11,6 +11,7 @@ import fr.kinjer.kinomod.init.InitRecipes;
 //import fr.kinjer.kinomod.items.EntityBismuthBall;
 import fr.kinjer.kinomod.client.ClientProxy;
 import fr.kinjer.kinomod.common.CommonProxy;
+import fr.kinjer.kinomod.entity.projectile.EntityBismuthBall;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -59,6 +60,12 @@ public class KinoMod {
 	public static DamageSource DamageSourceBismuth(EntityLivingBase user) {
 
 		return (new EntityDamageSource("Bismuth", user)).setDamageBypassesArmor().setDamageIsAbsolute()
+				.setMagicDamage();
+	}
+	
+	public static DamageSource causeBismuthDamage(EntityBismuthBall entityBismuthBall) {
+
+		return (new EntityDamageSource("Bismuth", entityBismuthBall)).setDamageBypassesArmor().setDamageIsAbsolute()
 				.setMagicDamage();
 	}
 

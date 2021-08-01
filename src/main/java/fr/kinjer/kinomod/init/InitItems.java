@@ -107,7 +107,7 @@ public class InitItems {
 	public static final Item bismuth_wand = new ItemBismuthWand();
 	
 	//projectile
-//	public static final Item bismuth_ball = new ItemBismuthBall();
+	public static ItemBismuthBall item_bismuth_ball = new ItemBismuthBall("bismuth_ball");
 
 	// loot
 	public static final Item sword_part = new ItemSwordPart();

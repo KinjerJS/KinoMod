@@ -17,7 +17,7 @@ public class InitEntity {
 	public static void registerEntities() {
 		registerEntity("centaur", EntityCentaur.class, ENTITY_CENTAUR, 50, 0xFF865A, 0x9B4D00);
 		registerEntity("ghast_boss_d", EntityGhastBossD.class, ENTITY_GHAST_BOSS, 50, 0xFF865A, 0x9B4D00);
-//		registerProjectile("bismuth_ball", ProjectileEntityBismuthBall.class, ENTITY_BISMUTH_BALL, InitItems.bismuth_ball);
+		EntityRegistry.registerModEntity(new ResourceLocation(KinoMod.MODID, "bismuth_ball"), EntityBismuthBall.class, "supremium_arrow", ENTITY_BISMUTH_BALL, KinoMod.MODID, 64, 1, true);
 	}
 
 	private static void registerEntity(String name, Class<? extends Entity> entity, int id, int range, int color1,

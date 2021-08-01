@@ -7,7 +7,8 @@ import org.lwjgl.input.Keyboard;
 import fr.kinjer.kinomod.handler.HandlerSounds;
 import fr.kinjer.kinomod.init.InitItems;
 import fr.kinjer.kinomod.common.CommonProxy;
-import fr.kinjer.kinomod.entity.projectile.ProjectileEntityBismuthBall;
+import fr.kinjer.kinomod.entity.projectile.EntityBismuthBall;
+import fr.kinjer.kinomod.entity.render.RenderBismuthBall;
 import fr.kinjer.kinomod.handler.HandlerRender;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.entity.RenderArrow;
@@ -35,13 +36,6 @@ public class ClientProxy extends CommonProxy {
 		super.registerEventHandlers();
 	}
 	
-	@Override
-	public void render() {
-		
-//		RenderingRegistry.registerEntityRenderingHandler(ProjectileEntityBismuthBall.class, new RenderSnowball<ProjectileEntityBismuthBall>(Minecraft.getMinecraft().getRenderManager(), InitItems.bismuth_ball, Minecraft.getMinecraft().getRenderItem()));
-		
-	}
-
 	@Override
 	public void preInit(File file) {
 		super.preInit(file);

@@ -3,16 +3,20 @@ package fr.kinjer.kinomod.handler;
 import fr.kinjer.kinomod.KinoMod;
 import fr.kinjer.kinomod.entity.EntityCentaur;
 import fr.kinjer.kinomod.entity.EntityGhastBossD;
+import fr.kinjer.kinomod.entity.projectile.EntityBismuthBall;
+import fr.kinjer.kinomod.entity.render.RenderBismuthBall;
 import fr.kinjer.kinomod.entity.render.RenderCentaur;
 import fr.kinjer.kinomod.entity.render.RenderGhastBossD;
 import fr.kinjer.kinomod.init.InitBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.renderer.EntityRenderer;
 import net.minecraft.client.renderer.ItemMeshDefinition;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.client.renderer.block.statemap.StateMapperBase;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderManager;
+import net.minecraft.entity.projectile.EntityFireball;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.client.model.ModelLoader;
@@ -57,6 +61,8 @@ public class HandlerRender {
 	}
 	
 	public static void registerEntityRenders() {
+		
+		RenderingRegistry.registerEntityRenderingHandler(EntityBismuthBall.class, RenderBismuthBall::new);
 		RenderingRegistry.registerEntityRenderingHandler(EntityCentaur.class, new IRenderFactory<EntityCentaur>() {
 			@Override
 			public Render<? super EntityCentaur> createRenderFor(RenderManager manager) {
