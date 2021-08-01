@@ -66,8 +66,8 @@ public class ItemDaliumBelt extends BaseKinoBelt {
 			return;
 		}
 
-		l.add("* " + UtilsLocalizer.localize("kinomod.dalium_belt.toolip_0"));
-		l.add("* " + UtilsLocalizer.localize("kinomod.dalium_belt.toolip_1"));
+		l.add("* §a" + UtilsLocalizer.localize("kinomod.dalium_belt.toolip_0"));
+		l.add("* §a" + UtilsLocalizer.localize("kinomod.dalium_belt.toolip_1"));
 		l.add("* §4" + UtilsLocalizer.localize(MobEffects.SLOWNESS.getName()) + " §4" + UtilsLocalizer.numberLocalize(2));
 	}
 }

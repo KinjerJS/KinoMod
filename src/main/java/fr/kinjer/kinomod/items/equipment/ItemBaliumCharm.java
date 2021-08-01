@@ -81,9 +81,9 @@ public class ItemBaliumCharm extends BaseKinoBaubleCharm {
 			return;
 		}
 
-		l.add("* " + UtilsLocalizer.localize(MobEffects.HASTE.getName()) + " §7" + UtilsLocalizer.numberLocalize(2));
-		l.add("* " + UtilsLocalizer.localize(MobEffects.WATER_BREATHING.getName()));
-		l.add("* " + UtilsLocalizer.localize(MobEffects.NIGHT_VISION.getName()));
+		l.add("* §a" + UtilsLocalizer.localize(MobEffects.HASTE.getName()) + " §a" + UtilsLocalizer.numberLocalize(2));
+		l.add("* §a" + UtilsLocalizer.localize(MobEffects.WATER_BREATHING.getName()));
+		l.add("* §a" + UtilsLocalizer.localize(MobEffects.NIGHT_VISION.getName()));
 		l.add("* §4" + UtilsLocalizer.localize("kinomod.balium_charm.tooltip"));
 
 	}

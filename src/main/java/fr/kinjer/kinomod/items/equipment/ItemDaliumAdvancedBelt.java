@@ -62,9 +62,9 @@ private static final List<String> damageNegations = new ArrayList<>();
 			return;
 		}
 
-		l.add("* " + UtilsLocalizer.localize("kinomod.dalium_belt.toolip_0"));
-		l.add("* " + UtilsLocalizer.localize("kinomod.dalium_belt.toolip_1"));
-		l.add("* " + UtilsLocalizer.localize(MobEffects.SPEED.getName()));
+		l.add("* §a" + UtilsLocalizer.localize("kinomod.dalium_belt.toolip_0"));
+		l.add("* §a" + UtilsLocalizer.localize("kinomod.dalium_belt.toolip_1"));
+		l.add("* §a" + UtilsLocalizer.localize(MobEffects.SPEED.getName()));
 
 	}
 }

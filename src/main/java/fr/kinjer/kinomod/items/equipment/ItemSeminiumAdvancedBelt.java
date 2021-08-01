@@ -72,7 +72,7 @@ public class ItemSeminiumAdvancedBelt extends BaseKinoBelt {
 			return;
 		}
 
-		l.add("* " + UtilsLocalizer.localize("kinomod.seminium_belt.toolip"));
+		l.add("* §a" + UtilsLocalizer.localize("kinomod.seminium_belt.toolip"));
 
 	}
 }

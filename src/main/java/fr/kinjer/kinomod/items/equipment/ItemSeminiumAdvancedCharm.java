@@ -43,8 +43,8 @@ public class ItemSeminiumAdvancedCharm extends BaseKinoBaubleCharm {
 			return;
 		}
 
-		l.add("* " + UtilsLocalizer.localize("kinomod.seminium_charm.tooltip_0"));
-		l.add("* " + UtilsLocalizer.localize("kinomod.seminium_charm.tooltip_1"));
+		l.add("* §a" + UtilsLocalizer.localize("kinomod.seminium_charm.tooltip_0"));
+		l.add("* §a" + UtilsLocalizer.localize("kinomod.seminium_charm.tooltip_1"));
 
 	}
 }

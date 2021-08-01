@@ -64,11 +64,11 @@ public class ItemBismuthCharm extends BaseKinoBaubleCharm {
 			return;
 		}
 
-		l.add("* " + UtilsLocalizer.localize("kinomod.bismuth_charm.toolip"));
-		l.add("* " + UtilsLocalizer.localize(MobEffects.HASTE.getName()));
-		l.add("* " + UtilsLocalizer.localize(MobEffects.REGENERATION.getName()));
-		l.add("* " + UtilsLocalizer.localize(MobEffects.STRENGTH.getName()));
-		l.add("* " + UtilsLocalizer.localize("kinomod.seminium_charm.tooltip_0"));
+		l.add("* §a" + UtilsLocalizer.localize("kinomod.bismuth_charm.toolip"));
+		l.add("* §a" + UtilsLocalizer.localize(MobEffects.HASTE.getName()));
+		l.add("* §a" + UtilsLocalizer.localize(MobEffects.REGENERATION.getName()));
+		l.add("* §a" + UtilsLocalizer.localize(MobEffects.STRENGTH.getName()));
+		l.add("* §a" + UtilsLocalizer.localize("kinomod.seminium_charm.tooltip_0"));
 
 	}
 }

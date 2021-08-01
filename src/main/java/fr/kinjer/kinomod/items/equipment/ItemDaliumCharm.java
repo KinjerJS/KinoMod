@@ -54,7 +54,7 @@ public class ItemDaliumCharm extends BaseKinoBaubleCharm {
 			tooltip.add(UtilsLocalizer.shiftDetails());
 			return;
 		}
-		tooltip.add("* " + UtilsLocalizer.localize(MobEffects.REGENERATION.getName()) + " §7" + UtilsLocalizer.numberLocalize(2));
+		tooltip.add("* §a" + UtilsLocalizer.localize(MobEffects.REGENERATION.getName()) + " §a" + UtilsLocalizer.numberLocalize(2));
 		tooltip.add("* §4" + UtilsLocalizer.localize("kinomod.dalium_charm.tooltip"));
 	}
 

@@ -57,8 +57,8 @@ public class ItemBaliumAdvancedBelt extends BaseKinoBaubleBelt {
 			return;
 		}
 
-		l.add("* " + UtilsLocalizer.localize("kinomod.balium_belt.toolip"));
-		l.add("* " + UtilsLocalizer.localize(MobEffects.SPEED.getName()));
+		l.add("* §a" + UtilsLocalizer.localize("kinomod.balium_belt.toolip"));
+		l.add("* §a" + UtilsLocalizer.localize(MobEffects.SPEED.getName()));
 
 	}
 	

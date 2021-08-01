@@ -41,7 +41,7 @@ public class ItemKiniumAdvancedCharm extends BaseKinoBaubleCharm {
 			return;
 		}
 
-		l.add("* " + UtilsLocalizer.localize(MobEffects.STRENGTH.getName()) + " §7" + UtilsLocalizer.numberLocalize(5));
+		l.add("* §a" + UtilsLocalizer.localize(MobEffects.STRENGTH.getName()) + " §a" + UtilsLocalizer.numberLocalize(5));
 
 	}
 

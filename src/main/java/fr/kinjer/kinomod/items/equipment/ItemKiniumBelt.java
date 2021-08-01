@@ -41,6 +41,6 @@ public class ItemKiniumBelt extends BaseKinoBelt {
 			return;
 		}
 
-		tooltip.add("* " + UtilsLocalizer.localize("kinomod.kinium_belt.toolip"));
+		tooltip.add("* §a" + UtilsLocalizer.localize("kinomod.kinium_belt.toolip"));
 	}
 }

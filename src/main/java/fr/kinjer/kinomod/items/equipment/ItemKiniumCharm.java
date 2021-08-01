@@ -37,7 +37,7 @@ public class ItemKiniumCharm extends BaseKinoBaubleCharm {
 			return;
 		}
 
-		l.add("* " + UtilsLocalizer.localize(MobEffects.STRENGTH.getName()) + " §7" + UtilsLocalizer.numberLocalize(2));
+		l.add("* §a" + UtilsLocalizer.localize(MobEffects.STRENGTH.getName()) + " §a" + UtilsLocalizer.numberLocalize(2));
 		l.add("* §4" + UtilsLocalizer.localize("kinomod.kinium_charm.tooltip"));
 
 	}

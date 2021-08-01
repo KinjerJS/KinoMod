@@ -102,6 +102,7 @@ kinomod.dalium_belt.toolip_0=Lava Resistance
 kinomod.dalium_belt.toolip_1=Fire Resistance
 kinomod.kinium_belt.toolip=Add Enchantment Level
 kinomod.bismuth_charm.toolip=Negate Fall Damage
+kinomod.seminium_belt.toolip=Grow Plants Around You
 
 entity.centaur.name=Centaur
 entity.ghast_boss_d.name=Dalium Ghast

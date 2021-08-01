@@ -41,7 +41,7 @@ public class ItemDaliumAdvancedCharm extends BaseKinoBaubleCharm {
 			return;
 		}
 
-		l.add("* " + UtilsLocalizer.localize(MobEffects.REGENERATION.getName()) + " §7" + UtilsLocalizer.numberLocalize(5));
+		l.add("* §a" + UtilsLocalizer.localize(MobEffects.REGENERATION.getName()) + " §a" + UtilsLocalizer.numberLocalize(5));
 
 	}
 
