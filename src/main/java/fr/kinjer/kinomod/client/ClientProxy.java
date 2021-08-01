@@ -5,13 +5,19 @@ import java.io.File;
 import org.lwjgl.input.Keyboard;
 
 import fr.kinjer.kinomod.handler.HandlerSounds;
+import fr.kinjer.kinomod.init.InitItems;
 import fr.kinjer.kinomod.common.CommonProxy;
+import fr.kinjer.kinomod.entity.projectile.ProjectileEntityBismuthBall;
 import fr.kinjer.kinomod.handler.HandlerRender;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.entity.RenderArrow;
+import net.minecraft.client.renderer.entity.RenderSnowball;
+import net.minecraft.client.renderer.entity.RenderSpectralArrow;
 import net.minecraft.client.settings.KeyBinding;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
+import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.SidedProxy;
 
 public class ClientProxy extends CommonProxy {
@@ -27,6 +33,13 @@ public class ClientProxy extends CommonProxy {
 
 	public void registerEventHandlers() {
 		super.registerEventHandlers();
+	}
+	
+	@Override
+	public void render() {
+		
+//		RenderingRegistry.registerEntityRenderingHandler(ProjectileEntityBismuthBall.class, new RenderSnowball<ProjectileEntityBismuthBall>(Minecraft.getMinecraft().getRenderManager(), InitItems.bismuth_ball, Minecraft.getMinecraft().getRenderItem()));
+		
 	}
 
 	@Override

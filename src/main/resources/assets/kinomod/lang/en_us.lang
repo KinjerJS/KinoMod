@@ -48,6 +48,13 @@ item.kinomod.balium_belt_advanced.0.name=Balium Belt (Advanced)
 item.kinomod.seminium_belt_advanced.0.name=Seminium Belt (Advanced)
 item.kinomod.dalium_belt_advanced.0.name=Dalium Belt (Advanced)
 item.kinomod.bismuth_belt_advanced.0.name=Bismuth Belt (Advanced)
+item.kinomod.bismuth_orb.name=Bismuth Orb
+item.kinomod.kinium_wand.name=Kinium Wand
+item.kinomod.balium_wand.name=Balium Wand
+item.kinomod.seminium_wand.name=Seminium Wand
+item.kinomod.dalium_wand.name=Dalium Wand
+item.kinomod.bismuth_wand.name=Bismuth Wand
+item.kinomod.bismuth_ball.name=Bismuth Ball
 
 
 tile.kinomod.kinium_block.name=Kinium Block
@@ -107,6 +114,7 @@ kinomod.seminium_belt.toolip_1=Nausea Resistance
 
 entity.centaur.name=Centaur
 entity.ghast_boss_d.name=Dalium Ghast
+entity.bismuth_ball.name=Bismuth Ball
 
 attribute.name.Bismuth=§cBismuth Damage
 death.attack.Bismuth=§4B§ci§6s§em§2u§at§bh §7disintegration has occurred

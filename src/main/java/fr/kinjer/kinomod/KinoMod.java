@@ -8,6 +8,7 @@ import fr.kinjer.kinomod.handler.HandlerRegistering;
 import fr.kinjer.kinomod.handler.HandlerRenderGui;
 import fr.kinjer.kinomod.init.InitItems;
 import fr.kinjer.kinomod.init.InitRecipes;
+//import fr.kinjer.kinomod.items.EntityBismuthBall;
 import fr.kinjer.kinomod.client.ClientProxy;
 import fr.kinjer.kinomod.common.CommonProxy;
 import net.minecraft.creativetab.CreativeTabs;
@@ -36,9 +37,9 @@ public class KinoMod {
 	public static final String NAME = "KinoMod";
 	public static final String VERSION = "1.0.0";
 	public static final String DEPENDENCIES = "required-after:baubles";
-	
+
 	public static Logger log = LogManager.getLogger(NAME);
-	
+
 	@Instance(KinoMod.MODID)
 	public static KinoMod instance;
 
@@ -61,6 +62,12 @@ public class KinoMod {
 				.setMagicDamage();
 	}
 
+/*	public static DamageSource causeBismuthDamage(EntityBismuthBall entityBismuthBall, Object object) {
+
+		return (new EntityDamageSource("Bismuth", entityBismuthBall)).setDamageBypassesArmor().setDamageIsAbsolute()
+				.setMagicDamage();
+	}
+*/
 	public static class DamageSourceBismuth extends EntityDamageSource {
 		public DamageSourceBismuth(Entity entity) {
 			super("Bismuth", entity);
