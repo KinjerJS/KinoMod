@@ -2,10 +2,12 @@ package fr.kinjer.kinomod.items.equipment;
 
 import fr.kinjer.kinomod.entity.projectile.EntityBismuthBall;
 import fr.kinjer.kinomod.items.base.BaseKino;
+import fr.kinjer.kinomod.init.InitItems;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntityArrow;
 import net.minecraft.entity.projectile.EntityLargeFireball;
 import net.minecraft.entity.projectile.EntitySnowball;
+import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumActionResult;
@@ -39,6 +41,11 @@ public class ItemBismuthWand extends BaseKino {
 			EntityBismuthBall arrow = new EntityBismuthBall(world, player);
 			arrow.shoot(player, player.rotationPitch, player.rotationYaw, 0.0F, 15.5F, 1.0F);
 			world.spawnEntity(arrow);
+			
+			if (stack.getItem() == InitItems.item_bismuth_ball)
+            {
+				arrow.pickupStatus = EntityBismuthBall.PickupStatus.DISALLOWED;
+            }
 		}
 		player.swingArm(hand);
 		return ActionResult.newResult(EnumActionResult.SUCCESS, stack);

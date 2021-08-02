@@ -72,5 +72,4 @@ public class InitBlocks {
 	    blocks.add(block.setRegistryName(KinoMod.MODID, name).setUnlocalizedName(KinoMod.MODID + "." + name));
 	    InitItemBlocks.items.add((ItemBlock) new ItemBlock(block).setRegistryName(KinoMod.MODID, name));
 	}
-	
 }

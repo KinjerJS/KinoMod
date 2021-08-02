@@ -71,6 +71,5 @@ public class HandlerRegistering {
 	
 	public static void initRegistries() {
 		HandlerSounds.registerSounds();
-		KinoMod.proxy.render();
 	}
 }

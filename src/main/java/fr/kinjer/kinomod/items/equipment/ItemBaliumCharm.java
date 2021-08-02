@@ -5,7 +5,6 @@ import java.util.Random;
 
 import javax.annotation.Nullable;
 
-import fr.kinjer.kinomod.gui.GuiAirWater;
 import fr.kinjer.kinomod.items.base.BaseKinoBaubleCharm;
 import fr.kinjer.kinomod.utils.UtilsKeyBoard;
 import fr.kinjer.kinomod.utils.UtilsLocalizer;
@@ -43,7 +42,7 @@ public class ItemBaliumCharm extends BaseKinoBaubleCharm {
 		if (player.isInsideOfMaterial(Material.WATER)) {
 			player.setAir(300);
 			GuiIngameForge.renderAir = false;
-			GuiAirWater.renderAirWater = false;
+		//	GuiAirWater.renderAirWater = false;
 			player.getEntityData().setInteger(TAG_NAME, 300);
 
 		}
@@ -51,7 +50,7 @@ public class ItemBaliumCharm extends BaseKinoBaubleCharm {
 		if (!player.isInsideOfMaterial(Material.WATER)) {
 
 			GuiIngameForge.renderAir = true;
-			GuiAirWater.renderAirWater = true;
+		//	GuiAirWater.renderAirWater = true;
 
 			int respiration = EnchantmentHelper.getRespirationModifier(player);
 			int air = player.getEntityData().getInteger(TAG_NAME);

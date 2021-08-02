@@ -8,7 +8,6 @@ import fr.kinjer.kinomod.handler.HandlerRegistering;
 import fr.kinjer.kinomod.handler.HandlerRenderGui;
 import fr.kinjer.kinomod.init.InitItems;
 import fr.kinjer.kinomod.init.InitRecipes;
-//import fr.kinjer.kinomod.items.EntityBismuthBall;
 import fr.kinjer.kinomod.client.ClientProxy;
 import fr.kinjer.kinomod.common.CommonProxy;
 import fr.kinjer.kinomod.entity.projectile.EntityBismuthBall;
@@ -69,12 +68,6 @@ public class KinoMod {
 				.setMagicDamage();
 	}
 
-/*	public static DamageSource causeBismuthDamage(EntityBismuthBall entityBismuthBall, Object object) {
-
-		return (new EntityDamageSource("Bismuth", entityBismuthBall)).setDamageBypassesArmor().setDamageIsAbsolute()
-				.setMagicDamage();
-	}
-*/
 	public static class DamageSourceBismuth extends EntityDamageSource {
 		public DamageSourceBismuth(Entity entity) {
 			super("Bismuth", entity);

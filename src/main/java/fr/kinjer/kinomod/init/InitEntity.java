@@ -30,5 +30,4 @@ public class InitEntity {
 		EntityRegistry.registerModEntity(new ResourceLocation(KinoMod.MODID, name), entity, name, id, KinoMod.MODID, 64,
 				10, true);
 	}
-
 }

@@ -52,15 +52,16 @@ public class ItemSeminiumAdvancedBelt extends BaseKinoBaubleBelt {
 			for (int ix = posX - range; ix <= posX + range; ix++)
 				for (int iz = posZ - range; iz <= posZ + range; iz++)
 					for (int iy = posY - verticalRange; iy <= posY + verticalRange; iy++) {
-						Block block = world.getBlockState(new BlockPos(ix, iy, iz)).getBlock();
-						IBlockState state = world.getBlockState(new BlockPos(ix, iy, iz));
-
+						BlockPos pos = new BlockPos(ix, iy, iz);
+						Block block = world.getBlockState(pos).getBlock();
+						IBlockState state = world.getBlockState(pos);
+						
 						if (block instanceof BlockCrops) {
 							
 							if (itemstack.getItemDamage() == 0 && player.ticksExisted % 6 == 0) {
 								if(state.getValue(((BlockCrops) block).AGE) < ((BlockCrops) block).getMaxAge()) {
-									block.updateTick(world, new BlockPos(ix, iy, iz), state, world.rand);
-									world.playEvent(2005, new BlockPos(ix, iy, iz), 0);
+									block.updateTick(world, pos, state, world.rand);
+									world.playEvent(2005, pos, 0);
 								}
 							}
 						}

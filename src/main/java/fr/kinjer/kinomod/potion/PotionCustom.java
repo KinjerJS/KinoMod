@@ -13,8 +13,6 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class PotionCustom extends Potion {
 	
-    private int statusIconIndex = -1;
-	
 	public PotionCustom(String name, boolean isBadPotion, int colour, int iconIndexX, int iconIndexY) {
 		super(isBadPotion, colour);
 		this.setPotionName("effect." + name);
@@ -28,18 +26,12 @@ public class PotionCustom extends Potion {
 		setRegistryName(new ResourceLocation(KinoMod.MODID + ":" + name));
     }
 	
-	/**
-     * checks if Potion effect is ready to be applied this tick.
-     */
 	@Override
     public boolean isReady(int duration, int amplifier)
     {
     	return true;
     }
 	
-	/**
-	 * Returns true if this potion has an affect that changes per level (like swiftness, and not like night vision)
-	 */
 	public boolean canAmplify() {
 		return true;
 	}

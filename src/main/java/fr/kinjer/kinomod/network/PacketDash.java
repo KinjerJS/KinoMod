@@ -33,7 +33,7 @@ public class PacketDash implements IMessage {
 				IItemHandler baublesInv = BaublesApi.getBaublesHandler(player);
 				int slot = BaublesApi.isBaubleEquipped(player, InitItems.balium_belt);
 				if(slot < 0) {
-					ctx.getServerHandler().disconnect(new TextComponentTranslation("botaniamisc.invalidDodge"));
+					ctx.getServerHandler().disconnect(new TextComponentTranslation("kinomodamisc.invalidDodge"));
 					return;
 				}
 				ItemStack ringStack = baublesInv.getStackInSlot(slot);
