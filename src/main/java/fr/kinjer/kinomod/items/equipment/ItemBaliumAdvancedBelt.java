@@ -9,6 +9,7 @@ import baubles.api.BaublesApi;
 import fr.kinjer.kinomod.KinoMod;
 import fr.kinjer.kinomod.handler.HandlerTick;
 import fr.kinjer.kinomod.handler.HandlerPacket;
+import fr.kinjer.kinomod.handler.HandlerSounds;
 import fr.kinjer.kinomod.helper.HelperVector;
 import fr.kinjer.kinomod.helper.HelperItem;
 import fr.kinjer.kinomod.init.InitItems;
@@ -85,14 +86,18 @@ public class ItemBaliumAdvancedBelt extends BaseKinoBaubleBelt {
 			int oldLeft = leftDown;
 			leftDown = HandlerTick.ticksInGame;
 
-			if (leftDown - oldLeft < threshold)
+			if (leftDown - oldLeft < threshold) {
 				dodge(mc.player, true);
+				mc.player.playSound(HandlerSounds.DASH, 1.0F, 1.0F);
+			}
 		} else if (mc.gameSettings.keyBindRight.isKeyDown() && !oldRightDown) {
 			int oldRight = rightDown;
 			rightDown = HandlerTick.ticksInGame;
 
-			if (rightDown - oldRight < threshold)
+			if (rightDown - oldRight < threshold) {
 				dodge(mc.player, false);
+				mc.player.playSound(HandlerSounds.DASH, 1.0F, 1.0F);
+			}
 		}
 
 		oldLeftDown = mc.gameSettings.keyBindLeft.isKeyDown();

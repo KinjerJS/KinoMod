@@ -30,6 +30,7 @@ public class ItemBaliumWand extends BaseKino {
 
 	public ItemBaliumWand() {
 		super(NAME);
+		this.maxStackSize = 1;
 	}
 
 	@Override
@@ -37,8 +38,8 @@ public class ItemBaliumWand extends BaseKino {
 
 		ItemStack stack = player.getHeldItem(hand);
 		if (!world.isRemote) {
-			int range = 12;
-			int verticalRange = 12;
+			int range = 20;
+			int verticalRange = 14;
 			int posX = (int) Math.round(player.posX - 0.5f);
 			int posY = (int) player.posY;
 			int posZ = (int) Math.round(player.posZ - 0.5f);
@@ -46,14 +47,13 @@ public class ItemBaliumWand extends BaseKino {
 			for (int ix = posX - range; ix <= posX + range; ix++)
 				for (int iz = posZ - range; iz <= posZ + range; iz++)
 					for (int iy = posY - verticalRange; iy <= posY + verticalRange; iy++) {
-						Block block = world.getBlockState(new BlockPos(ix, iy, iz)).getBlock();
 						BlockPos pos = new BlockPos(ix, iy, iz);
+						Block block = world.getBlockState(pos).getBlock();
 						IBlockState state = world.getBlockState(pos);
 
-						if ((block == Blocks.WATER || block == Blocks.FLOWING_WATER)) {
-							world.setBlockToAir(pos);
-							return ActionResult.newResult(EnumActionResult.SUCCESS, stack);
-						}
+						 if ((block == Blocks.WATER || block == Blocks.FLOWING_WATER)) {
+	                            world.setBlockToAir(pos);
+						 }
 					}
 		}
 		player.swingArm(hand);

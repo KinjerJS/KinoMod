@@ -2,6 +2,7 @@ package fr.kinjer.kinomod.world;
 
 import fr.kinjer.kinomod.KinoMod;
 import fr.kinjer.kinomod.init.InitPotion;
+import fr.kinjer.kinomod.items.equipment.ItemBismuthWand;
 import net.minecraft.init.MobEffects;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;

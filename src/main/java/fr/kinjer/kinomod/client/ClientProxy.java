@@ -8,7 +8,6 @@ import fr.kinjer.kinomod.handler.HandlerSounds;
 import fr.kinjer.kinomod.init.InitItems;
 import fr.kinjer.kinomod.common.CommonProxy;
 import fr.kinjer.kinomod.entity.projectile.EntityBismuthBall;
-import fr.kinjer.kinomod.entity.render.RenderBismuthBall;
 import fr.kinjer.kinomod.handler.HandlerRender;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.entity.RenderArrow;
@@ -31,10 +30,15 @@ public class ClientProxy extends CommonProxy {
 	public EntityPlayer getPlayer() {
 		return Minecraft.getMinecraft().player;
 	}
-
+	
 	public void registerEventHandlers() {
 		super.registerEventHandlers();
 	}
+	
+	@Override
+    public void setupConfiguration() {
+        super.setupConfiguration();
+    }
 	
 	@Override
 	public void preInit(File file) {

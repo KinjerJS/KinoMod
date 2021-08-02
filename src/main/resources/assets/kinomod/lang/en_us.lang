@@ -110,13 +110,14 @@ kinomod.dalium_belt.toolip_1=Fire Resistance
 kinomod.kinium_belt.toolip=Add Enchantment Level
 kinomod.bismuth_charm.toolip=Negate Fall Damage
 kinomod.seminium_belt.toolip_0=Grow Plants Around You
-kinomod.seminium_belt.toolip_1=Nausea Resistance 
+kinomod.seminium_belt.toolip_1=Nausea Resistance
+kinomod.bismuth_wand.toolip=Fire Bismuth Explosion
 
 entity.centaur.name=Centaur
 entity.ghast_boss_d.name=Dalium Ghast
 entity.bismuth_ball.name=Bismuth Ball
 
-attribute.name.Bismuth=§cBismuth Damage
+attribute.name.Bismuth=Bismuth Damage
 death.attack.Bismuth=§4B§ci§6s§em§2u§at§bh §7disintegration has occurred
 
 info.holdShiftForDetails=Hold §e§oShift§r§7 for Details§r
@@ -136,3 +137,11 @@ potion.effect.bleeding=Potion of Bleeding
 splash_potion.effect.bleeding=Splash potion of Bleeding
 lingering_potion.effect.bleeding=Lingering potion of Bleeding
 tipped_arrow.effect.bleeding=Arrow of Bleeding
+
+kinomod.config.title.overview=§oKinoMod Configuration
+config.kinomod.category.kinomod=KinoMod
+config.kinomod.category.kinomod.tooltip=General Configuration
+config.category.id.centaur=Centaur ID
+config.category.id.ghastbossd=Dalium Ghast ID
+config.category.id.bismuthball=Bismuth Wand Projectile ID
+

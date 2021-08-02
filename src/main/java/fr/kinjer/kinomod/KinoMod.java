@@ -1,15 +1,17 @@
 package fr.kinjer.kinomod;
 
+import java.io.File;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import fr.kinjer.kinomod.gen.GenWorld;
-import fr.kinjer.kinomod.handler.HandlerRegistering;
-import fr.kinjer.kinomod.handler.HandlerRenderGui;
-import fr.kinjer.kinomod.init.InitItems;
-import fr.kinjer.kinomod.init.InitRecipes;
+import fr.kinjer.kinomod.handler.*;
+import fr.kinjer.kinomod.init.*;
 import fr.kinjer.kinomod.client.ClientProxy;
 import fr.kinjer.kinomod.common.CommonProxy;
+import fr.kinjer.kinomod.config.*;
+import fr.kinjer.kinomod.entity.EntityCentaur;
 import fr.kinjer.kinomod.entity.projectile.EntityBismuthBall;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
@@ -30,7 +32,7 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-@Mod(modid = KinoMod.MODID, name = KinoMod.NAME, version = KinoMod.VERSION, dependencies = KinoMod.DEPENDENCIES)
+@Mod(modid = KinoMod.MODID, name = KinoMod.NAME, version = KinoMod.VERSION, dependencies = KinoMod.DEPENDENCIES, guiFactory = "fr.kinjer.kinomod.config.ingame.ConfigGuiFactory")
 public class KinoMod {
 
 	public static final String MODID = "kinomod";
@@ -39,6 +41,7 @@ public class KinoMod {
 	public static final String DEPENDENCIES = "required-after:baubles";
 
 	public static Logger log = LogManager.getLogger(NAME);
+	public static File config;
 
 	@Instance(KinoMod.MODID)
 	public static KinoMod instance;
@@ -61,10 +64,16 @@ public class KinoMod {
 		return (new EntityDamageSource("Bismuth", user)).setDamageBypassesArmor().setDamageIsAbsolute()
 				.setMagicDamage();
 	}
-	
-	public static DamageSource causeBismuthDamage(EntityBismuthBall entityBismuthBall) {
+
+	public static DamageSource causeBismuthDamageBall(EntityBismuthBall entityBismuthBall) {
 
 		return (new EntityDamageSource("Bismuth", entityBismuthBall)).setDamageBypassesArmor().setDamageIsAbsolute()
+				.setMagicDamage();
+	}
+
+	public static DamageSource causeBismuthDamageCentaur(EntityCentaur entityCentaur) {
+
+		return (new EntityDamageSource("Bismuth", entityCentaur)).setDamageBypassesArmor().setDamageIsAbsolute()
 				.setMagicDamage();
 	}
 
@@ -91,11 +100,20 @@ public class KinoMod {
 		proxy.preInit(e.getSuggestedConfigurationFile());
 		logger = e.getModLog();
 		GameRegistry.registerWorldGenerator(worldgeneration, 0);
+
+		proxy.setupConfiguration();
+
+		Config.loadAndSetup(e.getSuggestedConfigurationFile());
+
+		proxy.registerConfigDataRegistries();
+		Config.loadDataRegistries(e.getModConfigurationDirectory());
+		Config.loadConfigRegistries(ConfigDataAdapter.LoadPhase.PRE_INIT);
 	}
 
 	@EventHandler
 	public void init(FMLInitializationEvent e) {
 		proxy.init();
+		Config.loadConfigRegistries(ConfigDataAdapter.LoadPhase.INIT);
 		InitRecipes.init();
 		HandlerRegistering.initRegistries();
 	}
@@ -103,6 +121,7 @@ public class KinoMod {
 	@EventHandler
 	public void postInit(FMLPostInitializationEvent e) {
 		MinecraftForge.EVENT_BUS.register(new HandlerRenderGui());
+		Config.loadConfigRegistries(ConfigDataAdapter.LoadPhase.POST_INIT);
 
 	}
 }

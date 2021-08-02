@@ -13,6 +13,9 @@ public class CommonProxy {
 
 	public static final String PACKAGE = "fr.kinjer.kinomod.common.CommonProxy";
 
+	public void setupConfiguration() {
+	}
+
 	public EntityPlayer getPlayer() {
 		return null;
 	}
@@ -29,5 +32,8 @@ public class CommonProxy {
 	}
 
 	public void render() {
+	}
+
+	public void registerConfigDataRegistries() {
 	}
 }

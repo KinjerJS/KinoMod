@@ -21,11 +21,6 @@ public class ItemBismuthBall extends ItemArrow {
 	}
 	
 	@Override
-	public EntityArrow createArrow(World world, ItemStack stack, EntityLivingBase shooter) {
-		return new EntityBismuthBall(world, shooter);
-	}
-	
-	@Override
 	public boolean isInfinite(ItemStack stack, ItemStack bow, EntityPlayer player) {
 		return true;
 	}
