@@ -144,4 +144,39 @@ config.kinomod.category.kinomod.tooltip=General Configuration
 config.category.id.centaur=Centaur ID
 config.category.id.ghastbossd=Dalium Ghast ID
 config.category.id.bismuthball=Bismuth Wand Projectile ID
+config.category.id.centaur.comment=Change the ID of Centaur.
+config.category.id.ghastbossd.comment=Change the ID of Dalium Ghast.
+config.category.id.bismuthball.comment=Change the ID of Bismuth Wand Projectile.
+
+config.category.gen.overworld.gabbroAmount=Gabbro Amount
+config.category.gen.overworld.gabbroAmount.comment=Defines how many gabbro veins are generated per chunk. 0 = Disabled
+config.category.gen.overworld.gabbroSize=Gabbro Vein Size
+config.category.gen.overworld.gabbroSize.comment=Defines how big generated gabbro veins are.
+
+config.category.gen.overworld.kiniumAmount=Kinium Amount
+config.category.gen.overworld.kiniumAmount.comment=Defines how many kinium ores it'll attempt to generate in per chunk. 0 = Disabled
+config.category.gen.overworld.seminiumAmount=Seminium Amount
+config.category.gen.overworld.seminiumAmount.comment=Defines how many seminium ores it'll attempt to generate in per chunk. 0 = Disabled
+config.category.gen.overworld.daliumAmount=Dalium Amount
+config.category.gen.overworld.daliumAmount.comment=Defines how many dalium ores it'll attempt to generate in per chunk. 0 = Disabled
+config.category.gen.overworld.baliumAmount=Balium Amount
+config.category.gen.overworld.baliumAmount.comment=Defines how many balium ores it'll attempt to generate in per chunk. 0 = Disabled
+
+config.category.gen.nether.kiniumAmount=Kinium Amount
+config.category.gen.nether.kiniumAmount.comment=Defines how many kinium ores it'll attempt to generate in per chunk. 0 = Disabled
+config.category.gen.nether.seminiumAmount=Seminium Amount
+config.category.gen.nether.seminiumAmount.comment=Defines how many seminium ores it'll attempt to generate in per chunk. 0 = Disabled
+config.category.gen.nether.daliumAmount=Dalium Amount
+config.category.gen.nether.daliumAmount.comment=Defines how many dalium ores it'll attempt to generate in per chunk. 0 = Disabled
+config.category.gen.nether.baliumAmount=Balium Amount
+config.category.gen.nether.baliumAmount.comment=Defines how many balium ores it'll attempt to generate in per chunk. 0 = Disabled
+
+config.category.gen.end.kiniumAmount=Kinium Amount
+config.category.gen.end.kiniumAmount.comment=Defines how many kinium ores it'll attempt to generate in per chunk. 0 = Disabled
+config.category.gen.end.seminiumAmount=Seminium Amount
+config.category.gen.end.seminiumAmount.comment=Defines how many seminium ores it'll attempt to generate in per chunk. 0 = Disabled
+config.category.gen.end.daliumAmount=Dalium Amount
+config.category.gen.end.daliumAmount.comment=Defines how many dalium ores it'll attempt to generate in per chunk. 0 = Disabled
+config.category.gen.end.baliumAmount=Balium Amount
+config.category.gen.end.baliumAmount.comment=Defines how many balium ores it'll attempt to generate in per chunk. 0 = Disabled
 

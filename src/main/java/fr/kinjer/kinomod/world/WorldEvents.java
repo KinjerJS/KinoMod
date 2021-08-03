@@ -1,6 +1,7 @@
 package fr.kinjer.kinomod.world;
 
 import fr.kinjer.kinomod.KinoMod;
+import fr.kinjer.kinomod.common.CommonProxy;
 import fr.kinjer.kinomod.init.InitPotion;
 import fr.kinjer.kinomod.items.equipment.ItemBismuthWand;
 import net.minecraft.init.MobEffects;
@@ -30,7 +31,7 @@ public class WorldEvents {
 
 			}
 
-			event.getEntityLiving().attackEntityFrom(KinoMod.Bismuth, 1.0f);
+			event.getEntityLiving().attackEntityFrom(CommonProxy.bismuthDamage, 1.0f);
 		}
 	}
 }

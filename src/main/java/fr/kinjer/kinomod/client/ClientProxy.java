@@ -25,8 +25,6 @@ public class ClientProxy extends CommonProxy {
 	@SidedProxy(clientSide = "fr.kinjer.kinomod.client.ClientProxy", serverSide = "fr.kinjer.kinomod.common.CommonProxy")
 	public static CommonProxy proxy;
 
-	public static final String PACKAGE = "fr.kinjer.kinomod.client.ClientProxy";
-
 	public EntityPlayer getPlayer() {
 		return Minecraft.getMinecraft().player;
 	}

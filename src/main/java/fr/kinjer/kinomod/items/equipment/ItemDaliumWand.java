@@ -28,8 +28,8 @@ public class ItemDaliumWand extends BaseKino {
 
 		ItemStack stack = player.getHeldItem(hand);
 		if (!world.isRemote) {
-			int range = 20;
-			int verticalRange = 14;
+			int range = 16;
+			int verticalRange = 16;
 			int posX = (int) Math.round(player.posX - 0.5f);
 			int posY = (int) player.posY;
 			int posZ = (int) Math.round(player.posZ - 0.5f);

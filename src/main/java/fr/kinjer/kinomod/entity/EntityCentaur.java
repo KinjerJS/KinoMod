@@ -5,6 +5,7 @@ import javax.annotation.Nullable;
 import com.google.common.base.Predicate;
 
 import fr.kinjer.kinomod.KinoMod;
+import fr.kinjer.kinomod.common.CommonProxy;
 import fr.kinjer.kinomod.handler.HandlerLootTable;
 import fr.kinjer.kinomod.handler.HandlerSounds;
 import fr.kinjer.kinomod.init.InitItems;
@@ -288,7 +289,7 @@ public class EntityCentaur extends EntityMob {
 	public boolean attackEntityAsMob(Entity entityIn) {
 		this.attackTimer = 10;
 		this.world.setEntityState(this, (byte) 4);
-		boolean flag = entityIn.attackEntityFrom(KinoMod.causeBismuthDamageCentaur(this), (float) ATTACK_DAMAGE);
+		boolean flag = entityIn.attackEntityFrom(CommonProxy.bismuthDamage, (float) ATTACK_DAMAGE);
 
 		if (flag) {
 			entityIn.motionY += 0.4000000059604645D;

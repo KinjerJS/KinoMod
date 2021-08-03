@@ -11,9 +11,9 @@ import net.minecraftforge.fml.client.config.IConfigElement;
 
 import java.util.List;
 
-public class GuiConfigOverview extends GuiConfig {
+public class ConfigGuiOverview extends GuiConfig {
 
-    public GuiConfigOverview(GuiScreen parentScreen) {
+    public ConfigGuiOverview(GuiScreen parentScreen) {
         super(parentScreen, buildConfigList(), KinoMod.MODID, false, false, I18n.format("kinomod.config.title.overview"));
     }
 

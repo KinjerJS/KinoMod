@@ -11,6 +11,7 @@ import org.lwjgl.input.Keyboard;
 import com.google.common.collect.Multimap;
 
 import fr.kinjer.kinomod.KinoMod;
+import fr.kinjer.kinomod.common.CommonProxy;
 import fr.kinjer.kinomod.entity.EntityGhastBossD;
 import fr.kinjer.kinomod.init.InitItems;
 import fr.kinjer.kinomod.utils.UtilsKeyBoard;
@@ -102,7 +103,7 @@ public class ToolSwordKino extends ItemTool implements UtilsIMultiMode {
 
 	@Override
 	public boolean hitEntity(ItemStack itemstack, EntityLivingBase attackedEntity, EntityLivingBase attacker) {
-		attackedEntity.attackEntityFrom(KinoMod.Bismuth, (float) BISMUTH_DAMAGE);
+		attackedEntity.attackEntityFrom(CommonProxy.bismuthDamage, (float) BISMUTH_DAMAGE);
 		return super.hitEntity(itemstack, attackedEntity, attacker);
 	}
 

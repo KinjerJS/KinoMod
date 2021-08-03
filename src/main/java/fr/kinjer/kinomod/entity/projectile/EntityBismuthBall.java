@@ -3,6 +3,7 @@ package fr.kinjer.kinomod.entity.projectile;
 import javax.annotation.Nonnull;
 
 import fr.kinjer.kinomod.KinoMod;
+import fr.kinjer.kinomod.common.CommonProxy;
 import fr.kinjer.kinomod.init.InitItems;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -78,7 +79,7 @@ public class EntityBismuthBall extends EntityArrow {
 	@Override
 	public void arrowHit(EntityLivingBase living) {
 		super.arrowHit(living);
-		living.attackEntityFrom(KinoMod.Bismuth, 1.0F);
+		living.attackEntityFrom(CommonProxy.bismuthProjectileDamage, 1.0F);
 		if (!world.isRemote) {
 			world.createExplosion(living, living.posX, living.posY, living.posZ, 0.5F, false);
 		}

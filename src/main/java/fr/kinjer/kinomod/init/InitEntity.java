@@ -1,9 +1,9 @@
 package fr.kinjer.kinomod.init;
 
 import fr.kinjer.kinomod.KinoMod;
-import fr.kinjer.kinomod.config.Config;
 import fr.kinjer.kinomod.entity.*;
 import fr.kinjer.kinomod.entity.projectile.*;
+import fr.kinjer.kinomod.config.*;
 import net.minecraft.entity.Entity;
 import net.minecraft.item.Item;
 import net.minecraft.util.ResourceLocation;

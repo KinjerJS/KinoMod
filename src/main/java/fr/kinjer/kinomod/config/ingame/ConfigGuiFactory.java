@@ -1,6 +1,6 @@
 package fr.kinjer.kinomod.config.ingame;
 
-import fr.kinjer.kinomod.config.ingame.GuiConfigOverview;
+import fr.kinjer.kinomod.config.ingame.ConfigGuiOverview;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraftforge.fml.client.IModGuiFactory;
@@ -22,7 +22,7 @@ public class ConfigGuiFactory implements IModGuiFactory {
 
     @Override
     public GuiScreen createConfigGui(GuiScreen parentScreen) {
-        return new GuiConfigOverview(parentScreen);
+        return new ConfigGuiOverview(parentScreen);
     }
 
     @Override
