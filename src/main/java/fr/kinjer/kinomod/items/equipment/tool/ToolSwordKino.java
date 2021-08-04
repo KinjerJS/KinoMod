@@ -87,6 +87,12 @@ public class ToolSwordKino extends ItemTool implements UtilsIMultiMode {
 		setMaxStackSize(1);
 		setNoRepair();
 	}
+	
+	@Override
+	public boolean hasEffect(ItemStack stack) {
+
+		return true;
+	}
 
 	@Override
 	public float getDestroySpeed(ItemStack stack, IBlockState state) {
