@@ -1,6 +1,7 @@
 package fr.kinjer.kinomod.items.equipment;
 
 import fr.kinjer.kinomod.KinoMod;
+import fr.kinjer.kinomod.config.Config;
 import fr.kinjer.kinomod.items.base.BaseKino;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
@@ -28,8 +29,8 @@ public class ItemDaliumWand extends BaseKino {
 
 		ItemStack stack = player.getHeldItem(hand);
 		if (!world.isRemote) {
-			int range = 16;
-			int verticalRange = 16;
+			int range = Config.daliumWandRange;
+			int verticalRange = Config.daliumWandVerticalRange;
 			int posX = (int) Math.round(player.posX - 0.5f);
 			int posY = (int) player.posY;
 			int posZ = (int) Math.round(player.posZ - 0.5f);
@@ -43,6 +44,10 @@ public class ItemDaliumWand extends BaseKino {
 
 						 if ((block == Blocks.LAVA || block == Blocks.FLOWING_LAVA)) {
 	                            world.setBlockToAir(pos);
+	                            
+	                            if (!player.capabilities.isCreativeMode) {
+	                				player.getCooldownTracker().setCooldown(this, Config.daliumWandCooldown * 20);
+	                			}
 						 }
 					}
 		}

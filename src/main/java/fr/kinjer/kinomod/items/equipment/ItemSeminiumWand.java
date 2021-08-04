@@ -1,6 +1,7 @@
 package fr.kinjer.kinomod.items.equipment;
 
 import fr.kinjer.kinomod.KinoMod;
+import fr.kinjer.kinomod.config.Config;
 import fr.kinjer.kinomod.items.base.BaseKino;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -31,8 +32,8 @@ public class ItemSeminiumWand extends BaseKino {
 
 		ItemStack stack = player.getHeldItem(hand);
 		if (!world.isRemote) {
-			int range = 16;
-			int verticalRange = 16;
+			int range = Config.seminiumWandRange;
+			int verticalRange = Config.seminiumWandVerticalRange;
 			int posX = (int) Math.round(player.posX - 0.5f);
 			int posY = (int) player.posY;
 			int posZ = (int) Math.round(player.posZ - 0.5f);
@@ -47,6 +48,10 @@ public class ItemSeminiumWand extends BaseKino {
 						if ((block == Blocks.DIRT || block == Blocks.GRASS)) {
 							world.setBlockState(pos, Blocks.FARMLAND.getDefaultState());
 							world.scheduleUpdate(pos.toImmutable(), Blocks.FARMLAND, MathHelper.getInt(player.getRNG(), 60, 70));
+							
+							if (!player.capabilities.isCreativeMode) {
+                				player.getCooldownTracker().setCooldown(this, Config.seminiumWandCooldown * 20);
+                			}
 						}
 					}
 		}

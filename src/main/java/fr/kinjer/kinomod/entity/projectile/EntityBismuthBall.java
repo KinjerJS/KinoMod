@@ -47,7 +47,7 @@ public class EntityBismuthBall extends EntityArrow {
 
 	@Override
 	public void setDamage(double damage) {
-		super.setDamage(1.0D);
+		super.setDamage(0.0D);
 	}
 
 	@Override
@@ -79,8 +79,8 @@ public class EntityBismuthBall extends EntityArrow {
 	@Override
 	public void arrowHit(EntityLivingBase living) {
 		super.arrowHit(living);
-		living.attackEntityFrom(CommonProxy.bismuthProjectileDamage, 1.0F);
 		if (!world.isRemote) {
+			living.attackEntityFrom(CommonProxy.bismuthProjectileDamage, 15.0F);
 			world.createExplosion(living, living.posX, living.posY, living.posZ, 0.5F, false);
 		}
 	}

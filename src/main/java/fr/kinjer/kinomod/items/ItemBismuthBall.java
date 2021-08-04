@@ -1,7 +1,6 @@
 package fr.kinjer.kinomod.items;
 
 import fr.kinjer.kinomod.KinoMod;
-import fr.kinjer.kinomod.entity.projectile.EntityBismuthBall;
 import fr.kinjer.kinomod.items.base.BaseKino;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;

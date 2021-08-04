@@ -12,7 +12,6 @@ import fr.kinjer.kinomod.client.ClientProxy;
 import fr.kinjer.kinomod.common.CommonProxy;
 import fr.kinjer.kinomod.config.*;
 import fr.kinjer.kinomod.entity.EntityCentaur;
-import fr.kinjer.kinomod.entity.projectile.EntityBismuthBall;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;

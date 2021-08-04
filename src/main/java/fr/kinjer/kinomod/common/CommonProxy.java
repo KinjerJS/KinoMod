@@ -14,7 +14,7 @@ import net.minecraftforge.fluids.FluidRegistry;
 public class CommonProxy {
 	
 	public static DamageSource bismuthDamage   = UtilsDamageSource.newType("kinomod.bismuth").setDamageBypassesArmor().setDamageIsAbsolute().setMagicDamage();
-	public static DamageSource bismuthProjectileDamage   = UtilsDamageSource.newType("kinomod.bismuth").setDamageBypassesArmor().setDamageIsAbsolute().setMagicDamage().setProjectile();
+	public static DamageSource bismuthProjectileDamage   = UtilsDamageSource.newType("kinomod.bismuth.projectile").setDamageBypassesArmor().setDamageIsAbsolute().setMagicDamage().setProjectile();
 
 	public void setupConfiguration() {
 	}

@@ -1,6 +1,7 @@
 package fr.kinjer.kinomod.items.equipment;
 
 import fr.kinjer.kinomod.KinoMod;
+import fr.kinjer.kinomod.config.Config;
 import fr.kinjer.kinomod.items.base.BaseKino;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockCrops;
@@ -38,8 +39,8 @@ public class ItemBaliumWand extends BaseKino {
 
 		ItemStack stack = player.getHeldItem(hand);
 		if (!world.isRemote) {
-			int range = 16;
-			int verticalRange = 16;
+			int range = Config.baliumWandRange;
+			int verticalRange = Config.baliumWandVerticalRange;
 			int posX = (int) Math.round(player.posX - 0.5f);
 			int posY = (int) player.posY;
 			int posZ = (int) Math.round(player.posZ - 0.5f);
@@ -53,6 +54,10 @@ public class ItemBaliumWand extends BaseKino {
 
 						 if ((block == Blocks.WATER || block == Blocks.FLOWING_WATER)) {
 	                            world.setBlockToAir(pos);
+	                            
+	                            if (!player.capabilities.isCreativeMode) {
+	                				player.getCooldownTracker().setCooldown(this, Config.baliumWandCooldown * 20);
+	                			}
 						 }
 					}
 		}
