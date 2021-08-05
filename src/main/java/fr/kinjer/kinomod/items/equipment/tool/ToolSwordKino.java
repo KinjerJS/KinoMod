@@ -164,18 +164,11 @@ public class ToolSwordKino extends ItemTool implements UtilsIMultiMode {
 		return ActionResult.newResult(EnumActionResult.FAIL, stack);
 	}
 	
-<<<<<<< HEAD
-	@Override
-	public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
-		if (!UtilsKeyBoard.isShiftKeyDown()) {
-			tooltip.add(UtilsLocalizer.shiftForDetails());
-=======
 	@SideOnly(Side.CLIENT)
 	public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> l, ITooltipFlag flagIn) {
 
 		if (!UtilsKeyBoard.isShiftKeyDown()) {
 			l.add(UtilsLocalizer.shiftDetails());
->>>>>>> bde4654c4c81ec7a8b9a8079723242184cb21725
 			return;
 		}
 

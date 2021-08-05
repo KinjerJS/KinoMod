@@ -5,10 +5,7 @@ import java.util.Random;
 
 import javax.annotation.Nullable;
 
-<<<<<<< HEAD
 import fr.kinjer.kinomod.client.gui.GuiAirWater;
-=======
->>>>>>> bde4654c4c81ec7a8b9a8079723242184cb21725
 import fr.kinjer.kinomod.items.base.BaseKinoBaubleCharm;
 import fr.kinjer.kinomod.utils.UtilsKeyBoard;
 import fr.kinjer.kinomod.utils.UtilsLocalizer;
