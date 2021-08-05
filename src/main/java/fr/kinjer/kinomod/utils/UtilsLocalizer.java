@@ -31,9 +31,7 @@ public class UtilsLocalizer {
 		return BRIGHT_GREEN + localize(key) + END;
 	}
 	
-	
-	
-	public static boolean displayShiftForDetail = true;
+//	public static boolean displayShiftForDetail = true;
 	
 	public static final String BRIGHT_GREEN = (char) 167 + "a";
 	public static final String END = (char) 167 + "r";

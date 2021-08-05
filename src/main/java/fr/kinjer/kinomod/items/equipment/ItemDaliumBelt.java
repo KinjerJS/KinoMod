@@ -42,25 +42,17 @@ public class ItemDaliumBelt extends BaseKinoBelt {
 
 	@Override
 	public void onWornTick(ItemStack stack, EntityLivingBase player) {
-		if(player.isBurning()) {
-			player.extinguish();
-		}
-		
+		if(player.isBurning()) player.extinguish();
 		player.addPotionEffect(new PotionEffect(MobEffects.SLOWNESS, 5, 1, false, false));
 	}
 	
-	@SubscribeEvent
 	public static void onPlayerAttacked(LivingAttackEvent event) {
-		if (event.getEntityLiving() instanceof EntityPlayer) {
-			EntityPlayer player = (EntityPlayer) event.getEntityLiving();
-			if (damageNegations.contains(event.getSource().damageType))
-				event.setCanceled(true);
-		}
+		if (event.getEntityLiving() instanceof EntityPlayer && damageNegations.contains(event.getSource().damageType))
+			event.setCanceled(true);
 	}
 
 	@SideOnly(Side.CLIENT)
 	public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> l, ITooltipFlag flagIn) {
-
 		if (!UtilsKeyBoard.isShiftKeyDown()) {
 			l.add(UtilsLocalizer.shiftDetails());
 			return;

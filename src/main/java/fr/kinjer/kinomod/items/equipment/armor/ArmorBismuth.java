@@ -56,8 +56,8 @@ import net.minecraftforge.items.IItemHandler;
 
 public class ArmorBismuth extends ItemArmor {
 
-	public static final String DURABILITY = UtilsLocalizer.localize("tooltip.durability");
-	public static final String INFINITE = UtilsLocalizer.localize("tooltip.infinite");
+	private static final String DURABILITY = UtilsLocalizer.localize("tooltip.durability");
+	private static final String INFINITE = UtilsLocalizer.localize("tooltip.infinite");
 
 	private static final List<String> damageNegations = new ArrayList<>();
 
@@ -134,7 +134,6 @@ public class ArmorBismuth extends ItemArmor {
 		}
 	}
 
-	@SubscribeEvent
 	public static void onPlayerAttacked(LivingAttackEvent event) {
 		if (event.getEntityLiving() instanceof EntityPlayer) {
 			EntityPlayer player = (EntityPlayer) event.getEntityLiving();
@@ -143,25 +142,30 @@ public class ArmorBismuth extends ItemArmor {
 		}
 	}
 
-	@SubscribeEvent
-	public void updatePlayerAbilityStatus(LivingUpdateEvent event) {
-		if (event.getEntityLiving() instanceof EntityPlayer) {
-			EntityPlayer player = (EntityPlayer) event.getEntityLiving();
-
-			Boolean hasSet = isFullArmor(player);
-			if (hasSet) {
-
-			}
-		}
-	}
-
 	public static boolean isFullArmor(EntityPlayer player) {
-		Item head = player.inventory.armorInventory.get(3).getItem();
-		Item chestplate = player.inventory.armorInventory.get(2).getItem();
-		Item leggings = player.inventory.armorInventory.get(1).getItem();
-		Item boots = player.inventory.armorInventory.get(0).getItem();
-		return head != null && head == InitItems.helmet_item && chestplate != null
-				&& chestplate == InitItems.chestplate_item && leggings != null && leggings == InitItems.leggings_item
-				&& boots != null && boots == InitItems.boots_item;
+		return hasHelmet(player) && hasChestplate(player) && hasLeggings(player) && hasBoots(player);
 	}
+	
+	public static boolean hasHelmet(EntityPlayer player) {
+		Item slot = player.inventory.armorInventory.get(3).getItem();
+		return slot != null && slot == InitItems.helmet_item;
+	}
+	
+	public static boolean hasChestplate(EntityPlayer player) {
+		Item slot = player.inventory.armorInventory.get(2).getItem();
+		return slot != null && slot == InitItems.chestplate_item;
+	}
+	
+	public static boolean hasLeggings(EntityPlayer player) {
+		Item slot = player.inventory.armorInventory.get(1).getItem();
+		return slot != null && slot == InitItems.leggings_item;
+	}
+	
+	public static boolean hasBoots(EntityPlayer player) {
+		Item slot = player.inventory.armorInventory.get(0).getItem();
+		return slot != null && slot == InitItems.boots_item;
+	}
+	
+	
+	
 }

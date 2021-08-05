@@ -1,4 +1,4 @@
-package fr.kinjer.kinomod.gui;
+package fr.kinjer.kinomod.client.gui;
 
 import fr.kinjer.kinomod.world.*;
 import net.minecraft.block.material.Material;

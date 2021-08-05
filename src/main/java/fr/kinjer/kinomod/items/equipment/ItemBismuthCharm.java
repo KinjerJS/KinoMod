@@ -38,17 +38,12 @@ public class ItemBismuthCharm extends BaseKinoBaubleCharm {
 			player.addPotionEffect(new PotionEffect(MobEffects.STRENGTH, 40, 0, true, false));
 			player.removePotionEffect(MobEffects.WITHER);
 			damageNegations.add(DamageSource.FALL.damageType);
-
 		}
 	}
 	
-	@SubscribeEvent
 	public static void onPlayerAttacked(LivingAttackEvent event) {
-		if (event.getEntityLiving() instanceof EntityPlayer) {
-			EntityPlayer player = (EntityPlayer) event.getEntityLiving();
-			if (damageNegations.contains(event.getSource().damageType))
-				event.setCanceled(true);
-		}
+		if (event.getEntityLiving() instanceof EntityPlayer && damageNegations.contains(event.getSource().damageType)) 
+			event.setCanceled(true);
 	}
 	
 	@Override

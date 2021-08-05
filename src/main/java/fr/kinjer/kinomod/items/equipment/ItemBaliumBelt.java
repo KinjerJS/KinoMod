@@ -140,9 +140,4 @@ public class ItemBaliumBelt extends BaseKinoBaubleBelt {
 		GlStateManager.enableAlpha();
 		GlStateManager.color(1F, 1F, 1F, 1F);
 	}
-
-	@Override
-	public BaubleType getBaubleType(ItemStack arg0) {
-		return BaubleType.BELT;
-	}
 }

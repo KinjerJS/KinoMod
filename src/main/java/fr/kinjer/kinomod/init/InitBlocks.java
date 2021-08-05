@@ -9,6 +9,7 @@ import fr.kinjer.kinomod.blocks.BlockBaliumOre;
 import fr.kinjer.kinomod.blocks.BlockBismuth;
 import fr.kinjer.kinomod.blocks.BlockDalium;
 import fr.kinjer.kinomod.blocks.BlockDaliumOre;
+import fr.kinjer.kinomod.blocks.BlockExtractor;
 import fr.kinjer.kinomod.blocks.BlockGabbro;
 import fr.kinjer.kinomod.blocks.BlockGabbroPolished;
 import fr.kinjer.kinomod.blocks.BlockKinium;
@@ -66,6 +67,9 @@ public class InitBlocks {
 	public static final Block special_balium = new BlockSpecialBalium();
 	public static final Block special_seminium = new BlockSpecialSeminium();
 	public static final Block special_dalium = new BlockSpecialDalium();
+	
+	//Machines
+	public static final Block extractor = new BlockExtractor();
 	
 	public static void setBlockName(Block block, String name)
 	{

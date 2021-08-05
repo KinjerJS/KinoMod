@@ -155,11 +155,8 @@ public class ToolSwordKino extends ItemTool implements UtilsIMultiMode {
 	
 	@Override
 	public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
-
-		if (UtilsLocalizer.displayShiftForDetail && !UtilsKeyBoard.isShiftKeyDown()) {
-			tooltip.add(UtilsLocalizer.shiftForDetails());
-		}
 		if (!UtilsKeyBoard.isShiftKeyDown()) {
+			tooltip.add(UtilsLocalizer.shiftForDetails());
 			return;
 		}
 		tooltip.add(UtilsLocalizer.getInfoText("info.sword.a.") + getMode(stack));

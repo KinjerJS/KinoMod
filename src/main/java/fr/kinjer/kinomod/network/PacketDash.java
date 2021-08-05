@@ -16,6 +16,9 @@ import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 import net.minecraftforge.items.IItemHandler;
 
 public class PacketDash implements IMessage {
+	
+	public PacketDash() {
+	}
 
 	@Override
 	public void fromBytes(ByteBuf buf) {}
