@@ -75,7 +75,7 @@ public class InitItems {
 	public static final Item balium_ring = new BaseKinoBaubleRing("balium_ring");
 	public static final Item seminium_ring = new BaseKinoBaubleRing("seminium_ring");
 	public static final Item dalium_ring = new BaseKinoBaubleRing("dalium_ring");
-	public static final Item bismuth_ring = new BaseKinoBaubleRing("bismuth_ring");
+	public static final Item bismuth_ring = new ItemBismuthRing();
 
 	// charm
 	public static final Item dalium_charm = new ItemDaliumCharm();

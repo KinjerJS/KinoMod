@@ -1,24 +1,23 @@
-package fr.kinjer.kinomod.items.base;
+package fr.kinjer.kinomod.items;
 
 import baubles.common.items.ItemRing;
 import fr.kinjer.kinomod.KinoMod;
 import fr.kinjer.kinomod.init.InitItems;
+import fr.kinjer.kinomod.items.base.BaseKinoBaubleRing;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.init.MobEffects;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.PotionEffect;
 
-public class BaseKinoBaubleRing extends ItemRing {
+public class ItemBismuthRing extends BaseKinoBaubleRing {
 
-	public String name;
+public static final String NAME = "bismuth_ring";
 	
-	public BaseKinoBaubleRing(String name) {
-		this.name = name;
-		InitItems.setItemName(this, name);
-		setCreativeTab(KinoMod.tabKino);
+	public ItemBismuthRing() {
+		super(NAME);
 	}
-	
+
 	@Override
 	public void onWornTick(ItemStack itemstack, EntityLivingBase player) {
 		if(this == InitItems.bismuth_ring) {
@@ -30,6 +29,6 @@ public class BaseKinoBaubleRing extends ItemRing {
 
 	@Override
 	public boolean hasEffect(ItemStack par1ItemStack) {
-		return false;
+		return true;
 	}
 }
