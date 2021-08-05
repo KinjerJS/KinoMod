@@ -5,6 +5,7 @@ import java.util.Collection;
 import com.google.common.collect.Multimap;
 import com.google.common.collect.MultimapBuilder;
 
+import fr.kinjer.kinomod.KinoMod;
 import fr.kinjer.kinomod.init.*;
 import net.minecraft.block.Block;
 import net.minecraft.enchantment.Enchantment;

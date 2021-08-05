@@ -25,5 +25,12 @@
         "category" : "misc",
         "subtitle" : "misc.dash",
         "sounds": [{ "name": "kinomod:misc/dash", "stream": true }]
+    },
+    
+    "misc.spell_cast":
+    { 
+        "category" : "misc",
+        "subtitle" : "misc.spell_cast",
+        "sounds": [{ "name": "kinomod:misc/spell_cast", "stream": true }]
     }
 }

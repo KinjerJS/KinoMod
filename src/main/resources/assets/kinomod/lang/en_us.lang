@@ -48,6 +48,13 @@ item.kinomod.balium_belt_advanced.0.name=Balium Belt (Advanced)
 item.kinomod.seminium_belt_advanced.0.name=Seminium Belt (Advanced)
 item.kinomod.dalium_belt_advanced.0.name=Dalium Belt (Advanced)
 item.kinomod.bismuth_belt_advanced.0.name=Bismuth Belt (Advanced)
+item.kinomod.bismuth_orb.name=Bismuth Orb
+item.kinomod.kinium_wand.name=Kinium Wand
+item.kinomod.balium_wand.name=Balium Wand
+item.kinomod.seminium_wand.name=Seminium Wand
+item.kinomod.dalium_wand.name=Dalium Wand
+item.kinomod.bismuth_wand.name=Bismuth Wand
+item.kinomod.bismuth_ball.name=Bismuth Ball
 
 
 tile.kinomod.kinium_block.name=Kinium Block
@@ -103,12 +110,14 @@ kinomod.dalium_belt.toolip_1=Fire Resistance
 kinomod.kinium_belt.toolip=Add Enchantment Level
 kinomod.bismuth_charm.toolip=Negate Fall Damage
 kinomod.seminium_belt.toolip_0=Grow Plants Around You
-kinomod.seminium_belt.toolip_1=Nausea Resistance 
+kinomod.seminium_belt.toolip_1=Nausea Resistance
+kinomod.bismuth_wand.toolip=Fire Bismuth Explosion
 
 entity.centaur.name=Centaur
 entity.ghast_boss_d.name=Dalium Ghast
+entity.bismuth_ball.name=Bismuth Ball
 
-attribute.name.Bismuth=§cBismuth Damage
+attribute.name.Bismuth=Bismuth Damage
 death.attack.Bismuth=§4B§ci§6s§em§2u§at§bh §7disintegration has occurred
 
 info.holdShiftForDetails=Hold §e§oShift§r§7 for Details§r
@@ -128,3 +137,42 @@ potion.effect.bleeding=Potion of Bleeding
 splash_potion.effect.bleeding=Splash potion of Bleeding
 lingering_potion.effect.bleeding=Lingering potion of Bleeding
 tipped_arrow.effect.bleeding=Arrow of Bleeding
+
+kinomod.config.title.overview=§oKinoMod Configuration
+config.kinomod.category.kinomod=KinoMod
+config.kinomod.category.kinomod.tooltip=General Configuration
+config.category.id.centaur=Centaur ID
+config.category.id.ghastbossd=Dalium Ghast ID
+config.category.id.bismuthball=Bismuth Wand Projectile ID
+
+config.category.gen.overworld.gabbroAmount=Gabbro Amount
+config.category.gen.overworld.gabbroSize=Gabbro Vein Size
+
+config.category.gen.overworld.kiniumAmount=Kinium Amount
+config.category.gen.overworld.seminiumAmount=Seminium Amount
+config.category.gen.overworld.daliumAmount=Dalium Amount
+config.category.gen.overworld.baliumAmount=Balium Amount
+
+config.category.gen.nether.kiniumAmount=Kinium Amount
+config.category.gen.nether.seminiumAmount=Seminium Amount
+config.category.gen.nether.daliumAmount=Dalium Amount
+config.category.gen.nether.baliumAmount=Balium Amount
+
+config.category.gen.end.kiniumAmount=Kinium Amount
+config.category.gen.end.seminiumAmount=Seminium Amount
+config.category.gen.end.daliumAmount=Dalium Amount
+config.category.gen.end.baliumAmount=Balium Amount
+
+config.category.item.equipment.wand.kiniumWandRange=Kinium Wand Horizontal Range
+config.category.item.equipment.wand.kiniumWandVerticalRange=Kinium Wand Vertical Range
+config.category.item.equipment.wand.seminiumWandRange=Seminium Wand Horizontal Range
+config.category.item.equipment.wand.seminiumWandVerticalRange=Seminium Wand Vertical Range
+config.category.item.equipment.wand.baliumWandRange=Balium Wand Horizontal Range
+config.category.item.equipment.wand.baliumWandVerticalRange=Balium Wand Vertical Range
+config.category.item.equipment.wand.daliumWandRange=Dalium Wand Horizontal Range
+config.category.item.equipment.wand.daliumWandVerticalRange=Dalium Wand Vertical Range
+config.category.item.equipment.wand.cooldown.kiniumWandCooldown=Kinium Wand Cooldown
+config.category.item.equipment.wand.cooldown.seminiumWandCooldown=Seminium Wand Cooldown
+config.category.item.equipment.wand.cooldown.daliumWandCooldown=Dalium Wand Cooldown
+config.category.item.equipment.wand.cooldown.baliumWandCooldown=Balium Wand Cooldown
+

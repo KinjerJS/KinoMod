@@ -8,11 +8,11 @@ import net.minecraft.init.MobEffects;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.PotionEffect;
 
-public class BaseKinoRing extends ItemRing {
+public class BaseKinoBaubleRing extends ItemRing {
 
 	public String name;
 	
-	public BaseKinoRing(String name) {
+	public BaseKinoBaubleRing(String name) {
 		this.name = name;
 		InitItems.setItemName(this, name);
 		setCreativeTab(KinoMod.tabKino);

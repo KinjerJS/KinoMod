@@ -1,15 +1,17 @@
 package fr.kinjer.kinomod;
 
+import java.io.File;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import fr.kinjer.kinomod.gen.GenWorld;
-import fr.kinjer.kinomod.handler.HandlerRegistering;
-import fr.kinjer.kinomod.handler.HandlerRenderGui;
-import fr.kinjer.kinomod.init.InitItems;
-import fr.kinjer.kinomod.init.InitRecipes;
+import fr.kinjer.kinomod.handler.*;
+import fr.kinjer.kinomod.init.*;
 import fr.kinjer.kinomod.client.ClientProxy;
 import fr.kinjer.kinomod.common.CommonProxy;
+import fr.kinjer.kinomod.config.*;
+import fr.kinjer.kinomod.entity.EntityCentaur;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -29,20 +31,22 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-@Mod(modid = KinoMod.MODID, name = KinoMod.NAME, version = KinoMod.VERSION, dependencies = KinoMod.DEPENDENCIES)
+@Mod(modid = KinoMod.MODID, name = KinoMod.NAME, version = KinoMod.VERSION, dependencies = "required-after:forge@[14.23.5.2781,);required-after:baubles", guiFactory = "fr.kinjer.kinomod.config.ingame.ConfigGuiFactory", acceptedMinecraftVersions = "[1.12.2]")
 public class KinoMod {
 
 	public static final String MODID = "kinomod";
 	public static final String NAME = "KinoMod";
-	public static final String VERSION = "1.0.0";
-	public static final String DEPENDENCIES = "required-after:baubles";
-	
+	public static final String VERSION = "Experrimental";
+	public static final String CLIENT_PROXY = "fr.kinjer.kinomod.client.ClientProxy";
+	public static final String COMMON_PROXY = "fr.kinjer.kinomod.common.CommonProxy";
+
 	public static Logger log = LogManager.getLogger(NAME);
-	
-	@Instance(KinoMod.MODID)
+	public static File config;
+
+	@Mod.Instance(KinoMod.MODID)
 	public static KinoMod instance;
 
-	@SidedProxy(serverSide = CommonProxy.PACKAGE, clientSide = ClientProxy.PACKAGE)
+	@SidedProxy(serverSide = COMMON_PROXY, clientSide = CLIENT_PROXY)
 	public static CommonProxy proxy;
 
 	public static Logger logger;
@@ -50,26 +54,6 @@ public class KinoMod {
 	GenWorld worldgeneration = new GenWorld();
 	{
 		FluidRegistry.enableUniversalBucket();
-	}
-
-	public static DamageSource Bismuth = new DamageSource("Bismuth").setDamageBypassesArmor().setDamageIsAbsolute()
-			.setMagicDamage();
-
-	public static DamageSource DamageSourceBismuth(EntityLivingBase user) {
-
-		return (new EntityDamageSource("Bismuth", user)).setDamageBypassesArmor().setDamageIsAbsolute()
-				.setMagicDamage();
-	}
-
-	public static class DamageSourceBismuth extends EntityDamageSource {
-		public DamageSourceBismuth(Entity entity) {
-			super("Bismuth", entity);
-			DamageSourceBismuth.isBypassArmor();
-		}
-
-		public static boolean isBypassArmor() {
-			return true;
-		}
 	}
 
 	public static final CreativeTabs tabKino = new CreativeTabs("tabKino") {
@@ -84,11 +68,20 @@ public class KinoMod {
 		proxy.preInit(e.getSuggestedConfigurationFile());
 		logger = e.getModLog();
 		GameRegistry.registerWorldGenerator(worldgeneration, 0);
+
+		proxy.setupConfiguration();
+
+		Config.loadAndSetup(e.getSuggestedConfigurationFile());
+
+		proxy.registerConfigDataRegistries();
+		Config.loadDataRegistries(e.getModConfigurationDirectory());
+		Config.loadConfigRegistries(ConfigDataAdapter.LoadPhase.PRE_INIT);
 	}
 
 	@EventHandler
 	public void init(FMLInitializationEvent e) {
 		proxy.init();
+		Config.loadConfigRegistries(ConfigDataAdapter.LoadPhase.INIT);
 		InitRecipes.init();
 		HandlerRegistering.initRegistries();
 	}
@@ -96,6 +89,7 @@ public class KinoMod {
 	@EventHandler
 	public void postInit(FMLPostInitializationEvent e) {
 		MinecraftForge.EVENT_BUS.register(new HandlerRenderGui());
+		Config.loadConfigRegistries(ConfigDataAdapter.LoadPhase.POST_INIT);
 
 	}
 }

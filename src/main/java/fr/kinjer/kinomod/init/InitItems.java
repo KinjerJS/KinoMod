@@ -43,7 +43,7 @@ public class InitItems {
 	public static final ItemArmor boots_item = new ArmorBismuth("boots_item", armor_bismuth, 0,
 			EntityEquipmentSlot.FEET);
 
-	public static final ToolMaterial bismuth_material = EnumHelper.addToolMaterial("bismuth_material", 3, -1, 3f, 1,
+	public static final ToolMaterial bismuth_material = EnumHelper.addToolMaterial("bismuth_material", 3, -1, 3.0F, 1.0F,
 			30);
 
 	public static List<ItemTool> itemtool = new ArrayList<>();
@@ -71,11 +71,11 @@ public class InitItems {
 	public static final Item dalium_droplet = new ItemDaliumDroplet();
 
 	// ring
-	public static final Item kinium_ring = new BaseKinoRing("kinium_ring");
-	public static final Item balium_ring = new BaseKinoRing("balium_ring");
-	public static final Item seminium_ring = new BaseKinoRing("seminium_ring");
-	public static final Item dalium_ring = new BaseKinoRing("dalium_ring");
-	public static final Item bismuth_ring = new BaseKinoRing("bismuth_ring");
+	public static final Item kinium_ring = new BaseKinoBaubleRing("kinium_ring");
+	public static final Item balium_ring = new BaseKinoBaubleRing("balium_ring");
+	public static final Item seminium_ring = new BaseKinoBaubleRing("seminium_ring");
+	public static final Item dalium_ring = new BaseKinoBaubleRing("dalium_ring");
+	public static final Item bismuth_ring = new BaseKinoBaubleRing("bismuth_ring");
 
 	// charm
 	public static final Item dalium_charm = new ItemDaliumCharm();
@@ -98,6 +98,16 @@ public class InitItems {
 	public static final Item balium_belt = new ItemBaliumBelt();
 	public static final Item balium_belt_advanced = new ItemBaliumAdvancedBelt();
 	public static final Item bismuth_belt = new ItemBismuthBelt();
+	
+	//wand
+	public static final Item dalium_wand = new ItemDaliumWand();
+	public static final Item kinium_wand = new ItemKiniumWand();
+	public static final Item seminium_wand = new ItemSeminiumWand();
+	public static final Item balium_wand = new ItemBaliumWand();
+	public static final Item bismuth_wand = new ItemBismuthWand();
+	
+	//projectile
+	public static ItemBismuthBall item_bismuth_ball = new ItemBismuthBall("bismuth_ball");
 
 	// loot
 	public static final Item sword_part = new ItemSwordPart();
@@ -106,6 +116,7 @@ public class InitItems {
 	public static final Item ghast_boss_tentacle_s = new ItemGhastBossSTentacle();
 	public static final Item ghast_boss_tentacle_b = new ItemGhastBossBTentacle();
 	public static final Item tentacle_soup = new ItemTentacleSoup();
+	public static final Item bismuth_orb = new ItemBismuthOrb();
 
 	public static void setItemName(Item item, String name) {
 		items.add(item.setRegistryName(KinoMod.MODID, name).setUnlocalizedName(KinoMod.MODID + "." + name));

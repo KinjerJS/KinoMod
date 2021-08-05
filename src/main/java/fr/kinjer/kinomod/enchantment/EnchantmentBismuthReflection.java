@@ -3,6 +3,7 @@ package fr.kinjer.kinomod.enchantment;
 import java.util.Random;
 
 import fr.kinjer.kinomod.KinoMod;
+import fr.kinjer.kinomod.common.CommonProxy;
 import fr.kinjer.kinomod.init.InitEnchantment;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
@@ -53,7 +54,7 @@ public class EnchantmentBismuthReflection extends Enchantment {
 		ItemStack itemstack = EnchantmentHelper.getEnchantedItem(InitEnchantment.BISMUTH_REFLECTION, user);
 
 		if (attacker != null) {
-			attacker.attackEntityFrom(KinoMod.DamageSourceBismuth(user), (float) getDamage(level));
+			attacker.attackEntityFrom(CommonProxy.bismuthDamage, (float) getDamage(level));
 		}
 
 		if (!itemstack.isEmpty()) {
@@ -88,6 +89,6 @@ public class EnchantmentBismuthReflection extends Enchantment {
 			return;
 		}
 		net.minecraftforge.common.ISpecialArmor armor = (net.minecraftforge.common.ISpecialArmor) stack.getItem();
-		armor.damageArmor(entity, stack, KinoMod.DamageSourceBismuth(entity), amount, slot);
+		armor.damageArmor(entity, stack, CommonProxy.bismuthDamage, amount, slot);
 	}
 }

@@ -7,7 +7,7 @@ import javax.annotation.Nullable;
 
 import com.mojang.authlib.properties.Property;
 
-import fr.kinjer.kinomod.items.base.BaseKinoBelt;
+import fr.kinjer.kinomod.items.base.BaseKinoBaubleBelt;
 import fr.kinjer.kinomod.utils.UtilsKeyBoard;
 import fr.kinjer.kinomod.utils.UtilsLocalizer;
 import net.minecraft.block.BlockGrass;
@@ -40,7 +40,7 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.minecraftforge.common.IPlantable;
 
-public class ItemSeminiumBelt extends BaseKinoBelt {
+public class ItemSeminiumBelt extends BaseKinoBaubleBelt {
 
 	public ItemSeminiumBelt() {
 		super("seminium_belt");

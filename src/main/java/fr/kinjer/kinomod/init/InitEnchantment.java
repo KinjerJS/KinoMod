@@ -44,8 +44,6 @@ public class InitEnchantment {
 		BlockPos pos = living.getPosition();
 		World world = event.getEntity().world;
 
-		living.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(20 + (2 * (level / 2)));
-
 	}
 	
 	@SubscribeEvent

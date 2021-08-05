@@ -4,6 +4,7 @@ import java.util.Random;
 
 import com.google.common.base.Predicate;
 
+import fr.kinjer.kinomod.config.Config;
 import fr.kinjer.kinomod.init.InitBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockSand.EnumType;
@@ -35,25 +36,25 @@ public class GenWorld implements IWorldGenerator{
 	}
 	
 	private void generateEnd(World world, Random random, int x, int z) {
-		this.addOreSpawn(InitBlocks.kinium_ore_end, Blocks.END_STONE, world, random, x, z, 16, 16, 3, 8, 4, 80);
-		this.addOreSpawn(InitBlocks.balium_ore_end, Blocks.END_STONE, world, random, x, z, 16, 16, 3, 8, 4, 80);
-		this.addOreSpawn(InitBlocks.seminium_ore_end, Blocks.END_STONE, world, random, x, z, 16, 16, 3, 8, 4, 80);
-		this.addOreSpawn(InitBlocks.dalium_ore_end, Blocks.END_STONE, world, random, x, z, 16, 16, 3, 8, 4, 80);
+		this.addOreSpawn(InitBlocks.kinium_ore_end, Blocks.END_STONE, world, random, x, z, 16, 16, 3, Config.kiniumAmountEnd, 4, 80);
+		this.addOreSpawn(InitBlocks.balium_ore_end, Blocks.END_STONE, world, random, x, z, 16, 16, 3, Config.baliumAmountEnd, 4, 80);
+		this.addOreSpawn(InitBlocks.seminium_ore_end, Blocks.END_STONE, world, random, x, z, 16, 16, 3, Config.seminiumAmountEnd, 4, 80);
+		this.addOreSpawn(InitBlocks.dalium_ore_end, Blocks.END_STONE, world, random, x, z, 16, 16, 3, Config.daliumAmountEnd, 4, 80);
 	}
 
 	private void generateSurface(World world, Random random, int x, int z) {
-		this.addOreSpawn(InitBlocks.kinium_ore, Blocks.STONE, world, random, x, z, 16, 16, 3, 3, 4, 8);
-		this.addOreSpawn(InitBlocks.balium_ore, Blocks.STONE, world, random, x, z, 16, 16, 3, 3, 4, 8);
-		this.addOreSpawn(InitBlocks.seminium_ore, Blocks.STONE, world, random, x, z, 16, 16, 3, 3, 4, 8);
-		this.addOreSpawn(InitBlocks.dalium_ore, Blocks.STONE, world, random, x, z, 16, 16, 3, 3, 4, 8);
-		this.addOreSpawn(InitBlocks.gabbro, Blocks.STONE, world, random, x, z, 16, 16, 30, 70, 4, 8);
+		this.addOreSpawn(InitBlocks.kinium_ore, Blocks.STONE, world, random, x, z, 16, 16, 3, Config.kiniumAmountOverworld, 4, 8);
+		this.addOreSpawn(InitBlocks.balium_ore, Blocks.STONE, world, random, x, z, 16, 16, 3, Config.baliumAmountOverworld, 4, 8);
+		this.addOreSpawn(InitBlocks.seminium_ore, Blocks.STONE, world, random, x, z, 16, 16, 3, Config.seminiumAmountOverworld, 4, 8);
+		this.addOreSpawn(InitBlocks.dalium_ore, Blocks.STONE, world, random, x, z, 16, 16, 3, Config.daliumAmountOverworld, 4, 8);
+		this.addOreSpawn(InitBlocks.gabbro, Blocks.STONE, world, random, x, z, 16, 16, Config.gabbroVeinSize, Config.gabbroAmount, 4, 8);
 	}
 	
 	private void generateNether(World world, Random random, int x, int z) {
-		this.addOreSpawn(InitBlocks.kinium_ore_nether, Blocks.NETHERRACK, world, random, x, z, 16, 16, 3, 6, 4, 36);
-		this.addOreSpawn(InitBlocks.balium_ore_nether, Blocks.NETHERRACK, world, random, x, z, 16, 16, 3, 6, 4, 36);
-		this.addOreSpawn(InitBlocks.seminium_ore_nether, Blocks.NETHERRACK, world, random, x, z, 16, 16, 3, 6, 4, 36);
-		this.addOreSpawn(InitBlocks.dalium_ore_nether, Blocks.NETHERRACK, world, random, x, z, 16, 16, 3, 6, 4, 36);
+		this.addOreSpawn(InitBlocks.kinium_ore_nether, Blocks.NETHERRACK, world, random, x, z, 16, 16, 3, Config.kiniumAmountNether, 4, 36);
+		this.addOreSpawn(InitBlocks.balium_ore_nether, Blocks.NETHERRACK, world, random, x, z, 16, 16, 3, Config.baliumAmountNether, 4, 36);
+		this.addOreSpawn(InitBlocks.seminium_ore_nether, Blocks.NETHERRACK, world, random, x, z, 16, 16, 3, Config.seminiumAmountNether, 4, 36);
+		this.addOreSpawn(InitBlocks.dalium_ore_nether, Blocks.NETHERRACK, world, random, x, z, 16, 16, 3, Config.daliumAmountNether, 4, 36);
 	
 	}
 	

@@ -97,5 +97,4 @@ public final class HelperRotation {
 	public static HelperRotation aroundAxis(HelperVector axis, double angle) {
 		return aroundAxis(axis.x, axis.y, axis.z, angle);
 	}
-
 }

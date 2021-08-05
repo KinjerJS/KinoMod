@@ -73,5 +73,4 @@ public final class HandlerTick {
 		if(pageFlipTicks == 0)
 			pageFlipTicks = 5;
 	}
-
 }

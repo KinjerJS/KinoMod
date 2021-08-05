@@ -11,6 +11,7 @@ import org.lwjgl.input.Keyboard;
 import com.google.common.collect.Multimap;
 
 import fr.kinjer.kinomod.KinoMod;
+import fr.kinjer.kinomod.common.CommonProxy;
 import fr.kinjer.kinomod.entity.EntityGhastBossD;
 import fr.kinjer.kinomod.init.InitItems;
 import fr.kinjer.kinomod.utils.UtilsKeyBoard;
@@ -68,19 +69,29 @@ public class ToolSwordKino extends ItemTool implements UtilsIMultiMode {
 	
 	protected static final UUID ATTACK_BISMUTH_MODIFIER = UUID.randomUUID();
 	
+	private static final double BISMUTH_DAMAGE = 20.0D;
+	private static final double ATTACK_DAMAGE = 70.0D - 1.0D;
+	private static final double ATTACK_SPEED = -2.4000000953674316D;
+	
 	public ToolSwordKino(float attackDamageIn, float attackSpeedIn, float attackBismuthIn, Item.ToolMaterial materialIn, Set<Block> effectiveBlocksIn) {
 		super(materialIn, effectiveBlocksIn);
         this.toolMaterial = materialIn;
         this.maxStackSize = 1;
-        this.attackDamage = 80.0F-1.0F;
-        this.attackSpeed = (float) -2.4000000953674316D;
-        this.attackBismuth = 50.0F;
+        this.attackDamage = (float) ATTACK_DAMAGE;
+        this.attackSpeed = (float) ATTACK_SPEED;
+        this.attackBismuth = (float) BISMUTH_DAMAGE;
 		this.setCreativeTab(KinoMod.tabKino);
 
 		InitItems.setItemToolName(this, "bismuth_sword");
 		setHasSubtypes(true);
 		setMaxStackSize(1);
 		setNoRepair();
+	}
+	
+	@Override
+	public boolean hasEffect(ItemStack stack) {
+
+		return true;
 	}
 
 	@Override
@@ -98,7 +109,7 @@ public class ToolSwordKino extends ItemTool implements UtilsIMultiMode {
 
 	@Override
 	public boolean hitEntity(ItemStack itemstack, EntityLivingBase attackedEntity, EntityLivingBase attacker) {
-		attackedEntity.attackEntityFrom(KinoMod.Bismuth, 100.0F);
+		attackedEntity.attackEntityFrom(CommonProxy.bismuthDamage, (float) BISMUTH_DAMAGE);
 		return super.hitEntity(itemstack, attackedEntity, attacker);
 	}
 
@@ -153,13 +164,23 @@ public class ToolSwordKino extends ItemTool implements UtilsIMultiMode {
 		return ActionResult.newResult(EnumActionResult.FAIL, stack);
 	}
 	
+<<<<<<< HEAD
 	@Override
 	public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
 		if (!UtilsKeyBoard.isShiftKeyDown()) {
 			tooltip.add(UtilsLocalizer.shiftForDetails());
+=======
+	@SideOnly(Side.CLIENT)
+	public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> l, ITooltipFlag flagIn) {
+
+		if (!UtilsKeyBoard.isShiftKeyDown()) {
+			l.add(UtilsLocalizer.shiftDetails());
+>>>>>>> bde4654c4c81ec7a8b9a8079723242184cb21725
 			return;
 		}
-		tooltip.add(UtilsLocalizer.getInfoText("info.sword.a.") + getMode(stack));
+
+		l.add(UtilsLocalizer.localize("info.sword.a.") + getMode(stack));
+
 	}
 	
 	@Override
@@ -179,7 +200,7 @@ public class ToolSwordKino extends ItemTool implements UtilsIMultiMode {
 		Multimap<String, AttributeModifier> multimap = super.getItemAttributeModifiers(equipmentSlot);
 
 		if (equipmentSlot == EntityEquipmentSlot.MAINHAND) {
-			multimap.put("Bismuth", new AttributeModifier(ATTACK_BISMUTH_MODIFIER, "Tool modifier", (double)this.attackBismuth, 0));
+			multimap.put("Bismuth", new AttributeModifier(ATTACK_BISMUTH_MODIFIER, "Tool modifier", BISMUTH_DAMAGE, 0));
 		}
 
 		return multimap;

@@ -131,9 +131,6 @@ public class EntityGhastBossD extends EntityFlying implements IMob {
 		}
 	}
 
-	/**
-	 * Called when the entity is attacked.
-	 */
 	public boolean attackEntityFrom(DamageSource source, float amount) {
 		if (this.isEntityInvulnerable(source)) {
 			return true;
@@ -198,19 +195,11 @@ public class EntityGhastBossD extends EntityFlying implements IMob {
 		return LootTableList.ENTITIES_GHAST;
 	}
 
-	/**
-	 * Add the given player to the list of players tracking this entity. For
-	 * instance, a player may track a boss in order to view its associated boss bar.
-	 */
 	public void addTrackingPlayer(EntityPlayerMP player) {
 		super.addTrackingPlayer(player);
 		this.bossInfo.addPlayer(player);
 	}
 
-	/**
-	 * Removes the given player from the list of players tracking this entity. See
-	 * {@link Entity#addTrackingPlayer} for more information on tracking.
-	 */
 	public void removeTrackingPlayer(EntityPlayerMP player) {
 		super.removeTrackingPlayer(player);
 		this.bossInfo.removePlayer(player);
@@ -222,9 +211,6 @@ public class EntityGhastBossD extends EntityFlying implements IMob {
 		this.bossInfo.setPercent(this.getHealth() / this.getMaxHealth());
 	}
 
-	/**
-	 * Returns the volume for the sounds this mob makes.
-	 */
 	protected float getSoundVolume() {
 		return 10.0F;
 	}
@@ -237,31 +223,19 @@ public class EntityGhastBossD extends EntityFlying implements IMob {
 	public void knockBack(Entity entityIn, float strength, double xRatio, double zRatio) {
 	}
 
-	/**
-	 * (abstract) Protected helper method to write subclass entity data to NBT.
-	 */
 	public void writeEntityToNBT(NBTTagCompound compound) {
 		super.writeEntityToNBT(compound);
 		compound.setInteger("ExplosionPower", this.explosionStrength);
 	}
 
-	/**
-	 * Returns false if this Entity is a boss, true otherwise.
-	 */
 	public boolean isNonBoss() {
 		return false;
 	}
 
-	/**
-	 * Makes the entity despawn if requirements are reached
-	 */
 	protected void despawnEntity() {
 		this.idleTime = 0;
 	}
 
-	/**
-	 * (abstract) Protected helper method to read subclass entity data from NBT.
-	 */
 	public void readEntityFromNBT(NBTTagCompound compound) {
 		super.readEntityFromNBT(compound);
 
@@ -284,9 +258,6 @@ public class EntityGhastBossD extends EntityFlying implements IMob {
 		return 2.6F;
 	}
 
-	/**
-	 * handles entity death timer, experience orb and particle creation
-	 */
 	protected void onDeathUpdate() {
 		++this.deathTicks;
 
@@ -339,33 +310,20 @@ public class EntityGhastBossD extends EntityFlying implements IMob {
 			this.parentEntity = entityGhastBossD;
 		}
 
-		/**
-		 * Returns whether the EntityAIBase should begin execution.
-		 */
 		public boolean shouldExecute() {
 			return this.parentEntity.getAttackTarget() != null;
 		}
 
-		/**
-		 * Execute a one shot task or start executing a continuous task
-		 */
 		public void startExecuting() {
 			this.attackTimer = 0;
 			this.shootTimer = 0;
 		}
 
-		/**
-		 * Reset the task's internal state. Called when this task is interrupted by
-		 * another one
-		 */
 		public void resetTask() {
 			this.parentEntity.setAttacking(false);
 			this.parentEntity.setPhase(0);
 		}
 
-		/**
-		 * Keep ticking a continuous task that has already been started
-		 */
 		public void updateTask() {
 			EntityLivingBase entitylivingbase = this.parentEntity.getAttackTarget();
 			double d0 = 64.0D;
@@ -416,16 +374,10 @@ public class EntityGhastBossD extends EntityFlying implements IMob {
 			this.setMutexBits(2);
 		}
 
-		/**
-		 * Returns whether the EntityAIBase should begin execution.
-		 */
 		public boolean shouldExecute() {
 			return true;
 		}
 
-		/**
-		 * Keep ticking a continuous task that has already been started
-		 */
 		public void updateTask() {
 			if (this.parentEntity.getAttackTarget() == null) {
 				this.parentEntity.rotationYaw = -((float) MathHelper.atan2(this.parentEntity.motionX,
@@ -457,9 +409,6 @@ public class EntityGhastBossD extends EntityFlying implements IMob {
 			}
 		}
 
-		/**
-		 * Returns whether the EntityAIBase should begin execution.
-		 */
 		public boolean shouldExecute() {
 			EntityMoveHelper entitymovehelper = this.parentEntity.getMoveHelper();
 
@@ -474,16 +423,10 @@ public class EntityGhastBossD extends EntityFlying implements IMob {
 			}
 		}
 
-		/**
-		 * Returns whether an in-progress EntityAIBase should continue executing
-		 */
 		public boolean shouldContinueExecuting() {
 			return false;
 		}
 
-		/**
-		 * Execute a one shot task or start executing a continuous task
-		 */
 		public void startExecuting() {
 			Random random = this.parentEntity.getRNG();
 			double d0 = this.parentEntity.posX + (double) ((random.nextFloat() * 2.0F - 1.0F) * 16.0F);
@@ -528,9 +471,6 @@ public class EntityGhastBossD extends EntityFlying implements IMob {
 			}
 		}
 
-		/**
-		 * Checks if entity bounding box is not colliding with terrain
-		 */
 		private boolean isNotColliding(double x, double y, double z, double p_179926_7_) {
 			double d0 = (x - this.parentEntity.posX) / p_179926_7_;
 			double d1 = (y - this.parentEntity.posY) / p_179926_7_;

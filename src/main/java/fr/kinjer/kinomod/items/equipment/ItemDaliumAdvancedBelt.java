@@ -5,7 +5,7 @@ import java.util.List;
 
 import javax.annotation.Nullable;
 
-import fr.kinjer.kinomod.items.base.BaseKinoBelt;
+import fr.kinjer.kinomod.items.base.BaseKinoBaubleBelt;
 import fr.kinjer.kinomod.utils.UtilsKeyBoard;
 import fr.kinjer.kinomod.utils.UtilsLocalizer;
 import net.minecraft.client.util.ITooltipFlag;
@@ -22,7 +22,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class ItemDaliumAdvancedBelt extends BaseKinoBelt {
+public class ItemDaliumAdvancedBelt extends BaseKinoBaubleBelt {
 
 private static final List<String> damageNegations = new ArrayList<>();
 	

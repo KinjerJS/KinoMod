@@ -5,13 +5,18 @@ import java.io.File;
 import org.lwjgl.input.Keyboard;
 
 import fr.kinjer.kinomod.handler.HandlerSounds;
+import fr.kinjer.kinomod.init.InitItems;
 import fr.kinjer.kinomod.common.CommonProxy;
 import fr.kinjer.kinomod.handler.HandlerRender;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.entity.RenderArrow;
+import net.minecraft.client.renderer.entity.RenderSnowball;
+import net.minecraft.client.renderer.entity.RenderSpectralArrow;
 import net.minecraft.client.settings.KeyBinding;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
+import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.SidedProxy;
 
 public class ClientProxy extends CommonProxy {
@@ -19,16 +24,19 @@ public class ClientProxy extends CommonProxy {
 	@SidedProxy(clientSide = "fr.kinjer.kinomod.client.ClientProxy", serverSide = "fr.kinjer.kinomod.common.CommonProxy")
 	public static CommonProxy proxy;
 
-	public static final String PACKAGE = "fr.kinjer.kinomod.client.ClientProxy";
-
 	public EntityPlayer getPlayer() {
 		return Minecraft.getMinecraft().player;
 	}
-
+	
 	public void registerEventHandlers() {
 		super.registerEventHandlers();
 	}
-
+	
+	@Override
+    public void setupConfiguration() {
+        super.setupConfiguration();
+    }
+	
 	@Override
 	public void preInit(File file) {
 		super.preInit(file);
