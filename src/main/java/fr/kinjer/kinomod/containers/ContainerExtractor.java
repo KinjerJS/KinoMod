@@ -1,10 +1,8 @@
 package fr.kinjer.kinomod.containers;
 
-import fr.kinjer.kinomod.tileentitys.TileExtractor;
+import fr.kinjer.kinomod.tileentities.TileExtractor;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
-import net.minecraft.init.Blocks;
-import net.minecraft.init.Items;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.IContainerListener;
 import net.minecraft.inventory.IInventory;
@@ -23,23 +21,17 @@ public class ContainerExtractor extends Container{
 	public ContainerExtractor(TileExtractor tile, InventoryPlayer playerInventory) {
 	    this.tile = tile;
 	 
-	    int i;
-	    for(i = 0; i < 2; i++) {
-	        this.addSlotToContainer(new Slot(tile, i, 33 + i * 18, 7));
-	    }
-	    for(i = 0; i < 2; i++) {
-	        this.addSlotToContainer(new SlotSingleItem(tile, i + 2, 42, 40 + i * 18, i == 0 ? Item.getItemFromBlock(Blocks.PLANKS) : Items.WHEAT));
-	    }
-	    this.addSlotToContainer(new SlotOutput(tile, 4, 116, 17));
+	    int i = 0;
+	    this.addSlotToContainer(new SlotOutput(tile, i, 79, 39));
 	 
 	    for(i = 0; i < 3; ++i) {
 	        for(int j = 0; j < 9; ++j) {
-	            this.addSlotToContainer(new Slot(playerInventory, j + i * 9 + 9, 8 + j * 18, 84 + i * 18));
+	            this.addSlotToContainer(new Slot(playerInventory, j + i * 9 + 9, 8 + j * 18, 104 + i * 18));
 	        }
 	    }
 	 
 	    for(i = 0; i < 9; ++i) {
-	        this.addSlotToContainer(new Slot(playerInventory, i, 8 + i * 18, 142));
+	        this.addSlotToContainer(new Slot(playerInventory, i, 8 + i * 18, 162));
 	    }
 	}
 	
@@ -85,11 +77,42 @@ public class ContainerExtractor extends Container{
 	    this.tile.setField(id, data);
 	}
 	
-	// La fonction qui permet de shift + clic (Elle est actuellement désactiver)
+	// La fonction qui permet de shift + clic 
 	@Override
-	public ItemStack transferStackInSlot(EntityPlayer playerIn, int index) {
-	    return ItemStack.EMPTY;
-	}
+	public ItemStack transferStackInSlot(EntityPlayer playerIn, int i)
+    {
+//        ItemStack itemstack = ItemStack.EMPTY;
+//        Slot slot = this.inventorySlots.get(i);
+//
+//        if (slot != null && slot.getHasStack())
+//        {
+//            ItemStack itemstack1 = slot.getStack();
+//            itemstack = itemstack1.copy();
+//
+//            if (!this.mergeItemStack(itemstack1, 0, 34, false))
+//            {
+//                return ItemStack.EMPTY;
+//            }
+//
+//            if (itemstack1.isEmpty())
+//            {
+//                slot.putStack(ItemStack.EMPTY);
+//            }
+//            else
+//            {
+//                slot.onSlotChanged();
+//            }
+//
+//            if (itemstack1.getCount() == itemstack.getCount())
+//            {
+//                return ItemStack.EMPTY;
+//            }
+//
+//            slot.onTake(playerIn, itemstack1);
+//        }
+
+        return ItemStack.EMPTY;// itemstack;
+    }
 	
 	public class SlotOutput extends Slot {
 		 

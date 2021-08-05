@@ -2,7 +2,7 @@ package fr.kinjer.kinomod.blocks;
 
 import fr.kinjer.kinomod.KinoMod;
 import fr.kinjer.kinomod.init.InitBlocks;
-import fr.kinjer.kinomod.tileentitys.TileExtractor;
+import fr.kinjer.kinomod.tileentities.TileExtractor;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -48,18 +48,16 @@ public class BlockExtractor extends BlockContainer {
 	
 	@Override
 	public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
-	    if (world.isRemote) {
-	        return true;
-	    } else {
-	        TileEntity tileentity = world.getTileEntity(pos);
-	 
+	    if (!world.isRemote) {
+	    	TileEntity tileentity = world.getTileEntity(pos);
+	   	 
 	        if (tileentity instanceof TileExtractor) {
 	            player.openGui(KinoMod.instance, 0, world, pos.getX(),
 	                    pos.getY(), pos.getZ());
 	        }
-	 
-	        return true;
 	    }
+	    return true;
+	    
 	}
 	
 	@Override
@@ -71,7 +69,6 @@ public class BlockExtractor extends BlockContainer {
 	public void onBlockPlacedBy(World worldIn, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack) {
 	    if (stack.hasDisplayName()) {
 	        TileEntity tileentity = worldIn.getTileEntity(pos);
-	 
 	        if (tileentity instanceof TileExtractor) {
 	            ((TileExtractor) tileentity).setCustomName(stack
 	                    .getDisplayName());

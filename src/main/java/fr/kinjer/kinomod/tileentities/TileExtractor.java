@@ -1,4 +1,4 @@
-package fr.kinjer.kinomod.tileentitys;
+package fr.kinjer.kinomod.tileentities;
 
 import fr.kinjer.kinomod.recipes.RecipesExtractor;
 import net.minecraft.client.renderer.texture.ITickable;

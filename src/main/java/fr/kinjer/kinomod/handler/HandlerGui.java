@@ -2,7 +2,7 @@ package fr.kinjer.kinomod.handler;
 
 import fr.kinjer.kinomod.client.gui.GuiExtractor;
 import fr.kinjer.kinomod.containers.ContainerExtractor;
-import fr.kinjer.kinomod.tileentitys.TileExtractor;
+import fr.kinjer.kinomod.tileentities.TileExtractor;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;

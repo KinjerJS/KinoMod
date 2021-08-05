@@ -6,6 +6,7 @@ import com.google.common.base.Predicate;
 
 import fr.kinjer.kinomod.KinoMod;
 import fr.kinjer.kinomod.common.CommonProxy;
+import fr.kinjer.kinomod.entity.projectile.EntityBismuthBall;
 import fr.kinjer.kinomod.handler.HandlerLootTable;
 import fr.kinjer.kinomod.handler.HandlerSounds;
 import fr.kinjer.kinomod.init.InitItems;
@@ -260,7 +261,7 @@ public class EntityCentaur extends EntityMob {
 			if (this.isArmored()) {
 				Entity entity = source.getImmediateSource();
 
-				if (entity instanceof EntityArrow) {
+				if (entity instanceof EntityArrow || entity instanceof EntityBismuthBall) {
 					return false;
 				}
 			}

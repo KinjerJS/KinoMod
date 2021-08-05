@@ -2,11 +2,14 @@ package fr.kinjer.kinomod.client.gui;
 
 import fr.kinjer.kinomod.KinoMod;
 import fr.kinjer.kinomod.containers.ContainerExtractor;
-import fr.kinjer.kinomod.tileentitys.TileExtractor;
+import fr.kinjer.kinomod.tileentities.TileExtractor;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
+@SideOnly(Side.CLIENT)
 public class GuiExtractor extends GuiContainer
 {
 	private static final ResourceLocation background = new ResourceLocation(KinoMod.MODID,"textures/gui/container/extractor.png");
@@ -16,22 +19,20 @@ public class GuiExtractor extends GuiContainer
         super(new ContainerExtractor(tile, playerInv));
         this.tile = tile;
 	}
-	
 	/*
 	 * Les deux fonctions suivantes permettent de dessiner le Gui :
 	 * 
 	 * drawGuiContainerBackgroundLayer permet de dessiner l’arrière plan
-	 * drawGuiContainerForegroundLayer permet de dessiner le permier plan Vous
-	 * pouvez dessiner à l’aide des fonctions :
+	 * drawGuiContainerForegroundLayer permet de dessiner le permier plan 
+	 * Vous pouvez dessiner à l’aide des fonctions :
 	 * 
-	 * @code this.drawTexturedModalRect(int x, int y, int textureX, int textureY,
-	 * int width, int height) x correspond à la coordonnée x de l’endroit où vous
-	 * voulez afficher votre texture y correspond à la coordonnée y de l’endroit où
-	 * vous voulez afficher votre texture textureX correspond à la coordonnée x du
-	 * morceau de texture que vous voulez afficher textureY correspond à la
-	 * coordonnée y du morceau de texture que vous voulez afficher width correspond
-	 * à largeur du morceau de texture que vous voulez afficher height correspond à
-	 * la hauteur du morceau de texture que vous voulez afficher
+	 * @code this.drawTexturedModalRect(int x, int y, int textureX, int textureY, int width, int height) 
+	 * x correspond à la coordonnée x de l’endroit où vous voulez afficher votre texture 
+	 * y correspond à la coordonnée y de l’endroit où vous voulez afficher votre texture 
+	 * textureX correspond à la coordonnée x du morceau de texture que vous voulez afficher textureY correspond à la
+	 * coordonnée y du morceau de texture que vous voulez afficher 
+	 * width correspond à largeur du morceau de texture que vous voulez afficher 
+	 * height correspond à la hauteur du morceau de texture que vous voulez afficher
 	 * 
 	 * Quand vous utilisez cette fonction, il faut associer la texture au
 	 * textureManager de minecraft, il faut donc mettre 1 fois au début de la
@@ -54,9 +55,8 @@ public class GuiExtractor extends GuiContainer
 	protected void drawGuiContainerBackgroundLayer(float partialTicks, int mouseX, int mouseY) {
 	    int i = (this.width - this.xSize) / 2;
 	    int j = (this.height - this.ySize) / 2;
-	    this.drawDefaultBackground();
 	    this.mc.getTextureManager().bindTexture(background);
-	    this.drawTexturedModalRect(i, j, 0, 0, this.xSize, this.ySize);
+	    this.drawTexturedModalRect(i, j, 0, 0, this.xSize, this.ySize + 20);
 	 
 	    int timePassed = this.tile.getField(1);
 	    int textureWidth = (int) (23f / 200f * timePassed);
@@ -69,6 +69,13 @@ public class GuiExtractor extends GuiContainer
 	                177, 12 - textureHeight, 27, textureHeight);
 	    }
 	 
-	    this.fontRenderer.drawString(this.tile.getName(), i + 80, j + 45, 0xFFFFFF);
+	    //this.fontRenderer.drawString(this.tile.getName(), i + 40, j + 25, 0xFFFFFF);
+	}
+	
+	@Override
+	public void drawScreen(int mouseX, int mouseY, float partialTicks) {
+		this.drawDefaultBackground();
+		super.drawScreen(mouseX, mouseY, partialTicks);
+		this.renderHoveredToolTip(mouseX, mouseY);
 	}
 }
