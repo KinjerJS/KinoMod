@@ -7,6 +7,8 @@ import java.util.UUID;
 import javax.annotation.Nullable;
 
 import fr.kinjer.kinomod.client.gui.GuiPlayerScore;
+import fr.kinjer.kinomod.handler.HandlerLootTable;
+import fr.kinjer.kinomod.init.InitItems;
 import fr.kinjer.kinomod.utils.UtilsWorld;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityFlying;
@@ -18,6 +20,7 @@ import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.entity.ai.EntityAIFindEntityNearestPlayer;
 import net.minecraft.entity.ai.EntityMoveHelper;
 import net.minecraft.entity.boss.EntityDragon;
+import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.item.EntityXPOrb;
 import net.minecraft.entity.monster.EntityGhast;
 import net.minecraft.entity.monster.IMob;
@@ -26,6 +29,7 @@ import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.entity.projectile.EntityArrow;
 import net.minecraft.entity.projectile.EntityLargeFireball;
 import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.datasync.DataParameter;
@@ -120,6 +124,8 @@ public class EntityGhastBossD extends EntityFlying implements IMob {
 	public int getFireballStrength() {
 		return this.explosionStrength;
 	}
+	
+	
 
 	public void onLivingUpdate() {
 		super.onLivingUpdate();
@@ -192,13 +198,25 @@ public class EntityGhastBossD extends EntityFlying implements IMob {
 	protected SoundEvent getDeathSound() {
 		return SoundEvents.ENTITY_ENDERDRAGON_DEATH;
 	}
+	
+	protected void dropFewItems(boolean wasRecentlyHit, int lootingModifier)
+    {
+        EntityItem entityitem = this.dropItem(InitItems.ghast_boss_tentacle_d, 1);
+
+        if (entityitem != null)
+        {
+            entityitem.setNoDespawn();
+        }
+        
+        EntityItem entityitem2 = this.dropItem(InitItems.dalium, 1);
+        
+        if (entityitem2 != null)
+        {
+        	entityitem2.setNoDespawn();
+        }
+    }
 
 	protected void collideWithEntity(Entity entityIn) {
-	}
-
-	@Nullable
-	protected ResourceLocation getLootTable() {
-		return LootTableList.ENTITIES_GHAST;
 	}
 
 	public void addTrackingPlayer(EntityPlayerMP player) {
@@ -275,12 +293,13 @@ public class EntityGhastBossD extends EntityFlying implements IMob {
 			GuiPlayerScore.renderPlayerScore = true;
 		}
 
-		if (this.deathTicks >= 50 && this.deathTicks <= 220) {
-			float f = (this.rand.nextFloat() + 0.5F) * 8.0F;
-			float f1 = (this.rand.nextFloat() + 0.5F) * 4.0F;
-			float f2 = (this.rand.nextFloat() + 0.5F) * 8.0F;
-			this.world.spawnParticle(EnumParticleTypes.EXPLOSION_HUGE, this.posX + (double)f, this.posY + 2.0D + (double)f1, this.posZ + (double)f2, 0.0D, 0.0D, 0.0D);
-		}
+		if (this.deathTicks >= 70 && this.deathTicks <= 200)
+        {
+            float f = (this.rand.nextFloat() - 0.5F) * 8.0F;
+            float f1 = (this.rand.nextFloat() - 0.5F) * 4.0F;
+            float f2 = (this.rand.nextFloat() - 0.5F) * 8.0F;
+            this.world.spawnParticle(EnumParticleTypes.EXPLOSION_HUGE, this.posX + (double)f, this.posY + 2.0D + (double)f1, this.posZ + (double)f2, 0.0D, 0.0D, 0.0D);
+        }
 
 		boolean flag = this.world.getGameRules().getBoolean("doMobLoot");
 		int i = 500;
@@ -303,6 +322,7 @@ public class EntityGhastBossD extends EntityFlying implements IMob {
 			}
 			GuiPlayerScore.renderPlayerScore = false;
 			this.playerScore -= this.playerScore;
+			this.dropFewItems(false, 1);
 			this.setDead();
 		}
 	}
