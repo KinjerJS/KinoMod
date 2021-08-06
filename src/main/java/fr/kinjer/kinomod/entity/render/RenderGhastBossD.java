@@ -15,19 +15,17 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class RenderGhastBossD extends RenderLiving<EntityGhastBossD> {
 	private static final ResourceLocation GHAST_BOSS_TEXTURES = new ResourceLocation(KinoMod.MODID,
-			"textures/entity/ghast_boss.png");
+			"textures/entity/ghast_boss_dalium.png");
 	private static final ResourceLocation GHAST_BOSS_SHOOTING_TEXTURES = new ResourceLocation(KinoMod.MODID,
-			"textures/entity/ghast_boss_shooting.png");
+			"textures/entity/ghast_boss_dalium_shooting.png");
 	private static final ResourceLocation GHAST_BOSS_TEXTURES_1 = new ResourceLocation(KinoMod.MODID,
-			"textures/entity/ghast_boss_1.png");
+			"textures/entity/ghast_boss_dalium_1.png");
 	private static final ResourceLocation GHAST_BOSS_SHOOTING_TEXTURES_1 = new ResourceLocation(KinoMod.MODID,
-			"textures/entity/ghast_boss_shooting_1.png");
+			"textures/entity/ghast_boss_dalium_shooting_1.png");
 	private static final ResourceLocation GHAST_BOSS_TEXTURES_2 = new ResourceLocation(KinoMod.MODID,
-			"textures/entity/ghast_boss_2.png");
+			"textures/entity/ghast_boss_dalium_2.png");
 	private static final ResourceLocation GHAST_BOSS_SHOOTING_TEXTURES_2 = new ResourceLocation(KinoMod.MODID,
-			"textures/entity/ghast_boss_shooting_2.png");
-	private static final ResourceLocation DRAGON_EXPLODING_TEXTURES = new ResourceLocation(
-			"textures/entity/enderdragon/dragon_exploding.png");
+			"textures/entity/ghast_boss_dalium_shooting_2.png");
 
 	public RenderGhastBossD(RenderManager renderManagerIn) {
 		super(renderManagerIn, new ModelGhastBossD(), 0.5F);
