@@ -72,19 +72,13 @@ public class EntityCentaur extends EntityMob {
 	private int attackTimer;
 	private int blockBreakCounter;
 
-	private static final double MAX_HEALTH = 500.0D;
+	private static final double MAX_HEALTH = 1000.0D;
 	private static final double MOVEMENT_SPEED = 0.6D;
 	private static final double ATTACK_DAMAGE = 8.0D;
-	private static final double ARMOR = 20.0D;
+	private static final double ARMOR = 2.0D;
 	private static final double FOLLOW_RANGE = 50.0D;
 
-	private static final Predicate<Entity> NOT_UNDEAD = new Predicate<Entity>() {
-		public boolean apply(@Nullable Entity p_apply_1_) {
-			return p_apply_1_ instanceof EntityLivingBase
-					&& ((EntityLivingBase) p_apply_1_).getCreatureAttribute() != EnumCreatureAttribute.UNDEAD
-					&& ((EntityLivingBase) p_apply_1_).attackable();
-		}
-	};
+	private static final Predicate<Entity> NOT_UNDEAD=new Predicate<Entity>(){public boolean apply(@Nullable Entity p_apply_1_){return p_apply_1_ instanceof EntityLivingBase&&((EntityLivingBase)p_apply_1_).getCreatureAttribute()!=EnumCreatureAttribute.UNDEAD&&((EntityLivingBase)p_apply_1_).attackable();}};
 
 	public EntityCentaur(World worldIn) {
 		super(worldIn);
@@ -149,23 +143,15 @@ public class EntityCentaur extends EntityMob {
 	}
 
 	protected void updateAITasks() {
-		if (this.ticksExisted % 10 == 0) {
-			this.heal(10.0F);
-		} else {
-			super.updateAITasks();
+		super.updateAITasks();
 
-			for (int i = 1; i < 3; ++i) {
-				if (this.ticksExisted >= this.nextHeadUpdate[i - 1]) {
-					this.nextHeadUpdate[i - 1] = this.ticksExisted + 10 + this.rand.nextInt(10);
-				}
+		for (int i = 1; i < 3; ++i) {
+			if (this.ticksExisted >= this.nextHeadUpdate[i - 1]) {
+				this.nextHeadUpdate[i - 1] = this.ticksExisted + 10 + this.rand.nextInt(10);
 			}
-
-			if (this.ticksExisted % 20 == 0) {
-				this.heal(1.0F);
-			}
-
-			this.bossInfo.setPercent(this.getHealth() / this.getMaxHealth());
 		}
+
+		this.bossInfo.setPercent(this.getHealth() / this.getMaxHealth());
 	}
 
 	public void setArmsRaised(boolean armsRaised) {
@@ -176,7 +162,7 @@ public class EntityCentaur extends EntityMob {
 	public boolean isArmsRaised() {
 		return ((Boolean) this.getDataManager().get(SWINGING_ARMS)).booleanValue();
 	}
-	
+
 	public void setCombatTask() {
 		if (this.world != null && !this.world.isRemote) {
 			this.tasks.removeTask(this.aiAttackOnCollide);
@@ -245,10 +231,6 @@ public class EntityCentaur extends EntityMob {
 					this.world.playEvent((EntityPlayer) null, 1022, new BlockPos(this), 0);
 				}
 			}
-		}
-
-		if (this.ticksExisted % 20 == 0) {
-			this.heal(1.0F);
 		}
 
 		this.bossInfo.setPercent(this.getHealth() / this.getMaxHealth());

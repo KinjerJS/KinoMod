@@ -36,7 +36,7 @@ public class EntityBismuthBall extends EntityArrow {
 
 	public EntityBismuthBall(World world) {
 		super(world);
-		this.setSize(0.005F, 0.005F);
+		this.setSize(0.05F, 0.05F);
 		this.pickupStatus = EntityArrow.PickupStatus.DISALLOWED;
 	}
 

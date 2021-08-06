@@ -41,6 +41,8 @@ public class Config {
 	public static int baliumWandRange = 15, baliumWandVerticalRange = 15, baliumWandCooldown = 5;
 	public static int daliumWandRange = 15, daliumWandVerticalRange = 15, daliumWandCooldown = 5;
 	
+	public static int swordBismuthDamage = 20, swordAttackDamage = 70, swordCooldownTeleport = 4;
+	
 
 	private static List<ConfigEntry> dynamicConfigEntries = new LinkedList<>();
 	private static List<ConfigDataAdapter<?>> dataAdapters = new LinkedList<>();
@@ -156,19 +158,23 @@ public class Config {
 		daliumAmountEnd = config.getInt("config.category.gen.end.daliumAmount", "worldgen.end", 7, 0, 2048, "Defines how many dalium ores it'll attempt to generate in per chunk. 0 = Disabled");
 		baliumAmountEnd = config.getInt("config.category.gen.end.baliumAmount", "worldgen.end", 7, 0, 2048, "Defines how many balium ores it'll attempt to generate in per chunk. 0 = Disabled");
 		
-		kiniumWandRange = config.getInt("config.category.item.equipment.wand.kiniumWandRange", "item.equipment", 10, 1, 30, "Set horizontal range for the Kinium Wand");
-		kiniumWandVerticalRange = config.getInt("config.category.item.equipment.wand.kiniumWandVerticalRange", "item.equipment", 10, 1, 30, "Set vertical range for the Kinium Wand");
-		seminiumWandRange = config.getInt("config.category.item.equipment.wand.seminiumWandRange", "item.equipment", 15, 1, 30, "Set horizontal range for the Seminium Wand");
-		seminiumWandVerticalRange = config.getInt("config.category.item.equipment.wand.seminiumWandVerticalRange", "item.equipment", 15, 1, 30, "Set vertical range for the Seminium Wand");
-		baliumWandRange = config.getInt("config.category.item.equipment.wand.baliumWandRange", "item.equipment", 15, 1, 30, "Set horizontal range for the Balium Wand");
-		baliumWandVerticalRange = config.getInt("config.category.item.equipment.wand.baliumWandVerticalRange", "item.equipment", 15, 1, 30, "Set vertical range for the Balium Wand");
-		daliumWandRange = config.getInt("config.category.item.equipment.wand.daliumWandRange", "item.equipment", 15, 1, 30, "Set horizontal range for the Dalium Wand");
-		daliumWandVerticalRange = config.getInt("config.category.item.equipment.wand.daliumWandVerticalRange", "item.equipment", 15, 1, 30, "Set vertical range for the Dalium Wand");
+		kiniumWandRange = config.getInt("config.category.item.equipment.wand.kiniumWandRange", "item.equipment", 10, 1, 30, "Set horizontal range for the Kinium Wand.");
+		kiniumWandVerticalRange = config.getInt("config.category.item.equipment.wand.kiniumWandVerticalRange", "item.equipment", 10, 1, 30, "Set vertical range for the Kinium Wand.");
+		seminiumWandRange = config.getInt("config.category.item.equipment.wand.seminiumWandRange", "item.equipment", 15, 1, 30, "Set horizontal range for the Seminium Wand.");
+		seminiumWandVerticalRange = config.getInt("config.category.item.equipment.wand.seminiumWandVerticalRange", "item.equipment", 15, 1, 30, "Set vertical range for the Seminium Wand.");
+		baliumWandRange = config.getInt("config.category.item.equipment.wand.baliumWandRange", "item.equipment", 15, 1, 30, "Set horizontal range for the Balium Wand.");
+		baliumWandVerticalRange = config.getInt("config.category.item.equipment.wand.baliumWandVerticalRange", "item.equipment", 15, 1, 30, "Set vertical range for the Balium Wand.");
+		daliumWandRange = config.getInt("config.category.item.equipment.wand.daliumWandRange", "item.equipment", 15, 1, 30, "Set horizontal range for the Dalium Wand.");
+		daliumWandVerticalRange = config.getInt("config.category.item.equipment.wand.daliumWandVerticalRange", "item.equipment", 15, 1, 30, "Set vertical range for the Dalium Wand.");
 		
-		kiniumWandCooldown = config.getInt("config.category.item.equipment.wand.cooldown.kiniumWandCooldown", "item.equipment.cooldown", 30, 1, 3600, "Set cooldown for the Kinium Wand (in seconds)");
-		seminiumWandCooldown = config.getInt("config.category.item.equipment.wand.cooldown.seminiumWandCooldown", "item.equipment.cooldown", 5, 1, 3600, "Set cooldown for the Seminium Wand (in seconds)");
-		daliumWandCooldown = config.getInt("config.category.item.equipment.wand.cooldown.baliumWandCooldown", "item.equipment.cooldown", 5, 1, 3600, "Set cooldown for the Balium Wand (in seconds)");
-		baliumWandCooldown = config.getInt("config.category.item.equipment.wand.cooldown.daliumWandCooldown", "item.equipment.cooldown", 5, 1, 3600, "Set cooldown for the Dalium Wand (in seconds)");
+		kiniumWandCooldown = config.getInt("config.category.item.equipment.wand.cooldown.kiniumWandCooldown", "item.equipment.cooldown", 30, 1, 3600, "Set cooldown for the Kinium Wand. (In seconds)");
+		seminiumWandCooldown = config.getInt("config.category.item.equipment.wand.cooldown.seminiumWandCooldown", "item.equipment.cooldown", 5, 1, 3600, "Set cooldown for the Seminium Wand. (In seconds)");
+		daliumWandCooldown = config.getInt("config.category.item.equipment.wand.cooldown.baliumWandCooldown", "item.equipment.cooldown", 5, 1, 3600, "Set cooldown for the Balium Wand. (In seconds)");
+		baliumWandCooldown = config.getInt("config.category.item.equipment.wand.cooldown.daliumWandCooldown", "item.equipment.cooldown", 5, 1, 3600, "Set cooldown for the Dalium Wand. (In seconds)");
+		
+		swordBismuthDamage = config.getInt("config.category.item.equipment.sword.damage.swordBismuthDamage", "item.equipment", 20, 1, 2147483000, "Set bismuth damage for the Bismuth Sword.");
+		swordAttackDamage = config.getInt("config.category.item.equipment.sword.damage.swordAttackDamage", "item.equipment", 70, 1, 2147483000, "Set attack damage for the Bismuth Sword.");
+		swordCooldownTeleport = config.getInt("config.category.item.equipment.sword.cooldown.swordCooldownTeleport", "item.equipment.cooldown", 4, 1, 3600, "Set cooldown for the Bismuth Sword. (In seconds)");
 
 		if (config.hasChanged())
 			config.save();

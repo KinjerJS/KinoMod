@@ -1,4 +1,4 @@
-package fr.kinjer.kinomod.config.ingame;
+package fr.kinjer.kinomod.client.gui.config;
 
 import com.google.common.collect.Lists;
 import fr.kinjer.kinomod.KinoMod;
@@ -11,9 +11,9 @@ import net.minecraftforge.fml.client.config.IConfigElement;
 
 import java.util.List;
 
-public class ConfigGuiOverview extends GuiConfig {
+public class GuiConfigOverview extends GuiConfig {
 
-    public ConfigGuiOverview(GuiScreen parentScreen) {
+    public GuiConfigOverview(GuiScreen parentScreen) {
         super(parentScreen, buildConfigList(), KinoMod.MODID, false, false, I18n.format("kinomod.config.title.overview"));
     }
 

@@ -14,6 +14,7 @@ import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.init.MobEffects;
+import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
@@ -43,7 +44,7 @@ public class ItemBaliumCharm extends BaseKinoBaubleCharm {
 		if (player.isInsideOfMaterial(Material.WATER)) {
 			player.setAir(300);
 			GuiIngameForge.renderAir = false;
-		//	GuiAirWater.renderAirWater = false;
+			GuiAirWater.renderAirWater = false;
 			player.getEntityData().setInteger(TAG_NAME, 300);
 
 		}
@@ -51,7 +52,7 @@ public class ItemBaliumCharm extends BaseKinoBaubleCharm {
 		if (!player.isInsideOfMaterial(Material.WATER)) {
 
 			GuiIngameForge.renderAir = true;
-		//	GuiAirWater.renderAirWater = true;
+			GuiAirWater.renderAirWater = true;
 
 			int respiration = EnchantmentHelper.getRespirationModifier(player);
 			int air = player.getEntityData().getInteger(TAG_NAME);
@@ -66,6 +67,12 @@ public class ItemBaliumCharm extends BaseKinoBaubleCharm {
 			player.getEntityData().setInteger(TAG_NAME, air);
 		}
 
+	}
+
+	@Override
+	public void onUnequipped(ItemStack itemstack, EntityLivingBase player) {
+		player.playSound(SoundEvents.ITEM_ARMOR_EQUIP_DIAMOND, .75F, 2f);
+		GuiAirWater.renderAirWater = false;
 	}
 
 	public int decreaseAirSupply(int air, EntityLivingBase player) {

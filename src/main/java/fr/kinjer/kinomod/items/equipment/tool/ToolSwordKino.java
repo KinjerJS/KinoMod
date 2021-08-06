@@ -12,6 +12,7 @@ import com.google.common.collect.Multimap;
 
 import fr.kinjer.kinomod.KinoMod;
 import fr.kinjer.kinomod.common.CommonProxy;
+import fr.kinjer.kinomod.config.Config;
 import fr.kinjer.kinomod.entity.EntityGhastBossD;
 import fr.kinjer.kinomod.init.InitItems;
 import fr.kinjer.kinomod.utils.UtilsKeyBoard;
@@ -69,8 +70,8 @@ public class ToolSwordKino extends ItemTool implements UtilsIMultiMode {
 	
 	protected static final UUID ATTACK_BISMUTH_MODIFIER = UUID.randomUUID();
 	
-	private static final double BISMUTH_DAMAGE = 20.0D;
-	private static final double ATTACK_DAMAGE = 70.0D - 1.0D;
+	private static final double BISMUTH_DAMAGE = Config.swordBismuthDamage;
+	private static final double ATTACK_DAMAGE = Config.swordAttackDamage - 1.0D;
 	private static final double ATTACK_SPEED = -2.4000000953674316D;
 	
 	public ToolSwordKino(float attackDamageIn, float attackSpeedIn, float attackBismuthIn, Item.ToolMaterial materialIn, Set<Block> effectiveBlocksIn) {
@@ -153,7 +154,7 @@ public class ToolSwordKino extends ItemTool implements UtilsIMultiMode {
 					world.playSound(null, player.posX, player.posY, player.posZ, SoundEvents.ENTITY_ENDERMEN_TELEPORT,
 							SoundCategory.PLAYERS, 1.0F, 1.0F);
 					if (!player.capabilities.isCreativeMode) {
-						player.getCooldownTracker().setCooldown(this, 80);
+						player.getCooldownTracker().setCooldown(this, Config.swordCooldownTeleport * 20);
 					}
 					return ActionResult.newResult(EnumActionResult.SUCCESS, stack);
 

@@ -1,10 +1,13 @@
 package fr.kinjer.kinomod.entity;
 
+import java.util.Collection;
 import java.util.Random;
 import java.util.UUID;
 
 import javax.annotation.Nullable;
 
+import fr.kinjer.kinomod.client.gui.GuiPlayerScore;
+import fr.kinjer.kinomod.utils.UtilsWorld;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityFlying;
 import net.minecraft.entity.EntityLiving;
@@ -38,6 +41,7 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
+import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.world.BossInfo;
 import net.minecraft.world.BossInfoServer;
 import net.minecraft.world.EnumDifficulty;
@@ -57,7 +61,9 @@ public class EntityGhastBossD extends EntityFlying implements IMob {
 	private boolean ghastbossdKilled;
 	private boolean previouslyKilled;
 	public int deathTicks;
-	
+	public static int playerScore;
+	public static int playerMaxScore = 15;
+
 	private static final double MAX_HEALTH = 750.0D;
 	private static final double MOVEMENT_SPEED = 0.6D;
 	private static final double FOLLOW_RANGE = 100.0D;
@@ -203,6 +209,8 @@ public class EntityGhastBossD extends EntityFlying implements IMob {
 	public void removeTrackingPlayer(EntityPlayerMP player) {
 		super.removeTrackingPlayer(player);
 		this.bossInfo.removePlayer(player);
+		this.playerScore -= this.playerScore;
+		this.heal(750.0F);
 	}
 
 	@Override
@@ -259,14 +267,19 @@ public class EntityGhastBossD extends EntityFlying implements IMob {
 	}
 
 	protected void onDeathUpdate() {
+		this.bossInfo.setPercent(0.0F);
+		this.bossInfo.setVisible(false);
 		++this.deathTicks;
 
-		if (this.deathTicks >= 180 && this.deathTicks <= 200) {
-			float f = (this.rand.nextFloat() - 0.5F) * 8.0F;
-			float f1 = (this.rand.nextFloat() - 0.5F) * 4.0F;
-			float f2 = (this.rand.nextFloat() - 0.5F) * 8.0F;
-			this.world.spawnParticle(EnumParticleTypes.EXPLOSION_HUGE, this.posX + (double) f,
-					this.posY + 2.0D + (double) f1, this.posZ + (double) f2, 0.0D, 0.0D, 0.0D);
+		if (this.deathTicks == 20) {
+			GuiPlayerScore.renderPlayerScore = true;
+		}
+
+		if (this.deathTicks >= 50 && this.deathTicks <= 220) {
+			float f = (this.rand.nextFloat() + 0.5F) * 8.0F;
+			float f1 = (this.rand.nextFloat() + 0.5F) * 4.0F;
+			float f2 = (this.rand.nextFloat() + 0.5F) * 8.0F;
+			this.world.spawnParticle(EnumParticleTypes.EXPLOSION_HUGE, this.posX + (double)f, this.posY + 2.0D + (double)f1, this.posZ + (double)f2, 0.0D, 0.0D, 0.0D);
 		}
 
 		boolean flag = this.world.getGameRules().getBoolean("doMobLoot");
@@ -282,13 +295,14 @@ public class EntityGhastBossD extends EntityFlying implements IMob {
 			}
 		}
 
-		this.rotationYaw += 20.0F;
-		this.renderYawOffset = this.rotationYaw;
+		this.rotationYaw += 5.0F;
 
 		if (this.deathTicks == 200 && !this.world.isRemote) {
 			if (flag) {
 				this.dropExperience(MathHelper.floor((float) i * 0.2F));
 			}
+			GuiPlayerScore.renderPlayerScore = false;
+			this.playerScore -= this.playerScore;
 			this.setDead();
 		}
 	}
@@ -326,14 +340,12 @@ public class EntityGhastBossD extends EntityFlying implements IMob {
 
 		public void updateTask() {
 			EntityLivingBase entitylivingbase = this.parentEntity.getAttackTarget();
-			double d0 = 64.0D;
 
 			if (entitylivingbase.posY >= 128.0D) {
 				entitylivingbase.posY -= 1.0D;
 			}
 
-			if (entitylivingbase.getDistanceSq(this.parentEntity) < 4096.0D
-					&& this.parentEntity.canEntityBeSeen(entitylivingbase)) {
+			if (entitylivingbase.getDistanceSq(this.parentEntity) < 4096.0D) {
 				World world = this.parentEntity.world;
 				++this.attackTimer;
 
@@ -357,6 +369,7 @@ public class EntityGhastBossD extends EntityFlying implements IMob {
 							+ 0.5D;
 					entitylargefireball.posZ = this.parentEntity.posZ + vec3d.z * 4.0D;
 					world.spawnEntity(entitylargefireball);
+					EntityGhastBossD.playerScore += 1;
 					this.attackTimer = -20;
 				}
 			} else if (this.attackTimer > 0) {
@@ -385,7 +398,6 @@ public class EntityGhastBossD extends EntityFlying implements IMob {
 				this.parentEntity.renderYawOffset = this.parentEntity.rotationYaw;
 			} else {
 				EntityLivingBase entitylivingbase = this.parentEntity.getAttackTarget();
-				double d0 = 64.0D;
 
 				if (entitylivingbase.getDistanceSq(this.parentEntity) < 4096.0D) {
 					double d1 = entitylivingbase.posX - this.parentEntity.posX;

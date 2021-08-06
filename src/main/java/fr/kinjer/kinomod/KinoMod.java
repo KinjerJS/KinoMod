@@ -31,7 +31,7 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-@Mod(modid = KinoMod.MODID, name = KinoMod.NAME, version = KinoMod.VERSION, dependencies = "required-after:forge@[14.23.5.2781,);required-after:baubles", guiFactory = "fr.kinjer.kinomod.config.ingame.ConfigGuiFactory", acceptedMinecraftVersions = "[1.12.2]")
+@Mod(modid = KinoMod.MODID, name = KinoMod.NAME, version = KinoMod.VERSION, dependencies = "required-after:forge@[14.23.5.2781,);required-after:baubles", guiFactory = "fr.kinjer.kinomod.client.gui.config.GuiConfigFactory", acceptedMinecraftVersions = "[1.12.2]")
 public class KinoMod {
 
 	public static final String MODID = "kinomod";

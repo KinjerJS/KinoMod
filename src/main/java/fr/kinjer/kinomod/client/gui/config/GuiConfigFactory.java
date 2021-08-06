@@ -1,6 +1,5 @@
-package fr.kinjer.kinomod.config.ingame;
+package fr.kinjer.kinomod.client.gui.config;
 
-import fr.kinjer.kinomod.config.ingame.ConfigGuiOverview;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraftforge.fml.client.IModGuiFactory;
@@ -10,7 +9,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import java.util.Set;
 
 @SideOnly(Side.CLIENT)
-public class ConfigGuiFactory implements IModGuiFactory {
+public class GuiConfigFactory implements IModGuiFactory {
 
     @Override
     public void initialize(Minecraft minecraftInstance) {}
@@ -22,7 +21,7 @@ public class ConfigGuiFactory implements IModGuiFactory {
 
     @Override
     public GuiScreen createConfigGui(GuiScreen parentScreen) {
-        return new ConfigGuiOverview(parentScreen);
+        return new GuiConfigOverview(parentScreen);
     }
 
     @Override
