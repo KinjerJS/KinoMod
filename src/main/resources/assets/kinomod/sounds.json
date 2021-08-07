@@ -20,6 +20,34 @@
         "sounds": [{ "name": "kinomod:entity/centaur/death", "stream": true }]
     },
     
+    "entity.ghastboss.ambient":
+    { 
+        "category" : "entity",
+        "subtitle" : "entity.ghastboss.ambient",
+        "sounds": [{ "name": "kinomod:entity/ghastboss/ambient", "stream": true }]
+    },
+    
+    "entity.ghastboss.hurt":
+    { 
+        "category" : "entity",
+        "subtitle" : "entity.ghastboss.hurt",
+        "sounds": [{ "name": "kinomod:entity/ghastboss/hurt", "stream": true }]
+    },
+    
+    "entity.ghastboss.death":
+    { 
+        "category" : "entity",
+        "subtitle" : "entity.ghastboss.death",
+        "sounds": [{ "name": "kinomod:entity/ghastboss/death", "stream": true }]
+    },
+    
+    "entity.misc.roar":
+    { 
+        "category" : "entity",
+        "subtitle" : "entity.misc.roar",
+        "sounds": [{ "name": "kinomod:entity/misc/roar", "stream": true }]
+    },
+    
     "misc.dash":
     { 
         "category" : "misc",
