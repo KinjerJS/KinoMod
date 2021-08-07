@@ -8,6 +8,7 @@ import javax.annotation.Nullable;
 
 import fr.kinjer.kinomod.client.gui.GuiPlayerScore;
 import fr.kinjer.kinomod.handler.HandlerLootTable;
+import fr.kinjer.kinomod.handler.HandlerSounds;
 import fr.kinjer.kinomod.init.InitItems;
 import fr.kinjer.kinomod.utils.UtilsWorld;
 import net.minecraft.entity.Entity;
@@ -71,6 +72,7 @@ public class EntityGhastBossD extends EntityFlying implements IMob {
 	private static final double MAX_HEALTH = 750.0D;
 	private static final double MOVEMENT_SPEED = 0.6D;
 	private static final double FOLLOW_RANGE = 100.0D;
+	private static final double XP_VALUE = 700.0D;
 
 	private static final DataParameter<Boolean> ATTACKING = EntityDataManager.<Boolean>createKey(EntityGhastBossD.class,
 			DataSerializers.BOOLEAN);
@@ -83,7 +85,7 @@ public class EntityGhastBossD extends EntityFlying implements IMob {
 		super(worldIn);
 		this.setSize(10.0f, 10.0f);
 		this.isImmuneToFire = true;
-		this.experienceValue = 2500;
+		this.experienceValue = (int) XP_VALUE;
 		this.moveHelper = new EntityGhastBossD.GhastMoveHelper(this);
 	}
 
@@ -124,8 +126,6 @@ public class EntityGhastBossD extends EntityFlying implements IMob {
 	public int getFireballStrength() {
 		return this.explosionStrength;
 	}
-	
-	
 
 	public void onLivingUpdate() {
 		super.onLivingUpdate();
@@ -136,10 +136,6 @@ public class EntityGhastBossD extends EntityFlying implements IMob {
 			this.setPhase(1);
 		} else if (this.getHealth() > 500) {
 			this.setPhase(0);
-		}
-
-		if (this.posY >= 128.0D) {
-			this.posY -= 1.0D;
 		}
 	}
 
@@ -188,15 +184,15 @@ public class EntityGhastBossD extends EntityFlying implements IMob {
 	}
 
 	protected SoundEvent getAmbientSound() {
-		return SoundEvents.ENTITY_GHAST_AMBIENT;
+		return HandlerSounds.ENTITY_GHAST_BOSS_AMBIENT;
 	}
 
-	protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
-		return SoundEvents.ENTITY_GHAST_HURT;
-	}
+//	protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
+//		return HandlerSounds.ENTITY_GHAST_BOSS_HURT;
+//	}
 
 	protected SoundEvent getDeathSound() {
-		return SoundEvents.ENTITY_ENDERDRAGON_DEATH;
+		return HandlerSounds.ENTITY_GHAST_BOSS_DEATH;
 	}
 	
 	protected void dropFewItems(boolean wasRecentlyHit, int lootingModifier)
@@ -238,7 +234,7 @@ public class EntityGhastBossD extends EntityFlying implements IMob {
 	}
 
 	protected float getSoundVolume() {
-		return 10.0F;
+		return 30.0F;
 	}
 
 	public static void registerFixesGhast(DataFixer fixer) {
@@ -310,7 +306,7 @@ public class EntityGhastBossD extends EntityFlying implements IMob {
 			}
 
 			if (this.deathTicks == 1) {
-				this.world.playBroadcastSound(1028, new BlockPos(this), 0);
+				this.world.playSound(this.posX, this.posY, this.posZ, HandlerSounds.ENTITY_GHAST_BOSS_DEATH, SoundCategory.HOSTILE, 50.0F, 0.2F, false);
 			}
 		}
 
@@ -327,10 +323,11 @@ public class EntityGhastBossD extends EntityFlying implements IMob {
 		}
 	}
 
-	private void dropExperience(int p_184668_1_) {
-		while (p_184668_1_ > 0) {
-			int i = EntityXPOrb.getXPSplit(p_184668_1_);
-			p_184668_1_ -= i;
+	private void dropExperience(int xp) {
+		xp = (int) XP_VALUE;
+		while (xp > 0) {
+			int i = EntityXPOrb.getXPSplit(xp);
+			xp -= i;
 			this.world.spawnEntity(new EntityXPOrb(this.world, this.posX, this.posY, this.posZ, i));
 		}
 	}
@@ -361,16 +358,12 @@ public class EntityGhastBossD extends EntityFlying implements IMob {
 		public void updateTask() {
 			EntityLivingBase entitylivingbase = this.parentEntity.getAttackTarget();
 
-			if (entitylivingbase.posY >= 128.0D) {
-				entitylivingbase.posY -= 1.0D;
-			}
-
 			if (entitylivingbase.getDistanceSq(this.parentEntity) < 4096.0D) {
 				World world = this.parentEntity.world;
 				++this.attackTimer;
 
 				if (this.attackTimer == 5) {
-					world.playEvent((EntityPlayer) null, 1015, new BlockPos(this.parentEntity), 0);
+					parentEntity.playSound(HandlerSounds.ENTITY_GHAST_BOSS_HURT, 50.0F, 1.0F);
 				}
 
 				if (this.attackTimer == 10) {
@@ -385,8 +378,7 @@ public class EntityGhastBossD extends EntityFlying implements IMob {
 							d4);
 					entitylargefireball.explosionPower = this.parentEntity.getFireballStrength();
 					entitylargefireball.posX = this.parentEntity.posX + vec3d.x * 4.0D;
-					entitylargefireball.posY = this.parentEntity.posY + (double) (this.parentEntity.height / 2.0F)
-							+ 0.5D;
+					entitylargefireball.posY = this.parentEntity.posY + (double) (this.parentEntity.height / 2.0F) + 0.5D;
 					entitylargefireball.posZ = this.parentEntity.posZ + vec3d.z * 4.0D;
 					world.spawnEntity(entitylargefireball);
 					EntityGhastBossD.playerScore += 1;
@@ -435,10 +427,6 @@ public class EntityGhastBossD extends EntityFlying implements IMob {
 		public AIRandomFly(EntityGhastBossD entityGhastBossD) {
 			this.parentEntity = entityGhastBossD;
 			this.setMutexBits(1);
-
-			if (parentEntity.posY >= 128.0D) {
-				parentEntity.posY -= 1.0D;
-			}
 		}
 
 		public boolean shouldExecute() {

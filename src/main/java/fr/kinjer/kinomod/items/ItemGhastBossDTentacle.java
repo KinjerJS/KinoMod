@@ -10,6 +10,6 @@ public class ItemGhastBossDTentacle extends BaseKino {
 	
 	public ItemGhastBossDTentacle() {
 		super(NAME);
+		
 	}
-
 }
