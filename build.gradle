@@ -24,6 +24,18 @@ repositories {
     maven {
         url "https://maven.thiakil.com"
     }
+    maven {
+        name = "CoFH Maven"
+        url = "https://maven.covers1624.net"
+    }
+    maven {
+        name = "ChickenBones Maven"
+        url = "http://chickenbones.net/maven/"
+    }
+    maven {
+        name = "JEI Maven"
+        url = "https://dvs1.progwml6.com/files/maven"
+    }
 }
 
 minecraft {
@@ -34,6 +46,13 @@ minecraft {
 
 dependencies {
     deobfCompile "com.azanor.baubles:Baubles:1.12-1.5.2"
+    
+    deobfCompile "cofh:RedstoneFlux:1.12-2.1.0.+:universal"
+    deobfCompile "cofh:CoFHCore:1.12.2-4.6.0.+:universal"
+    deobfCompile "cofh:ThermalFoundation:1.12.2-2.6.0.+:universal"
+
+    deobfCompile "codechicken:CodeChickenLib:1.12.2-3.1.7.+:universal"
+    deobfCompile "mezz.jei:jei_1.12.2:4.15.0.+"
 }
 
 processResources {
