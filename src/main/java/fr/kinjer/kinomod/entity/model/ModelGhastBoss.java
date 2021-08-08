@@ -5,7 +5,7 @@ import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.math.MathHelper;
 
-public class ModelGhastBossD extends ModelBase {
+public class ModelGhastBoss extends ModelBase {
 	private final ModelRenderer root;
 	private final ModelRenderer tentacles;
 	private final ModelRenderer tentacles_0;
@@ -23,7 +23,7 @@ public class ModelGhastBossD extends ModelBase {
 	private final ModelRenderer tentacles_4_r1_r1;
 	private final ModelRenderer tentacles_3_r1;
 
-	public ModelGhastBossD() {
+	public ModelGhastBoss() {
 		textureWidth = 128;
 		textureHeight = 64;
 

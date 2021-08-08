@@ -18,9 +18,11 @@ public class Config {
 	private static File dirConfigurationRegistries;
 
 	public static int ENTITY_CENTAUR = 120;
-	public static int ENTITY_GHAST_BOSS = 121;
-	public static int ENTITY_BISMUTH_BALL = 122;
-	public static int ENTITY_GHAST_BOSS_FIREBALL = 123;
+	public static int ENTITY_GHAST_BOSS_D = 121;
+	public static int ENTITY_GHAST_BOSS_S = 122;
+	public static int ENTITY_BISMUTH_BALL = 125;
+	public static int ENTITY_GHAST_BOSS_FIREBALL_D = 126;
+	public static int ENTITY_GHAST_BOSS_FIREBALL_S = 127;
 
 	public static int gabbroAmount = 70, gabbroVeinSize = 30;
 	
@@ -138,8 +140,11 @@ public class Config {
 	public static void loadData() {
 
 		ENTITY_CENTAUR = config.getInt("config.category.id.centaur", "entity", 120, 120, 2147483000, "Change the ID of Centaur.");
-		ENTITY_GHAST_BOSS = config.getInt("config.category.id.ghastbossd", "entity", 121, 120, 2147483000, "Change the ID of Dalium Ghast.");
-		ENTITY_BISMUTH_BALL = config.getInt("config.category.id.bismuthball", "entity", 122, 120, 2147483000, "Change the ID of Bismuth Wand Projectile.");
+		ENTITY_GHAST_BOSS_D = config.getInt("config.category.id.ghastbossd", "entity", 121, 120, 2147483000, "Change the ID of Dalium Ghast.");
+		ENTITY_GHAST_BOSS_S = config.getInt("config.category.id.ghastbosss", "entity", 122, 120, 2147483000, "Change the ID of Seminium Ghast.");
+		ENTITY_BISMUTH_BALL = config.getInt("config.category.id.bismuthball", "entity", 125, 120, 2147483000, "Change the ID of Bismuth Wand Projectile.");
+		ENTITY_GHAST_BOSS_FIREBALL_D = config.getInt("config.category.id.ghastfireballd", "entity", 126, 120, 2147483000, "Change the ID of Dalium Ghast Projectile.");
+		ENTITY_GHAST_BOSS_FIREBALL_S = config.getInt("config.category.id.ghastfireballs", "entity", 127, 120, 2147483000, "Change the ID of Seminium Ghast Projectile.");
 		
 		gabbroAmount = config.getInt("config.category.gen.overworld.gabbroAmount", "worldgen.overworld", 70, 0, 100, "Defines how many gabbro veins are generated per chunk. 0 = Disabled");
 		gabbroVeinSize = config.getInt("config.category.gen.overworld.gabbroSize", "worldgen.overworld", 30, 1, 60, "Defines how big generated gabbro veins are.");

@@ -3,8 +3,10 @@ package fr.kinjer.kinomod.handler;
 import fr.kinjer.kinomod.KinoMod;
 import fr.kinjer.kinomod.entity.EntityCentaur;
 import fr.kinjer.kinomod.entity.EntityGhastBossD;
+import fr.kinjer.kinomod.entity.EntityGhastBossS;
 import fr.kinjer.kinomod.entity.projectile.EntityBismuthBall;
 import fr.kinjer.kinomod.entity.projectile.EntityGhastBossDFireball;
+import fr.kinjer.kinomod.entity.projectile.EntityGhastBossSFireball;
 import fr.kinjer.kinomod.entity.render.*;
 import fr.kinjer.kinomod.init.InitBlocks;
 import net.minecraft.block.Block;
@@ -63,6 +65,7 @@ public class HandlerRender {
 		
 		RenderingRegistry.registerEntityRenderingHandler(EntityBismuthBall.class, RenderBismuthBall::new);
 		RenderingRegistry.registerEntityRenderingHandler(EntityGhastBossDFireball.class, RenderGhastBossDFireball::new);
+		RenderingRegistry.registerEntityRenderingHandler(EntityGhastBossSFireball.class, RenderGhastBossSFireball::new);
 		RenderingRegistry.registerEntityRenderingHandler(EntityCentaur.class, new IRenderFactory<EntityCentaur>() {
 			@Override
 			public Render<? super EntityCentaur> createRenderFor(RenderManager manager) {
@@ -73,6 +76,12 @@ public class HandlerRender {
 			@Override
 			public Render<? super EntityGhastBossD> createRenderFor(RenderManager manager) {
 				return new RenderGhastBossD(manager);
+			}
+		});
+		RenderingRegistry.registerEntityRenderingHandler(EntityGhastBossS.class, new IRenderFactory<EntityGhastBossS>() {
+			@Override
+			public Render<? super EntityGhastBossS> createRenderFor(RenderManager manager) {
+				return new RenderGhastBossS(manager);
 			}
 		});
 	}

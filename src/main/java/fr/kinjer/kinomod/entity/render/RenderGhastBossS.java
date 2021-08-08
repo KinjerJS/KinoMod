@@ -2,6 +2,7 @@ package fr.kinjer.kinomod.entity.render;
 
 import fr.kinjer.kinomod.KinoMod;
 import fr.kinjer.kinomod.entity.EntityGhastBossD;
+import fr.kinjer.kinomod.entity.EntityGhastBossS;
 import fr.kinjer.kinomod.entity.model.ModelGhastBoss;
 import net.minecraft.client.model.ModelGhast;
 import net.minecraft.client.renderer.GlStateManager;
@@ -13,21 +14,21 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class RenderGhastBossD extends RenderLiving<EntityGhastBossD> {
+public class RenderGhastBossS extends RenderLiving<EntityGhastBossS> {
 	private static final ResourceLocation GHAST_BOSS_TEXTURES = new ResourceLocation(KinoMod.MODID,
-			"textures/entity/ghast_boss_dalium.png");
+			"textures/entity/ghast_boss_seminium.png");
 	private static final ResourceLocation GHAST_BOSS_SHOOTING_TEXTURES = new ResourceLocation(KinoMod.MODID,
-			"textures/entity/ghast_boss_dalium_shooting.png");
+			"textures/entity/ghast_boss_seminium_shooting.png");
 	private static final ResourceLocation GHAST_BOSS_TEXTURES_1 = new ResourceLocation(KinoMod.MODID,
-			"textures/entity/ghast_boss_dalium_1.png");
+			"textures/entity/ghast_boss_seminium_1.png");
 	private static final ResourceLocation GHAST_BOSS_SHOOTING_TEXTURES_1 = new ResourceLocation(KinoMod.MODID,
-			"textures/entity/ghast_boss_dalium_shooting_1.png");
+			"textures/entity/ghast_boss_seminium_shooting_1.png");
 	private static final ResourceLocation GHAST_BOSS_TEXTURES_2 = new ResourceLocation(KinoMod.MODID,
-			"textures/entity/ghast_boss_dalium_2.png");
+			"textures/entity/ghast_boss_seminium_2.png");
 	private static final ResourceLocation GHAST_BOSS_SHOOTING_TEXTURES_2 = new ResourceLocation(KinoMod.MODID,
-			"textures/entity/ghast_boss_dalium_shooting_2.png");
+			"textures/entity/ghast_boss_seminium_shooting_2.png");
 
-	public RenderGhastBossD(RenderManager renderManagerIn) {
+	public RenderGhastBossS(RenderManager renderManagerIn) {
 		super(renderManagerIn, new ModelGhastBoss(), 0.5F);
 	}
 
@@ -35,7 +36,7 @@ public class RenderGhastBossD extends RenderLiving<EntityGhastBossD> {
 	 * Returns the location of an entity's texture. Doesn't seem to be called unless
 	 * you call Render.bindEntityTexture.
 	 */
-	protected ResourceLocation getEntityTexture(EntityGhastBossD entity) {
+	protected ResourceLocation getEntityTexture(EntityGhastBossS entity) {
 		if (entity.isPhase(1))
 			return entity.isAttacking() ? GHAST_BOSS_SHOOTING_TEXTURES_1 : GHAST_BOSS_TEXTURES_1;
 		if (entity.isPhase(2))
@@ -47,7 +48,7 @@ public class RenderGhastBossD extends RenderLiving<EntityGhastBossD> {
 	 * Allows the render to do state modifications necessary before the model is
 	 * rendered.
 	 */
-	protected void preRenderCallback(EntityGhastBossD entitylivingbaseIn, float partialTickTime) {
+	protected void preRenderCallback(EntityGhastBossS entitylivingbaseIn, float partialTickTime) {
 		float f = 1.0F;
 		float f1 = 4.5F;
 		float f2 = 4.5F;
