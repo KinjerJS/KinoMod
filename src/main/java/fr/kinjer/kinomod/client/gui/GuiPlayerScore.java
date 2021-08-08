@@ -6,12 +6,13 @@ import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.ScaledResolution;
 
-public class GuiPlayerScore extends Gui{
+public class GuiPlayerScore extends Gui {
 	
 	public static boolean renderPlayerScore = false;
 	
-	String miss = "Fireball missed : " + (EntityGhastBossD.playerScore - 15);
-	String touch = "Fireball touched : " + 15;
+	double value = (double) Math.round((100 * (Math.pow((1/Math.sqrt(2.0)), ((EntityGhastBossD.playerScore) / 15)))) * 100) / 100;
+	
+	String stat = "Score : " + value + " /100";
 	 
     public GuiPlayerScore(Minecraft mc)
     {
@@ -20,8 +21,7 @@ public class GuiPlayerScore extends Gui{
         int width = scaled.getScaledWidth();
         int height = scaled.getScaledHeight();
  
-        drawCenteredString(mc.fontRenderer, miss, width / 2, (height / 2) + 10, Integer.parseInt("FFAA00", 16));
-        drawCenteredString(mc.fontRenderer, touch, width / 2, (height / 2) + 20, Integer.parseInt("FFAA00", 16));
+        drawCenteredString(mc.fontRenderer, stat, width / 2, (height / 2) + 10, Integer.parseInt("FFAA00", 16));
     	}
     }
 }

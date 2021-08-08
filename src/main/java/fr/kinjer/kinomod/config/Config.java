@@ -20,6 +20,7 @@ public class Config {
 	public static int ENTITY_CENTAUR = 120;
 	public static int ENTITY_GHAST_BOSS = 121;
 	public static int ENTITY_BISMUTH_BALL = 122;
+	public static int ENTITY_GHAST_BOSS_FIREBALL = 123;
 
 	public static int gabbroAmount = 70, gabbroVeinSize = 30;
 	

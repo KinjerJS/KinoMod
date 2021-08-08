@@ -7,6 +7,7 @@ import java.util.UUID;
 import javax.annotation.Nullable;
 
 import fr.kinjer.kinomod.client.gui.GuiPlayerScore;
+import fr.kinjer.kinomod.entity.projectile.EntityGhastBossDFireball;
 import fr.kinjer.kinomod.handler.HandlerLootTable;
 import fr.kinjer.kinomod.handler.HandlerSounds;
 import fr.kinjer.kinomod.init.InitItems;
@@ -28,7 +29,6 @@ import net.minecraft.entity.monster.IMob;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.entity.projectile.EntityArrow;
-import net.minecraft.entity.projectile.EntityLargeFireball;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.init.SoundEvents;
@@ -144,7 +144,7 @@ public class EntityGhastBossD extends EntityFlying implements IMob {
 			return true;
 		}
 
-		else if (source.getImmediateSource() instanceof EntityLargeFireball
+		else if (source.getImmediateSource() instanceof EntityGhastBossDFireball
 				&& source.getTrueSource() instanceof EntityPlayer) {
 			super.attackEntityFrom(source, 50.0F);
 			return true;
@@ -374,7 +374,7 @@ public class EntityGhastBossD extends EntityFlying implements IMob {
 							- (0.5D + this.parentEntity.posY + (double) (this.parentEntity.height / 2.0F));
 					double d4 = entitylivingbase.posZ - (this.parentEntity.posZ + vec3d.z * 4.0D);
 					world.playEvent((EntityPlayer) null, 1016, new BlockPos(this.parentEntity), 0);
-					EntityLargeFireball entitylargefireball = new EntityLargeFireball(world, this.parentEntity, d2, d3,
+					EntityGhastBossDFireball entitylargefireball = new EntityGhastBossDFireball(world, this.parentEntity, d2, d3,
 							d4);
 					entitylargefireball.explosionPower = this.parentEntity.getFireballStrength();
 					entitylargefireball.posX = this.parentEntity.posX + vec3d.x * 4.0D;

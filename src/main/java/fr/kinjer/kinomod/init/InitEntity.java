@@ -14,7 +14,8 @@ public class InitEntity {
 	public static void registerEntities() {
 		registerEntity("centaur", EntityCentaur.class, Config.ENTITY_CENTAUR, 50, 0xFF865A, 0x9B4D00);
 		registerEntity("ghast_boss_d", EntityGhastBossD.class, Config.ENTITY_GHAST_BOSS, 50, 0xFF865A, 0x9B4D00);
-		EntityRegistry.registerModEntity(new ResourceLocation(KinoMod.MODID, "bismuth_ball"), EntityBismuthBall.class, "supremium_arrow", Config.ENTITY_BISMUTH_BALL, KinoMod.MODID, 64, 1, true);
+		EntityRegistry.registerModEntity(new ResourceLocation(KinoMod.MODID, "bismuth_ball"), EntityBismuthBall.class, "bismuth_wand_projectile", Config.ENTITY_BISMUTH_BALL, KinoMod.MODID, 64, 1, true);
+		EntityRegistry.registerModEntity(new ResourceLocation(KinoMod.MODID, "ghast_fireball"), EntityGhastBossDFireball.class, "ghast_boss_projectile", Config.ENTITY_GHAST_BOSS_FIREBALL, KinoMod.MODID, 64, 1, true);
 	}
 
 	private static void registerEntity(String name, Class<? extends Entity> entity, int id, int range, int color1,

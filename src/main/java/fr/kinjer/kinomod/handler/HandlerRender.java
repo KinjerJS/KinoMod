@@ -4,6 +4,7 @@ import fr.kinjer.kinomod.KinoMod;
 import fr.kinjer.kinomod.entity.EntityCentaur;
 import fr.kinjer.kinomod.entity.EntityGhastBossD;
 import fr.kinjer.kinomod.entity.projectile.EntityBismuthBall;
+import fr.kinjer.kinomod.entity.projectile.EntityGhastBossDFireball;
 import fr.kinjer.kinomod.entity.render.*;
 import fr.kinjer.kinomod.init.InitBlocks;
 import net.minecraft.block.Block;
@@ -61,6 +62,7 @@ public class HandlerRender {
 	public static void registerEntityRenders() {
 		
 		RenderingRegistry.registerEntityRenderingHandler(EntityBismuthBall.class, RenderBismuthBall::new);
+		RenderingRegistry.registerEntityRenderingHandler(EntityGhastBossDFireball.class, RenderGhastBossDFireball::new);
 		RenderingRegistry.registerEntityRenderingHandler(EntityCentaur.class, new IRenderFactory<EntityCentaur>() {
 			@Override
 			public Render<? super EntityCentaur> createRenderFor(RenderManager manager) {
