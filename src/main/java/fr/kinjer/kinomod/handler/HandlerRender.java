@@ -2,10 +2,14 @@ package fr.kinjer.kinomod.handler;
 
 import fr.kinjer.kinomod.KinoMod;
 import fr.kinjer.kinomod.entity.EntityCentaur;
+import fr.kinjer.kinomod.entity.EntityGhastBossB;
 import fr.kinjer.kinomod.entity.EntityGhastBossD;
+import fr.kinjer.kinomod.entity.EntityGhastBossK;
 import fr.kinjer.kinomod.entity.EntityGhastBossS;
 import fr.kinjer.kinomod.entity.projectile.EntityBismuthBall;
+import fr.kinjer.kinomod.entity.projectile.EntityGhastBossBFireball;
 import fr.kinjer.kinomod.entity.projectile.EntityGhastBossDFireball;
+import fr.kinjer.kinomod.entity.projectile.EntityGhastBossKFireball;
 import fr.kinjer.kinomod.entity.projectile.EntityGhastBossSFireball;
 import fr.kinjer.kinomod.entity.render.*;
 import fr.kinjer.kinomod.init.InitBlocks;
@@ -66,6 +70,8 @@ public class HandlerRender {
 		RenderingRegistry.registerEntityRenderingHandler(EntityBismuthBall.class, RenderBismuthBall::new);
 		RenderingRegistry.registerEntityRenderingHandler(EntityGhastBossDFireball.class, RenderGhastBossDFireball::new);
 		RenderingRegistry.registerEntityRenderingHandler(EntityGhastBossSFireball.class, RenderGhastBossSFireball::new);
+		RenderingRegistry.registerEntityRenderingHandler(EntityGhastBossBFireball.class, RenderGhastBossBFireball::new);
+		RenderingRegistry.registerEntityRenderingHandler(EntityGhastBossKFireball.class, RenderGhastBossKFireball::new);
 		RenderingRegistry.registerEntityRenderingHandler(EntityCentaur.class, new IRenderFactory<EntityCentaur>() {
 			@Override
 			public Render<? super EntityCentaur> createRenderFor(RenderManager manager) {
@@ -82,6 +88,18 @@ public class HandlerRender {
 			@Override
 			public Render<? super EntityGhastBossS> createRenderFor(RenderManager manager) {
 				return new RenderGhastBossS(manager);
+			}
+		});
+		RenderingRegistry.registerEntityRenderingHandler(EntityGhastBossB.class, new IRenderFactory<EntityGhastBossB>() {
+			@Override
+			public Render<? super EntityGhastBossB> createRenderFor(RenderManager manager) {
+				return new RenderGhastBossB(manager);
+			}
+		});
+		RenderingRegistry.registerEntityRenderingHandler(EntityGhastBossK.class, new IRenderFactory<EntityGhastBossK>() {
+			@Override
+			public Render<? super EntityGhastBossK> createRenderFor(RenderManager manager) {
+				return new RenderGhastBossK(manager);
 			}
 		});
 	}

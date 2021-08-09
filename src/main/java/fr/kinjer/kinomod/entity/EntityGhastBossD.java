@@ -66,8 +66,7 @@ public class EntityGhastBossD extends EntityFlying implements IMob {
 	private boolean ghastbossdKilled;
 	private boolean previouslyKilled;
 	public int deathTicks;
-	public static int playerScore;
-	public static int playerMaxScore = 15;
+	public static int playerScoreD = 0;
 
 	private static final double MAX_HEALTH = 750.0D;
 	private static final double MOVEMENT_SPEED = 0.6D;
@@ -223,7 +222,7 @@ public class EntityGhastBossD extends EntityFlying implements IMob {
 	public void removeTrackingPlayer(EntityPlayerMP player) {
 		super.removeTrackingPlayer(player);
 		this.bossInfo.removePlayer(player);
-		this.playerScore -= this.playerScore;
+		this.playerScoreD -= this.playerScoreD;
 		this.heal(750.0F);
 	}
 
@@ -317,7 +316,7 @@ public class EntityGhastBossD extends EntityFlying implements IMob {
 				this.dropExperience(MathHelper.floor((float) i * 0.2F));
 			}
 			GuiPlayerScore.renderPlayerScoreD = false;
-			this.playerScore -= this.playerScore;
+			this.playerScoreD -= this.playerScoreD;
 			this.dropFewItems(false, 1);
 			this.setDead();
 		}
@@ -381,7 +380,7 @@ public class EntityGhastBossD extends EntityFlying implements IMob {
 					entitylargefireball.posY = this.parentEntity.posY + (double) (this.parentEntity.height / 2.0F) + 0.5D;
 					entitylargefireball.posZ = this.parentEntity.posZ + vec3d.z * 4.0D;
 					world.spawnEntity(entitylargefireball);
-					EntityGhastBossD.playerScore += 1;
+					EntityGhastBossD.playerScoreD += 1;
 					this.attackTimer = -20;
 				}
 			} else if (this.attackTimer > 0) {

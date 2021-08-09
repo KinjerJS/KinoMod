@@ -7,7 +7,7 @@ import java.util.UUID;
 import javax.annotation.Nullable;
 
 import fr.kinjer.kinomod.client.gui.GuiPlayerScore;
-import fr.kinjer.kinomod.entity.projectile.EntityGhastBossSFireball;
+import fr.kinjer.kinomod.entity.projectile.EntityGhastBossBFireball;
 import fr.kinjer.kinomod.handler.HandlerLootTable;
 import fr.kinjer.kinomod.handler.HandlerSounds;
 import fr.kinjer.kinomod.init.InitItems;
@@ -57,7 +57,7 @@ import net.minecraft.world.storage.loot.LootTableList;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class EntityGhastBossS extends EntityFlying implements IMob {
+public class EntityGhastBossB extends EntityFlying implements IMob {
 
 	private final BossInfoServer bossInfo = (BossInfoServer) (new BossInfoServer(this.getDisplayName(),
 			BossInfo.Color.RED, BossInfo.Overlay.PROGRESS)).setDarkenSky(true);
@@ -66,33 +66,33 @@ public class EntityGhastBossS extends EntityFlying implements IMob {
 	private boolean ghastbossdKilled;
 	private boolean previouslyKilled;
 	public int deathTicks;
-	public static int playerScoreS = 0;
+	public static int playerScoreB = 0;
 
 	private static final double MAX_HEALTH = 750.0D;
 	private static final double MOVEMENT_SPEED = 0.6D;
 	private static final double FOLLOW_RANGE = 100.0D;
 	private static final double XP_VALUE = 700.0D;
 
-	private static final DataParameter<Boolean> ATTACKING = EntityDataManager.<Boolean>createKey(EntityGhastBossS.class,
+	private static final DataParameter<Boolean> ATTACKING = EntityDataManager.<Boolean>createKey(EntityGhastBossB.class,
 			DataSerializers.BOOLEAN);
-	private static final DataParameter<Integer> PHASE = EntityDataManager.<Integer>createKey(EntityGhastBossS.class,
+	private static final DataParameter<Integer> PHASE = EntityDataManager.<Integer>createKey(EntityGhastBossB.class,
 			DataSerializers.VARINT);
 
 	private int explosionStrength = 6;
 
-	public EntityGhastBossS(World worldIn) {
+	public EntityGhastBossB(World worldIn) {
 		super(worldIn);
 		this.setSize(10.0f, 10.0f);
 		this.isImmuneToFire = true;
 		this.experienceValue = (int) XP_VALUE;
-		this.moveHelper = new EntityGhastBossS.GhastMoveHelper(this);
+		this.moveHelper = new EntityGhastBossB.GhastMoveHelper(this);
 	}
 
 	@Override
 	protected void initEntityAI() {
-		this.tasks.addTask(5, new EntityGhastBossS.AIRandomFly(this));
-		this.tasks.addTask(7, new EntityGhastBossS.AILookAround(this));
-		this.tasks.addTask(7, new EntityGhastBossS.AIFireballAttack(this));
+		this.tasks.addTask(5, new EntityGhastBossB.AIRandomFly(this));
+		this.tasks.addTask(7, new EntityGhastBossB.AILookAround(this));
+		this.tasks.addTask(7, new EntityGhastBossB.AIFireballAttack(this));
 		this.targetTasks.addTask(1, new EntityAIFindEntityNearestPlayer(this));
 	}
 
@@ -143,7 +143,7 @@ public class EntityGhastBossS extends EntityFlying implements IMob {
 			return true;
 		}
 
-		else if (source.getImmediateSource() instanceof EntityGhastBossSFireball
+		else if (source.getImmediateSource() instanceof EntityGhastBossBFireball
 				&& source.getTrueSource() instanceof EntityPlayer) {
 			super.attackEntityFrom(source, 50.0F);
 			return true;
@@ -196,14 +196,14 @@ public class EntityGhastBossS extends EntityFlying implements IMob {
 	
 	protected void dropFewItems(boolean wasRecentlyHit, int lootingModifier)
     {
-        EntityItem entityitem = this.dropItem(InitItems.ghast_boss_tentacle_s, 1);
+        EntityItem entityitem = this.dropItem(InitItems.ghast_boss_tentacle_b, 1);
 
         if (entityitem != null)
         {
             entityitem.setNoDespawn();
         }
         
-        EntityItem entityitem2 = this.dropItem(InitItems.seminium, 3);
+        EntityItem entityitem2 = this.dropItem(InitItems.balium, 3);
         
         if (entityitem2 != null)
         {
@@ -222,7 +222,7 @@ public class EntityGhastBossS extends EntityFlying implements IMob {
 	public void removeTrackingPlayer(EntityPlayerMP player) {
 		super.removeTrackingPlayer(player);
 		this.bossInfo.removePlayer(player);
-		this.playerScoreS -= this.playerScoreS;
+		this.playerScoreB -= this.playerScoreB;
 		this.heal(750.0F);
 	}
 
@@ -265,8 +265,8 @@ public class EntityGhastBossS extends EntityFlying implements IMob {
 		}
 	}
 
-	public void processGhastDeath(EntityGhastBossS ghastbosss) {
-		if (ghastbosss.getUniqueID().equals(this.ghastbossdUniqueId)) {
+	public void processGhastDeath(EntityGhastBossB ghastbossd) {
+		if (ghastbossd.getUniqueID().equals(this.ghastbossdUniqueId)) {
 			this.bossInfo.setPercent(0.0F);
 			this.bossInfo.setVisible(false);
 
@@ -285,7 +285,7 @@ public class EntityGhastBossS extends EntityFlying implements IMob {
 		++this.deathTicks;
 
 		if (this.deathTicks == 20) {
-			GuiPlayerScore.renderPlayerScoreS = true;
+			GuiPlayerScore.renderPlayerScoreB = true;
 		}
 
 		if (this.deathTicks >= 70 && this.deathTicks <= 200)
@@ -315,8 +315,8 @@ public class EntityGhastBossS extends EntityFlying implements IMob {
 			if (flag) {
 				this.dropExperience(MathHelper.floor((float) i * 0.2F));
 			}
-			GuiPlayerScore.renderPlayerScoreS = false;
-			this.playerScoreS -= this.playerScoreS;
+			GuiPlayerScore.renderPlayerScoreB = false;
+			this.playerScoreB -= this.playerScoreB;
 			this.dropFewItems(false, 1);
 			this.setDead();
 		}
@@ -332,12 +332,12 @@ public class EntityGhastBossS extends EntityFlying implements IMob {
 	}
 
 	static class AIFireballAttack extends EntityAIBase {
-		private final EntityGhastBossS parentEntity;
+		private final EntityGhastBossB parentEntity;
 		public int attackTimer;
 		public int shootTimer;
 
-		public AIFireballAttack(EntityGhastBossS entityGhastBossS) {
-			this.parentEntity = entityGhastBossS;
+		public AIFireballAttack(EntityGhastBossB entityGhastBossB) {
+			this.parentEntity = entityGhastBossB;
 		}
 
 		public boolean shouldExecute() {
@@ -373,14 +373,14 @@ public class EntityGhastBossS extends EntityFlying implements IMob {
 							- (0.5D + this.parentEntity.posY + (double) (this.parentEntity.height / 2.0F));
 					double d4 = entitylivingbase.posZ - (this.parentEntity.posZ + vec3d.z * 4.0D);
 					world.playEvent((EntityPlayer) null, 1016, new BlockPos(this.parentEntity), 0);
-					EntityGhastBossSFireball entitylargefireball = new EntityGhastBossSFireball(world, this.parentEntity, d2, d3,
+					EntityGhastBossBFireball entitylargefireball = new EntityGhastBossBFireball(world, this.parentEntity, d2, d3,
 							d4);
 					entitylargefireball.explosionPower = this.parentEntity.getFireballStrength();
 					entitylargefireball.posX = this.parentEntity.posX + vec3d.x * 4.0D;
 					entitylargefireball.posY = this.parentEntity.posY + (double) (this.parentEntity.height / 2.0F) + 0.5D;
 					entitylargefireball.posZ = this.parentEntity.posZ + vec3d.z * 4.0D;
 					world.spawnEntity(entitylargefireball);
-					EntityGhastBossS.playerScoreS += 1;
+					EntityGhastBossB.playerScoreB += 1;
 					this.attackTimer = -20;
 				}
 			} else if (this.attackTimer > 0) {
@@ -391,10 +391,10 @@ public class EntityGhastBossS extends EntityFlying implements IMob {
 	}
 
 	static class AILookAround extends EntityAIBase {
-		private final EntityGhastBossS parentEntity;
+		private final EntityGhastBossB parentEntity;
 
-		public AILookAround(EntityGhastBossS entityGhastBossS) {
-			this.parentEntity = entityGhastBossS;
+		public AILookAround(EntityGhastBossB entityGhastBossB) {
+			this.parentEntity = entityGhastBossB;
 			this.setMutexBits(2);
 		}
 
@@ -421,10 +421,10 @@ public class EntityGhastBossS extends EntityFlying implements IMob {
 	}
 
 	static class AIRandomFly extends EntityAIBase {
-		private final EntityGhastBossS parentEntity;
+		private final EntityGhastBossB parentEntity;
 
-		public AIRandomFly(EntityGhastBossS entityGhastBossS) {
-			this.parentEntity = entityGhastBossS;
+		public AIRandomFly(EntityGhastBossB entityGhastBossB) {
+			this.parentEntity = entityGhastBossB;
 			this.setMutexBits(1);
 		}
 
@@ -460,12 +460,12 @@ public class EntityGhastBossS extends EntityFlying implements IMob {
 	}
 
 	static class GhastMoveHelper extends EntityMoveHelper {
-		private final EntityGhastBossS parentEntity;
+		private final EntityGhastBossB parentEntity;
 		private int courseChangeCooldown;
 
-		public GhastMoveHelper(EntityGhastBossS entityGhastBossS) {
-			super(entityGhastBossS);
-			this.parentEntity = entityGhastBossS;
+		public GhastMoveHelper(EntityGhastBossB entityGhastBossB) {
+			super(entityGhastBossB);
+			this.parentEntity = entityGhastBossB;
 		}
 
 		public void onUpdateMoveHelper() {

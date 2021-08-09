@@ -116,10 +116,14 @@ kinomod.bismuth_wand.toolip=Fire Bismuth Explosion
 entity.centaur.name=Centaur
 entity.ghast_boss_d.name=Dalium Ghast
 entity.ghast_boss_s.name=Seminium Ghast
+entity.ghast_boss_b.name=Balium Ghast
+entity.ghast_boss_k.name=Kinium Ghast
 entity.bismuth_ball.name=Bismuth Ball
 
 attribute.name.Bismuth=Bismuth Damage
-death.attack.Bismuth=§4B§ci§6s§em§2u§at§bh §7disintegration has occurred
+death.attack.kinomod.bismuth=§4B§ci§6s§em§2u§at§bh §fdisintegration has occurred on %1$s
+death.attack.kinomod.bismuth.projectile=§4B§ci§6s§em§2u§at§bh §fdisintegration has occurred on %1$s
+death.attack.kinomod.bismuth.projectile.player=§4B§ci§6s§em§2u§at§bh §fdisintegration has occurred on %1$s by %2$s using %3$s
 
 info.holdShiftForDetails=Hold §e§oShift§r§7 for Details§r
 info.sword.a.0=Sword Mode : Attack Speed.
@@ -145,9 +149,13 @@ config.kinomod.category.kinomod.tooltip=General Configuration
 config.category.id.centaur=Centaur ID
 config.category.id.ghastbossd=Dalium Ghast ID
 config.category.id.ghastbosss=Seminium Ghast ID
+config.category.id.ghastbossb=Balium Ghast ID
+config.category.id.ghastbossk=Kinium Ghast ID
 config.category.id.bismuthball=Bismuth Wand Projectile ID
 config.category.id.ghastfireballd=Dalium Ghast Projectile ID
 config.category.id.ghastfireballs=Seminium Ghast Projectile ID
+config.category.id.ghastfireballb=Balium Ghast Projectile ID
+config.category.id.ghastfireballk=Kinium Ghast Projectile ID
 
 config.category.gen.overworld.gabbroAmount=Gabbro Amount
 config.category.gen.overworld.gabbroSize=Gabbro Vein Size
