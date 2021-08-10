@@ -1,4 +1,4 @@
-package fr.kinjer.kinomod.blocks;
+package fr.kinjer.kinomod.blocks.container;
 
 import fr.kinjer.kinomod.KinoMod;
 import fr.kinjer.kinomod.init.InitBlocks;
@@ -21,6 +21,7 @@ public class BlockExtractor extends BlockContainer {
 
 	public BlockExtractor() {
 		super(Material.ROCK);
+		setCreativeTab(KinoMod.tabKino);
 		InitBlocks.setBlockName(this, "extractor");
 	}
 

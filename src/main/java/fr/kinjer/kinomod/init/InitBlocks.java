@@ -9,7 +9,6 @@ import fr.kinjer.kinomod.blocks.BlockBaliumOre;
 import fr.kinjer.kinomod.blocks.BlockBismuth;
 import fr.kinjer.kinomod.blocks.BlockDalium;
 import fr.kinjer.kinomod.blocks.BlockDaliumOre;
-import fr.kinjer.kinomod.blocks.BlockExtractor;
 import fr.kinjer.kinomod.blocks.BlockGabbro;
 import fr.kinjer.kinomod.blocks.BlockGabbroPolished;
 import fr.kinjer.kinomod.blocks.BlockKinium;
@@ -22,6 +21,7 @@ import fr.kinjer.kinomod.blocks.BlockSpecialBalium;
 import fr.kinjer.kinomod.blocks.BlockSpecialDalium;
 import fr.kinjer.kinomod.blocks.BlockSpecialKinium;
 import fr.kinjer.kinomod.blocks.BlockSpecialSeminium;
+import fr.kinjer.kinomod.blocks.container.BlockExtractor;
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemBlock;
 

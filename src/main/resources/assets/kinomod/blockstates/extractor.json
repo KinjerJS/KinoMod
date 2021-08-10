@@ -1,0 +1,11 @@
+{
+    "variants": {
+    	"normal": [
+            { "model": "kinomod:extractor" }
+        ],
+        "facing=north": { "model": "kinomod:extractor" },
+        "facing=south": { "model": "kinomod:extractor", "y": 180 },
+        "facing=west":  { "model": "kinomod:extractor", "y": 270 },
+        "facing=east":  { "model": "kinomod:extractor", "y": 90 }
+    }
+}

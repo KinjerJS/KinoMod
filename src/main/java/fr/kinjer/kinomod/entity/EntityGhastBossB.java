@@ -71,7 +71,8 @@ public class EntityGhastBossB extends EntityFlying implements IMob {
 	private static final double MAX_HEALTH = 750.0D;
 	private static final double MOVEMENT_SPEED = 0.6D;
 	private static final double FOLLOW_RANGE = 100.0D;
-	private static final double XP_VALUE = 700.0D;
+	private static final double XP_MAX_VALUE = 700.0D;
+	
 
 	private static final DataParameter<Boolean> ATTACKING = EntityDataManager.<Boolean>createKey(EntityGhastBossB.class,
 			DataSerializers.BOOLEAN);
@@ -84,7 +85,7 @@ public class EntityGhastBossB extends EntityFlying implements IMob {
 		super(worldIn);
 		this.setSize(10.0f, 10.0f);
 		this.isImmuneToFire = true;
-		this.experienceValue = (int) XP_VALUE;
+		this.experienceValue = (int) 500;
 		this.moveHelper = new EntityGhastBossB.GhastMoveHelper(this);
 	}
 
@@ -323,10 +324,10 @@ public class EntityGhastBossB extends EntityFlying implements IMob {
 	}
 
 	private void dropExperience(int xp) {
-		xp = (int) XP_VALUE;
-		while (xp > 0) {
-			int i = EntityXPOrb.getXPSplit(xp);
-			xp -= i;
+		int XP = (int) (xp + this.rand.nextInt((int) (XP_MAX_VALUE - xp)));
+		while (XP > 0) {
+			int i = EntityXPOrb.getXPSplit(XP);
+			XP -= i;
 			this.world.spawnEntity(new EntityXPOrb(this.world, this.posX, this.posY, this.posZ, i));
 		}
 	}

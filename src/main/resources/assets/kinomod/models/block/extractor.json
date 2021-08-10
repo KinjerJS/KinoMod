@@ -1,0 +1,9 @@
+{
+    "parent": "block/orientable",
+    "textures": {
+        "up": "kinomod:blocks/extractor_top",
+        "down": "kinomod:blocks/extractor_bottom",
+        "front": "kinomod:blocks/extractor_face",
+        "side": "kinomod:blocks/face"
+    }
+}
