@@ -50,6 +50,7 @@ dependencies {
     deobfCompile "cofh:RedstoneFlux:1.12-2.1.0.+:universal"
     deobfCompile "cofh:CoFHCore:1.12.2-4.6.0.+:universal"
     deobfCompile "cofh:ThermalFoundation:1.12.2-2.6.0.+:universal"
+    deobfCompile "cofh:ThermalExpansion:1.12.2-5.5.4.43:universal"
 
     deobfCompile "codechicken:CodeChickenLib:1.12.2-3.1.7.+:universal"
     deobfCompile "mezz.jei:jei_1.12.2:4.15.0.+"

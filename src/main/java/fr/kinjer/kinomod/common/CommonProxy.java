@@ -13,6 +13,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.DamageSource;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
+import net.minecraftforge.fml.common.registry.GameRegistry;
 
 public class CommonProxy {
 	
@@ -32,7 +33,7 @@ public class CommonProxy {
 	public void preInit(File file) {
 		MinecraftForge.EVENT_BUS.register(new HandlerRegistering());
 		MinecraftForge.EVENT_BUS.register(new InitEvents());
-		TileEntity.register("modid:tile_extractor", TileExtractor.class);
+		TileExtractor.initialize();
 	}
 	
 	public void init() {

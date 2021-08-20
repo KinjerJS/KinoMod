@@ -1,81 +1,147 @@
 package fr.kinjer.kinomod.client.gui;
 
+import cofh.core.gui.element.ElementBase;
+import cofh.core.gui.element.ElementButton;
+import cofh.core.gui.element.ElementDualScaled;
+import cofh.core.gui.element.ElementEnergyStored;
+import cofh.core.gui.element.ElementFluid;
+import cofh.core.gui.element.ElementFluidTank;
+import cofh.core.gui.element.ElementSimple;
+import cofh.thermalexpansion.gui.client.GuiPoweredBase;
+import cofh.thermalexpansion.gui.element.ElementSlotOverlay;
+import cofh.thermalexpansion.gui.element.ElementSlotOverlay.SlotColor;
+import cofh.thermalexpansion.gui.element.ElementSlotOverlay.SlotRender;
+import cofh.thermalexpansion.gui.element.ElementSlotOverlay.SlotType;
 import fr.kinjer.kinomod.KinoMod;
 import fr.kinjer.kinomod.containers.ContainerExtractor;
 import fr.kinjer.kinomod.tileentities.TileExtractor;
-import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.InventoryPlayer;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 
-@SideOnly(Side.CLIENT)
-public class GuiExtractor extends GuiContainer
+public class GuiExtractor extends GuiPoweredBase
 {
-	private static final ResourceLocation background = new ResourceLocation(KinoMod.MODID,"textures/gui/container/extractor.png");
-	private TileExtractor tile;
+	public static final String TEX_PATH = "kinomod:textures/gui/container/extractor.png";
+	private static final ResourceLocation TEXTURE = new ResourceLocation(TEX_PATH);
+	private TileExtractor myTile;
 	
-	public GuiExtractor(TileExtractor tile, InventoryPlayer playerInv) {
-        super(new ContainerExtractor(tile, playerInv));
-        this.tile = tile;
-	}
-	/*
-	 * Les deux fonctions suivantes permettent de dessiner le Gui :
-	 * 
-	 * drawGuiContainerBackgroundLayer permet de dessiner l’arrière plan
-	 * drawGuiContainerForegroundLayer permet de dessiner le permier plan 
-	 * Vous pouvez dessiner à l’aide des fonctions :
-	 * 
-	 * @code this.drawTexturedModalRect(int x, int y, int textureX, int textureY, int width, int height) 
-	 * x correspond à la coordonnée x de l’endroit où vous voulez afficher votre texture 
-	 * y correspond à la coordonnée y de l’endroit où vous voulez afficher votre texture 
-	 * textureX correspond à la coordonnée x du morceau de texture que vous voulez afficher textureY correspond à la
-	 * coordonnée y du morceau de texture que vous voulez afficher 
-	 * width correspond à largeur du morceau de texture que vous voulez afficher 
-	 * height correspond à la hauteur du morceau de texture que vous voulez afficher
-	 * 
-	 * Quand vous utilisez cette fonction, il faut associer la texture au
-	 * textureManager de minecraft, il faut donc mettre 1 fois au début de la
-	 * fonction
-	 * 
-	 * @code this.mc.getTextureManager().bindTexture(background);
-	 * 
-	 * On peut écrire à l’aide de cette fonction
-	 * 
-	 * @code this.fontRendererObj.drawString(String texte, int x, int, y, int color)
-	 * 
-	 * texte est le texte que vous voulez afficher 
-	 * x est la coordonnée x de l’endroit où vous voulez l’afficher 
-	 * y est la coordonnée y de l’endroit où vous voulez l’afficher color est la couleur du texte
-	 * 
-	 */
+	private ElementBase slotInput;
+	private ElementSlotOverlay[] slotOutput = new ElementSlotOverlay[2];
 
-	//Dessine le Background du Gui
-	@Override
-	protected void drawGuiContainerBackgroundLayer(float partialTicks, int mouseX, int mouseY) {
-	    int i = (this.width - this.xSize) / 2;
-	    int j = (this.height - this.ySize) / 2;
-	    this.mc.getTextureManager().bindTexture(background);
-	    this.drawTexturedModalRect(i, j, 0, 0, this.xSize, this.ySize + 20);
-	 
-	    int timePassed = this.tile.getField(1);
-	    int textureWidth = (int) (23f / 200f * timePassed);
-	    this.drawTexturedModalRect(i + 81, j + 24, 177, 18, textureWidth, 7);
-	 
-	    if (this.tile.isBurning()) {
-	        int burningTime = this.tile.getField(0);
-	        int textureHeight = (int) (12f / this.tile.getFullBurnTime() * burningTime);
-	        this.drawTexturedModalRect(i + 37, j + 26 + 12 - textureHeight,
-	                177, 12 - textureHeight, 27, textureHeight);
-	    }
-	 
-	    //this.fontRenderer.drawString(this.tile.getName(), i + 40, j + 25, 0xFFFFFF);
+	private ElementBase slotTank;
+	private ElementSlotOverlay[] slotTankRev = new ElementSlotOverlay[2];
+
+	private ElementFluid progressFluid;
+	private ElementSimple progressBackgroundRev;
+
+	private ElementDualScaled progressOverlay;
+	private ElementDualScaled progressOverlayRev;
+
+	private ElementDualScaled speed;
+	private ElementButton modeSel;
+
+	public GuiExtractor(InventoryPlayer inventory, TileEntity tile) {
+
+		super(new ContainerExtractor(inventory, tile), tile, inventory.player, TEXTURE);
+
+		generateInfo("tab.thermalexpansion.machine.transposer");
+
+		myTile = (TileExtractor) tile;
 	}
-	
+
 	@Override
-	public void drawScreen(int mouseX, int mouseY, float partialTicks) {
-		this.drawDefaultBackground();
-		super.drawScreen(mouseX, mouseY, partialTicks);
-		this.renderHoveredToolTip(mouseX, mouseY);
+	public void initGui() {
+//		int i = (this.width - this.xSize) / 2;
+//	    int j = (this.height - this.ySize) / 2;
+//	    this.mc.getTextureManager().bindTexture(TEXTURE);
+//	    this.drawTexturedModalRect(i, j, 0, 0, this.xSize, this.ySize + 20);
+//	    setGuiSize(this.xSize, this.ySize + 20);
+		super.initGui();
+//		guiTop = guiTop + 20;
+
+		slotInput = addElement(new ElementSlotOverlay(this, 44, 19).setSlotInfo(SlotColor.BLUE, SlotType.STANDARD, SlotRender.FULL));
+		slotOutput[0] = (ElementSlotOverlay) addElement(new ElementSlotOverlay(this, 76, 45).setSlotInfo(SlotColor.ORANGE, SlotType.OUTPUT, SlotRender.FULL));
+		slotOutput[1] = (ElementSlotOverlay) addElement(new ElementSlotOverlay(this, 76, 45).setSlotInfo(SlotColor.RED, SlotType.OUTPUT, SlotRender.BOTTOM));
+
+		slotTank = addElement(new ElementSlotOverlay(this, 152, 9).setSlotInfo(SlotColor.BLUE, SlotType.TANK, SlotRender.FULL));
+		slotTankRev[0] = (ElementSlotOverlay) addElement(new ElementSlotOverlay(this, 152, 9).setSlotInfo(SlotColor.ORANGE, SlotType.TANK, SlotRender.FULL).setVisible(false));
+		slotTankRev[1] = (ElementSlotOverlay) addElement(new ElementSlotOverlay(this, 152, 9).setSlotInfo(SlotColor.YELLOW, SlotType.TANK, SlotRender.BOTTOM).setVisible(false));
+
+		if (!myTile.smallStorage()) {
+			addElement(new ElementEnergyStored(this, 8, 8, myTile.getEnergyStorage()));
+		}
+		addElement(new ElementFluidTank(this, 152, 9, myTile.getTank()).setGauge(1).setAlwaysShow(true));
+
+		progressBackgroundRev = (ElementSimple) addElement(new ElementSimple(this, 112, 19).setSize(24, 16).setTexture(TEX_DROP_RIGHT, 64, 16));
+		progressFluid = (ElementFluid) addElement(new ElementFluid(this, 112, 19).setFluid(myTile.getTankFluid()).setSize(24, 16));
+
+		progressOverlay = (ElementDualScaled) addElement(new ElementDualScaled(this, 112, 19).setMode(2).setBackground(false).setSize(24, 16).setTexture(TEX_DROP_LEFT, 64, 16));
+		progressOverlayRev = (ElementDualScaled) addElement(new ElementDualScaled(this, 112, 19).setMode(1).setBackground(false).setSize(24, 16).setTexture(TEX_DROP_RIGHT, 64, 16));
+
+		speed = (ElementDualScaled) addElement(new ElementDualScaled(this, 44, 49).setSize(16, 16).setTexture(TEX_BUBBLE, 32, 16));
+		modeSel = (ElementButton) addElement(new ElementButton(this, 116, 49, "Mode", 176, 0, 176, 16, 176, 32, 16, 16, TEX_PATH));
+	}
+
+	@Override
+	protected void updateElementInformation() {
+
+		super.updateElementInformation();
+
+		slotInput.setVisible(myTile.hasSideType(INPUT_ALL) || myTile.hasSideType(OMNI));
+		slotOutput[0].setVisible(myTile.hasSideType(OUTPUT_ALL) || myTile.hasSideType(OMNI));
+		slotOutput[1].setVisible(myTile.hasSideType(OUTPUT_PRIMARY));
+		slotTank.setVisible(!myTile.extractFlag && (myTile.hasSideType(INPUT_ALL) || myTile.hasSideType(OMNI)));
+		slotTankRev[0].setVisible(myTile.extractFlag && (myTile.hasSideType(OUTPUT_ALL) || myTile.hasSideType(OMNI)));
+		slotTankRev[1].setVisible(myTile.extractFlag && myTile.hasSideType(OUTPUT_SECONDARY));
+
+		progressBackgroundRev.setVisible(myTile.extractFlag);
+		progressFluid.setFluid(myTile.getTankFluid());
+		progressFluid.setSize(myTile.getEnergyStored(null) > 0 ? myTile.getScaledProgress(PROGRESS) : 0, 16);
+
+		if (!myTile.hasSideType(OUTPUT_ALL) && !baseTile.hasSideType(OMNI)) {
+			slotOutput[1].setSlotRender(SlotRender.FULL);
+			slotTankRev[1].setSlotRender(SlotRender.FULL);
+		} else {
+			slotOutput[1].setSlotRender(SlotRender.BOTTOM);
+			slotTankRev[1].setSlotRender(SlotRender.BOTTOM);
+		}
+		if (myTile.extractFlag) {
+			progressFluid.setPosition(112, 19);
+		} else {
+			progressFluid.setPosition(112 + PROGRESS - myTile.getScaledProgress(PROGRESS), 19);
+		}
+		progressOverlay.setVisible(!myTile.extractFlag);
+		progressOverlay.setQuantity(myTile.getEnergyStored(null) > 0 ? myTile.getScaledProgress(PROGRESS) : 0);
+		progressOverlayRev.setVisible(myTile.extractFlag);
+		progressOverlayRev.setQuantity(myTile.getEnergyStored(null) > 0 ? myTile.getScaledProgress(PROGRESS) : 0);
+		speed.setQuantity(myTile.getEnergyStored(null) > 0 ? myTile.getScaledSpeed(SPEED) : 0);
+
+		if (myTile.isActive) {
+			modeSel.setToolTip("gui.thermalexpansion.machine.transposer.modeLocked");
+			modeSel.setDisabled();
+		} else if (myTile.extractFlag) {
+			modeSel.setToolTip("gui.thermalexpansion.machine.transposer.modeEmpty");
+			modeSel.setSheetX(192);
+			modeSel.setHoverX(192);
+			modeSel.setActive();
+		} else {
+			modeSel.setToolTip("gui.thermalexpansion.machine.transposer.modeFill");
+			modeSel.setSheetX(176);
+			modeSel.setHoverX(176);
+			modeSel.setActive();
+		}
+	}
+
+	@Override
+	public void handleElementButtonClick(String buttonName, int mouseButton) {
+
+		if (buttonName.equalsIgnoreCase("Mode")) {
+			if (myTile.extractFlag) {
+				playClickSound(0.8F);
+			} else {
+				playClickSound(0.6F);
+			}
+			myTile.setMode(!myTile.extractFlag);
+		}
 	}
 }
