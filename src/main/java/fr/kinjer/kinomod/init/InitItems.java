@@ -16,6 +16,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.Item.ToolMaterial;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemArmor.ArmorMaterial;
+import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemTool;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.client.model.ModelLoader;
@@ -52,6 +53,7 @@ public class InitItems {
 	public static final ToolSwordKino bismuth_sword = new ToolSwordKino(0, 0, 0, bismuth_material, null);
 
 	public static List<Item> items = new ArrayList<>();
+	public static List<ItemFood> itemsfood = new ArrayList<>();
 
 	// ore
 	public static final Item kinium = new ItemKinium();
@@ -60,7 +62,7 @@ public class InitItems {
 	public static final Item dalium = new ItemDalium();
 	public static final Item bismuth = new ItemBismuth();
 
-	// mystical
+	// misc
 	public static final Item kinium_essence = new ItemKiniumEssence();
 	public static final Item balium_essence = new ItemBaliumEssence();
 	public static final Item seminium_essence = new ItemSeminiumEssence();
@@ -69,6 +71,7 @@ public class InitItems {
 	public static final Item balium_droplet = new ItemBaliumDroplet();
 	public static final Item seminium_droplet = new ItemSeminiumDroplet();
 	public static final Item dalium_droplet = new ItemDaliumDroplet();
+	public static final Item bismuth_soup = new ItemBismuthSoup("bismuth_soup", 20, false);
 
 	// ring
 	public static final Item kinium_ring = new BaseKinoBaubleRing("kinium_ring");
