@@ -87,7 +87,7 @@ public class ArmorBismuth extends ItemArmor {
 	@SideOnly(Side.CLIENT)
 	public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> l, ITooltipFlag flagIn) {
 		int damage = stack.getMaxDamage() - stack.getItemDamage();
-		l.add("§7" + DURABILITY + " §7: " + "§4" +INFINITE);
+		l.add("§7" + DURABILITY + " §7: " + "§4" + INFINITE);
 	}
 
 	@Override

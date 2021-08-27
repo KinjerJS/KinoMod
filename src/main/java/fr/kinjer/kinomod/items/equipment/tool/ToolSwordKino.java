@@ -1,5 +1,6 @@
 package fr.kinjer.kinomod.items.equipment.tool;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
 import java.util.UUID;
@@ -8,8 +9,16 @@ import javax.annotation.Nullable;
 
 import org.lwjgl.input.Keyboard;
 
+import com.google.common.collect.Iterables;
 import com.google.common.collect.Multimap;
 
+import cofh.api.item.IMultiModeItem;
+import cofh.core.util.CoreUtils;
+import cofh.core.util.helpers.BaublesHelper;
+import cofh.core.util.helpers.ChatHelper;
+import cofh.core.util.helpers.EnergyHelper;
+import cofh.core.util.helpers.ServerHelper;
+import cofh.redstoneflux.api.IEnergyContainerItem;
 import fr.kinjer.kinomod.KinoMod;
 import fr.kinjer.kinomod.common.CommonProxy;
 import fr.kinjer.kinomod.config.Config;
@@ -17,7 +26,6 @@ import fr.kinjer.kinomod.entity.EntityGhastBossD;
 import fr.kinjer.kinomod.init.InitItems;
 import fr.kinjer.kinomod.utils.UtilsKeyBoard;
 import fr.kinjer.kinomod.utils.UtilsLocalizer;
-import fr.kinjer.kinomod.utils.UtilsIMultiMode;
 import fr.kinjer.kinomod.utils.UtilsWorld;
 import fr.kinjer.kinomod.utils.UtilsItems;
 import net.minecraft.block.Block;
@@ -59,18 +67,24 @@ import net.minecraft.util.registry.IRegistry;
 import net.minecraft.util.registry.RegistrySimple;
 import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.world.World;
+import net.minecraftforge.energy.IEnergyStorage;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class ToolSwordKino extends ItemTool implements UtilsIMultiMode {
+public class ToolSwordKino extends ItemTool implements IMultiModeItem {
 	
     private final IRegistry<ResourceLocation, IItemPropertyGetter> properties = new RegistrySimple<ResourceLocation, IItemPropertyGetter>();
 	private double attackBismuth;
+	private double attackBismuthBoost;
     protected boolean bFull3D;
 	
 	protected static final UUID ATTACK_BISMUTH_MODIFIER = UUID.randomUUID();
 	
-	private static final double BISMUTH_DAMAGE = Config.swordBismuthDamage;
+	public static final int DAMAGE = 0;
+	public static final int SPEED = 1;
+	public static final int RANGE = 2;
+	
+	private static double BISMUTH_DAMAGE = Config.swordBismuthDamage;
 	private static final double ATTACK_DAMAGE = Config.swordAttackDamage - 1.0D;
 	private static final double ATTACK_SPEED = -2.4000000953674316D;
 	
@@ -167,14 +181,38 @@ public class ToolSwordKino extends ItemTool implements UtilsIMultiMode {
 	
 	@SideOnly(Side.CLIENT)
 	public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> l, ITooltipFlag flagIn) {
+		
+		String SWORD_INFO = UtilsLocalizer.localize("info.kinomod.sword.d." + getMode(stack));
 
 		if (!UtilsKeyBoard.isShiftKeyDown()) {
 			l.add(UtilsLocalizer.shiftDetails());
 			return;
 		}
 
-		l.add(UtilsLocalizer.localize("info.sword.a.") + getMode(stack));
+		l.add(UtilsLocalizer.localize("§a" + SWORD_INFO));
 
+	}
+	
+	@Override
+	public void onUpdate(ItemStack stack, World world, Entity entity, int slot, boolean isSelected) {
+
+		if (ServerHelper.isClientWorld(world) || CoreUtils.isFakePlayer(entity) || !isActive(stack)) {
+			return;
+		}
+		EntityPlayer player = (EntityPlayer) entity;
+		switch (getMode(stack)) {
+			case DAMAGE:
+				
+				break;
+			case SPEED:
+				
+				break;
+			case RANGE:
+				
+				break;
+			default:
+				
+		}
 	}
 	
 	@Override
@@ -184,9 +222,9 @@ public class ToolSwordKino extends ItemTool implements UtilsIMultiMode {
 
 	@Override
 	public void onModeChange(EntityPlayer player, ItemStack stack) {
+
 		player.world.playSound(null, player.getPosition(), SoundEvents.BLOCK_LEVER_CLICK, SoundCategory.PLAYERS, 0.4F, (isActive(stack) ? 0.7F : 0.5F) + 0.1F * getMode(stack));
-		UtilsWorld.sendIndexedChatMessageToPlayer(player, new TextComponentTranslation("info.changemode." + getMode(stack)));
-		
+		ChatHelper.sendIndexedChatMessageToPlayer(player, new TextComponentTranslation("info.kinomod.sword.d." + getMode(stack)));
 	}
 	
 	@Override

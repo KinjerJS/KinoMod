@@ -126,9 +126,9 @@ death.attack.kinomod.bismuth.projectile=§4B§ci§6s§em§2u§at§bh §fdisinteg
 death.attack.kinomod.bismuth.projectile.player=§4B§ci§6s§em§2u§at§bh §fdisintegration has occurred on %1$s by %2$s using %3$s
 
 info.holdShiftForDetails=Hold §e§oShift§r§7 for Details§r
-info.sword.a.0=Sword Mode : Attack Speed.
-info.sword.a.1=Sword Mode : Attack Range.
-info.sword.a.2=Sword Mode : Attack Damage.
+info.kinomod.sword.d.0=Sword Mode : Attack Damage.
+info.kinomod.sword.d.1=Sword Mode : Attack Speed.
+info.kinomod.sword.d.2=Sword Mode : Attack Range.
 
 key.kinomod.category=Kinomod
 key.changemod=Switch Sword Mode
