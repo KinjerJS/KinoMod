@@ -828,6 +828,4 @@ public class TileExtractor extends TileMachineBase
 		}
 		return super.getCapability(capability, from);
 	}
-	
-
 }

@@ -21,6 +21,7 @@ import fr.kinjer.kinomod.blocks.BlockSpecialBalium;
 import fr.kinjer.kinomod.blocks.BlockSpecialDalium;
 import fr.kinjer.kinomod.blocks.BlockSpecialKinium;
 import fr.kinjer.kinomod.blocks.BlockSpecialSeminium;
+import fr.kinjer.kinomod.blocks.container.BlockCrystaliser;
 import fr.kinjer.kinomod.blocks.container.BlockExtractor;
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemBlock;
@@ -70,6 +71,7 @@ public class InitBlocks {
 	
 	//Machines
 	public static final Block extractor = new BlockExtractor();
+	public static final Block crystaliser = new BlockCrystaliser();
 	
 	public static void setBlockName(Block block, String name)
 	{

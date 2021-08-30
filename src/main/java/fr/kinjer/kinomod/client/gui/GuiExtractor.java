@@ -19,12 +19,11 @@ import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
 
-public class GuiExtractor extends GuiPoweredBase
-{
+public class GuiExtractor extends GuiPoweredBase {
 	public static final String TEX_PATH = "kinomod:textures/gui/container/extractor.png";
 	private static final ResourceLocation TEXTURE = new ResourceLocation(TEX_PATH);
 	private TileExtractor myTile;
-	
+
 	private ElementBase slotInput;
 	private ElementSlotOverlay[] slotOutput = new ElementSlotOverlay[2];
 
@@ -44,7 +43,7 @@ public class GuiExtractor extends GuiPoweredBase
 
 		super(new ContainerExtractor(inventory, tile), tile, inventory.player, TEXTURE);
 
-		generateInfo("tab.thermalexpansion.machine.transposer");
+		generateInfo("tab.kinomod.machine.extractor");
 
 		myTile = (TileExtractor) tile;
 	}
@@ -59,27 +58,39 @@ public class GuiExtractor extends GuiPoweredBase
 		super.initGui();
 //		guiTop = guiTop + 20;
 
-		slotInput = addElement(new ElementSlotOverlay(this, 44, 19).setSlotInfo(SlotColor.BLUE, SlotType.STANDARD, SlotRender.FULL));
-		slotOutput[0] = (ElementSlotOverlay) addElement(new ElementSlotOverlay(this, 76, 45).setSlotInfo(SlotColor.ORANGE, SlotType.OUTPUT, SlotRender.FULL));
-		slotOutput[1] = (ElementSlotOverlay) addElement(new ElementSlotOverlay(this, 76, 45).setSlotInfo(SlotColor.RED, SlotType.OUTPUT, SlotRender.BOTTOM));
+		slotInput = addElement(
+				new ElementSlotOverlay(this, 44, 19).setSlotInfo(SlotColor.BLUE, SlotType.STANDARD, SlotRender.FULL));
+		slotOutput[0] = (ElementSlotOverlay) addElement(
+				new ElementSlotOverlay(this, 76, 45).setSlotInfo(SlotColor.ORANGE, SlotType.OUTPUT, SlotRender.FULL));
+		slotOutput[1] = (ElementSlotOverlay) addElement(
+				new ElementSlotOverlay(this, 76, 45).setSlotInfo(SlotColor.RED, SlotType.OUTPUT, SlotRender.BOTTOM));
 
-		slotTank = addElement(new ElementSlotOverlay(this, 152, 9).setSlotInfo(SlotColor.BLUE, SlotType.TANK, SlotRender.FULL));
-		slotTankRev[0] = (ElementSlotOverlay) addElement(new ElementSlotOverlay(this, 152, 9).setSlotInfo(SlotColor.ORANGE, SlotType.TANK, SlotRender.FULL).setVisible(false));
-		slotTankRev[1] = (ElementSlotOverlay) addElement(new ElementSlotOverlay(this, 152, 9).setSlotInfo(SlotColor.YELLOW, SlotType.TANK, SlotRender.BOTTOM).setVisible(false));
+		slotTank = addElement(
+				new ElementSlotOverlay(this, 152, 9).setSlotInfo(SlotColor.BLUE, SlotType.TANK, SlotRender.FULL));
+		slotTankRev[0] = (ElementSlotOverlay) addElement(new ElementSlotOverlay(this, 152, 9)
+				.setSlotInfo(SlotColor.ORANGE, SlotType.TANK, SlotRender.FULL).setVisible(false));
+		slotTankRev[1] = (ElementSlotOverlay) addElement(new ElementSlotOverlay(this, 152, 9)
+				.setSlotInfo(SlotColor.YELLOW, SlotType.TANK, SlotRender.BOTTOM).setVisible(false));
 
 		if (!myTile.smallStorage()) {
 			addElement(new ElementEnergyStored(this, 8, 8, myTile.getEnergyStorage()));
 		}
 		addElement(new ElementFluidTank(this, 152, 9, myTile.getTank()).setGauge(1).setAlwaysShow(true));
 
-		progressBackgroundRev = (ElementSimple) addElement(new ElementSimple(this, 112, 19).setSize(24, 16).setTexture(TEX_DROP_RIGHT, 64, 16));
-		progressFluid = (ElementFluid) addElement(new ElementFluid(this, 112, 19).setFluid(myTile.getTankFluid()).setSize(24, 16));
+		progressBackgroundRev = (ElementSimple) addElement(
+				new ElementSimple(this, 112, 19).setSize(24, 16).setTexture(TEX_DROP_RIGHT, 64, 16));
+		progressFluid = (ElementFluid) addElement(
+				new ElementFluid(this, 112, 19).setFluid(myTile.getTankFluid()).setSize(24, 16));
 
-		progressOverlay = (ElementDualScaled) addElement(new ElementDualScaled(this, 112, 19).setMode(2).setBackground(false).setSize(24, 16).setTexture(TEX_DROP_LEFT, 64, 16));
-		progressOverlayRev = (ElementDualScaled) addElement(new ElementDualScaled(this, 112, 19).setMode(1).setBackground(false).setSize(24, 16).setTexture(TEX_DROP_RIGHT, 64, 16));
+		progressOverlay = (ElementDualScaled) addElement(new ElementDualScaled(this, 112, 19).setMode(2)
+				.setBackground(false).setSize(24, 16).setTexture(TEX_DROP_LEFT, 64, 16));
+		progressOverlayRev = (ElementDualScaled) addElement(new ElementDualScaled(this, 112, 19).setMode(1)
+				.setBackground(false).setSize(24, 16).setTexture(TEX_DROP_RIGHT, 64, 16));
 
-		speed = (ElementDualScaled) addElement(new ElementDualScaled(this, 44, 49).setSize(16, 16).setTexture(TEX_BUBBLE, 32, 16));
-		modeSel = (ElementButton) addElement(new ElementButton(this, 116, 49, "Mode", 176, 0, 176, 16, 176, 32, 16, 16, TEX_PATH));
+		speed = (ElementDualScaled) addElement(
+				new ElementDualScaled(this, 44, 49).setSize(16, 16).setTexture(TEX_BUBBLE, 32, 16));
+		modeSel = (ElementButton) addElement(
+				new ElementButton(this, 116, 49, "Mode", 176, 0, 176, 16, 176, 32, 16, 16, TEX_PATH));
 	}
 
 	@Override

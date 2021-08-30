@@ -79,6 +79,7 @@ public class ToolSwordKino extends ItemTool implements IMultiModeItem {
     protected boolean bFull3D;
 	
 	protected static final UUID ATTACK_BISMUTH_MODIFIER = UUID.randomUUID();
+	protected static final UUID SWORD_UUID = UUID.randomUUID();
 	
 	public static final int DAMAGE = 0;
 	public static final int SPEED = 1;
@@ -202,13 +203,13 @@ public class ToolSwordKino extends ItemTool implements IMultiModeItem {
 		EntityPlayer player = (EntityPlayer) entity;
 		switch (getMode(stack)) {
 			case DAMAGE:
-				
+				super.attackDamage = (float) (ATTACK_DAMAGE + 5);
 				break;
 			case SPEED:
-				
+				super.attackDamage = (float) ATTACK_DAMAGE;
+				super.attackSpeed = (float) (ATTACK_SPEED + 2.0D);
 				break;
 			case RANGE:
-				
 				break;
 			default:
 				
